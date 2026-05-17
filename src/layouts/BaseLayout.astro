@@ -1,0 +1,95 @@
+---
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/hanken-grotesk';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/600.css';
+import '../styles/global.css';
+import { SITE } from '../consts';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = SITE.title, description = SITE.description } = Astro.props;
+
+// BASE_URL is the configured `base` with a trailing slash (e.g. "/mentara-ai-landing-page/"
+// on project Pages, or "/" on a custom domain). Public assets must be referenced through
+// it or they 404 under a sub-path deployment.
+// BASE_URL has no guaranteed trailing slash across Astro versions — normalize to a
+// no-trailing-slash prefix and join explicitly so sub-path deploys don't 404.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const origin = Astro.site ?? new URL(SITE.domain);
+const canonical = new URL(Astro.url.pathname, origin).href;
+const favicon = `${base}/favicon.svg`;
+const ogImage = new URL(`${base}/og.svg`, origin).href;
+const sitemapHref = `${base}/sitemap-index.xml`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: SITE.name,
+  applicationCategory: 'EducationApplication',
+  operatingSystem: 'iOS, Android',
+  description: SITE.description,
+  url: canonical,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0b0b0d" />
+    <meta name="color-scheme" content="dark" />
+
+    <link rel="icon" href={favicon} type="image/svg+xml" />
+    <link rel="sitemap" href={sitemapHref} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a href="#main" class="skip">Skip to content</a>
+    <slot />
+    <style>
+      .skip {
+        position: absolute;
+        left: -999px;
+        top: 0.75rem;
+        z-index: 100;
+        background: var(--amber);
+        color: var(--ink);
+        padding: 0.6rem 1rem;
+        border-radius: 0 0 10px 0;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+      }
+      .skip:focus {
+        left: 0;
+      }
+    </style>
+  </body>
+</html>

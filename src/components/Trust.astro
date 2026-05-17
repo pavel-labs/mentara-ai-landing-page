@@ -1,0 +1,42 @@
+---
+import { TRUST } from '../consts';
+---
+
+<div class="trust" aria-label="What Mentara trains for">
+  <div class="container trust__row">
+    {
+      TRUST.map((t) => (
+        <span class="trust__item">
+          <span class="trust__tick" aria-hidden="true">›</span>
+          {t}
+        </span>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .trust {
+    border-block: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.22);
+  }
+  .trust__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2.4rem;
+    padding-block: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--bone-dim);
+    text-transform: uppercase;
+  }
+  .trust__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .trust__tick {
+    color: var(--amber);
+  }
+</style>

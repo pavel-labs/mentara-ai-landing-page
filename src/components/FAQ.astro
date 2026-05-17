@@ -1,0 +1,98 @@
+---
+import { FAQ } from '../consts';
+---
+
+<section id="faq">
+  <div class="container faq__grid">
+    <div class="section-head faq__head">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">Straight answers.</h2>
+    </div>
+
+    <div class="faq__list">
+      {
+        FAQ.map((item) => (
+          <details class="qa">
+            <summary>
+              <span>{item.q}</span>
+              <span class="qa__sign" aria-hidden="true" />
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__grid {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+  .faq__head {
+    position: sticky;
+    top: 6rem;
+    margin-bottom: 0;
+  }
+  .qa {
+    border-top: 1px solid var(--line);
+  }
+  .qa:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .qa summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.4rem 0;
+    font-family: var(--font-display);
+    font-size: 1.18rem;
+    font-weight: 560;
+    letter-spacing: -0.01em;
+  }
+  .qa summary::-webkit-details-marker {
+    display: none;
+  }
+  .qa__sign {
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+  }
+  .qa__sign::before,
+  .qa__sign::after {
+    content: '';
+    position: absolute;
+    inset: 50% 0 auto 0;
+    height: 1.5px;
+    background: var(--amber);
+    transition: transform 0.3s var(--ease);
+  }
+  .qa__sign::after {
+    transform: rotate(90deg);
+  }
+  .qa[open] .qa__sign::after {
+    transform: rotate(0);
+  }
+  .qa p {
+    color: var(--bone-dim);
+    line-height: 1.65;
+    max-width: 60ch;
+    padding-bottom: 1.5rem;
+    margin-top: -0.3rem;
+  }
+  @media (max-width: 760px) {
+    .faq__grid {
+      grid-template-columns: 1fr;
+    }
+    .faq__head {
+      position: static;
+    }
+  }
+</style>

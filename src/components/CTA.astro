@@ -1,0 +1,68 @@
+---
+import StoreBadges from './StoreBadges.astro';
+import { SITE } from '../consts';
+---
+
+<section class="cta">
+  <div class="container">
+    <div class="cta__panel">
+      <p class="eyebrow">{SITE.launchLabel}</p>
+      <h2 class="cta__title">
+        The next loop is coming.<br />
+        <span class="accent">Walk in rehearsed.</span>
+      </h2>
+      <p class="lede cta__lede">
+        Mentara lands on iOS and Android in 2026. Practice until the real thing is boring.
+      </p>
+      <StoreBadges />
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding-bottom: clamp(5rem, 10vw, 9rem);
+  }
+  .cta__panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.4rem;
+    padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+    border: 1px solid color-mix(in oklab, var(--amber) 35%, transparent);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(120% 130% at 50% 0%, var(--amber-glow), transparent 60%),
+      var(--ink-1);
+    overflow: hidden;
+  }
+  .cta__panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 3rem,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 3rem 100%;
+    mask-image: radial-gradient(80% 80% at 50% 50%, #000, transparent 75%);
+    opacity: 0.6;
+  }
+  .cta__panel > * {
+    position: relative;
+  }
+  .cta__title {
+    font-family: var(--font-display);
+    font-weight: 660;
+    font-size: clamp(2.1rem, 1.2rem + 4vw, 4rem);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+  }
+  .cta__title .accent {
+    color: var(--amber);
+    font-style: italic;
+  }
+  .cta__lede {
+    max-width: 44ch;
+  }
+</style>
