@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const home = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+---
+
+<BaseLayout title="404 — Mentara" description="That page doesn't exist.">
+  <main id="main" class="nf">
+    <div class="container nf__inner">
+      <p class="eyebrow">Error</p>
+      <h1 class="nf__code">404</h1>
+      <p class="nf__msg">
+        This route never compiled. The page you're after doesn't exist — or hasn't shipped
+        yet.
+      </p>
+      <a class="btn" href={home}>
+        <span aria-hidden="true">←</span> Back to home
+      </a>
+      <pre class="nf__trace" aria-hidden="true">at Mentara.router (&lt;anonymous&gt;)
+  status: 404
+  hint: try the nav above</pre>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .nf {
+    min-height: 78vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+  }
+  .nf__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.3rem;
+  }
+  .nf__code {
+    font-family: var(--font-display);
+    font-weight: 680;
+    font-size: clamp(5rem, 3rem + 14vw, 12rem);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: var(--amber);
+  }
+  .nf__msg {
+    color: var(--bone-dim);
+    max-width: 42ch;
+    line-height: 1.6;
+  }
+  .nf__trace {
+    margin-top: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--bone-faint);
+    text-align: left;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    background: rgba(0, 0, 0, 0.25);
+  }
+</style>

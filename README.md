@@ -29,21 +29,41 @@ src/
   consts.ts            # all copy + metadata (single source of truth)
   layouts/BaseLayout   # <head>, SEO/OG/JSON-LD, fonts, global.css
   styles/global.css    # design tokens + primitives
-  components/           # Nav, Hero, Trust, Features, HowItWorks, Pricing, FAQ, CTA, Footer
-  pages/index.astro     # page assembly
-public/                  # favicon.svg, og.svg, robots.txt (sitemap auto-generated)
+  components/   # Nav, Hero, Trust, ShowProduct, Features, Audience, HowItWorks,
+                #   Pricing, FAQ, CTA, Footer, Waitlist, StoreBadges
+  pages/index.astro · pages/404.astro · pages/og.png.ts  (build-time social card)
+scripts/gen-icons.mjs   # rasterizes favicon.svg → png icons (npm prebuild)
+public/                  # favicon.svg, site.webmanifest, robots.txt
 ```
+
+## Configuration (env)
+
+See `.env.example`. All `PUBLIC_*` (inlined into the static build — no secrets):
+
+- `PUBLIC_FORMSPREE_ENDPOINT` — waitlist form target. Empty → the waitlist renders a
+  disabled placeholder (never ships a broken POST).
+- `PUBLIC_CF_BEACON_TOKEN` — Cloudflare Web Analytics. Empty → no beacon injected, no
+  cookie banner needed.
+- `SITE_URL` / `BASE_PATH` — hosting overrides (default = GitHub Pages project URL).
+
+Set these as env in the GitHub Action (or repo variables) for the deployed build.
 
 ## Notes
 
-- `astro.config.mjs` sets `site: https://mentara.ai` — update if the marketing domain
-  changes. `@astrojs/sitemap` generates `sitemap-index.xml` at build.
-- `public/og.svg` is the social card. Some scrapers (Slack, older Twitter) don't render
-  SVG OG images — before launch, export a `1200×630` `og.png` and point the OG/Twitter
-  tags in `BaseLayout.astro` at it.
+- **Social card** `og.png` is generated at build (`astro-og-canvas`, real 1200×630 PNG) —
+  fixes SVG-OG not rendering on Slack/iMessage/LinkedIn/X.
+- **Icons** (`apple-touch-icon.png`, `icon-192/512.png`) are generated from
+  `public/favicon.svg` by `npm run prebuild` and are gitignored (regenerated in CI).
+- **SEO**: JSON-LD `@graph` (Organization + SoftwareApplication + `FAQPage`), sitemap,
+  robots, manifest. The FAQ is rich-result eligible.
 - Store badges are intentionally **non-interactive "Coming soon"** until the apps ship.
-- Deploy: any static host (Vercel / Netlify / Cloudflare Pages / GitHub Pages). Build
-  command `npm run build`, output `dist/`.
+- **Security**: two open `astro` advisories (`define:vars` XSS, server-island replay) do
+  not apply here — this site uses neither and is fully static with no user input.
+  `astro@6` is a breaking major `astro-og-canvas` doesn't support yet; revisit when it
+  does. Not force-upgraded on purpose.
+- Deploy: GitHub Pages via `.github/workflows/deploy.yml` (build → `deploy-pages`), plus a
+  **non-blocking** Lighthouse CI `audit` job (`lighthouserc.json`, ≥0.9 budgets as
+  warnings). Any static host also works: `npm run build` → `dist/`.
 
 ## Relationship to the main repo
 

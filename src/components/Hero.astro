@@ -1,5 +1,6 @@
 ---
 import StoreBadges from './StoreBadges.astro';
+import Waitlist from './Waitlist.astro';
 import { SITE } from '../consts';
 
 const subscores = [
@@ -26,6 +27,7 @@ const subscores = [
       </p>
 
       <div class="hero__cta" data-reveal style="--d:3">
+        <Waitlist />
         <StoreBadges />
         <p class="mono hero__launch">
           <span class="dot" aria-hidden="true"></span>

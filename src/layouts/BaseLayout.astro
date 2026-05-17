@@ -5,7 +5,7 @@ import '@fontsource/jetbrains-mono/400.css';
 import '@fontsource/jetbrains-mono/500.css';
 import '@fontsource/jetbrains-mono/600.css';
 import '../styles/global.css';
-import { SITE } from '../consts';
+import { SITE, FAQ } from '../consts';
 
 interface Props {
   title?: string;
@@ -14,31 +14,51 @@ interface Props {
 
 const { title = SITE.title, description = SITE.description } = Astro.props;
 
-// BASE_URL is the configured `base` with a trailing slash (e.g. "/mentara-ai-landing-page/"
-// on project Pages, or "/" on a custom domain). Public assets must be referenced through
-// it or they 404 under a sub-path deployment.
 // BASE_URL has no guaranteed trailing slash across Astro versions — normalize to a
 // no-trailing-slash prefix and join explicitly so sub-path deploys don't 404.
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const origin = Astro.site ?? new URL(SITE.domain);
 const canonical = new URL(Astro.url.pathname, origin).href;
 const favicon = `${base}/favicon.svg`;
-const ogImage = new URL(`${base}/og.svg`, origin).href;
+const ogImage = new URL(`${base}/og.png`, origin).href;
 const sitemapHref = `${base}/sitemap-index.xml`;
+const manifestHref = `${base}/site.webmanifest`;
+const appleIcon = `${base}/apple-touch-icon.png`;
 
+// Cloudflare Web Analytics — privacy-friendly, cookieless. Only injected when a token is
+// provided, so dev/forks ship no beacon and no consent banner is needed.
+const cfToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
+
+// One JSON-LD @graph: the app, the org, and the FAQ (unlocks the FAQ rich result).
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: SITE.name,
-  applicationCategory: 'EducationApplication',
-  operatingSystem: 'iOS, Android',
-  description: SITE.description,
-  url: canonical,
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
-  },
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${origin.origin}/#org`,
+      name: SITE.name,
+      url: SITE.domain,
+      logo: new URL(favicon, origin).href,
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: SITE.name,
+      applicationCategory: 'EducationApplication',
+      operatingSystem: 'iOS, Android',
+      description: SITE.description,
+      url: canonical,
+      publisher: { '@id': `${origin.origin}/#org` },
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
 };
 ---
 
@@ -56,6 +76,9 @@ const jsonLd = {
     <meta name="color-scheme" content="dark" />
 
     <link rel="icon" href={favicon} type="image/svg+xml" />
+    <link rel="mask-icon" href={favicon} color="#ff6a2b" />
+    <link rel="apple-touch-icon" href={appleIcon} />
+    <link rel="manifest" href={manifestHref} />
     <link rel="sitemap" href={sitemapHref} />
 
     <meta property="og:type" content="website" />
@@ -70,6 +93,17 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+
+    {
+      cfToken && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={`{"token":"${cfToken}"}`}
+        />
+      )
+    }
   </head>
   <body>
     <a href="#main" class="skip">Skip to content</a>
