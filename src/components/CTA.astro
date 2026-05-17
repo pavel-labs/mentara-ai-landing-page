@@ -1,9 +1,10 @@
 ---
 import StoreBadges from './StoreBadges.astro';
+import Waitlist from './Waitlist.astro';
 import { SITE } from '../consts';
 ---
 
-<section class="cta">
+<section class="cta" id="waitlist">
   <div class="container">
     <div class="cta__panel">
       <p class="eyebrow">{SITE.launchLabel}</p>
@@ -12,9 +13,13 @@ import { SITE } from '../consts';
         <span class="accent">Walk in rehearsed.</span>
       </h2>
       <p class="lede cta__lede">
-        Mentara lands on iOS and Android in 2026. Practice until the real thing is boring.
+        Mentara lands on iOS and Android in 2026. Get the launch email — then practice
+        until the real thing is boring.
       </p>
-      <StoreBadges />
+      <div class="cta__act">
+        <Waitlist compact />
+        <StoreBadges />
+      </div>
     </div>
   </div>
 </section>
@@ -22,6 +27,13 @@ import { SITE } from '../consts';
 <style>
   .cta {
     padding-bottom: clamp(5rem, 10vw, 9rem);
+  }
+  .cta__act {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 0.4rem;
   }
   .cta__panel {
     position: relative;

@@ -1,0 +1,215 @@
+---
+// A deliberately stylized, designed mock of the app — an honest "look at the app",
+// not a screenshot claiming to be the real build.
+---
+
+<section id="product">
+  <div class="container product__grid">
+    <div class="product__copy">
+      <p class="eyebrow">A look at the app</p>
+      <h2 class="h2">The room, in your pocket.</h2>
+      <p class="lede">
+        One screen, one job: keep you in the interview. The question, your answer, and the
+        live read on how it's landing — nothing else competing for attention.
+      </p>
+      <ul class="product__notes">
+        <li><span aria-hidden="true">›</span> Talk or type — the interviewer reacts either way</li>
+        <li><span aria-hidden="true">›</span> The score moves while you speak, not after</li>
+        <li><span aria-hidden="true">›</span> Hint budget is visible, so you ration it like the real thing</li>
+      </ul>
+    </div>
+
+    <div class="device" role="img" aria-label="Stylized preview of the Mentara interview screen">
+      <div class="device__notch" aria-hidden="true"></div>
+      <div class="device__screen">
+        <div class="app__top">
+          <span class="mono">system-design · L5</span>
+          <span class="app__timer">14:22</span>
+        </div>
+
+        <div class="app__q">
+          <span class="who">interviewer</span>
+          <p>Your write path is hot on one key. How do you keep one node from melting?</p>
+        </div>
+
+        <div class="app__ans">
+          <span class="who">you</span>
+          <p>Salt the partition key, fan reads across replicas, and add a write-behind…</p>
+          <span class="app__caret" aria-hidden="true"></span>
+        </div>
+
+        <div class="app__bar">
+          <div class="app__score">
+            <span class="app__num">8.7</span>
+            <span class="mono">live score</span>
+          </div>
+          <div class="app__hints" title="Hints remaining">
+            <i></i><i></i><i class="spent"></i>
+            <span class="mono">hints</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .product__grid {
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+  .product__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+  .product__notes {
+    list-style: none;
+    display: grid;
+    gap: 0.7rem;
+    margin-top: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--bone-dim);
+  }
+  .product__notes span {
+    color: var(--amber);
+    margin-right: 0.5rem;
+  }
+
+  .device {
+    position: relative;
+    justify-self: center;
+    width: min(20rem, 78vw);
+    aspect-ratio: 9 / 18.5;
+    padding: 0.8rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 2.6rem;
+    background: linear-gradient(160deg, var(--ink-3), var(--ink-1));
+    box-shadow:
+      0 1px 0 rgba(236, 231, 221, 0.05) inset,
+      0 50px 90px -50px #000;
+  }
+  .device__notch {
+    position: absolute;
+    top: 0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 33%;
+    height: 1.1rem;
+    background: var(--ink);
+    border-radius: 0 0 12px 12px;
+    z-index: 2;
+  }
+  .device__screen {
+    height: 100%;
+    border-radius: 2rem;
+    background: radial-gradient(120% 80% at 80% 0%, rgba(255, 106, 43, 0.12), transparent 55%),
+      var(--ink);
+    border: 1px solid var(--line);
+    padding: 2.2rem 1.1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    overflow: hidden;
+  }
+  .app__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--bone-faint);
+  }
+  .app__timer {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--amber);
+  }
+  .who {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+  }
+  .app__q,
+  .app__ans {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .app__q p,
+  .app__ans p {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    padding: 0.65rem 0.8rem;
+    border-radius: 12px;
+  }
+  .app__q p {
+    background: var(--ink-3);
+    border: 1px solid var(--line);
+  }
+  .app__ans p {
+    background: color-mix(in oklab, var(--amber) 14%, var(--ink-2));
+    border: 1px solid color-mix(in oklab, var(--amber) 30%, transparent);
+  }
+  .app__caret {
+    width: 0.5rem;
+    height: 1rem;
+    background: var(--amber);
+    align-self: start;
+    margin-left: 0.8rem;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  .app__bar {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+  }
+  .app__score {
+    display: flex;
+    flex-direction: column;
+  }
+  .app__num {
+    font-family: var(--font-display);
+    font-weight: 680;
+    font-size: 1.7rem;
+    color: var(--bone);
+    line-height: 1;
+  }
+  .app__hints {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .app__hints i {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .app__hints i.spent {
+    background: var(--ink-3);
+  }
+  .app__hints .mono {
+    margin-left: 0.3rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .app__caret {
+      animation: none;
+    }
+  }
+  @media (max-width: 880px) {
+    .product__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

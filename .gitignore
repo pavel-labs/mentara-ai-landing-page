@@ -2,6 +2,11 @@
 dist/
 .astro/
 
+# generated from public/favicon.svg by `npm run prebuild` (scripts/gen-icons.mjs)
+public/apple-touch-icon.png
+public/icon-192.png
+public/icon-512.png
+
 # dependencies
 node_modules/
 

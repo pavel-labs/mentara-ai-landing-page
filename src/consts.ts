@@ -11,11 +11,56 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
+  { label: 'Product', href: '#product' },
   { label: 'Features', href: '#features' },
-  { label: 'How it works', href: '#how' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'FAQ', href: '#faq' },
 ] as const;
+
+export const WAITLIST = {
+  eyebrow: 'Early access',
+  heading: 'Get in before the loop does.',
+  sub: 'Join the waitlist — be first to know the day Mentara ships, no spam.',
+  placeholder: 'you@work.dev',
+  cta: 'Join waitlist',
+  success: "You're on the list. We'll email you at launch.",
+  error: 'Something broke on our end. Try again in a moment.',
+  // Formspree form endpoint, e.g. https://formspree.io/f/abcdwxyz
+  endpoint: import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? '',
+} as const;
+
+export const AUDIENCE = {
+  eyebrow: 'Who it’s for',
+  heading: 'Built for the engineer in the loop.',
+  groups: [
+    {
+      tag: 'New grads',
+      body: 'Turn “I know it on paper” into “I can run the room” before your first onsite.',
+    },
+    {
+      tag: 'Career switchers',
+      body: 'Close the interview-fluency gap fast — reps with feedback, not guesswork.',
+    },
+    {
+      tag: 'Senior loops',
+      body: 'Drill system design and staff-level grilling until the real panel is boring.',
+    },
+  ],
+  versus: {
+    them: 'Grinding LeetCode alone',
+    themPoints: [
+      'No one pushes back on a hand-wavy answer',
+      'Silent on communication & structure',
+      'You grade yourself — generously',
+    ],
+    us: 'Mentara',
+    usPoints: [
+      'An interviewer that follows up and escalates',
+      'Scored on communication, not just the answer',
+      'An honest report + what to fix next',
+    ],
+  },
+} as const;
 
 export const TRUST = [
   'FAANG-style loops',

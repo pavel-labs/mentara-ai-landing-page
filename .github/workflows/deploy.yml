@@ -25,8 +25,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Builds with `astro build` and uploads the GitHub Pages artifact.
-      # `astro build` derives the correct base path from astro.config.mjs.
+      # Builds with `astro build` (runs `prebuild` icon generation) and uploads the
+      # GitHub Pages artifact. `astro build` derives the base path from astro.config.mjs.
       - name: Build site
         uses: withastro/action@v3
         with:
@@ -43,3 +43,35 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Quality gate — independent of deploy on purpose: a Lighthouse dip must never block a
+  # publish. Assertions are warnings (see lighthouserc.json).
+  audit:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # Build base-less so Lighthouse CI's static server (serves dist at "/") gets a
+      # self-consistent site; the base path doesn't affect the audited scores.
+      - name: Build (no base)
+        run: npm run build
+        env:
+          BASE_PATH: /
+
+      - name: Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true

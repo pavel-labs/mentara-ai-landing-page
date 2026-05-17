@@ -7,8 +7,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "node scripts/gen-icons.mjs",
     "build": "astro build",
     "preview": "astro preview",
+    "icons": "node scripts/gen-icons.mjs",
     "astro": "astro"
   },
   "dependencies": {
@@ -16,7 +18,11 @@
     "@fontsource-variable/bricolage-grotesque": "^5.1.1",
     "@fontsource-variable/hanken-grotesk": "^5.1.0",
     "@fontsource/jetbrains-mono": "^5.1.1",
-    "astro": "^5.1.5"
+    "astro": "^5.1.5",
+    "astro-og-canvas": "^0.7.0"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
   },
   "engines": {
     "node": ">=18.20.8"
