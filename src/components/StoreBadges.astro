@@ -1,0 +1,80 @@
+---
+// "Coming soon" store badges. Intentionally non-interactive (no store links yet) and
+// announced to assistive tech as unavailable.
+---
+
+<div class="badges" role="group" aria-label="Mobile apps — coming soon">
+  <div class="badge" aria-disabled="true">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="badge__glyph">
+      <path
+        fill="currentColor"
+        d="M16.4 12.7c0-2 1.6-3 1.7-3.1-1-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7-1.3 0-2.6.8-3.3 2-1.4 2.4-.4 6 1 8 .7.9 1.5 2 2.5 2 1 0 1.4-.6 2.6-.6 1.2 0 1.5.6 2.6.6 1.1 0 1.8-1 2.5-1.9.8-1.1 1.1-2.2 1.1-2.3 0 0-2.1-.8-2.1-3.2zM14.6 6.5c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.3 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.8-.4 2.3-1.1z"
+      ></path>
+    </svg>
+    <span class="badge__text">
+      <small>Coming soon to</small>
+      <strong>App Store</strong>
+    </span>
+  </div>
+
+  <div class="badge" aria-disabled="true">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="badge__glyph">
+      <path
+        fill="currentColor"
+        d="M3.6 2.3c-.2.2-.3.6-.3 1v17.4c0 .4.1.8.3 1l9.3-9.7L3.6 2.3zm10.6 8.2 2.6-2.7-9.2-5.2c-.4-.2-.8-.2-1 0l7.6 7.9zm0 3 2.6 2.7-7.6 7.9c.2.2.6.2 1 0l9.2-5.2-2.6-2.7-2.6-.4zm5-2.7-2.2-1.3-2.8 3 2.8 3 2.2-1.3c.7-.4.7-1.7 0-2.1z"
+      ></path>
+    </svg>
+    <span class="badge__text">
+      <small>Coming soon to</small>
+      <strong>Google Play</strong>
+    </span>
+  </div>
+</div>
+
+<style>
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 1.15rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    background: rgba(236, 231, 221, 0.02);
+    color: var(--bone);
+    cursor: not-allowed;
+    user-select: none;
+    transition: border-color 0.25s var(--ease);
+  }
+  .badge:hover {
+    border-color: var(--bone-faint);
+  }
+  .badge__glyph {
+    width: 1.55rem;
+    height: 1.55rem;
+    color: var(--bone-dim);
+    flex: none;
+  }
+  .badge__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .badge__text small {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+  }
+  .badge__text strong {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+</style>

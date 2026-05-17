@@ -1,0 +1,24 @@
+{
+  "name": "mentara-ai-landing-page",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Marketing landing page for Mentara — AI mock technical interviews for software engineers.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@fontsource-variable/bricolage-grotesque": "^5.1.1",
+    "@fontsource-variable/hanken-grotesk": "^5.1.0",
+    "@fontsource/jetbrains-mono": "^5.1.1",
+    "astro": "^5.1.5"
+  },
+  "engines": {
+    "node": ">=18.20.8"
+  }
+}

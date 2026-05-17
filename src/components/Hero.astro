@@ -1,0 +1,264 @@
+---
+import StoreBadges from './StoreBadges.astro';
+import { SITE } from '../consts';
+
+const subscores = [
+  { label: 'Technical', v: 88 },
+  { label: 'Communication', v: 82 },
+  { label: 'Edge cases', v: 76 },
+  { label: 'Problem-solving', v: 91 },
+];
+---
+
+<section class="hero">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow" data-reveal style="--d:0">AI mock interviews · built for engineers</p>
+
+      <h1 class="display" data-reveal style="--d:1">
+        {SITE.tagline}<br />
+        <span class="accent">Before it</span> rehearses you.
+      </h1>
+
+      <p class="lede" data-reveal style="--d:2">
+        Mentara runs realistic technical mock interviews with an AI interviewer that adapts,
+        pushes back, and scores you in real time — so the real loop feels like a rerun.
+      </p>
+
+      <div class="hero__cta" data-reveal style="--d:3">
+        <StoreBadges />
+        <p class="mono hero__launch">
+          <span class="dot" aria-hidden="true"></span>
+          {SITE.launchLabel} · iOS &amp; Android
+        </p>
+      </div>
+    </div>
+
+    <aside class="panel" data-reveal style="--d:3" aria-label="Sample live mock interview">
+      <div class="panel__bar">
+        <span class="panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="mono">session · system-design · L5</span>
+      </div>
+
+      <div class="panel__body">
+        <div class="line line--ai">
+          <span class="who">interviewer</span>
+          <p>Walk me through how you'd shard this so a hot key doesn't melt one node.</p>
+        </div>
+        <div class="line line--you">
+          <span class="who">you</span>
+          <p>I'd add a salt to the partition key and fan reads across replicas…</p>
+        </div>
+
+        <div class="score">
+          <div class="ring" role="img" aria-label="Live score 8.7 out of 10">
+            <div class="ring__val">8.7<small>/10</small></div>
+          </div>
+          <ul class="bars">
+            {
+              subscores.map((s, i) => (
+                <li style={`--v:${s.v}%; --i:${i}`}>
+                  <span>{s.label}</span>
+                  <i></i>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: clamp(3rem, 7vw, 6rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .hero__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+  .display .accent {
+    color: var(--amber);
+    font-style: italic;
+  }
+  .hero__cta {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-top: 0.6rem;
+  }
+  .hero__launch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  /* ---- live-mock panel ---- */
+  .panel {
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, var(--ink-2), var(--ink-1));
+    box-shadow:
+      0 1px 0 rgba(236, 231, 221, 0.04) inset,
+      0 40px 80px -50px #000;
+    overflow: hidden;
+  }
+  .panel__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.25);
+  }
+  .panel__dots {
+    display: inline-flex;
+    gap: 0.4rem;
+  }
+  .panel__dots i {
+    width: 0.62rem;
+    height: 0.62rem;
+    border-radius: 50%;
+    background: var(--ink-3);
+  }
+  .panel__dots i:first-child {
+    background: var(--amber);
+  }
+  .panel__body {
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .line {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .line .who {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+  }
+  .line p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 0.7rem 0.9rem;
+    border-radius: 12px;
+  }
+  .line--ai p {
+    background: var(--ink-3);
+    border: 1px solid var(--line);
+  }
+  .line--you p {
+    background: color-mix(in oklab, var(--amber) 14%, var(--ink-2));
+    border: 1px solid color-mix(in oklab, var(--amber) 30%, transparent);
+    color: var(--bone);
+  }
+
+  .score {
+    display: flex;
+    align-items: center;
+    gap: 1.3rem;
+    margin-top: 0.4rem;
+    padding-top: 1.2rem;
+    border-top: 1px dashed var(--line-strong);
+  }
+
+  @property --p {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+  .ring {
+    --p: 87;
+    flex: none;
+    width: 5.4rem;
+    height: 5.4rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(closest-side, var(--ink-1) 78%, transparent 79%),
+      conic-gradient(var(--amber) calc(var(--p) * 1%), var(--ink-3) 0);
+    animation: fill 1.4s var(--ease) 0.5s backwards;
+  }
+  @keyframes fill {
+    from {
+      --p: 0;
+    }
+  }
+  .ring__val {
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+  }
+  .ring__val small {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--bone-faint);
+  }
+  .bars {
+    list-style: none;
+    display: grid;
+    gap: 0.55rem;
+    flex: 1;
+  }
+  .bars li {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--bone-dim);
+  }
+  .bars li i {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--ink-3);
+    position: relative;
+    overflow: hidden;
+  }
+  .bars li i::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: var(--v);
+    background: linear-gradient(90deg, var(--amber), var(--amber-soft));
+    transform-origin: left;
+    animation: grow 1s var(--ease) backwards;
+    animation-delay: calc(0.7s + var(--i) * 120ms);
+  }
+  @keyframes grow {
+    from {
+      transform: scaleX(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring,
+    .bars li i::after {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 920px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+    }
+    .panel {
+      order: -1;
+    }
+  }
+</style>

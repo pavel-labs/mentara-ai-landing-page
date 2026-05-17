@@ -1,0 +1,158 @@
+---
+import { PRICING } from '../consts';
+---
+
+<section id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Pricing</p>
+      <h2 class="h2">Free to start. Cheap next to a dropped offer.</h2>
+    </div>
+
+    <div class="tiers">
+      {
+        PRICING.map((p) => (
+          <article class:list={['tier', { 'tier--hot': p.featured }]}>
+            {p.featured && <span class="tier__flag">Most popular</span>}
+            <header class="tier__head">
+              <span class="tier__name">{p.tier}</span>
+              <div class="tier__price">
+                <span class="tier__amt">{p.price}</span>
+                <span class="tier__cad">{p.cadence}</span>
+              </div>
+              <p class="tier__blurb">{p.blurb}</p>
+            </header>
+            <ul class="tier__list">
+              {p.features.map((f) => (
+                <li>
+                  <span class="chk" aria-hidden="true">
+                    ✓
+                  </span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <span class="tier__cta" aria-disabled="true">
+              Available at launch
+            </span>
+          </article>
+        ))
+      }
+    </div>
+    <p class="mono tiers__foot">Prices are indicative and finalized at launch.</p>
+  </div>
+</section>
+
+<style>
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+  .tier {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: var(--ink-1);
+  }
+  .tier--hot {
+    border-color: var(--amber);
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--amber) 9%, var(--ink-1)),
+      var(--ink-1)
+    );
+    box-shadow: 0 30px 70px -50px var(--amber-glow);
+  }
+  .tier__flag {
+    position: absolute;
+    top: -0.7rem;
+    left: clamp(1.6rem, 3vw, 2.4rem);
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--amber);
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+  }
+  .tier__name {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    color: var(--bone-dim);
+  }
+  .tier__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-top: 0.7rem;
+  }
+  .tier__amt {
+    font-family: var(--font-display);
+    font-weight: 680;
+    font-size: clamp(2.4rem, 1.6rem + 2vw, 3.1rem);
+    letter-spacing: -0.03em;
+  }
+  .tier__cad {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--bone-faint);
+  }
+  .tier__blurb {
+    margin-top: 0.6rem;
+    color: var(--bone-dim);
+    font-size: 0.95rem;
+  }
+  .tier__list {
+    list-style: none;
+    display: grid;
+    gap: 0.7rem;
+    flex: 1;
+    border-top: 1px solid var(--line);
+    padding-top: 1.4rem;
+  }
+  .tier__list li {
+    display: flex;
+    gap: 0.65rem;
+    font-size: 0.95rem;
+    color: var(--bone);
+  }
+  .chk {
+    color: var(--amber);
+    font-size: 0.85rem;
+    padding-top: 0.1rem;
+  }
+  .tier__cta {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    color: var(--bone-dim);
+    padding: 0.85rem 1rem;
+    border: 1px dashed var(--line-strong);
+    border-radius: 999px;
+    cursor: not-allowed;
+  }
+  .tier--hot .tier__cta {
+    color: var(--amber);
+    border-color: color-mix(in oklab, var(--amber) 45%, transparent);
+  }
+  .tiers__foot {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  @media (max-width: 860px) {
+    .tiers {
+      grid-template-columns: 1fr;
+      max-width: 26rem;
+      margin-inline: auto;
+    }
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+import { FEATURES } from '../consts';
+---
+
+<section id="features">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">What you get</p>
+      <h2 class="h2">A sparring partner, not a quiz app.</h2>
+    </div>
+
+    <div class="grid">
+      {
+        FEATURES.map((f) => (
+          <article class="feat">
+            <span class="feat__idx" aria-hidden="true">
+              {f.index}
+            </span>
+            <div class="feat__main">
+              <h3>{f.title}</h3>
+              <p>{f.body}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .feat {
+    display: flex;
+    gap: 1.4rem;
+    padding: clamp(1.8rem, 3.5vw, 3rem);
+    background: var(--ink);
+    transition: background 0.3s var(--ease);
+  }
+  .feat:hover {
+    background: var(--ink-1);
+  }
+  .feat__idx {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--amber);
+    padding-top: 0.45rem;
+    letter-spacing: 0.1em;
+  }
+  .feat__main h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.7rem;
+  }
+  .feat__main p {
+    color: var(--bone-dim);
+    max-width: 42ch;
+    line-height: 1.6;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
