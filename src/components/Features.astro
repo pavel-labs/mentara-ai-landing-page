@@ -1,17 +1,23 @@
 ---
-import { FEATURES } from '../consts';
+import { getDict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const f0 = getDict(locale).features;
 ---
 
 <section id="features">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">What you get</p>
-      <h2 class="h2">A sparring partner, not a quiz app.</h2>
+      <p class="eyebrow">{f0.eyebrow}</p>
+      <h2 class="h2">{f0.heading}</h2>
     </div>
 
     <div class="grid">
       {
-        FEATURES.map((f) => (
+        f0.items.map((f) => (
           <article class="feat">
             <span class="feat__idx" aria-hidden="true">
               {f.index}

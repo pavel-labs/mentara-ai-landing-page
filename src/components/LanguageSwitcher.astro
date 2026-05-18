@@ -1,0 +1,60 @@
+---
+import { LOCALES, getDict, localeHome, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+---
+
+<nav class="lang" aria-label="Language">
+  {
+    LOCALES.map((l) => {
+      const current = l === locale;
+      return (
+        <a
+          href={localeHome(l)}
+          class:list={['lang__opt', { 'lang__opt--on': current }]}
+          hreflang={l}
+          lang={l}
+          aria-current={current ? 'true' : undefined}
+          title={getDict(l).langName}
+        >
+          {l.toUpperCase()}
+        </a>
+      );
+    })
+  }
+</nav>
+
+<style>
+  .lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.2rem;
+  }
+  .lang__opt {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--bone-faint);
+    padding: 0.3rem 0.55rem;
+    border-radius: 999px;
+    transition:
+      color 0.2s,
+      background 0.2s;
+  }
+  .lang__opt:hover {
+    color: var(--bone);
+  }
+  .lang__opt--on {
+    color: var(--ink);
+    background: var(--amber);
+  }
+  .lang__opt--on:hover {
+    color: var(--ink);
+  }
+</style>

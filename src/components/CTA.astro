@@ -1,24 +1,27 @@
 ---
 import StoreBadges from './StoreBadges.astro';
 import Waitlist from './Waitlist.astro';
-import { SITE } from '../consts';
+import { getDict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const c = getDict(locale).cta;
 ---
 
 <section class="cta" id="waitlist">
   <div class="container">
     <div class="cta__panel">
-      <p class="eyebrow">{SITE.launchLabel}</p>
+      <p class="eyebrow">{c.eyebrow}</p>
       <h2 class="cta__title">
-        The next loop is coming.<br />
-        <span class="accent">Walk in rehearsed.</span>
+        {c.titleLead}<br />
+        <span class="accent">{c.titleAccent}</span>
       </h2>
-      <p class="lede cta__lede">
-        Mentara lands on iOS and Android in 2026. Get the launch email — then practice
-        until the real thing is boring.
-      </p>
+      <p class="lede cta__lede">{c.lede}</p>
       <div class="cta__act">
-        <Waitlist compact />
-        <StoreBadges />
+        <Waitlist locale={locale} compact />
+        <StoreBadges locale={locale} />
       </div>
     </div>
   </div>

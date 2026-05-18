@@ -13,7 +13,20 @@ export default defineConfig({
   site: SITE_URL,
   base: BASE_PATH,
   trailingSlash: 'ignore',
-  integrations: [sitemap()],
+  // English at the root (/), German at /de/, Russian at /ru/.
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'de', 'ru'],
+    routing: { prefixDefaultLocale: false },
+  },
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: { en: 'en-US', de: 'de-DE', ru: 'ru-RU' },
+      },
+    }),
+  ],
   build: {
     inlineStylesheets: 'auto',
   },

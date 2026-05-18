@@ -1,51 +1,59 @@
 ---
 // A deliberately stylized, designed mock of the app — an honest "look at the app",
 // not a screenshot claiming to be the real build.
+import { getDict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const p = getDict(locale).product;
 ---
 
 <section id="product">
   <div class="container product__grid">
     <div class="product__copy">
-      <p class="eyebrow">A look at the app</p>
-      <h2 class="h2">The room, in your pocket.</h2>
-      <p class="lede">
-        One screen, one job: keep you in the interview. The question, your answer, and the
-        live read on how it's landing — nothing else competing for attention.
-      </p>
+      <p class="eyebrow">{p.eyebrow}</p>
+      <h2 class="h2">{p.heading}</h2>
+      <p class="lede">{p.lede}</p>
       <ul class="product__notes">
-        <li><span aria-hidden="true">›</span> Talk or type — the interviewer reacts either way</li>
-        <li><span aria-hidden="true">›</span> The score moves while you speak, not after</li>
-        <li><span aria-hidden="true">›</span> Hint budget is visible, so you ration it like the real thing</li>
+        {
+          p.notes.map((n) => (
+            <li>
+              <span aria-hidden="true">›</span> {n}
+            </li>
+          ))
+        }
       </ul>
     </div>
 
-    <div class="device" role="img" aria-label="Stylized preview of the Mentara interview screen">
+    <div class="device" role="img" aria-label={p.heading}>
       <div class="device__notch" aria-hidden="true"></div>
       <div class="device__screen">
         <div class="app__top">
-          <span class="mono">system-design · L5</span>
-          <span class="app__timer">14:22</span>
+          <span class="mono">{p.ui.track}</span>
+          <span class="app__timer">{p.ui.timer}</span>
         </div>
 
         <div class="app__q">
-          <span class="who">interviewer</span>
-          <p>Your write path is hot on one key. How do you keep one node from melting?</p>
+          <span class="who">{p.ui.interviewer}</span>
+          <p>{p.ui.q}</p>
         </div>
 
         <div class="app__ans">
-          <span class="who">you</span>
-          <p>Salt the partition key, fan reads across replicas, and add a write-behind…</p>
+          <span class="who">{p.ui.you}</span>
+          <p>{p.ui.a}</p>
           <span class="app__caret" aria-hidden="true"></span>
         </div>
 
         <div class="app__bar">
           <div class="app__score">
             <span class="app__num">8.7</span>
-            <span class="mono">live score</span>
+            <span class="mono">{p.ui.liveScore}</span>
           </div>
-          <div class="app__hints" title="Hints remaining">
+          <div class="app__hints">
             <i></i><i></i><i class="spent"></i>
-            <span class="mono">hints</span>
+            <span class="mono">{p.ui.hints}</span>
           </div>
         </div>
       </div>

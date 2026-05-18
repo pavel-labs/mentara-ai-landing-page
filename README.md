@@ -17,21 +17,35 @@ npm run preview  # serve the production build
 
 Node 18.20.8+ (the repo CI / monorepo uses Node 24).
 
-## Editing content
+## Languages
 
-All marketing copy and metadata live in **`src/consts.ts`** — site title/description,
-nav, features, steps, pricing tiers, FAQ. Edit there, not in components.
+Trilingual: **English `/`**, **German `/de/`**, **Russian `/ru/`** (Astro i18n,
+`prefixDefaultLocale: false`). Each route emits `hreflang` alternates + `x-default`, a
+localized `<html lang>` / OG locale / JSON-LD, and the sitemap carries `xhtml:link`
+alternates. A compact EN/DE/RU switcher lives in the nav.
+
+To **edit copy**: every translatable string is in `src/i18n/{en,de,ru}.ts`, all typed
+against `src/i18n/types.ts` — a missing/renamed key is a TypeScript error, not a silent
+untranslated string. To **add a locale**: add `xx.ts`, register it in
+`src/i18n/index.ts` + `astro.config.mjs` (`i18n.locales` and the sitemap `i18n.locales`),
+and add `src/pages/xx/index.astro` (`<Landing locale="xx" />`).
+
+`src/consts.ts` now holds only non-translatable constants (brand name, domain, Formspree
+endpoint).
 
 ## Structure
 
 ```
 src/
-  consts.ts            # all copy + metadata (single source of truth)
-  layouts/BaseLayout   # <head>, SEO/OG/JSON-LD, fonts, global.css
-  styles/global.css    # design tokens + primitives
-  components/   # Nav, Hero, Trust, ShowProduct, Features, Audience, HowItWorks,
-                #   Pricing, FAQ, CTA, Footer, Waitlist, StoreBadges
-  pages/index.astro · pages/404.astro · pages/og.png.ts  (build-time social card)
+  i18n/{types,en,de,ru,index}.ts   # typed translation dictionaries (the copy)
+  consts.ts             # non-translatable constants only
+  layouts/BaseLayout    # <head>, SEO/OG/JSON-LD/hreflang, fonts, global.css
+  styles/global.css     # design tokens + primitives
+  components/   # Landing (assembles a locale) + Nav, Hero, Trust, ShowProduct,
+                #   Features, Audience, HowItWorks, Pricing, FAQ, CTA, Footer,
+                #   Waitlist, StoreBadges, LanguageSwitcher
+  pages/index.astro · pages/de/index.astro · pages/ru/index.astro
+  pages/404.astro · pages/og.png.ts  (build-time social card)
 scripts/gen-icons.mjs   # rasterizes favicon.svg → png icons (npm prebuild)
 public/                  # favicon.svg, site.webmanifest, robots.txt
 ```

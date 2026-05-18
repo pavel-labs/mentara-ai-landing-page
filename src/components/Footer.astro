@@ -1,5 +1,12 @@
 ---
-import { NAV_LINKS, SITE } from '../consts';
+import { SITE } from '../consts';
+import { getDict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
 const year = new Date().getFullYear();
 ---
 
@@ -7,23 +14,23 @@ const year = new Date().getFullYear();
   <div class="container foot__grid">
     <div class="foot__brand">
       <a href="#main" class="foot__word">{SITE.name}</a>
-      <p class="mono">{SITE.tagline} — AI mock interviews for engineers.</p>
+      <p class="mono">{t.footer.blurb}</p>
     </div>
 
     <nav class="foot__nav" aria-label="Footer">
-      <span class="foot__label">Explore</span>
-      {NAV_LINKS.map((l) => <a href={l.href}>{l.label}</a>)}
+      <span class="foot__label">{t.footer.explore}</span>
+      {t.nav.map((l) => <a href={l.href}>{l.label}</a>)}
     </nav>
 
     <div class="foot__nav">
-      <span class="foot__label">Legal</span>
-      <span class="foot__muted">Terms &amp; Privacy ship with the apps</span>
+      <span class="foot__label">{t.footer.legal}</span>
+      <span class="foot__muted">{t.footer.legalMuted}</span>
     </div>
   </div>
 
   <div class="container foot__base">
     <span class="mono">© {year} {SITE.name}</span>
-    <span class="mono">{SITE.launchLabel} · iOS &amp; Android</span>
+    <span class="mono">{t.meta.launchLabel}</span>
   </div>
 </footer>
 

@@ -1,14 +1,20 @@
 ---
-import { TRUST } from '../consts';
+import { getDict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const items = getDict(locale).trust;
 ---
 
-<div class="trust" aria-label="What Mentara trains for">
+<div class="trust">
   <div class="container trust__row">
     {
-      TRUST.map((t) => (
+      items.map((item) => (
         <span class="trust__item">
           <span class="trust__tick" aria-hidden="true">›</span>
-          {t}
+          {item}
         </span>
       ))
     }

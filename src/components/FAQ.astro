@@ -1,17 +1,23 @@
 ---
-import { FAQ } from '../consts';
+import { getDict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const faq = getDict(locale).faq;
 ---
 
 <section id="faq">
   <div class="container faq__grid">
     <div class="section-head faq__head">
-      <p class="eyebrow">FAQ</p>
-      <h2 class="h2">Straight answers.</h2>
+      <p class="eyebrow">{faq.eyebrow}</p>
+      <h2 class="h2">{faq.heading}</h2>
     </div>
 
     <div class="faq__list">
       {
-        FAQ.map((item) => (
+        faq.items.map((item) => (
           <details class="qa">
             <summary>
               <span>{item.q}</span>

@@ -5,14 +5,19 @@ import '@fontsource/jetbrains-mono/400.css';
 import '@fontsource/jetbrains-mono/500.css';
 import '@fontsource/jetbrains-mono/600.css';
 import '../styles/global.css';
-import { SITE, FAQ } from '../consts';
+import { SITE } from '../consts';
+import { DEFAULT_LOCALE, LOCALES, getDict, localeUrl, type Locale } from '../i18n';
 
 interface Props {
+  locale: Locale;
   title?: string;
   description?: string;
 }
 
-const { title = SITE.title, description = SITE.description } = Astro.props;
+const { locale, title, description } = Astro.props;
+const t = getDict(locale);
+const pageTitle = title ?? t.meta.title;
+const pageDesc = description ?? t.meta.description;
 
 // BASE_URL has no guaranteed trailing slash across Astro versions — normalize to a
 // no-trailing-slash prefix and join explicitly so sub-path deploys don't 404.
@@ -24,6 +29,11 @@ const ogImage = new URL(`${base}/og.png`, origin).href;
 const sitemapHref = `${base}/sitemap-index.xml`;
 const manifestHref = `${base}/site.webmanifest`;
 const appleIcon = `${base}/apple-touch-icon.png`;
+
+// hreflang alternates for every locale + x-default → the default locale home.
+const alternates = LOCALES.map((l) => ({ hreflang: l, href: localeUrl(l, origin) }));
+const skip =
+  locale === 'de' ? 'Zum Inhalt springen' : locale === 'ru' ? 'К содержимому' : 'Skip to content';
 
 // Cloudflare Web Analytics — privacy-friendly, cookieless. Only injected when a token is
 // provided, so dev/forks ship no beacon and no consent banner is needed.
@@ -44,15 +54,16 @@ const jsonLd = {
       '@type': 'SoftwareApplication',
       name: SITE.name,
       applicationCategory: 'EducationApplication',
-      operatingSystem: 'iOS, Android',
-      description: SITE.description,
+      operatingSystem: 'iOS, Android, Web',
+      description: pageDesc,
       url: canonical,
       publisher: { '@id': `${origin.origin}/#org` },
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     },
     {
       '@type': 'FAQPage',
-      mainEntity: FAQ.map((f) => ({
+      inLanguage: locale,
+      mainEntity: t.faq.items.map((f) => ({
         '@type': 'Question',
         name: f.q,
         acceptedAnswer: { '@type': 'Answer', text: f.a },
@@ -63,15 +74,17 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDesc} />
     <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={localeUrl(DEFAULT_LOCALE, origin)} />
     <meta name="theme-color" content="#0b0b0d" />
     <meta name="color-scheme" content="dark" />
 
@@ -83,13 +96,14 @@ const jsonLd = {
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={t.ogLocale} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDesc} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDesc} />
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
@@ -106,7 +120,7 @@ const jsonLd = {
     }
   </head>
   <body>
-    <a href="#main" class="skip">Skip to content</a>
+    <a href="#main" class="skip">{skip}</a>
     <slot />
     <style>
       .skip {

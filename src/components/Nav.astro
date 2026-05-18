@@ -1,5 +1,13 @@
 ---
-import { NAV_LINKS, SITE } from '../consts';
+import { SITE } from '../consts';
+import { getDict, type Locale } from '../i18n';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
 ---
 
 <header class="nav">
@@ -11,17 +19,25 @@ import { NAV_LINKS, SITE } from '../consts';
     </a>
 
     <nav class="links" aria-label="Primary">
-      {NAV_LINKS.map((l) => <a href={l.href}>{l.label}</a>)}
+      {t.nav.map((l) => <a href={l.href}>{l.label}</a>)}
     </nav>
 
-    <span class="pill" aria-label={SITE.launchLabel}>
-      <span class="dot" aria-hidden="true"></span>
-      {SITE.launchLabel}
-    </span>
+    <div class="nav__end">
+      <LanguageSwitcher locale={locale} />
+      <span class="pill" aria-label={t.meta.launchLabel}>
+        <span class="dot" aria-hidden="true"></span>
+        {t.meta.launchLabel}
+      </span>
+    </div>
   </div>
 </header>
 
 <style>
+  .nav__end {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
   .nav {
     position: sticky;
     top: 0;
@@ -96,6 +112,11 @@ import { NAV_LINKS, SITE } from '../consts';
   }
   @media (max-width: 820px) {
     .links {
+      display: none;
+    }
+  }
+  @media (max-width: 620px) {
+    .pill {
       display: none;
     }
   }

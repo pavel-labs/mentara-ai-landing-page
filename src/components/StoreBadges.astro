@@ -1,9 +1,16 @@
 ---
-// "Coming soon" store badges. Intentionally non-interactive (no store links yet) and
-// announced to assistive tech as unavailable.
+// "Coming soon" availability badges (iOS / Android / Web). Intentionally non-interactive
+// (no links yet) and announced to assistive tech as unavailable.
+import { getDict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const b = getDict(locale).badges;
 ---
 
-<div class="badges" role="group" aria-label="Mobile apps — coming soon">
+<div class="badges" role="group" aria-label={b.ariaGroup}>
   <div class="badge" aria-disabled="true">
     <svg viewBox="0 0 24 24" aria-hidden="true" class="badge__glyph">
       <path
@@ -12,8 +19,8 @@
       ></path>
     </svg>
     <span class="badge__text">
-      <small>Coming soon to</small>
-      <strong>App Store</strong>
+      <small>{b.comingSoon}</small>
+      <strong>{b.ios}</strong>
     </span>
   </div>
 
@@ -25,8 +32,21 @@
       ></path>
     </svg>
     <span class="badge__text">
-      <small>Coming soon to</small>
-      <strong>Google Play</strong>
+      <small>{b.comingSoon}</small>
+      <strong>{b.android}</strong>
+    </span>
+  </div>
+
+  <div class="badge" aria-disabled="true">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="badge__glyph">
+      <path
+        fill="currentColor"
+        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-3a15.7 15.7 0 0 0-1.4-3.6A8 8 0 0 1 18.9 8zM12 4c.8 1.1 1.5 2.5 1.9 4h-3.8C10.5 6.5 11.2 5.1 12 4zM4.3 14a8 8 0 0 1 0-4h3.4a17 17 0 0 0 0 4zm.8 2h3a15.7 15.7 0 0 0 1.4 3.6A8 8 0 0 1 5.1 16zm3-8h-3a8 8 0 0 1 4.4-3.6A15.7 15.7 0 0 0 8.1 8zM12 20c-.8-1.1-1.5-2.5-1.9-4h3.8c-.4 1.5-1.1 2.9-1.9 4zm2.3-6H9.7a15 15 0 0 1 0-4h4.6a15 15 0 0 1 0 4zm.3 5.6A15.7 15.7 0 0 0 16 16h3a8 8 0 0 1-4.4 3.6zM16.3 14a17 17 0 0 0 0-4h3.4a8 8 0 0 1 0 4z"
+      ></path>
+    </svg>
+    <span class="badge__text">
+      <small>{b.comingSoon}</small>
+      <strong>{b.web}</strong>
     </span>
   </div>
 </div>
