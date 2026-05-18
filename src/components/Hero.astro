@@ -76,7 +76,9 @@ const sv = [88, 82, 76, 91];
   }
   .hero__grid {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    /* minmax(0,…): without it, fr tracks keep min-width:auto and the longer copy in
+       some locales (e.g. Russian) inflates the left track, starving the panel. */
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
     gap: clamp(2rem, 5vw, 4.5rem);
     align-items: center;
   }
@@ -84,6 +86,7 @@ const sv = [88, 82, 76, 91];
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
+    min-width: 0;
   }
   .display .accent {
     color: var(--amber);

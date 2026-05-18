@@ -37,6 +37,7 @@ const t = getDict(locale);
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex: none;
   }
   .nav {
     position: sticky;
@@ -85,6 +86,7 @@ const t = getDict(locale);
   .links {
     display: flex;
     gap: 2rem;
+    min-width: 0;
     font-family: var(--font-mono);
     font-size: 0.84rem;
     color: var(--bone-dim);
@@ -115,7 +117,10 @@ const t = getDict(locale);
       display: none;
     }
   }
-  @media (max-width: 620px) {
+  /* The pill carries the long localized launch label ("Disponible en 2026"). Drop it
+     once links + the 4-segment switcher are sharing the bar, so they never collide on
+     mid-width desktops in the longer languages. It stays prominent in the hero/footer. */
+  @media (max-width: 1024px) {
     .pill {
       display: none;
     }
