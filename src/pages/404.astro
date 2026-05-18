@@ -1,26 +1,48 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { DEFAULT_LOCALE, getDict, localeHome } from '../i18n';
+import { DEFAULT_LOCALE, LOCALES, getDict, localeHome } from '../i18n';
 
-// GitHub Pages serves a single 404.html for unknown paths — keep it in the default locale.
+// GitHub Pages serves ONE 404.html for every unknown path (any locale). It's rendered in
+// the default locale, then a tiny inline script localizes it from the URL prefix so a
+// missed /de|/es|/ru route still shows German/Spanish/Russian.
 const t = getDict(DEFAULT_LOCALE).notFound;
 const home = localeHome(DEFAULT_LOCALE);
+const nfMap = Object.fromEntries(
+  LOCALES.map((l) => [l, { ...getDict(l).notFound, home: localeHome(l) }]),
+);
 ---
 
 <BaseLayout locale={DEFAULT_LOCALE} title="404 — Mentara" description="That page doesn't exist.">
   <main id="main" class="nf">
     <div class="container nf__inner">
-      <p class="eyebrow">{t.eyebrow}</p>
+      <p class="eyebrow" id="nf-eyebrow">{t.eyebrow}</p>
       <h1 class="nf__code">404</h1>
-      <p class="nf__msg">{t.message}</p>
-      <a class="btn" href={home}>
-        <span aria-hidden="true">←</span> {t.back}
+      <p class="nf__msg" id="nf-msg">{t.message}</p>
+      <a class="btn" id="nf-back" href={home}>
+        <span aria-hidden="true">←</span> <span id="nf-back-label">{t.back}</span>
       </a>
       <pre class="nf__trace" aria-hidden="true">at Mentara.router (&lt;anonymous&gt;)
   status: 404
   hint: try the nav above</pre>
     </div>
   </main>
+  <script type="application/json" id="nf-i18n" is:inline set:html={JSON.stringify(nfMap)}
+  ></script>
+  <script is:inline>
+    // Pick the locale from the first /de|/es|/ru path segment (base-prefix agnostic).
+    (function () {
+      const map = JSON.parse(document.getElementById('nf-i18n').textContent);
+      const seg = location.pathname.split('/').filter(Boolean);
+      const loc = seg.find((s) => s === 'de' || s === 'es' || s === 'ru');
+      if (!loc || !map[loc]) return;
+      const d = map[loc];
+      document.documentElement.lang = loc;
+      document.getElementById('nf-eyebrow').textContent = d.eyebrow;
+      document.getElementById('nf-msg').textContent = d.message;
+      document.getElementById('nf-back-label').textContent = d.back;
+      document.getElementById('nf-back').setAttribute('href', d.home);
+    })();
+  </script>
 </BaseLayout>
 
 <style>

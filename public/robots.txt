@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-# Update this to the production domain when a custom domain is attached
-# (e.g. https://mentara.ai/sitemap-index.xml).
-Sitemap: https://themafia98.github.io/mentara-ai-landing-page/sitemap-index.xml
