@@ -1,66 +1,63 @@
 ---
 import StoreBadges from './StoreBadges.astro';
 import Waitlist from './Waitlist.astro';
-import { SITE } from '../consts';
+import { getDict, type Locale } from '../i18n';
 
-const subscores = [
-  { label: 'Technical', v: 88 },
-  { label: 'Communication', v: 82 },
-  { label: 'Edge cases', v: 76 },
-  { label: 'Problem-solving', v: 91 },
-];
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const sv = [88, 82, 76, 91];
 ---
 
 <section class="hero">
   <div class="container hero__grid">
     <div class="hero__copy">
-      <p class="eyebrow" data-reveal style="--d:0">AI mock interviews · built for engineers</p>
+      <p class="eyebrow" data-reveal style="--d:0">{t.hero.eyebrow}</p>
 
       <h1 class="display" data-reveal style="--d:1">
-        {SITE.tagline}<br />
-        <span class="accent">Before it</span> rehearses you.
+        {t.hero.titleLead}<br />
+        <span class="accent">{t.hero.titleAccent}</span> {t.hero.titleTail}
       </h1>
 
-      <p class="lede" data-reveal style="--d:2">
-        Mentara runs realistic technical mock interviews with an AI interviewer that adapts,
-        pushes back, and scores you in real time — so the real loop feels like a rerun.
-      </p>
+      <p class="lede" data-reveal style="--d:2">{t.hero.lede}</p>
 
       <div class="hero__cta" data-reveal style="--d:3">
-        <Waitlist />
-        <StoreBadges />
+        <Waitlist locale={locale} />
+        <StoreBadges locale={locale} />
         <p class="mono hero__launch">
           <span class="dot" aria-hidden="true"></span>
-          {SITE.launchLabel} · iOS &amp; Android
+          {t.hero.availability}
         </p>
       </div>
     </div>
 
-    <aside class="panel" data-reveal style="--d:3" aria-label="Sample live mock interview">
+    <aside class="panel" data-reveal style="--d:3" aria-label={t.product.heading}>
       <div class="panel__bar">
         <span class="panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="mono">session · system-design · L5</span>
+        <span class="mono">{t.panel.label}</span>
       </div>
 
       <div class="panel__body">
         <div class="line line--ai">
-          <span class="who">interviewer</span>
-          <p>Walk me through how you'd shard this so a hot key doesn't melt one node.</p>
+          <span class="who">{t.panel.interviewer}</span>
+          <p>{t.panel.aiLine}</p>
         </div>
         <div class="line line--you">
-          <span class="who">you</span>
-          <p>I'd add a salt to the partition key and fan reads across replicas…</p>
+          <span class="who">{t.panel.you}</span>
+          <p>{t.panel.youLine}</p>
         </div>
 
         <div class="score">
-          <div class="ring" role="img" aria-label="Live score 8.7 out of 10">
-            <div class="ring__val">8.7<small>/10</small></div>
+          <div class="ring" role="img" aria-label={`8.7 ${t.panel.of}`}>
+            <div class="ring__val">8.7<small>{t.panel.of}</small></div>
           </div>
           <ul class="bars">
             {
-              subscores.map((s, i) => (
-                <li style={`--v:${s.v}%; --i:${i}`}>
-                  <span>{s.label}</span>
+              t.panel.scores.map((label, i) => (
+                <li style={`--v:${sv[i]}%; --i:${i}`}>
+                  <span>{label}</span>
                   <i></i>
                 </li>
               ))

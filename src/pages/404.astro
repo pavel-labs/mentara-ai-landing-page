@@ -1,19 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const home = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+import { DEFAULT_LOCALE, getDict, localeHome } from '../i18n';
+
+// GitHub Pages serves a single 404.html for unknown paths — keep it in the default locale.
+const t = getDict(DEFAULT_LOCALE).notFound;
+const home = localeHome(DEFAULT_LOCALE);
 ---
 
-<BaseLayout title="404 — Mentara" description="That page doesn't exist.">
+<BaseLayout locale={DEFAULT_LOCALE} title="404 — Mentara" description="That page doesn't exist.">
   <main id="main" class="nf">
     <div class="container nf__inner">
-      <p class="eyebrow">Error</p>
+      <p class="eyebrow">{t.eyebrow}</p>
       <h1 class="nf__code">404</h1>
-      <p class="nf__msg">
-        This route never compiled. The page you're after doesn't exist — or hasn't shipped
-        yet.
-      </p>
+      <p class="nf__msg">{t.message}</p>
       <a class="btn" href={home}>
-        <span aria-hidden="true">←</span> Back to home
+        <span aria-hidden="true">←</span> {t.back}
       </a>
       <pre class="nf__trace" aria-hidden="true">at Mentara.router (&lt;anonymous&gt;)
   status: 404

@@ -1,11 +1,15 @@
 ---
 import { WAITLIST } from '../consts';
+import { getDict, type Locale } from '../i18n';
 
 interface Props {
+  locale: Locale;
   compact?: boolean;
 }
-const { compact = false } = Astro.props;
+const { locale, compact = false } = Astro.props;
+const w = getDict(locale).waitlist;
 const enabled = WAITLIST.endpoint.length > 0;
+const fieldId = `wl-${compact ? 'b' : 'a'}-${locale}`;
 ---
 
 <div class:list={['wl-wrap', { 'wl-wrap--compact': compact }]}>
@@ -15,25 +19,26 @@ const enabled = WAITLIST.endpoint.length > 0;
         class="wl"
         action={WAITLIST.endpoint}
         method="POST"
-        data-success={WAITLIST.success}
-        data-error={WAITLIST.error}
+        data-sending={w.sending}
+        data-success={w.success}
+        data-error={w.error}
       >
-        <label class="wl__label" for={`wl-${compact ? 'b' : 'a'}`}>
-          Email address
+        <label class="wl__label" for={fieldId}>
+          {w.label}
         </label>
         <div class="wl__row">
           <input
-            id={`wl-${compact ? 'b' : 'a'}`}
+            id={fieldId}
             class="wl__input"
             type="email"
             name="email"
             required
             autocomplete="email"
             inputmode="email"
-            placeholder={WAITLIST.placeholder}
+            placeholder={w.placeholder}
           />
           <button class="btn wl__btn" type="submit">
-            {WAITLIST.cta}
+            {w.cta}
           </button>
         </div>
         {/* Honeypot — bots fill it, humans never see it. */}
@@ -49,10 +54,8 @@ const enabled = WAITLIST.endpoint.length > 0;
       </form>
     ) : (
       <div class="wl wl--off" role="note">
-        <span class="wl__label">Waitlist</span>
-        <p class="wl__offmsg">
-          Opens shortly — set <code>PUBLIC_FORMSPREE_ENDPOINT</code> to enable the form.
-        </p>
+        <span class="wl__label">{w.eyebrow}</span>
+        <p class="wl__offmsg">{w.offNote}</p>
       </div>
     )
   }
@@ -67,7 +70,7 @@ const enabled = WAITLIST.endpoint.length > 0;
       const status = form.querySelector('.wl__status');
       const btn = form.querySelector('.wl__btn');
       btn.disabled = true;
-      status.textContent = 'Sending…';
+      status.textContent = form.dataset.sending;
       status.dataset.state = 'pending';
       try {
         const res = await fetch(form.action, {

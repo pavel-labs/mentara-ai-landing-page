@@ -1,19 +1,25 @@
 ---
-import { PRICING } from '../consts';
+import { getDict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const pr = getDict(locale).pricing;
 ---
 
 <section id="pricing">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">Pricing</p>
-      <h2 class="h2">Free to start. Cheap next to a dropped offer.</h2>
+      <p class="eyebrow">{pr.eyebrow}</p>
+      <h2 class="h2">{pr.heading}</h2>
     </div>
 
     <div class="tiers">
       {
-        PRICING.map((p) => (
+        pr.tiers.map((p) => (
           <article class:list={['tier', { 'tier--hot': p.featured }]}>
-            {p.featured && <span class="tier__flag">Most popular</span>}
+            {p.featured && <span class="tier__flag">{pr.flag}</span>}
             <header class="tier__head">
               <span class="tier__name">{p.tier}</span>
               <div class="tier__price">
@@ -33,13 +39,13 @@ import { PRICING } from '../consts';
               ))}
             </ul>
             <span class="tier__cta" aria-disabled="true">
-              Available at launch
+              {pr.cta}
             </span>
           </article>
         ))
       }
     </div>
-    <p class="mono tiers__foot">Prices are indicative and finalized at launch.</p>
+    <p class="mono tiers__foot">{pr.foot}</p>
   </div>
 </section>
 
