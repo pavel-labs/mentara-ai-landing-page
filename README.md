@@ -93,10 +93,40 @@ See `.env.example`. All `PUBLIC_*` (inlined into the static build — no secrets
 
 Set these as env in the GitHub Action (or repo variables) for the deployed build.
 
+## Custom domain (mentara.ai)
+
+Everything is written to switch with **no code change** — canonical/OG/hreflang/sitemap
+and `robots.txt` all derive from `site`/`base`. To move off the GitHub Pages sub-path:
+
+1. **DNS**: point `mentara.ai` at GitHub Pages (apex: 4 `A` records to GitHub's IPs, or
+   an `ALIAS`/`ANAME`; `www` as a `CNAME` to `themafia98.github.io`).
+2. **CNAME file**: add `landing/public/CNAME` containing exactly `mentara.ai`. ⚠️ Do this
+   only together with steps 3–4 — committing it while the build still targets the
+   sub-path will break the live site.
+3. **Repo variables** (Settings → Secrets and variables → Actions → Variables):
+   `SITE_URL=https://mentara.ai` and `BASE_PATH=/`. The deploy workflow passes these
+   through; unset = current GitHub Pages defaults (`||` fallback, so empty is safe).
+4. **GitHub Pages**: set the custom domain in Settings → Pages and enable “Enforce HTTPS”.
+
+After this, `robots.txt`, the sitemap, all hreflang/canonical/OG URLs, and `localeHome`
+recompute to `https://mentara.ai/...` automatically. Then point the mobile app’s
+`EXPO_PUBLIC_TERMS_URL` / `EXPO_PUBLIC_PRIVACY_URL` at `https://mentara.ai/terms` and
+`/privacy` (they already default there).
+
 ## Notes
 
-- **Social card** `og.png` is generated at build (`astro-og-canvas`, real 1200×630 PNG) —
-  fixes SVG-OG not rendering on Slack/iMessage/LinkedIn/X.
+- **Social card** `/og/<locale>.png` is generated at build (`astro-og-canvas`, real
+  1200×630 PNG) — fixes SVG-OG not rendering on Slack/iMessage/LinkedIn/X. It uses
+  astro-og-canvas's default font (fetched + cached at build): **deliberately not
+  self-hosted** — Satori needs TTF/OTF and the variable `@fontsource` packages ship
+  woff2-only, so true self-host would mean committing a font binary for marginal gain.
+- **`robots.txt`** is a generated route (`src/pages/robots.txt.ts`) — its Sitemap URL
+  tracks `site`/`base`, so the custom-domain switch needs no manual edit.
+- **404**: one static `404.html` (GitHub Pages serves it for every unknown path),
+  localized client-side from the `/de|/es|/ru` URL prefix; default render is English.
+- **Accessibility**: watch the first Lighthouse CI report for small-text contrast on
+  `--bone-faint` (used for mono captions; ~3.5:1 on ink, under WCAG AA 4.5 for small
+  text). Left as a brand trade-off pending a real score rather than blind-retuned.
 - **Icons** (`apple-touch-icon.png`, `icon-192/512.png`) are generated from
   `public/favicon.svg` by `npm run prebuild` and are gitignored (regenerated in CI).
 - **SEO**: JSON-LD `@graph` (Organization + SoftwareApplication + `FAQPage`), sitemap,

@@ -6,8 +6,10 @@ import { defineConfig } from 'astro/config';
 //
 // Default targets GitHub Pages for THIS project repo:
 //   https://themafia98.github.io/mentara-ai-landing-page/
-const SITE_URL = process.env.SITE_URL ?? 'https://themafia98.github.io';
-const BASE_PATH = process.env.BASE_PATH ?? '/mentara-ai-landing-page';
+// `||` (not `??`) on purpose: unset GitHub Actions `vars.*` arrive as "" — empty must
+// fall back to the default, otherwise an unconfigured deploy would break.
+const SITE_URL = process.env.SITE_URL || 'https://themafia98.github.io';
+const BASE_PATH = process.env.BASE_PATH || '/mentara-ai-landing-page';
 
 export default defineConfig({
   site: SITE_URL,

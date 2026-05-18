@@ -26,11 +26,17 @@ jobs:
         uses: actions/checkout@v4
 
       # Builds with `astro build` (runs `prebuild` icon generation) and uploads the
-      # GitHub Pages artifact. `astro build` derives the base path from astro.config.mjs.
+      # GitHub Pages artifact. `astro build` derives base/site from astro.config.mjs,
+      # which falls back to the GitHub Pages defaults when these are unset. To move to a
+      # custom domain, set repo variables SITE_URL=https://mentara.ai and BASE_PATH=/
+      # (and add public/CNAME) — no code change. See landing/README.md → Custom domain.
       - name: Build site
         uses: withastro/action@v3
         with:
           node-version: 20
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          BASE_PATH: ${{ vars.BASE_PATH }}
 
   deploy:
     name: Deploy
