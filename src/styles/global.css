@@ -141,12 +141,17 @@ h3 {
   line-height: 1.02;
   letter-spacing: -0.03em;
   text-wrap: balance;
+  /* Long words in non-English locales (e.g. RU "отрепетировало") must wrap inside the
+     column instead of overflowing under the hero panel. */
+  overflow-wrap: break-word;
 }
 
 .display {
-  font-size: clamp(2.85rem, 1.4rem + 6.4vw, 6.4rem);
+  /* Lower max so very long localized words don't blow past the column at huge vw. */
+  font-size: clamp(2.6rem, 1.4rem + 4.8vw, 5rem);
   font-weight: 650;
-  line-height: 0.97;
+  line-height: 0.99;
+  overflow-wrap: break-word;
 }
 
 .h2 {
