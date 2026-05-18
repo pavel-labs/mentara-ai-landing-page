@@ -3,6 +3,7 @@ import type { Dict } from './types';
 export const de: Dict = {
   langName: 'Deutsch',
   ogLocale: 'de_DE',
+  a11ySkip: 'Zum Inhalt springen',
 
   meta: {
     title: 'Mentara — KI-Mock-Interviews für Software-Engineers',

@@ -6,7 +6,7 @@ import '@fontsource/jetbrains-mono/500.css';
 import '@fontsource/jetbrains-mono/600.css';
 import '../styles/global.css';
 import { SITE } from '../consts';
-import { DEFAULT_LOCALE, LOCALES, getDict, localeUrl, type Locale } from '../i18n';
+import { DEFAULT_LOCALE, LOCALES, getDict, localeUrl, withBase, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -19,21 +19,17 @@ const t = getDict(locale);
 const pageTitle = title ?? t.meta.title;
 const pageDesc = description ?? t.meta.description;
 
-// BASE_URL has no guaranteed trailing slash across Astro versions — normalize to a
-// no-trailing-slash prefix and join explicitly so sub-path deploys don't 404.
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// All asset paths go through the single `withBase` joiner — no ad-hoc base math here.
 const origin = Astro.site ?? new URL(SITE.domain);
 const canonical = new URL(Astro.url.pathname, origin).href;
-const favicon = `${base}/favicon.svg`;
-const ogImage = new URL(`${base}/og.png`, origin).href;
-const sitemapHref = `${base}/sitemap-index.xml`;
-const manifestHref = `${base}/site.webmanifest`;
-const appleIcon = `${base}/apple-touch-icon.png`;
+const favicon = withBase('favicon.svg');
+const ogImage = new URL(withBase('og.png'), origin).href;
+const sitemapHref = withBase('sitemap-index.xml');
+const manifestHref = withBase('site.webmanifest');
+const appleIcon = withBase('apple-touch-icon.png');
 
 // hreflang alternates for every locale + x-default → the default locale home.
 const alternates = LOCALES.map((l) => ({ hreflang: l, href: localeUrl(l, origin) }));
-const skip =
-  locale === 'de' ? 'Zum Inhalt springen' : locale === 'ru' ? 'К содержимому' : 'Skip to content';
 
 // Cloudflare Web Analytics — privacy-friendly, cookieless. Only injected when a token is
 // provided, so dev/forks ship no beacon and no consent banner is needed.
@@ -120,7 +116,7 @@ const jsonLd = {
     }
   </head>
   <body>
-    <a href="#main" class="skip">{skip}</a>
+    <a href="#main" class="skip">{t.a11ySkip}</a>
     <slot />
     <style>
       .skip {
