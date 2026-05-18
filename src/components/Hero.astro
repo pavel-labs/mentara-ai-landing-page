@@ -106,6 +106,9 @@ const sv = [88, 82, 76, 91];
 
   /* ---- live-mock panel ---- */
   .panel {
+    /* min-width:0 so the panel can never push its grid track wider than its share
+       (paired with the minmax(0,…) tracks); overflow:hidden clips its own content. */
+    min-width: 0;
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-lg);
     background: linear-gradient(180deg, var(--ink-2), var(--ink-1));
