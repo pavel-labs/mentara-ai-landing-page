@@ -6,10 +6,10 @@ export const es: Dict = {
   a11ySkip: 'Saltar al contenido',
 
   meta: {
-    title: 'Mentara — entrevistas técnicas simuladas con IA para ingenieros',
+    title: 'Mentara — entrevistas técnicas de práctica con IA para ingenieros',
     description:
-      'Mentara hace entrevistas técnicas simuladas realistas con un entrevistador de IA que se adapta, te aprieta y te puntúa en tiempo real — para que la entrevista real se sienta como una repetición. iOS, Android y web.',
-    tagline: 'Ensaya la sala.',
+      'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA que se adapta, te aprieta y te puntúa en tiempo real — para que la entrevista de verdad se sienta como una repetición. iOS, Android y web.',
+    tagline: 'Ensaya la entrevista.',
     launchLabel: 'Disponible en 2026',
   },
 
@@ -21,16 +21,16 @@ export const es: Dict = {
   ],
 
   hero: {
-    eyebrow: 'Entrevistas simuladas con IA · hecho para ingenieros',
-    titleLead: 'Ensaya la sala.',
+    eyebrow: 'Entrevistas de práctica con IA · para ingenieros',
+    titleLead: 'Ensaya la entrevista.',
     titleAccent: 'Antes de que',
-    titleTail: 'te ensaye a ti.',
-    lede: 'Mentara hace entrevistas técnicas simuladas realistas con un entrevistador de IA que se adapta, te aprieta y te puntúa en tiempo real — para que la entrevista real se sienta como una repetición.',
+    titleTail: 'te examine a ti.',
+    lede: 'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA: se adapta, te aprieta y te puntúa en tiempo real — para que la de verdad se sienta como una repetición.',
     availability: 'Disponible en 2026 · iOS, Android y web',
   },
 
   trust: [
-    'Loops estilo FAANG',
+    'Procesos al nivel de FAANG',
     '10+ tracks de práctica',
     'Puntuación en tiempo real',
     'Dificultad adaptativa',
@@ -39,20 +39,20 @@ export const es: Dict = {
 
   product: {
     eyebrow: 'Un vistazo a la app',
-    heading: 'La sala, en cualquier pantalla.',
-    lede: 'Una pantalla, una tarea: mantenerte en la entrevista. La pregunta, tu respuesta y la señal en vivo de cómo va — en el móvil o en el navegador, sin nada que distraiga.',
+    heading: 'La entrevista, en cualquier pantalla.',
+    lede: 'Una pantalla, una tarea: mantenerte en la entrevista. La pregunta, tu respuesta y la señal en directo de cómo está sonando — en el móvil o en el navegador, sin nada que distraiga.',
     notes: [
       'Habla o escribe — el entrevistador reacciona igual',
       'La puntuación se mueve mientras hablas, no después',
-      'El presupuesto de pistas es visible: lo racionas como en la entrevista real',
+      'El presupuesto de pistas está a la vista: lo racionas como en la de verdad',
     ],
     ui: {
       track: 'system-design · L5',
       timer: '14:22',
       interviewer: 'entrevistador',
       you: 'tú',
-      q: 'Tu ruta de escritura está caliente en una clave. ¿Cómo evitas que un nodo se funda?',
-      a: 'Saltear la partition key, repartir lecturas entre réplicas y añadir un write-behind…',
+      q: 'La escritura está caliente en una sola clave. ¿Cómo evitas que un nodo se funda?',
+      a: 'Le pongo sal a la clave de partición, reparto lecturas entre réplicas y meto un write-behind…',
       liveScore: 'puntuación',
       hints: 'pistas',
     },
@@ -62,98 +62,98 @@ export const es: Dict = {
     label: 'session · system-design · L5',
     interviewer: 'entrevistador',
     you: 'tú',
-    aiLine: 'Explícame cómo lo shardearías para que una clave caliente no funda un nodo.',
-    youLine: 'Añadiría sal a la partition key y repartiría lecturas entre réplicas…',
+    aiLine: 'Cuéntame cómo lo repartirías en shards para que una clave caliente no tumbe un nodo.',
+    youLine: 'Le añado sal a la clave de partición y reparto las lecturas entre réplicas…',
     of: '/10',
     scores: ['Técnica', 'Comunicación', 'Casos límite', 'Resolución'],
   },
 
   features: {
-    eyebrow: 'Lo que obtienes',
-    heading: 'Un sparring, no una app de quiz.',
+    eyebrow: 'Lo que te llevas',
+    heading: 'Un sparring, no una app de tipo test.',
     items: [
       {
         index: '01',
-        title: 'Un entrevistador que contraataca',
-        body: 'No un chatbot que lee preguntas. El entrevistador de IA se mantiene en personaje para tu rol, nivel y persona — repregunta, sondea casos límite y aprieta más cuando te relajas.',
+        title: 'Un entrevistador que te devuelve la bola',
+        body: 'No un chatbot que lee preguntas. La IA se mantiene en el papel según tu rol, tu nivel y el tipo de entrevistador — repregunta, va a los casos límite y aprieta más cuando te relajas.',
       },
       {
         index: '02',
         title: 'Puntuado mientras hablas',
-        body: 'Señal en vivo de profundidad técnica, comunicación, casos límite y resolución de problemas — actualizada cada pocos turnos, no enterrada en un análisis posterior.',
+        body: 'Señal en directo de profundidad técnica, comunicación, casos límite y resolución — actualizada cada pocos turnos, no enterrada en un análisis posterior.',
       },
       {
         index: '03',
-        title: 'Tracks de práctica estructurados',
-        body: 'Rondas de Algoritmos, System Design, Behavioral y de Dominio con dificultad calibrada. Entrena la ronda que de verdad temes, no una bolsa al azar.',
+        title: 'Tracks de práctica con estructura',
+        body: 'Rondas de Algoritmos, System Design, Behavioral y de Dominio con dificultad calibrada. Practica justo la ronda que te da miedo, no un saco de preguntas al azar.',
       },
       {
         index: '04',
-        title: 'Progreso que se acumula',
-        body: 'XP, rachas, niveles y logros convierten el empollar disperso en un hábito. Aparece a diario; mira cómo se dobla la curva.',
+        title: 'Un progreso que se acumula',
+        body: 'XP, rachas, niveles y logros convierten el estudio disperso en un hábito. Aparece cada día y mira cómo se dobla la curva.',
       },
     ],
   },
 
   audience: {
     eyebrow: 'Para quién es',
-    heading: 'Hecho para el ingeniero en pleno proceso.',
+    heading: 'Hecho para el ingeniero que está en ello ahora mismo.',
     groups: [
       {
         tag: 'Recién graduados',
-        body: 'Convierte el “lo sé en teoría” en “controlo la sala” antes de tu primer onsite.',
+        body: 'Pasa del “en teoría me lo sé” al “llevo yo la entrevista” antes de tu primer onsite.',
       },
       {
-        tag: 'Cambios de carrera',
-        body: 'Cierra rápido la brecha de fluidez en entrevistas — reps con feedback, no a ciegas.',
+        tag: 'Cambio de carrera',
+        body: 'Cierra rápido la brecha en soltura de entrevista — repeticiones con feedback, no a ciegas.',
       },
       {
-        tag: 'Loops senior',
-        body: 'Machaca System Design y el interrogatorio nivel staff hasta que el panel real aburra.',
+        tag: 'Nivel senior',
+        body: 'Practica System Design y el interrogatorio de nivel staff hasta que el panel real aburra.',
       },
     ],
     versus: {
-      them: 'Grindear LeetCode en solitario',
+      them: 'Machacar LeetCode en solitario',
       themPoints: [
         'Nadie aprieta una respuesta vaga',
-        'Cero sobre comunicación y estructura',
-        'Te calificas tú mismo — con generosidad',
+        'Ni una palabra sobre comunicación y estructura',
+        'Te calificas tú mismo — con la mano blanda',
       ],
       us: 'Mentara',
       usPoints: [
-        'Un entrevistador que repregunta y escala',
+        'Un entrevistador que repregunta y sube el listón',
         'Puntúa la comunicación, no solo la respuesta',
-        'Un informe honesto + qué arreglar después',
+        'Un informe honesto y qué arreglar después',
       ],
     },
   },
 
   steps: {
     eyebrow: 'Cómo funciona',
-    heading: 'Tres pasos a un loop sin sudores.',
+    heading: 'Tres pasos a una entrevista sin sudores.',
     items: [
       {
         n: '1',
         title: 'Elige la ronda',
-        body: 'Elige track, rol y dificultad. Fija la persona — screening amable o interrogatorio nivel staff.',
+        body: 'Track, rol y dificultad. Fija el tipo de entrevistador — screening amable o interrogatorio de nivel staff.',
       },
       {
         n: '2',
-        title: 'Lanza el simulacro en vivo',
-        body: 'Razónalo en voz alta o escribe código. El entrevistador se adapta en tiempo real y puntúa cada intercambio.',
+        title: 'Lanza la simulación en directo',
+        body: 'Razona en voz alta o escribe código. El entrevistador se adapta sobre la marcha y puntúa cada intercambio.',
       },
       {
         n: '3',
         title: 'Recibe el informe',
-        body: 'Un desglose puntuado más un plan de estudio enfocado — justo lo que arreglar antes del loop real.',
+        body: 'Un desglose puntuado y un plan de estudio enfocado — justo lo que pulir antes de la entrevista de verdad.',
       },
     ],
   },
 
   pricing: {
     eyebrow: 'Precios',
-    heading: 'Gratis para empezar. Barato al lado de una oferta perdida.',
-    flag: 'Más popular',
+    heading: 'Gratis para empezar. Calderilla al lado de una oferta perdida.',
+    flag: 'El más elegido',
     cta: 'Disponible en el lanzamiento',
     foot: 'Los precios son orientativos y se fijan en el lanzamiento.',
     tiers: [
@@ -161,11 +161,11 @@ export const es: Dict = {
         tier: 'FREE',
         price: '$0',
         cadence: 'para siempre',
-        blurb: 'Prueba entrevistas simuladas de verdad.',
+        blurb: 'Prueba entrevistas de práctica de verdad.',
         features: [
           'Unas pocas sesiones / mes',
-          'Tracks de práctica básicos',
-          'Puntuación en vivo',
+          'Tracks básicos',
+          'Puntuación en directo',
           'Progreso básico',
         ],
         featured: false,
@@ -174,22 +174,22 @@ export const es: Dict = {
         tier: 'PRO',
         price: '$19',
         cadence: '/ mes',
-        blurb: 'Para el ingeniero en pleno proceso.',
+        blurb: 'Para el ingeniero metido en plena búsqueda.',
         features: [
           'Sesiones ilimitadas',
-          'Informes completos + plan de estudio',
-          'Todos los tracks y personas',
-          'Progreso gamificado',
+          'Informe completo + plan de estudio',
+          'Todos los tracks y tipos de entrevistador',
+          'Progreso con gamificación',
         ],
         featured: true,
       },
       {
         tier: 'ENTERPRISE',
         price: 'Custom',
-        cadence: 'hablemos',
-        blurb: 'Bootcamps, cohortes universitarias y equipos.',
+        cadence: 'hablamos',
+        blurb: 'Bootcamps, grupos universitarios y equipos.',
         features: [
-          'Asientos y gestión de cohortes',
+          'Plazas y gestión de grupos',
           'Analítica agregada',
           'SSO y controles de admin',
           'Soporte prioritario',
@@ -205,15 +205,15 @@ export const es: Dict = {
     items: [
       {
         q: '¿De verdad se siente como una entrevista real?',
-        a: 'Ese es justo el objetivo. El entrevistador mantiene una persona, repregunta, desafía respuestas flojas y escala la dificultad — silencios incómodos incluidos.',
+        a: 'De eso va justo. El entrevistador mantiene un papel, repregunta, pone en aprietos las respuestas flojas y sube la dificultad — silencios incómodos incluidos.',
       },
       {
         q: '¿Tengo que programar en voz alta?',
-        a: 'Tú decides. Razona en voz alta, escribe código o ambas. Las rondas behavioral y de system design son conversación primero; las de algoritmos te dejan enviar código.',
+        a: 'Tú decides. Razona en voz alta, escribe código o las dos cosas. Las rondas behavioral y de system design van de conversar; en las de algoritmos puedes enviar código.',
       },
       {
-        q: '¿Qué tracks cubre?',
-        a: 'Rondas de Algoritmos, System Design, Behavioral y de Dominio, por roles y niveles de seniority, con una dificultad que se calibra a ti.',
+        q: '¿Qué tracks hay?',
+        a: 'Rondas de Algoritmos, System Design, Behavioral y de Dominio — por roles y niveles de seniority, con una dificultad que se ajusta a ti.',
       },
       {
         q: '¿Cuándo y dónde se lanza?',
@@ -221,29 +221,29 @@ export const es: Dict = {
       },
       {
         q: '¿Los datos de mi sesión son privados?',
-        a: 'Tus transcripciones y puntuaciones son tuyas. Alimentan tus informes y tu progreso y no se venden. Una política de privacidad completa llega con las apps.',
+        a: 'Tus transcripciones y puntuaciones son tuyas. Alimentan tus informes y tu progreso, y no se venden. Una política de privacidad completa llega con las apps.',
       },
     ],
   },
 
   waitlist: {
     eyebrow: 'Acceso anticipado',
-    heading: 'Entra antes de que lo haga el loop.',
-    sub: 'Únete a la lista de espera — entérate del lanzamiento el primero, sin spam.',
+    heading: 'Métete antes que nadie.',
+    sub: 'Apúntate a la lista — entérate del lanzamiento el primero, sin spam.',
     label: 'Correo electrónico',
     placeholder: 'tu@empresa.dev',
-    cta: 'Unirme a la lista',
+    cta: 'Apuntarme',
     sending: 'Enviando…',
-    success: 'Estás en la lista. Te escribiremos en el lanzamiento.',
-    error: 'Algo falló de nuestro lado. Inténtalo de nuevo en un momento.',
+    success: 'Listo, estás en la lista. Te escribimos en el lanzamiento.',
+    error: 'Algo se rompió por nuestro lado. Vuelve a intentarlo en un momento.',
     offNote: 'Abre pronto — define PUBLIC_FORMSPREE_ENDPOINT para activar el formulario.',
   },
 
   cta: {
     eyebrow: 'Disponible en 2026',
-    titleLead: 'El próximo loop ya viene.',
-    titleAccent: 'Entra ensayado.',
-    lede: 'Mentara llega en 2026 a iOS, Android y web. Consigue el email de lanzamiento — y practica hasta que lo real aburra.',
+    titleLead: 'La próxima entrevista ya llega.',
+    titleAccent: 'Entra con los deberes hechos.',
+    lede: 'Mentara llega en 2026 a iOS, Android y web. Pilla el email de lanzamiento — y practica hasta que la de verdad aburra.',
   },
 
   badges: {
@@ -255,7 +255,7 @@ export const es: Dict = {
   },
 
   footer: {
-    blurb: 'Entrevistas simuladas con IA para ingenieros — iOS, Android y web.',
+    blurb: 'Entrevistas de práctica con IA para ingenieros — iOS, Android y web.',
     explore: 'Explorar',
     legal: 'Legal',
     privacy: 'Privacidad',
@@ -274,7 +274,7 @@ export const es: Dict = {
 
   notFound: {
     eyebrow: 'Error',
-    message: 'Esta ruta nunca compiló. La página que buscas no existe — o aún no se ha publicado.',
+    message: 'Esta ruta no compiló nunca. La página que buscas no existe — o todavía no ha salido.',
     back: 'Volver al inicio',
   },
 };
