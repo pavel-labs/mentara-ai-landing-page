@@ -57,14 +57,15 @@ const b = getDict(locale).badges;
     flex-wrap: wrap;
     gap: 0.6rem;
   }
-  /* Three "coming soon" badges: slimmer than the old 2-up so the row holds together,
-     and each can flex to fill when they wrap (no lonely orphan on the second line). */
+  /* Three "coming soon" badges. flex-basis gives a tidy row; min-width:0 lets them
+     shrink/wrap WITHIN the column instead of overflowing it — `min-width:max-content`
+     here previously forced the row to bleed over the hero panel in longer locales. */
   .badge {
     display: inline-flex;
     align-items: center;
     gap: 0.65rem;
-    flex: 1 1 auto;
-    min-width: max-content;
+    flex: 1 1 8.5rem;
+    min-width: 0;
     padding: 0.6rem 0.95rem;
     border: 1px solid var(--line-strong);
     border-radius: 12px;
