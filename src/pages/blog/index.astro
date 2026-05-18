@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { withBase } from '../../i18n';
+
+const posts = (await getCollection('blog', (p) => !p.data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<BaseLayout
+  locale="en"
+  title="Blog — Mentara"
+  description="Launch milestones and product updates from Mentara."
+>
+  <Nav locale="en" />
+  <main id="main" class="blog">
+    <div class="container blog__inner">
+      <p class="eyebrow">Changelog</p>
+      <h1 class="h2">Building in the open.</h1>
+
+      <ul class="posts">
+        {
+          posts.map((p) => (
+            <li class="post">
+              <a href={withBase(`blog/${p.id}`)} class="post__link">
+                <time class="post__date mono" datetime={p.data.date.toISOString()}>
+                  {fmt(p.data.date)}
+                </time>
+                <h2 class="post__title">{p.data.title}</h2>
+                <p class="post__sum">{p.data.summary}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </main>
+  <Footer locale="en" />
+</BaseLayout>
+
+<style>
+  .blog {
+    padding-block: clamp(3rem, 7vw, 6rem);
+  }
+  .blog__inner {
+    max-width: 52rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .posts {
+    list-style: none;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .post {
+    border-top: 1px solid var(--line);
+  }
+  .post:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .post__link {
+    display: block;
+    padding: 1.6rem 0;
+    transition: opacity 0.2s;
+  }
+  .post__link:hover {
+    opacity: 0.85;
+  }
+  .post__date {
+    color: var(--amber);
+  }
+  .post__title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0.4rem 0;
+  }
+  .post__sum {
+    color: var(--bone-dim);
+    line-height: 1.6;
+  }
+</style>

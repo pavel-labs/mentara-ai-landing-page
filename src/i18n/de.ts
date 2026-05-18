@@ -258,7 +258,18 @@ export const de: Dict = {
     blurb: 'KI-Mock-Interviews für Engineers — iOS, Android & Web.',
     explore: 'Entdecken',
     legal: 'Rechtliches',
-    legalMuted: 'AGB & Datenschutz kommen mit den Apps',
+    privacy: 'Datenschutz',
+    terms: 'AGB',
+    blog: 'Blog',
+  },
+
+  legal: {
+    privacyTitle: 'Datenschutzerklärung',
+    termsTitle: 'Nutzungsbedingungen',
+    draftNotice:
+      'Entwurf — keine Rechtsberatung. Vor dem Launch mit Anwält:innen zu prüfen; die englische Fassung ist maßgeblich.',
+    updated: 'Zuletzt aktualisiert',
+    back: 'Zurück zur Startseite',
   },
 
   notFound: {

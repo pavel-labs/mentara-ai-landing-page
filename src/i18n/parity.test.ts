@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { de } from './de';
 import { en } from './en';
-import { ru } from './ru';
+import { DEFAULT_LOCALE, LOCALES, getDict } from './index';
+
+// Every non-default locale, derived from LOCALES — a new locale is covered automatically.
+const TRANSLATED = LOCALES.filter((l) => l !== DEFAULT_LOCALE);
 
 // Walks the reference (English) structure and records every place a candidate locale
 // diverges in shape: missing/extra keys, wrong type, or a different array length. This is
@@ -52,20 +54,14 @@ function shapeDiffs(ref: unknown, cand: unknown, path = ''): string[] {
 }
 
 describe('translation parity (vs English reference)', () => {
-  it('German matches the English dictionary shape exactly', () => {
-    expect(shapeDiffs(en, de)).toEqual([]);
+  it.each(TRANSLATED)('%s matches the English dictionary shape exactly', (locale) => {
+    expect(shapeDiffs(en, getDict(locale))).toEqual([]);
   });
 
-  it('Russian matches the English dictionary shape exactly', () => {
-    expect(shapeDiffs(en, ru)).toEqual([]);
-  });
-
-  it('no locale leaves an English string untranslated in a key field', () => {
-    // Spot-check headline fields that must never be left in English.
-    for (const d of [de, ru]) {
-      expect(d.meta.tagline).not.toBe(en.meta.tagline);
-      expect(d.hero.lede).not.toBe(en.hero.lede);
-      expect(d.faq.items[0]?.q).not.toBe(en.faq.items[0]?.q);
-    }
+  it.each(TRANSLATED)('%s does not leave key headline fields in English', (locale) => {
+    const d = getDict(locale);
+    expect(d.meta.tagline).not.toBe(en.meta.tagline);
+    expect(d.hero.lede).not.toBe(en.hero.lede);
+    expect(d.faq.items[0]?.q).not.toBe(en.faq.items[0]?.q);
   });
 });

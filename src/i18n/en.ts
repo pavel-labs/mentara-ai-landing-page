@@ -253,7 +253,18 @@ export const en: Dict = {
     blurb: 'AI mock interviews for engineers — iOS, Android & web.',
     explore: 'Explore',
     legal: 'Legal',
-    legalMuted: 'Terms & Privacy ship with the apps',
+    privacy: 'Privacy',
+    terms: 'Terms',
+    blog: 'Blog',
+  },
+
+  legal: {
+    privacyTitle: 'Privacy Policy',
+    termsTitle: 'Terms of Service',
+    draftNotice:
+      'Draft — not legal advice. To be reviewed with counsel before launch; the English version is authoritative.',
+    updated: 'Last updated',
+    back: 'Back to home',
   },
 
   notFound: {

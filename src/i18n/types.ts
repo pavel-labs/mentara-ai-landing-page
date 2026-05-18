@@ -151,7 +151,17 @@ export interface Dict {
     blurb: string;
     explore: string;
     legal: string;
-    legalMuted: string;
+    privacy: string;
+    terms: string;
+    blog: string;
+  };
+
+  legal: {
+    privacyTitle: string;
+    termsTitle: string;
+    draftNotice: string;
+    updated: string;
+    back: string;
   };
 
   notFound: {

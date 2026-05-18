@@ -1,6 +1,6 @@
 ---
 import { SITE } from '../consts';
-import { getDict, type Locale } from '../i18n';
+import { getDict, localeHome, withBase, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -8,6 +8,10 @@ interface Props {
 const { locale } = Astro.props;
 const t = getDict(locale);
 const year = new Date().getFullYear();
+// Footer is shared by the landing AND the legal pages, so section links must point at the
+// localized home + anchor (not a bare #anchor that 404s the scroll off-page).
+const home = localeHome(locale);
+
 ---
 
 <footer class="foot">
@@ -19,13 +23,15 @@ const year = new Date().getFullYear();
 
     <nav class="foot__nav" aria-label="Footer">
       <span class="foot__label">{t.footer.explore}</span>
-      {t.nav.map((l) => <a href={l.href}>{l.label}</a>)}
+      {t.nav.map((l) => <a href={`${home}${l.href}`}>{l.label}</a>)}
+      <a href={withBase('blog')}>{t.footer.blog}</a>
     </nav>
 
-    <div class="foot__nav">
+    <nav class="foot__nav" aria-label="Legal">
       <span class="foot__label">{t.footer.legal}</span>
-      <span class="foot__muted">{t.footer.legalMuted}</span>
-    </div>
+      <a href={`${home}privacy`}>{t.footer.privacy}</a>
+      <a href={`${home}terms`}>{t.footer.terms}</a>
+    </nav>
   </div>
 
   <div class="container foot__base">

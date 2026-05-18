@@ -23,8 +23,9 @@ const pageDesc = description ?? t.meta.description;
 const origin = Astro.site ?? new URL(SITE.domain);
 const canonical = new URL(Astro.url.pathname, origin).href;
 const favicon = withBase('favicon.svg');
-const ogImage = new URL(withBase('og.png'), origin).href;
+const ogImage = new URL(withBase(`og/${locale}.png`), origin).href;
 const sitemapHref = withBase('sitemap-index.xml');
+const rssHref = withBase('rss.xml');
 const manifestHref = withBase('site.webmanifest');
 const appleIcon = withBase('apple-touch-icon.png');
 
@@ -89,6 +90,7 @@ const jsonLd = {
     <link rel="apple-touch-icon" href={appleIcon} />
     <link rel="manifest" href={manifestHref} />
     <link rel="sitemap" href={sitemapHref} />
+    <link rel="alternate" type="application/rss+xml" title="Mentara Blog" href={rssHref} />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
@@ -110,7 +112,7 @@ const jsonLd = {
           is:inline
           defer
           src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon={`{"token":"${cfToken}"}`}
+          data-cf-beacon={`{"token":"${cfToken}","spa":true}`}
         />
       )
     }
