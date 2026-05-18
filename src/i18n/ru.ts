@@ -3,6 +3,7 @@ import type { Dict } from './types';
 export const ru: Dict = {
   langName: 'Русский',
   ogLocale: 'ru_RU',
+  a11ySkip: 'К содержимому',
 
   meta: {
     title: 'Mentara — ИИ мок-интервью для инженеров',

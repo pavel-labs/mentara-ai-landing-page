@@ -42,6 +42,8 @@ export interface Dict {
   langName: string;
   /** BCP-47 / OG locale, e.g. en_US. */
   ogLocale: string;
+  /** Skip-to-content link label (keyboard a11y). */
+  a11ySkip: string;
 
   meta: {
     title: string;

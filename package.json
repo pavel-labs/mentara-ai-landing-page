@@ -11,6 +11,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "icons": "node scripts/gen-icons.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "astro": "astro"
   },
   "dependencies": {
@@ -22,7 +24,8 @@
     "astro-og-canvas": "^0.7.0"
   },
   "devDependencies": {
-    "@resvg/resvg-js": "^2.6.2"
+    "@resvg/resvg-js": "^2.6.2",
+    "vitest": "^2.1.8"
   },
   "engines": {
     "node": ">=18.20.8"

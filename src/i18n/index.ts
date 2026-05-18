@@ -20,17 +20,24 @@ export function getDict(locale: Locale): Dict {
   return dictionaries[locale];
 }
 
-// Normalized base prefix (no trailing slash) — `import.meta.env.BASE_URL` has no
-// guaranteed trailing slash across Astro versions.
+// Single source of truth for the deploy base prefix (no trailing slash).
+// `import.meta.env.BASE_URL` has no guaranteed trailing slash across Astro versions, and
+// is absent under Vitest — the `?? '/'` keeps the helpers pure-testable.
 function basePrefix(): string {
-  return import.meta.env.BASE_URL.replace(/\/$/, '');
+  const raw = (import.meta.env?.BASE_URL as string | undefined) ?? '/';
+  return raw.replace(/\/$/, '');
+}
+
+// Joins a public-root path onto the deploy base. The ONE place asset/route paths are
+// prefixed — used by the layout (favicon/og/manifest/sitemap) and the locale helpers.
+export function withBase(path: string): string {
+  return `${basePrefix()}/${path.replace(/^\//, '')}`;
 }
 
 // Home URL for a locale. Default locale lives at the root (prefixDefaultLocale: false);
 // the others under /<locale>/.
 export function localeHome(locale: Locale): string {
-  const base = basePrefix();
-  return locale === DEFAULT_LOCALE ? `${base}/` : `${base}/${locale}/`;
+  return locale === DEFAULT_LOCALE ? withBase('') : withBase(`${locale}/`);
 }
 
 // Absolute origin + path for hreflang / canonical alternates.
