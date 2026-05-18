@@ -1,6 +1,6 @@
 ---
 import { WAITLIST } from '../consts';
-import { getDict, type Locale } from '../i18n';
+import { getDict, withBase, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -10,6 +10,8 @@ const { locale, compact = false } = Astro.props;
 const w = getDict(locale).waitlist;
 const enabled = WAITLIST.endpoint.length > 0;
 const fieldId = `wl-${compact ? 'b' : 'a'}-${locale}`;
+// Virtual path counted as a conversion (see the success handler / README).
+const trackPath = withBase('waitlist/success');
 ---
 
 <div class:list={['wl-wrap', { 'wl-wrap--compact': compact }]}>
@@ -19,6 +21,7 @@ const fieldId = `wl-${compact ? 'b' : 'a'}-${locale}`;
         class="wl"
         action={WAITLIST.endpoint}
         method="POST"
+        data-track-path={trackPath}
         data-sending={w.sending}
         data-success={w.success}
         data-error={w.error}
@@ -82,6 +85,18 @@ const fieldId = `wl-${compact ? 'b' : 'a'}-${locale}`;
           form.reset();
           status.textContent = form.dataset.success;
           status.dataset.state = 'ok';
+          // Conversion signal. Provider-agnostic hook for any future analytics, plus a
+          // virtual pageview: Cloudflare Web Analytics has no custom-event API, so with
+          // the beacon in SPA mode this pushState is the measurable funnel step. The URL
+          // is restored immediately so the user never sees the virtual path.
+          try {
+            window.__mentaraTrack?.('waitlist_signup');
+            const real = location.pathname + location.search;
+            history.pushState(null, '', form.dataset.trackPath);
+            history.replaceState(null, '', real);
+          } catch {
+            /* analytics must never break the success UX */
+          }
         } else {
           throw new Error('bad status');
         }
