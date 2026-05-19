@@ -45,3 +45,10 @@ export function localeHome(locale: Locale): string {
 export function localeUrl(locale: Locale, origin: URL): string {
   return new URL(localeHome(locale), origin).href;
 }
+
+// Builds a base-prefixed URL for a path under a given locale.
+// Default locale paths are not prefixed: localePath('en', 'blog/foo') → '/blog/foo'
+// Other locales are prefixed:            localePath('es', 'blog/foo') → '/es/blog/foo'
+export function localePath(locale: Locale, path: string): string {
+  return withBase(locale === DEFAULT_LOCALE ? path : `${locale}/${path}`);
+}

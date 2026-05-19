@@ -6,7 +6,7 @@ import Footer from './Footer.astro';
 import type { Locale } from '../i18n';
 import { getDict } from '../i18n';
 import { BLOG_CLUSTERS } from '../content/blog-clusters';
-import { localeHome, withBase } from '../i18n';
+import { localePath, localeHome } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -38,12 +38,8 @@ const fmt = (d: Date) =>
       <h1 class="h2">{t.contentHub.blog.title}</h1>
       <p class="blog__intro">{t.contentHub.blog.lede}</p>
       <div class="blog__links">
-        <a href={withBase(`${locale === 'en' ? '' : `${locale}/`}resources`)} class="blog__hub">
-          {t.contentHub.blog.primary} →
-        </a>
-        <a href={withBase(`${locale === 'en' ? '' : `${locale}/`}compare`)} class="blog__hub">
-          {t.contentHub.compare.primary}
-        </a>
+        <a href={localePath(locale, 'resources')} class="blog__hub">{t.contentHub.blog.primary} →</a>
+        <a href={localePath(locale, 'compare')} class="blog__hub">{t.contentHub.compare.primary}</a>
       </div>
 
       <section class="paths" aria-labelledby="paths-title">
@@ -61,13 +57,7 @@ const fmt = (d: Date) =>
                 <ul class="path__list">
                   {path.posts.map((post) => (
                     <li>
-                      <a
-                        href={withBase(
-                          `${locale === 'en' ? '' : `${locale}/`}blog/${post.id}`,
-                        )}
-                      >
-                        {post.data.title}
-                      </a>
+                      <a href={localePath(locale, `blog/${post.id}`)}>{post.data.title}</a>
                     </li>
                   ))}
                 </ul>
@@ -81,7 +71,7 @@ const fmt = (d: Date) =>
         {
           posts.map((p) => (
             <li class="post">
-              <a href={withBase(`${locale === 'en' ? '' : `${locale}/`}blog/${p.id}`)} class="post__link">
+              <a href={localePath(locale, `blog/${p.id}`)} class="post__link">
                 <time class="post__date mono" datetime={p.data.date.toISOString()}>
                   {fmt(p.data.date)}
                 </time>
