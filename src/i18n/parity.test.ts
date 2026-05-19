@@ -48,9 +48,7 @@ function shapeDiffs(ref: unknown, cand: unknown, path = ''): string[] {
   }
 
   // Leaf: types must match (all leaves are string/boolean here).
-  return typeof ref === typeof cand
-    ? []
-    : [`${here}: expected ${typeof ref}, got ${typeof cand}`];
+  return typeof ref === typeof cand ? [] : [`${here}: expected ${typeof ref}, got ${typeof cand}`];
 }
 
 describe('translation parity (vs English reference)', () => {
