@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import type { Locale } from '../i18n';
+import { getDict } from '../i18n';
+import { BLOG_CLUSTERS } from '../content/blog-clusters';
+import { localeHome, withBase } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+
+const posts = (await getCollection('blog', (p) => !p.data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const postById = new Map(posts.map((post) => [post.id, post] as const));
+const clusters = BLOG_CLUSTERS.map((cluster) => ({
+  ...cluster,
+  posts: cluster.slugs.map((slug) => postById.get(slug)).filter((p): p is NonNullable<typeof p> => p != null),
+}));
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${t.contentHub.resources.eyebrow} — Mentara`}
+  description={t.contentHub.resources.lede}
+>
+  <Nav locale={locale} homeHref={localeHome(locale)} />
+  <main id="main" class="hub">
+    <div class="container hub__inner">
+      <p class="eyebrow">{t.contentHub.resources.eyebrow}</p>
+      <h1 class="h2">{t.contentHub.resources.title}</h1>
+      <p class="hub__intro">{t.contentHub.resources.lede}</p>
+
+      <div class="hub__grid">
+        {
+          clusters.map((cluster) => (
+            <section class="cluster">
+              <h2 class="cluster__title">{cluster.title}</h2>
+              <p class="cluster__lede">{cluster.lede}</p>
+              <ul class="cluster__list">
+                {cluster.posts.map((post) => (
+                  <li class="cluster__item">
+                    <a href={withBase(`${locale === 'en' ? '' : `${locale}/`}blog/${post.id}`)}>
+                      <strong>{post.data.title}</strong>
+                      <span>{post.data.summary}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>

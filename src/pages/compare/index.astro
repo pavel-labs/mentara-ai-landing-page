@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { BLOG_CLUSTERS } from '../../content/blog-clusters';
+import { localeHome, withBase } from '../../i18n';
+
+const posts = (await getCollection('blog', (p) => !p.data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const compareCluster = BLOG_CLUSTERS.find((cluster) => cluster.id === 'compare');
+const comparePosts =
+  compareCluster == null
+    ? []
+    : compareCluster.slugs
+        .map((slug) => posts.find((post) => post.id === slug))
+        .filter((post): post is NonNullable<typeof post> => post != null);
+---
+
+<BaseLayout
+  locale="en"
+  title="Compare Interview Prep Options — Mentara"
+  description="Compare AI mock interviews with LeetCode, peer mocks, voice vs text practice, and human coaching."
+>
+  <Nav locale="en" homeHref={localeHome('en')} />
+  <main id="main" class="compare">
+    <div class="container compare__inner">
+      <p class="eyebrow">Compare</p>
+      <h1 class="h2">Interview prep options, side by side.</h1>
+      <p class="compare__intro">
+        These pages are built for candidates choosing between practice modes, tool categories,
+        and prep loops. Start here if you are evaluating how Mentara fits into your stack.
+      </p>
+
+      <div class="compare__cards">
+        {
+          comparePosts.map((post) => (
+            <article class="compare__card">
+              <a href={withBase(`blog/${post.id}`)}>
+                <h2 class="compare__title">{post.data.title}</h2>
+                <p class="compare__summary">{post.data.summary}</p>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+  <Footer locale="en" />
+</BaseLayout>
+
+<style>
+  .compare {
+    padding-block: clamp(3rem, 7vw, 6rem);
+  }
+  .compare__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 58rem;
+  }
+  .compare__intro {
+    color: var(--bone-dim);
+    line-height: 1.7;
+    max-width: 46rem;
+  }
+  .compare__cards {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .compare__card {
+    border: 1px solid var(--line);
+    background: color-mix(in oklab, var(--ink-2) 56%, transparent);
+  }
+  .compare__card a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-height: 100%;
+    padding: 1.25rem;
+  }
+  .compare__title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+  }
+  .compare__summary {
+    color: var(--bone-dim);
+    line-height: 1.6;
+  }
+  .compare__card a:hover .compare__title {
+    color: var(--amber);
+  }
+  @media (max-width: 860px) {
+    .compare__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

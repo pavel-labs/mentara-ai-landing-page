@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import type { Locale } from '../i18n';
+import { getDict } from '../i18n';
+import { BLOG_CLUSTERS } from '../content/blog-clusters';
+import { localeHome, withBase } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+
+const posts = (await getCollection('blog', (p) => !p.data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const compareCluster = BLOG_CLUSTERS.find((cluster) => cluster.id === 'compare');
+const comparePosts =
+  compareCluster == null
+    ? []
+    : compareCluster.slugs
+        .map((slug) => posts.find((post) => post.id === slug))
+        .filter(Boolean);
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${t.contentHub.compare.eyebrow} — Mentara`}
+  description={t.contentHub.compare.lede}
+>
+  <Nav locale={locale} homeHref={localeHome(locale)} />
+  <main id="main" class="compare">
+    <div class="container compare__inner">
+      <p class="eyebrow">{t.contentHub.compare.eyebrow}</p>
+      <h1 class="h2">{t.contentHub.compare.title}</h1>
+      <p class="compare__intro">{t.contentHub.compare.lede}</p>
+
+      <div class="compare__cards">
+        {
+          comparePosts.map((post) => (
+            <article class="compare__card">
+              <a href={withBase(`${locale === 'en' ? '' : `${locale}/`}blog/${post.id}`)}>
+                <h2 class="compare__title">{post.data.title}</h2>
+                <p class="compare__summary">{post.data.summary}</p>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>

@@ -1,25 +1,36 @@
 ---
 import { SITE } from '../consts';
-import { getDict, type Locale } from '../i18n';
+import { getDict, withBase, type Locale } from '../i18n';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
   locale: Locale;
+  homeHref?: string;
 }
-const { locale } = Astro.props;
+const { locale, homeHref = '#main' } = Astro.props;
 const t = getDict(locale);
+const resolveHref = (href: string) => {
+  if (href.startsWith('#') && homeHref !== '#main') {
+    return `${homeHref}${href}`;
+  }
+  if (href.startsWith('/')) {
+    const localizedPath = locale === 'en' ? href : `/${locale}${href}`;
+    return withBase(localizedPath);
+  }
+  return href;
+};
 ---
 
 <header class="nav">
   <div class="container nav__row">
-    <a href="#main" class="brand" aria-label={`${SITE.name} home`}>
+    <a href={homeHref} class="brand" aria-label={`${SITE.name} home`}>
       <span class="brand__mark" aria-hidden="true">M</span>
       <span class="brand__word">{SITE.name}</span>
       <span class="brand__tag">~/interview</span>
     </a>
 
     <nav class="links" aria-label="Primary">
-      {t.nav.map((l) => <a href={l.href}>{l.label}</a>)}
+      {t.nav.map((l) => <a href={resolveHref(l.href)}>{l.label}</a>)}
     </nav>
 
     <div class="nav__end">

@@ -16,6 +16,7 @@ export const en: Dict = {
   nav: [
     { label: 'Product', href: '#product' },
     { label: 'Features', href: '#features' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'FAQ', href: '#faq' },
   ],
@@ -244,6 +245,31 @@ export const en: Dict = {
     titleLead: 'The next loop is coming.',
     titleAccent: 'Walk in rehearsed.',
     lede: 'Mentara lands on iOS, Android, and the web in 2026. Get the launch email — then practice until the real thing is boring.',
+  },
+
+  contentHub: {
+    compare: {
+      eyebrow: 'Compare',
+      title: 'Pick the prep loop you actually need.',
+      lede: 'Comparison pages for candidates deciding between solo drills, peer mocks, voice practice, AI tools, and coaching.',
+      primary: 'Explore compare pages',
+      secondary: 'Browse all resources',
+    },
+    resources: {
+      eyebrow: 'Resources',
+      title: 'Structured reading paths for technical interview prep.',
+      lede:
+        'Grouped entry points for candidates comparing tools, practicing system design, tightening behavioral answers, or preparing for senior and staff loops.',
+    },
+    blog: {
+      eyebrow: 'Resources',
+      title: 'Comparison pages, prep strategy, and product notes.',
+      lede:
+        'Built to catch high-intent search traffic and give serious candidates a sharper way into the product than a generic landing page pitch.',
+      primary: 'Browse all articles',
+      pathsEyebrow: 'Reading paths',
+      pathsTitle: 'Search clusters, not a random pile of posts.',
+    },
   },
 
   badges: {

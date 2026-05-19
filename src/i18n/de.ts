@@ -16,6 +16,7 @@ export const de: Dict = {
   nav: [
     { label: 'Produkt', href: '#product' },
     { label: 'Funktionen', href: '#features' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Preise', href: '#pricing' },
     { label: 'FAQ', href: '#faq' },
   ],
@@ -244,6 +245,31 @@ export const de: Dict = {
     titleLead: 'Das nächste Gespräch kommt.',
     titleAccent: 'Geh vorbereitet rein.',
     lede: 'Mentara kommt 2026 auf iOS, Android und ins Web. Hol dir die Start-Mail — und üb, bis das echte Gespräch langweilig ist.',
+  },
+
+  contentHub: {
+    compare: {
+      eyebrow: 'Vergleichen',
+      title: 'Wähle den Übungsmodus, den du wirklich brauchst.',
+      lede: 'Vergleichsseiten für Menschen, die zwischen Solo-Drills, Peer-Mocks, Sprachpraxis, KI-Tools und Coaching abwägen.',
+      primary: 'Vergleichsseiten ansehen',
+      secondary: 'Alle Ressourcen öffnen',
+    },
+    resources: {
+      eyebrow: 'Ressourcen',
+      title: 'Strukturierte Lesepfade für technische Interview-Vorbereitung.',
+      lede:
+        'Gebündelte Einstiegspunkte für Menschen, die Tools vergleichen, System Design üben, Behavioral-Antworten schärfen oder sich auf Senior- und Staff-Runden vorbereiten.',
+    },
+    blog: {
+      eyebrow: 'Ressourcen',
+      title: 'Vergleiche, Übungsstrategie und Produktnotizen.',
+      lede:
+        'Für Leser:innen mit klarem Suchintent gebaut, damit ernsthafte Kandidat:innen schneller zum Produkt finden als über eine generische Landingpage.',
+      primary: 'Alle Artikel ansehen',
+      pathsEyebrow: 'Lesepfade',
+      pathsTitle: 'Themengruppen statt einem zufälligen Haufen Artikel.',
+    },
   },
 
   badges: {

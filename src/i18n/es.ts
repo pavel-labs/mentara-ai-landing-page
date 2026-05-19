@@ -16,6 +16,7 @@ export const es: Dict = {
   nav: [
     { label: 'Producto', href: '#product' },
     { label: 'Funciones', href: '#features' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Precios', href: '#pricing' },
     { label: 'FAQ', href: '#faq' },
   ],
@@ -244,6 +245,31 @@ export const es: Dict = {
     titleLead: 'La próxima entrevista ya llega.',
     titleAccent: 'Entra con los deberes hechos.',
     lede: 'Mentara llega en 2026 a iOS, Android y web. Pilla el email de lanzamiento — y practica hasta que la de verdad aburra.',
+  },
+
+  contentHub: {
+    compare: {
+      eyebrow: 'Comparar',
+      title: 'Elige el bucle de práctica que de verdad necesitas.',
+      lede: 'Páginas de comparación para quienes dudan entre drills en solitario, mocks con otra persona, práctica por voz, herramientas de IA y coaching.',
+      primary: 'Ver páginas de comparación',
+      secondary: 'Ver todos los recursos',
+    },
+    resources: {
+      eyebrow: 'Recursos',
+      title: 'Rutas de lectura estructuradas para preparar entrevistas técnicas.',
+      lede:
+        'Puntos de entrada agrupados para quienes comparan herramientas, practican system design, afinan respuestas behavioral o se preparan para loops senior y staff.',
+    },
+    blog: {
+      eyebrow: 'Recursos',
+      title: 'Comparativas, estrategia de práctica y notas de producto.',
+      lede:
+        'Creado para captar búsquedas con intención alta y dar a candidatos serios una vía mejor al producto que un pitch genérico de landing.',
+      primary: 'Ver todos los artículos',
+      pathsEyebrow: 'Rutas de lectura',
+      pathsTitle: 'Grupos temáticos, no una pila aleatoria de artículos.',
+    },
   },
 
   badges: {

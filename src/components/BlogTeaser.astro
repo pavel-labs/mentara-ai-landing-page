@@ -1,0 +1,132 @@
+---
+import type { Locale } from '../i18n';
+import { getDict, withBase } from '../i18n';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+
+const posts = (await getCollection('blog', (p) => !p.data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 4);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<section class="journal" aria-labelledby="journal-title">
+  <div class="container journal__inner">
+    <div class="journal__head">
+      <p class="eyebrow">{t.contentHub.blog.eyebrow}</p>
+      <div class="journal__copy">
+        <h2 id="journal-title" class="h2">{t.contentHub.blog.title}</h2>
+        <p class="journal__lede">{t.contentHub.blog.lede}</p>
+      </div>
+      <a class="journal__all" href={withBase('blog')}>{t.contentHub.blog.primary} →</a>
+    </div>
+
+    <div class="journal__grid">
+      {
+        posts.map((post) => (
+          <article class="journal__card">
+            <a href={withBase(`blog/${post.id}`)} class="journal__link">
+              <time class="journal__date mono" datetime={post.data.date.toISOString()}>
+                {fmt(post.data.date)}
+              </time>
+              <h3 class="journal__title">{post.data.title}</h3>
+              <p class="journal__summary">{post.data.summary}</p>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .journal {
+    padding-block: clamp(4rem, 8vw, 7rem);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(circle at top right, color-mix(in oklab, var(--amber) 10%, transparent), transparent 32%),
+      linear-gradient(180deg, color-mix(in oklab, var(--ink-2) 55%, transparent), transparent);
+  }
+  .journal__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .journal__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 1.5rem 3rem;
+    align-items: end;
+  }
+  .journal__copy {
+    max-width: 44rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .journal__lede {
+    color: var(--bone-dim);
+    line-height: 1.7;
+  }
+  .journal__all {
+    justify-self: end;
+    align-self: end;
+    font-family: var(--font-mono);
+    color: var(--amber);
+  }
+  .journal__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+  .journal__card {
+    border: 1px solid var(--line);
+    background: color-mix(in oklab, var(--ink-2) 72%, transparent);
+  }
+  .journal__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 1.35rem;
+    min-height: 100%;
+    transition:
+      transform 0.2s var(--ease),
+      border-color 0.2s var(--ease),
+      background 0.2s var(--ease);
+  }
+  .journal__link:hover {
+    transform: translateY(-2px);
+  }
+  .journal__date {
+    color: var(--amber);
+    font-size: 0.78rem;
+  }
+  .journal__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+    letter-spacing: -0.02em;
+  }
+  .journal__summary {
+    color: var(--bone-dim);
+    line-height: 1.65;
+  }
+  @media (max-width: 860px) {
+    .journal__head {
+      grid-template-columns: 1fr;
+    }
+    .journal__all {
+      justify-self: start;
+    }
+    .journal__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
