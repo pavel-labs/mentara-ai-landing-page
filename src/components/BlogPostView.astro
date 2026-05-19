@@ -1,7 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import type { Locale } from '../i18n';
-import { localeHome, withBase } from '../i18n';
+import { localePath, localeHome, withBase } from '../i18n';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from './Nav.astro';
 import Footer from './Footer.astro';
@@ -34,9 +34,7 @@ const fmt = post.data.date.toLocaleDateString('en-US', {
   <Nav locale={locale} homeHref={localeHome(locale)} />
   <main id="main" class="post">
     <article class="container post__inner">
-      <a class="post__back" href={withBase(`${locale === 'en' ? '' : `${locale}/`}blog`)}>
-        ← Blog
-      </a>
+      <a class="post__back" href={localePath(locale, 'blog')}>← Blog</a>
       <time class="post__date mono" datetime={post.data.date.toISOString()}>{fmt}</time>
       <h1 class="h2">{post.data.title}</h1>
       <div class="prose">
@@ -50,9 +48,7 @@ const fmt = post.data.date.toLocaleDateString('en-US', {
             <ul class="related__list">
               {relatedPosts.map((relatedPost) => (
                 <li>
-                  <a href={withBase(`${locale === 'en' ? '' : `${locale}/`}blog/${relatedPost.id}`)}>
-                    {relatedPost.data.title}
-                  </a>
+                  <a href={localePath(locale, `blog/${relatedPost.id}`)}>{relatedPost.data.title}</a>
                 </li>
               ))}
             </ul>
