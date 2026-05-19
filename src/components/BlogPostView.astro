@@ -1,24 +1,24 @@
 ---
-import { getCollection, render } from 'astro:content';
-import type { GetStaticPaths } from 'astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
-import { findClusterBySlug } from '../../content/blog-clusters';
-import { localeHome, withBase } from '../../i18n';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import type { Locale } from '../i18n';
+import { localeHome, withBase } from '../i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { findClusterBySlug } from '../content/blog-clusters';
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getCollection('blog', (p) => !p.data.draft);
-  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
-};
-
-const { post } = Astro.props;
+interface Props {
+  locale: Locale;
+  post: CollectionEntry<'blog'>;
+}
+const { locale, post } = Astro.props;
 const { Content } = await render(post);
 const cluster = findClusterBySlug(post.id);
+const collection = await getCollection('blog', (p) => !p.data.draft);
 const relatedPosts =
   cluster == null
     ? []
-    : (await getCollection('blog', (p) => !p.data.draft))
+    : collection
         .filter((candidate) => cluster.slugs.includes(candidate.id) && candidate.id !== post.id)
         .sort((a, b) => cluster.slugs.indexOf(a.id) - cluster.slugs.indexOf(b.id))
         .slice(0, 4);
@@ -30,11 +30,13 @@ const fmt = post.data.date.toLocaleDateString('en-US', {
 });
 ---
 
-<BaseLayout locale="en" title={`${post.data.title} — Mentara`} description={post.data.summary}>
-  <Nav locale="en" homeHref={localeHome('en')} />
+<BaseLayout locale={locale} title={`${post.data.title} — Mentara`} description={post.data.summary}>
+  <Nav locale={locale} homeHref={localeHome(locale)} />
   <main id="main" class="post">
     <article class="container post__inner">
-      <a class="post__back" href={withBase('blog')}>← Blog</a>
+      <a class="post__back" href={withBase(`${locale === 'en' ? '' : `${locale}/`}blog`)}>
+        ← Blog
+      </a>
       <time class="post__date mono" datetime={post.data.date.toISOString()}>{fmt}</time>
       <h1 class="h2">{post.data.title}</h1>
       <div class="prose">
@@ -48,7 +50,9 @@ const fmt = post.data.date.toLocaleDateString('en-US', {
             <ul class="related__list">
               {relatedPosts.map((relatedPost) => (
                 <li>
-                  <a href={withBase(`blog/${relatedPost.id}`)}>{relatedPost.data.title}</a>
+                  <a href={withBase(`${locale === 'en' ? '' : `${locale}/`}blog/${relatedPost.id}`)}>
+                    {relatedPost.data.title}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -79,7 +83,7 @@ const fmt = post.data.date.toLocaleDateString('en-US', {
       }
     </article>
   </main>
-  <Footer locale="en" />
+  <Footer locale={locale} />
 </BaseLayout>
 
 <style>

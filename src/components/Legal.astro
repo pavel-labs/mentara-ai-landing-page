@@ -16,7 +16,7 @@ const sections = LEGAL_DOCS[doc];
 ---
 
 <BaseLayout locale={locale} title={`${title} — Mentara`} description={t.legal.draftNotice}>
-  <Nav locale={locale} />
+  <Nav locale={locale} homeHref={localeHome(locale)} />
   <main id="main" class="legal">
     <div class="container legal__inner">
       <a class="legal__back" href={localeHome(locale)}>← {t.legal.back}</a>

@@ -139,6 +139,29 @@ export interface Dict {
     lede: string;
   };
 
+  contentHub: {
+    compare: {
+      eyebrow: string;
+      title: string;
+      lede: string;
+      primary: string;
+      secondary: string;
+    };
+    resources: {
+      eyebrow: string;
+      title: string;
+      lede: string;
+    };
+    blog: {
+      eyebrow: string;
+      title: string;
+      lede: string;
+      primary: string;
+      pathsEyebrow: string;
+      pathsTitle: string;
+    };
+  };
+
   badges: {
     ariaGroup: string;
     comingSoon: string;
