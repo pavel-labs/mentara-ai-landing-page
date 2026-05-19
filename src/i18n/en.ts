@@ -162,7 +162,12 @@ export const en: Dict = {
         price: '$0',
         cadence: 'forever',
         blurb: 'Kick the tires on real mock interviews.',
-        features: ['A few sessions / month', 'Core practice tracks', 'Live scoring', 'Basic progress'],
+        features: [
+          'A few sessions / month',
+          'Core practice tracks',
+          'Live scoring',
+          'Basic progress',
+        ],
         featured: false,
       },
       {
@@ -269,7 +274,8 @@ export const en: Dict = {
 
   notFound: {
     eyebrow: 'Error',
-    message: "This route never compiled. The page you're after doesn't exist — or hasn't shipped yet.",
+    message:
+      "This route never compiled. The page you're after doesn't exist — or hasn't shipped yet.",
     back: 'Back to home',
   },
 };

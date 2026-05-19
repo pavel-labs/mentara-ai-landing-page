@@ -10,10 +10,10 @@ and a hand-rolled dark "editorial-terminal" design system — no UI kit, no trac
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321
-npm run build    # static output → dist/
-npm run preview  # serve the production build
-npm test         # vitest — i18n helpers + translation parity
+npm run dev     # http://localhost:4321
+npm run build   # static output → dist/
+npm run preview # serve the production build
+npm test        # vitest — i18n helpers + translation parity
 ```
 
 Node 18.20.8+ (the repo CI / monorepo uses Node 24).
@@ -29,7 +29,8 @@ Node 18.20.8+ (the repo CI / monorepo uses Node 24).
   fail the build), so a missing translation can't ship silently.
 
 Astro components are templates with no branching logic, so they're verified by the build
-+ visual review rather than unit tests; all testable logic lives in `src/i18n`.
+
+- visual review rather than unit tests; all testable logic lives in `src/i18n`.
 
 ## Languages
 

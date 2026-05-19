@@ -124,7 +124,9 @@ export const TERMS: LegalSection[] = [
   },
   {
     heading: '9. Termination',
-    body: ['You may stop and delete your account anytime. We may suspend accounts that violate these terms.'],
+    body: [
+      'You may stop and delete your account anytime. We may suspend accounts that violate these terms.',
+    ],
   },
   {
     heading: '10. Governing law, changes & contact',

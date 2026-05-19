@@ -274,7 +274,8 @@ export const de: Dict = {
 
   notFound: {
     eyebrow: 'Fehler',
-    message: 'Diese Route wurde nie kompiliert. Die gesuchte Seite gibt es nicht — oder noch nicht.',
+    message:
+      'Diese Route wurde nie kompiliert. Die gesuchte Seite gibt es nicht — oder noch nicht.',
     back: 'Zurück zur Startseite',
   },
 };
