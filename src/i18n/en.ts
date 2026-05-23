@@ -258,14 +258,12 @@ export const en: Dict = {
     resources: {
       eyebrow: 'Resources',
       title: 'Structured reading paths for technical interview prep.',
-      lede:
-        'Grouped entry points for candidates comparing tools, practicing system design, tightening behavioral answers, or preparing for senior and staff loops.',
+      lede: 'Grouped entry points for candidates comparing tools, practicing system design, tightening behavioral answers, or preparing for senior and staff loops.',
     },
     blog: {
       eyebrow: 'Resources',
       title: 'Comparison pages, prep strategy, and product notes.',
-      lede:
-        'Built to catch high-intent search traffic and give serious candidates a sharper way into the product than a generic landing page pitch.',
+      lede: 'Built to catch high-intent search traffic and give serious candidates a sharper way into the product than a generic landing page pitch.',
       primary: 'Browse all articles',
       pathsEyebrow: 'Reading paths',
       pathsTitle: 'Search clusters, not a random pile of posts.',
