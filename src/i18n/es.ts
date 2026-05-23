@@ -258,14 +258,12 @@ export const es: Dict = {
     resources: {
       eyebrow: 'Recursos',
       title: 'Rutas de lectura estructuradas para preparar entrevistas técnicas.',
-      lede:
-        'Puntos de entrada agrupados para quienes comparan herramientas, practican system design, afinan respuestas behavioral o se preparan para loops senior y staff.',
+      lede: 'Puntos de entrada agrupados para quienes comparan herramientas, practican system design, afinan respuestas behavioral o se preparan para loops senior y staff.',
     },
     blog: {
       eyebrow: 'Recursos',
       title: 'Comparativas, estrategia de práctica y notas de producto.',
-      lede:
-        'Creado para captar búsquedas con intención alta y dar a candidatos serios una vía mejor al producto que un pitch genérico de landing.',
+      lede: 'Creado para captar búsquedas con intención alta y dar a candidatos serios una vía mejor al producto que un pitch genérico de landing.',
       primary: 'Ver todos los artículos',
       pathsEyebrow: 'Rutas de lectura',
       pathsTitle: 'Grupos temáticos, no una pila aleatoria de artículos.',

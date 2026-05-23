@@ -258,14 +258,12 @@ export const de: Dict = {
     resources: {
       eyebrow: 'Ressourcen',
       title: 'Strukturierte Lesepfade für technische Interview-Vorbereitung.',
-      lede:
-        'Gebündelte Einstiegspunkte für Menschen, die Tools vergleichen, System Design üben, Behavioral-Antworten schärfen oder sich auf Senior- und Staff-Runden vorbereiten.',
+      lede: 'Gebündelte Einstiegspunkte für Menschen, die Tools vergleichen, System Design üben, Behavioral-Antworten schärfen oder sich auf Senior- und Staff-Runden vorbereiten.',
     },
     blog: {
       eyebrow: 'Ressourcen',
       title: 'Vergleiche, Übungsstrategie und Produktnotizen.',
-      lede:
-        'Für Leser:innen mit klarem Suchintent gebaut, damit ernsthafte Kandidat:innen schneller zum Produkt finden als über eine generische Landingpage.',
+      lede: 'Für Leser:innen mit klarem Suchintent gebaut, damit ernsthafte Kandidat:innen schneller zum Produkt finden als über eine generische Landingpage.',
       primary: 'Alle Artikel ansehen',
       pathsEyebrow: 'Lesepfade',
       pathsTitle: 'Themengruppen statt einem zufälligen Haufen Artikel.',
