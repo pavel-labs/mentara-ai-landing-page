@@ -10,7 +10,7 @@ loop punishes exactly the things the quiz never measured: communication, structu
 holding up under follow-ups.
 
 Mentara is the opposite of that. An AI interviewer that stays in character for your role
-and level, follows up, probes edge cases, and gets harder when you cruise — scoring you
+and level, follows up, probes edge cases, and gets harder when you cruise – scoring you
 **while you talk**, not in a post-mortem.
 
 ## What ships at launch (2026)

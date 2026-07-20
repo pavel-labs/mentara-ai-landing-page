@@ -1,10 +1,10 @@
-# Mentara — Landing Page
+# Mentara – Landing Page
 
 Marketing landing page for **Mentara**, an AI-powered mock technical interview app for
 software engineers. Static, SEO/performance-first, English only (for now).
 
 Built with **[Astro](https://astro.build)** (ships ~zero JS), self-hosted variable fonts,
-and a hand-rolled dark "editorial-terminal" design system — no UI kit, no tracking.
+and a hand-rolled dark "editorial-terminal" design system – no UI kit, no tracking.
 
 ## Develop
 
@@ -13,18 +13,18 @@ npm install
 npm run dev     # http://localhost:4321
 npm run build   # static output → dist/
 npm run preview # serve the production build
-npm test        # vitest — i18n helpers + translation parity
+npm test        # vitest – i18n helpers + translation parity
 ```
 
 Node 18.20.8+ (the repo CI / monorepo uses Node 24).
 
 ## Tests
 
-`npm test` (Vitest, pure-logic only — no Astro runtime):
+`npm test` (Vitest, pure-logic only – no Astro runtime):
 
-- `src/i18n/i18n.test.ts` — `isLocale` / `getDict` / `withBase` / `localeHome` /
+- `src/i18n/i18n.test.ts` – `isLocale` / `getDict` / `withBase` / `localeHome` /
   `localeUrl`.
-- `src/i18n/parity.test.ts` — recursively asserts `de` and `ru` match the English
+- `src/i18n/parity.test.ts` – recursively asserts `de` and `ru` match the English
   dictionary's shape exactly (missing/renamed/extra keys and mismatched array lengths
   fail the build), so a missing translation can't ship silently.
 
@@ -40,7 +40,7 @@ alternates + `x-default`, a localized `<html lang>` / OG locale / JSON-LD, and t
 sitemap carries `xhtml:link` alternates. A compact EN/DE/ES/RU switcher lives in the nav.
 
 To **edit copy**: every translatable string is in `src/i18n/{en,de,es,ru}.ts`, all typed
-against `src/i18n/types.ts` — a missing/renamed key is a TypeScript error, not a silent
+against `src/i18n/types.ts` – a missing/renamed key is a TypeScript error, not a silent
 untranslated string. To **add a locale**: add `xx.ts`, register it in
 `src/i18n/index.ts` (`LOCALES` + `dictionaries`) + `astro.config.mjs` (`i18n.locales` and
 the sitemap `i18n.locales`), and add `src/pages/xx/index.astro`
@@ -71,9 +71,9 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
 
 - **Legal**: `/{locale}/privacy` + `/{locale}/terms` (all 4 locales). The page shell,
   headings and a prominent **draft notice** are localized; the clauses themselves stay in
-  **English** (`src/legal.ts`) with "English is authoritative" stated — auto-translated
+  **English** (`src/legal.ts`) with "English is authoritative" stated – auto-translated
   binding legal text is a liability. Bump `LEGAL_EFFECTIVE_DATE` / `LEGAL_CONTACT` there.
-  **These are unreviewed drafts — have counsel review before launch.**
+  **These are unreviewed drafts – have counsel review before launch.**
 - **Blog/changelog**: Astro content collection (`src/content/blog/*.md`, English),
   `/blog` + `/blog/<slug>` + `/rss.xml` (auto-discovered `<link rel=alternate>`).
 - **Per-locale OG**: `/og/<locale>.png` generated at build; each page references its own.
@@ -84,32 +84,32 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
 
 ## Configuration (env)
 
-See `.env.example`. All `PUBLIC_*` (inlined into the static build — no secrets):
+See `.env.example`. All `PUBLIC_*` (inlined into the static build – no secrets):
 
-- `PUBLIC_FORMSPREE_ENDPOINT` — waitlist form target. Empty → the waitlist renders a
+- `PUBLIC_FORMSPREE_ENDPOINT` – waitlist form target. Empty → the waitlist renders a
   disabled placeholder (never ships a broken POST).
-- `PUBLIC_CF_BEACON_TOKEN` — Cloudflare Web Analytics. Empty → no beacon injected, no
+- `PUBLIC_CF_BEACON_TOKEN` – Cloudflare Web Analytics. Empty → no beacon injected, no
   cookie banner needed.
-- `SITE_URL` / `BASE_PATH` — hosting overrides (default = GitHub Pages project URL).
+- `SITE_URL` / `BASE_PATH` – hosting overrides (default = GitHub Pages project URL).
 
 Set these as env in the GitHub Action (or repo variables) for the deployed build.
 
 ## Firebase Hosting & custom domain (mentara.ai)
 
 Deployed on **Firebase Hosting** (`firebase.json`, `.firebaserc`, `dist/` as the public
-dir). Everything is written to switch domains with **no code change** —
+dir). Everything is written to switch domains with **no code change** –
 canonical/OG/hreflang/sitemap and `robots.txt` all derive from `site`/`base`
 (`astro.config.mjs`), which already default to the root base path and the `mentara.ai`
 custom domain.
 
 **One-time setup:**
 
-1. ~~**Firebase project**~~ — done: `.firebaserc` points at the `mentara-ai-landing`
+1. ~~**Firebase project**~~ – done: `.firebaserc` points at the `mentara-ai-landing`
    project, Hosting enabled.
 2. **CI deploy secret**: Firebase console → Project settings → Service accounts →
    Generate new private key, then add its JSON as the GitHub Actions secret
    `FIREBASE_SERVICE_ACCOUNT` (Settings → Secrets and variables → Actions → Secrets).
-   ⚠️ This repo is **public** — that key must live only as a GitHub secret, never
+   ⚠️ This repo is **public** – that key must live only as a GitHub secret, never
    committed.
 3. **Custom domain**: Firebase console → Hosting → Add custom domain → `mentara.ai` (and
    `www.mentara.ai`). Firebase walks you through a TXT record for verification, then gives
@@ -118,9 +118,9 @@ custom domain.
 4. **Repo variables** (only needed before the domain is live): set
    `SITE_URL=https://mentara-ai-landing.web.app` to build/preview against the
    auto-assigned Firebase domain; leave unset (or `SITE_URL=https://mentara.ai`) once DNS
-   is pointed at Firebase — that's already the default.
+   is pointed at Firebase – that's already the default.
 
-Note: this project only uses Firebase **Hosting** — no client-side Firebase SDK
+Note: this project only uses Firebase **Hosting** – no client-side Firebase SDK
 (`firebase-app.js`, Analytics, Auth, etc.) is wired up, and none is needed for Hosting to
 work. Registering the "web app" in the Firebase console (which produces an
 `initializeApp(firebaseConfig)` snippet) is optional and unrelated to deploying this site;
@@ -132,16 +132,16 @@ mobile app's `EXPO_PUBLIC_TERMS_URL` / `EXPO_PUBLIC_PRIVACY_URL` at `https://men
 and `/privacy` (they already default there).
 
 For an ad-hoc push outside CI: `npm run deploy` (builds, then `firebase deploy` via
-`npx firebase-tools` — requires `firebase login` locally first).
+`npx firebase-tools` – requires `firebase login` locally first).
 
 ## Notes
 
 - **Social card** `/og/<locale>.png` is generated at build (`astro-og-canvas`, real
-  1200×630 PNG) — fixes SVG-OG not rendering on Slack/iMessage/LinkedIn/X. It uses
+  1200×630 PNG) – fixes SVG-OG not rendering on Slack/iMessage/LinkedIn/X. It uses
   astro-og-canvas's default font (fetched + cached at build): **deliberately not
-  self-hosted** — Satori needs TTF/OTF and the variable `@fontsource` packages ship
+  self-hosted** – Satori needs TTF/OTF and the variable `@fontsource` packages ship
   woff2-only, so true self-host would mean committing a font binary for marginal gain.
-- **`robots.txt`** is a generated route (`src/pages/robots.txt.ts`) — its Sitemap URL
+- **`robots.txt`** is a generated route (`src/pages/robots.txt.ts`) – its Sitemap URL
   tracks `site`/`base`, so the custom-domain switch needs no manual edit.
 - **404**: one static `404.html` (GitHub Pages serves it for every unknown path),
   localized client-side from the `/de|/es|/ru` URL prefix; default render is English.
@@ -154,7 +154,7 @@ For an ad-hoc push outside CI: `npm run deploy` (builds, then `firebase deploy` 
   robots, manifest. The FAQ is rich-result eligible.
 - Store badges are intentionally **non-interactive "Coming soon"** until the apps ship.
 - **Security**: two open `astro` advisories (`define:vars` XSS, server-island replay) do
-  not apply here — this site uses neither and is fully static with no user input.
+  not apply here – this site uses neither and is fully static with no user input.
   `astro@6` is a breaking major `astro-og-canvas` doesn't support yet; revisit when it
   does. Not force-upgraded on purpose.
 - Deploy: Firebase Hosting via `.github/workflows/deploy.yml` (build →
@@ -166,5 +166,5 @@ For an ad-hoc push outside CI: `npm run deploy` (builds, then `firebase deploy` 
 
 This repository is consumed as a **git submodule** at `landing/` inside the
 `mentara-ai` monorepo (kept outside the npm-workspaces glob so it stays fully
-independent — its own `package.json`, lockfile, and deploy). Develop here; the monorepo
+independent – its own `package.json`, lockfile, and deploy). Develop here; the monorepo
 just pins a commit.

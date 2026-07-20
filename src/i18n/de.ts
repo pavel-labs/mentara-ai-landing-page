@@ -6,9 +6,9 @@ export const de: Dict = {
   a11ySkip: 'Zum Inhalt springen',
 
   meta: {
-    title: 'Mentara — KI-Übungsinterviews für Software-Engineers',
+    title: 'Mentara – KI-Übungsinterviews für Software-Engineers',
     description:
-      'Mentara führt realistische technische Übungsinterviews mit einem KI-Interviewer durch, der sich anpasst, nachhakt und dich in Echtzeit bewertet — damit du gut vorbereitet ins echte Interview gehst. iOS, Android und Web.',
+      'Mentara führt realistische technische Übungsinterviews mit einem KI-Interviewer durch, der sich anpasst, nachhakt und dich in Echtzeit bewertet – damit du gut vorbereitet ins echte Interview gehst. iOS, Android und Web.',
     tagline: 'Übe echte Interviews.',
     launchLabel: 'Start 2026',
   },
@@ -26,7 +26,7 @@ export const de: Dict = {
     titleLead: 'Übe technische Interviews.',
     titleAccent: 'Bevor',
     titleTail: 'das echte beginnt.',
-    lede: 'Mentara führt realistische technische Übungsinterviews mit einem KI-Interviewer: Er passt sich an, hakt nach und bewertet dich in Echtzeit — damit du gut vorbereitet ins echte Interview gehst.',
+    lede: 'Mentara führt realistische technische Übungsinterviews mit einem KI-Interviewer: Er passt sich an, hakt nach und bewertet dich in Echtzeit – damit du gut vorbereitet ins echte Interview gehst.',
     availability: 'Start 2026 · iOS, Android & Web',
   },
 
@@ -41,11 +41,11 @@ export const de: Dict = {
   product: {
     eyebrow: 'Ein Blick in die App',
     heading: 'Das Interview, auf deinem Screen.',
-    lede: 'Ein Screen, ein Zweck: deine Aufmerksamkeit beim Interview halten. Die Frage, deine Antwort und eine Live-Einschätzung, wie es läuft — am Handy oder im Browser, ohne Ablenkung.',
+    lede: 'Ein Screen, ein Zweck: deine Aufmerksamkeit beim Interview halten. Die Frage, deine Antwort und eine Live-Einschätzung, wie es läuft – am Handy oder im Browser, ohne Ablenkung.',
     notes: [
-      'Sprich oder tippe — der Interviewer reagiert in beiden Fällen',
+      'Sprich oder tippe – der Interviewer reagiert in beiden Fällen',
       'Die Bewertung aktualisiert sich, während du sprichst, nicht danach',
-      'Dein Hinweis-Budget ist sichtbar — du teilst es dir ein wie im echten Interview',
+      'Dein Hinweis-Budget ist sichtbar – du teilst es dir ein wie im echten Interview',
     ],
     ui: {
       track: 'system-design · L5',
@@ -71,22 +71,22 @@ export const de: Dict = {
 
   features: {
     eyebrow: 'Was du bekommst',
-    heading: 'Ein Interviewer, der nachfragt — keine Quiz-App.',
+    heading: 'Ein Interviewer, der nachfragt – keine Quiz-App.',
     items: [
       {
         index: '01',
         title: 'Ein Interviewer, der nachhakt',
-        body: 'Kein Chatbot, der Fragen vorliest. Die KI bleibt in der Rolle für deine Position, dein Level und deinen Interviewer-Typ — hakt nach, geht an die Edge Cases und wird härter, sobald du dich zurücklehnst.',
+        body: 'Kein Chatbot, der Fragen vorliest. Die KI bleibt in der Rolle für deine Position, dein Level und deinen Interviewer-Typ – hakt nach, geht an die Edge Cases und wird härter, sobald du dich zurücklehnst.',
       },
       {
         index: '02',
         title: 'Bewertet, während du redest',
-        body: 'Live-Signal zu technischer Tiefe, Kommunikation, Edge Cases und Problemlösung — alle paar Wortwechsel aktualisiert, nicht in einer Nachbesprechung vergraben.',
+        body: 'Live-Signal zu technischer Tiefe, Kommunikation, Edge Cases und Problemlösung – alle paar Wortwechsel aktualisiert, nicht in einer Nachbesprechung vergraben.',
       },
       {
         index: '03',
         title: 'Strukturierte Übungs-Tracks',
-        body: 'Algorithmen, System Design, Behavioral und Domain-Runden mit kalibriertem Schwierigkeitsgrad. Übe genau die Runde, vor der du Schiss hast — keine Wundertüte.',
+        body: 'Algorithmen, System Design, Behavioral und Domain-Runden mit kalibriertem Schwierigkeitsgrad. Übe genau die Runde, vor der du Schiss hast – keine Wundertüte.',
       },
       {
         index: '04',
@@ -102,11 +102,11 @@ export const de: Dict = {
     groups: [
       {
         tag: 'Berufseinsteiger',
-        body: 'Aus „Ich kann’s in der Theorie“ wird „Ich schaff das Interview“ — noch vor deinem ersten Onsite.',
+        body: 'Aus „Ich kann’s in der Theorie“ wird „Ich schaff das Interview“ – noch vor deinem ersten Onsite.',
       },
       {
         tag: 'Quereinsteiger',
-        body: 'Schließ die Interview-Erfahrungslücke schnell — Übung mit Feedback statt Rätselraten.',
+        body: 'Schließ die Interview-Erfahrungslücke schnell – Übung mit Feedback statt Rätselraten.',
       },
       {
         tag: 'Senior-Level',
@@ -118,7 +118,7 @@ export const de: Dict = {
       themPoints: [
         'Niemand hakt bei einer schwammigen Antwort nach',
         'Kein Wort zu Kommunikation und Struktur',
-        'Du benotest dich selbst — großzügig',
+        'Du benotest dich selbst – großzügig',
       ],
       us: 'Mentara',
       usPoints: [
@@ -136,7 +136,7 @@ export const de: Dict = {
       {
         n: '1',
         title: 'Runde wählen',
-        body: 'Track, Position und Schwierigkeit festlegen. Interviewer-Typ wählen — freundliches Screening oder Staff-Level-Grill.',
+        body: 'Track, Position und Schwierigkeit festlegen. Interviewer-Typ wählen – freundliches Screening oder Staff-Level-Grill.',
       },
       {
         n: '2',
@@ -146,7 +146,7 @@ export const de: Dict = {
       {
         n: '3',
         title: 'Feedback holen',
-        body: 'Eine bewertete Auswertung plus gezielter Lernplan — genau das, was du vor dem echten Gespräch noch fixen musst.',
+        body: 'Eine bewertete Auswertung plus gezielter Lernplan – genau das, was du vor dem echten Gespräch noch fixen musst.',
       },
     ],
   },
@@ -206,7 +206,7 @@ export const de: Dict = {
     items: [
       {
         q: 'Fühlt es sich wirklich wie ein echtes Interview an?',
-        a: 'Genau darum geht’s. Der Interviewer bleibt in der Rolle, hakt nach, fordert schwache Antworten heraus und dreht den Schwierigkeitsgrad hoch — peinliche Pausen inklusive.',
+        a: 'Genau darum geht’s. Der Interviewer bleibt in der Rolle, hakt nach, fordert schwache Antworten heraus und dreht den Schwierigkeitsgrad hoch – peinliche Pausen inklusive.',
       },
       {
         q: 'Muss ich laut coden?',
@@ -214,11 +214,11 @@ export const de: Dict = {
       },
       {
         q: 'Welche Tracks gibt es?',
-        a: 'Algorithmen, System Design, Behavioral und Domain-Runden — über Positionen und Senioritätsstufen hinweg, mit einem Schwierigkeitsgrad, der sich auf dich einstellt.',
+        a: 'Algorithmen, System Design, Behavioral und Domain-Runden – über Positionen und Senioritätsstufen hinweg, mit einem Schwierigkeitsgrad, der sich auf dich einstellt.',
       },
       {
         q: 'Wann und wo geht es los?',
-        a: 'Mentara startet 2026 auf iOS, Android und im Web. Die Store-Einträge und die Web-App gehen zum Start live — diese Seite ist der Vorgeschmack.',
+        a: 'Mentara startet 2026 auf iOS, Android und im Web. Die Store-Einträge und die Web-App gehen zum Start live – diese Seite ist der Vorgeschmack.',
       },
       {
         q: 'Sind meine Session-Daten privat?',
@@ -230,14 +230,14 @@ export const de: Dict = {
   waitlist: {
     eyebrow: 'Früher Zugang',
     heading: 'Warteliste beitreten.',
-    sub: 'Trag dich in die Warteliste ein — erfahr als Erste:r vom Start, kein Spam.',
+    sub: 'Trag dich in die Warteliste ein – erfahr als Erste:r vom Start, kein Spam.',
     label: 'E-Mail-Adresse',
     placeholder: 'du@firma.dev',
     cta: 'Eintragen',
     sending: 'Wird gesendet…',
     success: 'Passt, du bist auf der Liste. Wir melden uns zum Start.',
     error: 'Bei uns ist was schiefgelaufen. Versuch’s gleich nochmal.',
-    offNote: 'Öffnet bald — setze PUBLIC_FORMSPREE_ENDPOINT, um das Formular zu aktivieren.',
+    offNote: 'Öffnet bald – setze PUBLIC_FORMSPREE_ENDPOINT, um das Formular zu aktivieren.',
   },
 
   cta: {
@@ -271,7 +271,7 @@ export const de: Dict = {
   },
 
   badges: {
-    ariaGroup: 'Apps — bald verfügbar',
+    ariaGroup: 'Apps – bald verfügbar',
     comingSoon: 'Bald verfügbar:',
     ios: 'App Store',
     android: 'Google Play',
@@ -279,7 +279,7 @@ export const de: Dict = {
   },
 
   footer: {
-    blurb: 'KI-Übungsinterviews für Engineers — iOS, Android & Web.',
+    blurb: 'KI-Übungsinterviews für Engineers – iOS, Android & Web.',
     explore: 'Entdecken',
     legal: 'Rechtliches',
     privacy: 'Datenschutz',
@@ -290,14 +290,14 @@ export const de: Dict = {
     privacyTitle: 'Datenschutzerklärung',
     termsTitle: 'Nutzungsbedingungen',
     draftNotice:
-      'Entwurf — keine Rechtsberatung. Vor dem Start mit Anwält:innen zu prüfen; die englische Fassung ist maßgeblich.',
+      'Entwurf – keine Rechtsberatung. Vor dem Start mit Anwält:innen zu prüfen; die englische Fassung ist maßgeblich.',
     updated: 'Zuletzt aktualisiert',
     back: 'Zurück zur Startseite',
   },
 
   notFound: {
     eyebrow: 'Fehler',
-    message: 'Diese Seite gibt es nicht — oder sie ist noch nicht veröffentlicht.',
+    message: 'Diese Seite gibt es nicht – oder sie ist noch nicht veröffentlicht.',
     back: 'Zurück zur Startseite',
   },
 };
