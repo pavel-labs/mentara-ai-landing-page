@@ -1,8 +1,7 @@
 ---
 import type { Locale } from '../i18n';
-import { getDict, withBase } from '../i18n';
-import { getCollection } from 'astro:content';
-import { BLOG_CLUSTERS } from '../content/blog-clusters';
+import { getDict, localePath } from '../i18n';
+import { getPublishedPosts, postsForSlugs, getCluster } from '../content/blog';
 
 interface Props {
   locale: Locale;
@@ -10,15 +9,10 @@ interface Props {
 const { locale } = Astro.props;
 const t = getDict(locale);
 
-const compareCluster = BLOG_CLUSTERS.find((cluster) => cluster.id === 'compare');
-const posts = await getCollection('blog', (p) => !p.data.draft);
+const compareCluster = getCluster('compare');
+const posts = await getPublishedPosts();
 const comparePosts =
-  compareCluster == null
-    ? []
-    : compareCluster.slugs
-        .map((slug) => posts.find((post) => post.id === slug))
-        .filter(Boolean)
-        .slice(0, 3);
+  compareCluster == null ? [] : postsForSlugs(posts, compareCluster.slugs).slice(0, 3);
 ---
 
 <section class="compare-teaser" aria-labelledby="compare-teaser-title">
@@ -28,10 +22,10 @@ const comparePosts =
       <h2 id="compare-teaser-title" class="h2">{t.contentHub.compare.title}</h2>
       <p class="compare-teaser__lede">{t.contentHub.compare.lede}</p>
       <div class="compare-teaser__actions">
-        <a href={withBase('compare')} class="compare-teaser__primary">
+        <a href={localePath(locale, 'compare')} class="compare-teaser__primary">
           {t.contentHub.compare.primary}
         </a>
-        <a href={withBase('resources')} class="compare-teaser__secondary">
+        <a href={localePath(locale, 'resources')} class="compare-teaser__secondary">
           {t.contentHub.compare.secondary}
         </a>
       </div>
@@ -41,7 +35,7 @@ const comparePosts =
       {
         comparePosts.map((post) => (
           <article class="compare-teaser__card">
-            <a href={withBase(`blog/${post.id}`)}>
+            <a href={localePath(locale, `blog/${post.id}`)}>
               <h3>{post.data.title}</h3>
               <p>{post.data.summary}</p>
             </a>

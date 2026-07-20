@@ -176,7 +176,6 @@ export interface Dict {
     legal: string;
     privacy: string;
     terms: string;
-    blog: string;
   };
 
   legal: {

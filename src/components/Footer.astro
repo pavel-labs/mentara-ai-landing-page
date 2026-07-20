@@ -1,6 +1,6 @@
 ---
 import { SITE } from '../consts';
-import { getDict, localeHome, withBase, type Locale } from '../i18n';
+import { getDict, localeHome, resolveNavHref, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -23,8 +23,7 @@ const home = localeHome(locale);
 
     <nav class="foot__nav" aria-label="Footer">
       <span class="foot__label">{t.footer.explore}</span>
-      {t.nav.map((l) => <a href={`${home}${l.href}`}>{l.label}</a>)}
-      <a href={withBase('blog')}>{t.footer.blog}</a>
+      {t.nav.map((l) => <a href={resolveNavHref(locale, home, l.href)}>{l.label}</a>)}
     </nav>
 
     <nav class="foot__nav" aria-label="Legal">

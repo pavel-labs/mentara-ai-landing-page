@@ -1,5 +1,6 @@
 ---
 import { getDict, type Locale } from '../i18n';
+import SectionHead from './SectionHead.astro';
 
 interface Props {
   locale: Locale;
@@ -11,10 +12,7 @@ const { groups, versus } = a;
 
 <section id="audience">
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">{a.eyebrow}</p>
-      <h2 class="h2">{a.heading}</h2>
-    </div>
+    <SectionHead eyebrow={a.eyebrow} heading={a.heading} />
 
     <div class="who-grid">
       {

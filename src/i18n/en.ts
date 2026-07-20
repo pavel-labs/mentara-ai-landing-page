@@ -8,8 +8,8 @@ export const en: Dict = {
   meta: {
     title: 'Mentara — AI mock technical interviews for software engineers',
     description:
-      'Mentara runs realistic technical mock interviews with an AI interviewer that adapts, pushes back, and scores you in real time — so the real loop feels like a rerun. iOS, Android, and the web.',
-    tagline: 'Rehearse the room.',
+      'Mentara runs realistic technical mock interviews with an AI interviewer that adapts, pushes back, and scores you in real time — so you walk into the real interview prepared. iOS, Android, and the web.',
+    tagline: 'Practice real interviews.',
     launchLabel: 'Launching 2026',
   },
 
@@ -23,10 +23,10 @@ export const en: Dict = {
 
   hero: {
     eyebrow: 'AI mock interviews · built for engineers',
-    titleLead: 'Rehearse the room.',
-    titleAccent: 'Before it',
-    titleTail: 'rehearses you.',
-    lede: 'Mentara runs realistic technical mock interviews with an AI interviewer that adapts, pushes back, and scores you in real time — so the real loop feels like a rerun.',
+    titleLead: 'Practice technical interviews.',
+    titleAccent: 'Before',
+    titleTail: 'the real one happens.',
+    lede: 'Mentara runs realistic technical mock interviews with an AI interviewer that adapts, pushes back, and scores you in real time — so you walk into the real interview prepared.',
     availability: 'Launching 2026 · iOS, Android & Web',
   },
 
@@ -40,12 +40,12 @@ export const en: Dict = {
 
   product: {
     eyebrow: 'A look at the app',
-    heading: 'The room, on every screen.',
-    lede: "One screen, one job: keep you in the interview. The question, your answer, and the live read on how it's landing — on your phone or in the browser, nothing else competing for attention.",
+    heading: 'The interview, on your screen.',
+    lede: "One screen, one purpose: keep your attention on the interview. The question, your answer, and a live read on how you're doing — on your phone or in the browser, with nothing else competing for attention.",
     notes: [
       'Talk or type — the interviewer reacts either way',
-      'The score moves while you speak, not after',
-      'Hint budget is visible, so you ration it like the real thing',
+      'The score updates while you speak, not after',
+      'Your hint budget is visible, so you ration it like the real thing',
     ],
     ui: {
       track: 'system-design · L5',
@@ -71,12 +71,12 @@ export const en: Dict = {
 
   features: {
     eyebrow: 'What you get',
-    heading: 'A sparring partner, not a quiz app.',
+    heading: 'An interviewer that pushes back, not a quiz app.',
     items: [
       {
         index: '01',
         title: 'An interviewer that pushes back',
-        body: 'Not a chatbot reading questions. The AI interviewer stays in character for your role, level, and persona — follows up, probes edge cases, and gets harder when you cruise.',
+        body: 'Not a chatbot reading questions. The AI interviewer stays in character for your role, level, and persona — follows up, probes edge cases, and gets harder if you start coasting.',
       },
       {
         index: '02',
@@ -91,26 +91,26 @@ export const en: Dict = {
       {
         index: '04',
         title: 'Progress that compounds',
-        body: 'XP, streaks, levels, and achievements turn scattered cramming into a habit. Show up daily; watch the curve bend.',
+        body: 'XP, streaks, levels, and achievements turn scattered cramming into a habit. Show up daily and watch your progress add up.',
       },
     ],
   },
 
   audience: {
     eyebrow: 'Who it’s for',
-    heading: 'Built for the engineer in the loop.',
+    heading: 'Built for engineers preparing right now.',
     groups: [
       {
         tag: 'New grads',
-        body: 'Turn “I know it on paper” into “I can run the room” before your first onsite.',
+        body: 'Turn “I know it on paper” into “I can handle the interview” before your first onsite.',
       },
       {
         tag: 'Career switchers',
-        body: 'Close the interview-fluency gap fast — reps with feedback, not guesswork.',
+        body: 'Close the interview-experience gap fast — practice with feedback, not guesswork.',
       },
       {
         tag: 'Senior loops',
-        body: 'Drill system design and staff-level grilling until the real panel is boring.',
+        body: 'Practice system design and tough staff-level questions until the real panel feels routine.',
       },
     ],
     versus: {
@@ -131,7 +131,7 @@ export const en: Dict = {
 
   steps: {
     eyebrow: 'How it works',
-    heading: 'Three steps to a sweat-free loop.',
+    heading: 'How it works, in three steps.',
     items: [
       {
         n: '1',
@@ -153,7 +153,7 @@ export const en: Dict = {
 
   pricing: {
     eyebrow: 'Pricing',
-    heading: 'Free to start. Cheap next to a dropped offer.',
+    heading: 'Free to start, with paid plans for more practice.',
     flag: 'Most popular',
     cta: 'Available at launch',
     foot: 'Prices are indicative and finalized at launch.',
@@ -162,7 +162,7 @@ export const en: Dict = {
         tier: 'FREE',
         price: '$0',
         cadence: 'forever',
-        blurb: 'Kick the tires on real mock interviews.',
+        blurb: 'Try real mock interviews.',
         features: [
           'A few sessions / month',
           'Core practice tracks',
@@ -229,7 +229,7 @@ export const en: Dict = {
 
   waitlist: {
     eyebrow: 'Early access',
-    heading: 'Get in before the loop does.',
+    heading: 'Join the waitlist.',
     sub: 'Join the waitlist — be first to know the day Mentara ships, no spam.',
     label: 'Email address',
     placeholder: 'you@work.dev',
@@ -242,15 +242,15 @@ export const en: Dict = {
 
   cta: {
     eyebrow: 'Launching 2026',
-    titleLead: 'The next loop is coming.',
-    titleAccent: 'Walk in rehearsed.',
-    lede: 'Mentara lands on iOS, Android, and the web in 2026. Get the launch email — then practice until the real thing is boring.',
+    titleLead: 'Mentara launches in 2026.',
+    titleAccent: 'Start practicing early.',
+    lede: 'Mentara lands on iOS, Android, and the web in 2026. Sign up for launch updates and start practicing early.',
   },
 
   contentHub: {
     compare: {
       eyebrow: 'Compare',
-      title: 'Pick the prep loop you actually need.',
+      title: 'Pick the prep method you actually need.',
       lede: 'Comparison pages for candidates deciding between solo drills, peer mocks, voice practice, AI tools, and coaching.',
       primary: 'Explore compare pages',
       secondary: 'Browse all resources',
@@ -284,7 +284,6 @@ export const en: Dict = {
     legal: 'Legal',
     privacy: 'Privacy',
     terms: 'Terms',
-    blog: 'Blog',
   },
 
   legal: {
@@ -298,8 +297,7 @@ export const en: Dict = {
 
   notFound: {
     eyebrow: 'Error',
-    message:
-      "This route never compiled. The page you're after doesn't exist — or hasn't shipped yet.",
+    message: "This page doesn't exist — or hasn't been published yet.",
     back: 'Back to home',
   },
 };

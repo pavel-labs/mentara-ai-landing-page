@@ -52,3 +52,17 @@ export function localeUrl(locale: Locale, origin: URL): string {
 export function localePath(locale: Locale, path: string): string {
   return withBase(locale === DEFAULT_LOCALE ? path : `${locale}/${path}`);
 }
+
+// Resolves a nav-entry href against a "home" context shared by Nav and Footer: a hash
+// anchor is scoped under homeHref (unless homeHref is the bare in-page '#main', where the
+// anchor already works as-is); an absolute path is locale-prefixed via localePath;
+// anything else (external URLs) passes through unchanged.
+export function resolveNavHref(locale: Locale, homeHref: string, href: string): string {
+  if (href.startsWith('#')) {
+    return homeHref === '#main' ? href : `${homeHref}${href}`;
+  }
+  if (href.startsWith('/')) {
+    return localePath(locale, href.slice(1));
+  }
+  return href;
+}
