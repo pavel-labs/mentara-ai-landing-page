@@ -94,25 +94,45 @@ See `.env.example`. All `PUBLIC_*` (inlined into the static build — no secrets
 
 Set these as env in the GitHub Action (or repo variables) for the deployed build.
 
-## Custom domain (mentara.ai)
+## Firebase Hosting & custom domain (mentara.ai)
 
-Everything is written to switch with **no code change** — canonical/OG/hreflang/sitemap
-and `robots.txt` all derive from `site`/`base`. To move off the GitHub Pages sub-path:
+Deployed on **Firebase Hosting** (`firebase.json`, `.firebaserc`, `dist/` as the public
+dir). Everything is written to switch domains with **no code change** —
+canonical/OG/hreflang/sitemap and `robots.txt` all derive from `site`/`base`
+(`astro.config.mjs`), which already default to the root base path and the `mentara.ai`
+custom domain.
 
-1. **DNS**: point `mentara.ai` at GitHub Pages (apex: 4 `A` records to GitHub's IPs, or
-   an `ALIAS`/`ANAME`; `www` as a `CNAME` to `themafia98.github.io`).
-2. **CNAME file**: add `landing/public/CNAME` containing exactly `mentara.ai`. ⚠️ Do this
-   only together with steps 3–4 — committing it while the build still targets the
-   sub-path will break the live site.
-3. **Repo variables** (Settings → Secrets and variables → Actions → Variables):
-   `SITE_URL=https://mentara.ai` and `BASE_PATH=/`. The deploy workflow passes these
-   through; unset = current GitHub Pages defaults (`||` fallback, so empty is safe).
-4. **GitHub Pages**: set the custom domain in Settings → Pages and enable “Enforce HTTPS”.
+**One-time setup:**
 
-After this, `robots.txt`, the sitemap, all hreflang/canonical/OG URLs, and `localeHome`
-recompute to `https://mentara.ai/...` automatically. Then point the mobile app’s
-`EXPO_PUBLIC_TERMS_URL` / `EXPO_PUBLIC_PRIVACY_URL` at `https://mentara.ai/terms` and
-`/privacy` (they already default there).
+1. ~~**Firebase project**~~ — done: `.firebaserc` points at the `mentara-ai-landing`
+   project, Hosting enabled.
+2. **CI deploy secret**: Firebase console → Project settings → Service accounts →
+   Generate new private key, then add its JSON as the GitHub Actions secret
+   `FIREBASE_SERVICE_ACCOUNT` (Settings → Secrets and variables → Actions → Secrets).
+   ⚠️ This repo is **public** — that key must live only as a GitHub secret, never
+   committed.
+3. **Custom domain**: Firebase console → Hosting → Add custom domain → `mentara.ai` (and
+   `www.mentara.ai`). Firebase walks you through a TXT record for verification, then gives
+   you the `A`/`CNAME` records to add at your DNS provider, and auto-provisions the TLS
+   certificate.
+4. **Repo variables** (only needed before the domain is live): set
+   `SITE_URL=https://mentara-ai-landing.web.app` to build/preview against the
+   auto-assigned Firebase domain; leave unset (or `SITE_URL=https://mentara.ai`) once DNS
+   is pointed at Firebase — that's already the default.
+
+Note: this project only uses Firebase **Hosting** — no client-side Firebase SDK
+(`firebase-app.js`, Analytics, Auth, etc.) is wired up, and none is needed for Hosting to
+work. Registering the "web app" in the Firebase console (which produces an
+`initializeApp(firebaseConfig)` snippet) is optional and unrelated to deploying this site;
+skip it unless a future feature actually needs a client-side Firebase product.
+
+After the domain is live, `robots.txt`, the sitemap, all hreflang/canonical/OG URLs, and
+`localeHome` all resolve to `https://mentara.ai/...` with no further change. Then point the
+mobile app's `EXPO_PUBLIC_TERMS_URL` / `EXPO_PUBLIC_PRIVACY_URL` at `https://mentara.ai/terms`
+and `/privacy` (they already default there).
+
+For an ad-hoc push outside CI: `npm run deploy` (builds, then `firebase deploy` via
+`npx firebase-tools` — requires `firebase login` locally first).
 
 ## Notes
 
@@ -137,9 +157,10 @@ recompute to `https://mentara.ai/...` automatically. Then point the mobile app�
   not apply here — this site uses neither and is fully static with no user input.
   `astro@6` is a breaking major `astro-og-canvas` doesn't support yet; revisit when it
   does. Not force-upgraded on purpose.
-- Deploy: GitHub Pages via `.github/workflows/deploy.yml` (build → `deploy-pages`), plus a
-  **non-blocking** Lighthouse CI `audit` job (`lighthouserc.json`, ≥0.9 budgets as
-  warnings). Any static host also works: `npm run build` → `dist/`.
+- Deploy: Firebase Hosting via `.github/workflows/deploy.yml` (build →
+  `FirebaseExtended/action-hosting-deploy`), plus a **non-blocking** Lighthouse CI `audit`
+  job (`lighthouserc.json`, ≥0.9 budgets as warnings). Any static host also works:
+  `npm run build` → `dist/`.
 
 ## Relationship to the main repo
 

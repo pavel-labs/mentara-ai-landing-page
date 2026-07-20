@@ -168,8 +168,8 @@ export const ru: Dict = {
       },
       {
         tier: 'PRO',
-        price: '$19',
-        cadence: '/ месяц',
+        price: 'TBD',
+        cadence: 'на старте',
         blurb: 'Для инженера в активной подготовке.',
         features: [
           'Безлимит сессий',

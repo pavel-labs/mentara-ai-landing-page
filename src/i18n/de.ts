@@ -173,8 +173,8 @@ export const de: Dict = {
       },
       {
         tier: 'PRO',
-        price: '$19',
-        cadence: '/ Monat',
+        price: 'TBD',
+        cadence: 'zum Start',
         blurb: 'Für Engineers mitten in der Bewerbung.',
         features: [
           'Unbegrenzte Sessions',

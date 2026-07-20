@@ -2,8 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { DEFAULT_LOCALE, LOCALES, getDict, localeHome } from '../i18n';
 
-// GitHub Pages serves ONE 404.html for every unknown path (any locale). It's rendered in
-// the default locale, then a tiny inline script localizes it from the URL prefix so a
+// Firebase Hosting serves ONE 404.html for every unknown path (any locale). It's rendered
+// in the default locale, then a tiny inline script localizes it from the URL prefix so a
 // missed /de|/es|/ru route still shows German/Spanish/Russian.
 const t = getDict(DEFAULT_LOCALE).notFound;
 const home = localeHome(DEFAULT_LOCALE);

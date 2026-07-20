@@ -173,8 +173,8 @@ export const es: Dict = {
       },
       {
         tier: 'PRO',
-        price: '$19',
-        cadence: '/ mes',
+        price: 'TBD',
+        cadence: 'en el lanzamiento',
         blurb: 'Para el ingeniero metido en plena búsqueda.',
         features: [
           'Sesiones ilimitadas',
