@@ -6,9 +6,9 @@ export const en: Dict = {
   a11ySkip: 'Skip to content',
 
   meta: {
-    title: 'Mentara — AI mock technical interviews for software engineers',
+    title: 'Mentara – AI mock technical interviews for software engineers',
     description:
-      'Mentara runs realistic technical mock interviews with an AI interviewer that adapts, pushes back, and scores you in real time — so you walk into the real interview prepared. iOS, Android, and the web.',
+      'Mentara runs realistic technical mock interviews with an AI interviewer that adapts, pushes back, and scores you in real time – so you walk into the real interview prepared. iOS, Android, and the web.',
     tagline: 'Practice real interviews.',
     launchLabel: 'Launching 2026',
   },
@@ -26,7 +26,7 @@ export const en: Dict = {
     titleLead: 'Practice technical interviews.',
     titleAccent: 'Before',
     titleTail: 'the real one happens.',
-    lede: 'Mentara runs realistic technical mock interviews with an AI interviewer that adapts, pushes back, and scores you in real time — so you walk into the real interview prepared.',
+    lede: 'Mentara runs realistic technical mock interviews with an AI interviewer that adapts, pushes back, and scores you in real time – so you walk into the real interview prepared.',
     availability: 'Launching 2026 · iOS, Android & Web',
   },
 
@@ -41,9 +41,9 @@ export const en: Dict = {
   product: {
     eyebrow: 'A look at the app',
     heading: 'The interview, on your screen.',
-    lede: "One screen, one purpose: keep your attention on the interview. The question, your answer, and a live read on how you're doing — on your phone or in the browser, with nothing else competing for attention.",
+    lede: "One screen, one purpose: keep your attention on the interview. The question, your answer, and a live read on how you're doing – on your phone or in the browser, with nothing else competing for attention.",
     notes: [
-      'Talk or type — the interviewer reacts either way',
+      'Talk or type – the interviewer reacts either way',
       'The score updates while you speak, not after',
       'Your hint budget is visible, so you ration it like the real thing',
     ],
@@ -76,12 +76,12 @@ export const en: Dict = {
       {
         index: '01',
         title: 'An interviewer that pushes back',
-        body: 'Not a chatbot reading questions. The AI interviewer stays in character for your role, level, and persona — follows up, probes edge cases, and gets harder if you start coasting.',
+        body: 'Not a chatbot reading questions. The AI interviewer stays in character for your role, level, and persona – follows up, probes edge cases, and gets harder if you start coasting.',
       },
       {
         index: '02',
         title: 'Scored while you talk',
-        body: 'Live signal on technical depth, communication, edge-case handling, and problem-solving — updated every few turns, not buried in a post-mortem.',
+        body: 'Live signal on technical depth, communication, edge-case handling, and problem-solving – updated every few turns, not buried in a post-mortem.',
       },
       {
         index: '03',
@@ -106,7 +106,7 @@ export const en: Dict = {
       },
       {
         tag: 'Career switchers',
-        body: 'Close the interview-experience gap fast — practice with feedback, not guesswork.',
+        body: 'Close the interview-experience gap fast – practice with feedback, not guesswork.',
       },
       {
         tag: 'Senior loops',
@@ -118,7 +118,7 @@ export const en: Dict = {
       themPoints: [
         'No one pushes back on a hand-wavy answer',
         'Silent on communication & structure',
-        'You grade yourself — generously',
+        'You grade yourself – generously',
       ],
       us: 'Mentara',
       usPoints: [
@@ -136,7 +136,7 @@ export const en: Dict = {
       {
         n: '1',
         title: 'Pick the round',
-        body: 'Choose a track, role, and difficulty. Set the persona — friendly screen or a staff-level grilling.',
+        body: 'Choose a track, role, and difficulty. Set the persona – friendly screen or a staff-level grilling.',
       },
       {
         n: '2',
@@ -146,7 +146,7 @@ export const en: Dict = {
       {
         n: '3',
         title: 'Get the report',
-        body: 'A scored breakdown plus a focused study path — exactly what to fix before the real loop.',
+        body: 'A scored breakdown plus a focused study path – exactly what to fix before the real loop.',
       },
     ],
   },
@@ -206,7 +206,7 @@ export const en: Dict = {
     items: [
       {
         q: 'Does it actually feel like a real interview?',
-        a: 'That is the whole point. The interviewer holds a persona, asks follow-ups, challenges weak answers, and escalates difficulty — the awkward silences included.',
+        a: 'That is the whole point. The interviewer holds a persona, asks follow-ups, challenges weak answers, and escalates difficulty – the awkward silences included.',
       },
       {
         q: 'Do I have to code out loud?',
@@ -218,7 +218,7 @@ export const en: Dict = {
       },
       {
         q: 'When and where does it launch?',
-        a: 'Mentara launches in 2026 on iOS, Android, and the web. The store listings and web app go live at launch — this page is the early look.',
+        a: 'Mentara launches in 2026 on iOS, Android, and the web. The store listings and web app go live at launch – this page is the early look.',
       },
       {
         q: 'Is my session data private?',
@@ -230,14 +230,14 @@ export const en: Dict = {
   waitlist: {
     eyebrow: 'Early access',
     heading: 'Join the waitlist.',
-    sub: 'Join the waitlist — be first to know the day Mentara ships, no spam.',
+    sub: 'Join the waitlist – be first to know the day Mentara ships, no spam.',
     label: 'Email address',
     placeholder: 'you@work.dev',
     cta: 'Join waitlist',
     sending: 'Sending…',
     success: "You're on the list. We'll email you at launch.",
     error: 'Something broke on our end. Try again in a moment.',
-    offNote: 'Opens shortly — set PUBLIC_FORMSPREE_ENDPOINT to enable the form.',
+    offNote: 'Opens shortly – set PUBLIC_FORMSPREE_ENDPOINT to enable the form.',
   },
 
   cta: {
@@ -271,7 +271,7 @@ export const en: Dict = {
   },
 
   badges: {
-    ariaGroup: 'Apps — coming soon',
+    ariaGroup: 'Apps – coming soon',
     comingSoon: 'Coming soon to',
     ios: 'App Store',
     android: 'Google Play',
@@ -279,7 +279,7 @@ export const en: Dict = {
   },
 
   footer: {
-    blurb: 'AI mock interviews for engineers — iOS, Android & web.',
+    blurb: 'AI mock interviews for engineers – iOS, Android & web.',
     explore: 'Explore',
     legal: 'Legal',
     privacy: 'Privacy',
@@ -290,14 +290,14 @@ export const en: Dict = {
     privacyTitle: 'Privacy Policy',
     termsTitle: 'Terms of Service',
     draftNotice:
-      'Draft — not legal advice. To be reviewed with counsel before launch; the English version is authoritative.',
+      'Draft – not legal advice. To be reviewed with counsel before launch; the English version is authoritative.',
     updated: 'Last updated',
     back: 'Back to home',
   },
 
   notFound: {
     eyebrow: 'Error',
-    message: "This page doesn't exist — or hasn't been published yet.",
+    message: "This page doesn't exist – or hasn't been published yet.",
     back: 'Back to home',
   },
 };

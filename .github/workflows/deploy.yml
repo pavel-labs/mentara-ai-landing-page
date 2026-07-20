@@ -43,7 +43,7 @@ jobs:
 
       # Requires a repo secret FIREBASE_SERVICE_ACCOUNT holding a Firebase service-account
       # JSON key (Firebase console → Project settings → Service accounts → Generate new
-      # private key). This repo is public — that key must live ONLY in GitHub Actions
+      # private key). This repo is public – that key must live ONLY in GitHub Actions
       # secrets, never committed. Set the real project id in .firebaserc first.
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -53,7 +53,7 @@ jobs:
           projectId: default
           channelId: live
 
-  # Quality gate — independent of deploy on purpose: a Lighthouse dip must never block a
+  # Quality gate – independent of deploy on purpose: a Lighthouse dip must never block a
   # publish. Assertions are warnings (see lighthouserc.json).
   audit:
     name: Lighthouse

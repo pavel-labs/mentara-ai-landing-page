@@ -1,6 +1,6 @@
-// DRAFT legal content — English is authoritative. Not legal advice; review with counsel
+// DRAFT legal content – English is authoritative. Not legal advice; review with counsel
 // before launch. Kept in English on purpose (auto-translated binding clauses are a
-// liability — the page shell/notice is localized, these clauses are not).
+// liability – the page shell/notice is localized, these clauses are not).
 //
 // `effectiveDate` is the single place to bump the "last updated" stamp.
 
@@ -27,7 +27,7 @@ export const PRIVACY: LegalSection[] = [
       'Interview content: the transcripts, code, and answers you produce during a session, and the scores and reports generated from them.',
       'Subscriptions: purchase and entitlement status via the Apple App Store, Google Play, and RevenueCat. We never receive or store your card details.',
       'Device: a push notification token (if you enable notifications) so we can tell you when a report is ready.',
-      'Analytics: privacy-friendly, cookieless aggregate usage via Cloudflare Web Analytics — no cross-site tracking, no advertising identifiers.',
+      'Analytics: privacy-friendly, cookieless aggregate usage via Cloudflare Web Analytics – no cross-site tracking, no advertising identifiers.',
       'Diagnostics: limited product diagnostics to find and fix bugs.',
     ],
   },

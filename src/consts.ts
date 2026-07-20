@@ -6,7 +6,7 @@ export const SITE = {
 } as const;
 
 export const WAITLIST = {
-  // Live Formspree form endpoint (a public form ID — safe in client HTML, not a secret).
+  // Live Formspree form endpoint (a public form ID – safe in client HTML, not a secret).
   // Overridable per build via PUBLIC_FORMSPREE_ENDPOINT (e.g. a staging form).
   endpoint: import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://formspree.io/f/meedqggp',
 } as const;

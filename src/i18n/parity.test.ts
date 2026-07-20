@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { en } from './en';
 import { DEFAULT_LOCALE, LOCALES, getDict } from './index';
 
-// Every non-default locale, derived from LOCALES — a new locale is covered automatically.
+// Every non-default locale, derived from LOCALES – a new locale is covered automatically.
 const TRANSLATED = LOCALES.filter((l) => l !== DEFAULT_LOCALE);
 
 // Walks the reference (English) structure and records every place a candidate locale

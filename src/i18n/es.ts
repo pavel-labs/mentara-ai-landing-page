@@ -6,9 +6,9 @@ export const es: Dict = {
   a11ySkip: 'Saltar al contenido',
 
   meta: {
-    title: 'Mentara — entrevistas técnicas de práctica con IA para ingenieros',
+    title: 'Mentara – entrevistas técnicas de práctica con IA para ingenieros',
     description:
-      'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA que se adapta, te aprieta y te puntúa en tiempo real — para que llegues a la entrevista real preparado. iOS, Android y web.',
+      'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA que se adapta, te aprieta y te puntúa en tiempo real – para que llegues a la entrevista real preparado. iOS, Android y web.',
     tagline: 'Practica entrevistas reales.',
     launchLabel: 'Disponible en 2026',
   },
@@ -26,7 +26,7 @@ export const es: Dict = {
     titleLead: 'Practica entrevistas técnicas.',
     titleAccent: 'Antes de que',
     titleTail: 'llegue la de verdad.',
-    lede: 'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA: se adapta, te aprieta y te puntúa en tiempo real — para que llegues preparado a la de verdad.',
+    lede: 'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA: se adapta, te aprieta y te puntúa en tiempo real – para que llegues preparado a la de verdad.',
     availability: 'Disponible en 2026 · iOS, Android y web',
   },
 
@@ -41,9 +41,9 @@ export const es: Dict = {
   product: {
     eyebrow: 'Un vistazo a la app',
     heading: 'La entrevista, en tu pantalla.',
-    lede: 'Una pantalla, un propósito: mantener tu atención en la entrevista. La pregunta, tu respuesta y una lectura en directo de cómo lo estás haciendo — en el móvil o en el navegador, sin nada que distraiga.',
+    lede: 'Una pantalla, un propósito: mantener tu atención en la entrevista. La pregunta, tu respuesta y una lectura en directo de cómo lo estás haciendo – en el móvil o en el navegador, sin nada que distraiga.',
     notes: [
-      'Habla o escribe — el entrevistador reacciona igual',
+      'Habla o escribe – el entrevistador reacciona igual',
       'La puntuación se actualiza mientras hablas, no después',
       'El presupuesto de pistas está a la vista: lo racionas como en la de verdad',
     ],
@@ -76,12 +76,12 @@ export const es: Dict = {
       {
         index: '01',
         title: 'Un entrevistador que repregunta',
-        body: 'No un chatbot que lee preguntas. La IA se mantiene en el papel según tu rol, tu nivel y el tipo de entrevistador — repregunta, va a los casos límite y aprieta más cuando te relajas.',
+        body: 'No un chatbot que lee preguntas. La IA se mantiene en el papel según tu rol, tu nivel y el tipo de entrevistador – repregunta, va a los casos límite y aprieta más cuando te relajas.',
       },
       {
         index: '02',
         title: 'Puntuado mientras hablas',
-        body: 'Señal en directo de profundidad técnica, comunicación, casos límite y resolución — actualizada cada pocos turnos, no enterrada en un análisis posterior.',
+        body: 'Señal en directo de profundidad técnica, comunicación, casos límite y resolución – actualizada cada pocos turnos, no enterrada en un análisis posterior.',
       },
       {
         index: '03',
@@ -106,7 +106,7 @@ export const es: Dict = {
       },
       {
         tag: 'Cambio de carrera',
-        body: 'Cierra rápido la falta de experiencia en entrevistas — practica con feedback, no a ciegas.',
+        body: 'Cierra rápido la falta de experiencia en entrevistas – practica con feedback, no a ciegas.',
       },
       {
         tag: 'Nivel senior',
@@ -118,7 +118,7 @@ export const es: Dict = {
       themPoints: [
         'Nadie aprieta una respuesta vaga',
         'Ni una palabra sobre comunicación y estructura',
-        'Te calificas tú mismo — con la mano blanda',
+        'Te calificas tú mismo – con la mano blanda',
       ],
       us: 'Mentara',
       usPoints: [
@@ -136,7 +136,7 @@ export const es: Dict = {
       {
         n: '1',
         title: 'Elige la ronda',
-        body: 'Track, rol y dificultad. Fija el tipo de entrevistador — screening amable o interrogatorio de nivel staff.',
+        body: 'Track, rol y dificultad. Fija el tipo de entrevistador – screening amable o interrogatorio de nivel staff.',
       },
       {
         n: '2',
@@ -146,7 +146,7 @@ export const es: Dict = {
       {
         n: '3',
         title: 'Recibe el informe',
-        body: 'Un desglose puntuado y un plan de estudio enfocado — justo lo que pulir antes de la entrevista de verdad.',
+        body: 'Un desglose puntuado y un plan de estudio enfocado – justo lo que pulir antes de la entrevista de verdad.',
       },
     ],
   },
@@ -206,7 +206,7 @@ export const es: Dict = {
     items: [
       {
         q: '¿De verdad se siente como una entrevista real?',
-        a: 'De eso va justo. El entrevistador mantiene un papel, repregunta, pone en aprietos las respuestas flojas y sube la dificultad — silencios incómodos incluidos.',
+        a: 'De eso va justo. El entrevistador mantiene un papel, repregunta, pone en aprietos las respuestas flojas y sube la dificultad – silencios incómodos incluidos.',
       },
       {
         q: '¿Tengo que programar en voz alta?',
@@ -214,11 +214,11 @@ export const es: Dict = {
       },
       {
         q: '¿Qué tracks hay?',
-        a: 'Rondas de Algoritmos, System Design, Behavioral y de Dominio — por roles y niveles de seniority, con una dificultad que se ajusta a ti.',
+        a: 'Rondas de Algoritmos, System Design, Behavioral y de Dominio – por roles y niveles de seniority, con una dificultad que se ajusta a ti.',
       },
       {
         q: '¿Cuándo y dónde se lanza?',
-        a: 'Mentara se lanza en 2026 en iOS, Android y web. Las fichas en las tiendas y la app web salen en el lanzamiento — esta página es el adelanto.',
+        a: 'Mentara se lanza en 2026 en iOS, Android y web. Las fichas en las tiendas y la app web salen en el lanzamiento – esta página es el adelanto.',
       },
       {
         q: '¿Los datos de mi sesión son privados?',
@@ -230,14 +230,14 @@ export const es: Dict = {
   waitlist: {
     eyebrow: 'Acceso anticipado',
     heading: 'Apúntate a la lista de espera.',
-    sub: 'Apúntate a la lista — entérate del lanzamiento el primero, sin spam.',
+    sub: 'Apúntate a la lista – entérate del lanzamiento el primero, sin spam.',
     label: 'Correo electrónico',
     placeholder: 'tu@empresa.dev',
     cta: 'Apuntarme',
     sending: 'Enviando…',
     success: 'Listo, estás en la lista. Te escribimos en el lanzamiento.',
     error: 'Algo se rompió por nuestro lado. Vuelve a intentarlo en un momento.',
-    offNote: 'Abre pronto — define PUBLIC_FORMSPREE_ENDPOINT para activar el formulario.',
+    offNote: 'Abre pronto – define PUBLIC_FORMSPREE_ENDPOINT para activar el formulario.',
   },
 
   cta: {
@@ -271,7 +271,7 @@ export const es: Dict = {
   },
 
   badges: {
-    ariaGroup: 'Apps — próximamente',
+    ariaGroup: 'Apps – próximamente',
     comingSoon: 'Próximamente en',
     ios: 'App Store',
     android: 'Google Play',
@@ -279,7 +279,7 @@ export const es: Dict = {
   },
 
   footer: {
-    blurb: 'Entrevistas de práctica con IA para ingenieros — iOS, Android y web.',
+    blurb: 'Entrevistas de práctica con IA para ingenieros – iOS, Android y web.',
     explore: 'Explorar',
     legal: 'Legal',
     privacy: 'Privacidad',
@@ -290,14 +290,14 @@ export const es: Dict = {
     privacyTitle: 'Política de privacidad',
     termsTitle: 'Términos del servicio',
     draftNotice:
-      'Borrador — no es asesoramiento legal. Se revisará con asesoría jurídica antes del lanzamiento; la versión en inglés es la auténtica.',
+      'Borrador – no es asesoramiento legal. Se revisará con asesoría jurídica antes del lanzamiento; la versión en inglés es la auténtica.',
     updated: 'Última actualización',
     back: 'Volver al inicio',
   },
 
   notFound: {
     eyebrow: 'Error',
-    message: 'Esta página no existe — o todavía no se ha publicado.',
+    message: 'Esta página no existe – o todavía no se ha publicado.',
     back: 'Volver al inicio',
   },
 };

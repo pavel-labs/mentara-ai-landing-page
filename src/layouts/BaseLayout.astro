@@ -19,7 +19,7 @@ const t = getDict(locale);
 const pageTitle = title ?? t.meta.title;
 const pageDesc = description ?? t.meta.description;
 
-// All asset paths go through the single `withBase` joiner — no ad-hoc base math here.
+// All asset paths go through the single `withBase` joiner – no ad-hoc base math here.
 const origin = Astro.site ?? new URL(SITE.domain);
 const canonical = new URL(Astro.url.pathname, origin).href;
 const favicon = withBase('favicon.svg');
@@ -32,7 +32,7 @@ const appleIcon = withBase('apple-touch-icon.png');
 // hreflang alternates for every locale + x-default → the default locale home.
 const alternates = LOCALES.map((l) => ({ hreflang: l, href: localeUrl(l, origin) }));
 
-// Cloudflare Web Analytics — privacy-friendly, cookieless. Only injected when a token is
+// Cloudflare Web Analytics – privacy-friendly, cookieless. Only injected when a token is
 // provided, so dev/forks ship no beacon and no consent banner is needed.
 const cfToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 
