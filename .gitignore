@@ -2,6 +2,10 @@
 dist/
 .astro/
 
+# Firebase CLI local cache/logs (never the committed firebase.json / .firebaserc)
+.firebase/
+firebase-debug.log*
+
 # generated from public/favicon.svg by `npm run prebuild` (scripts/gen-icons.mjs)
 public/apple-touch-icon.png
 public/icon-192.png

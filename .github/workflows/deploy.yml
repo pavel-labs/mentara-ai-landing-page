@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to Firebase Hosting
 
 on:
   push:
@@ -6,49 +6,52 @@ on:
   # Manual re-deploy from the Actions tab.
   workflow_dispatch:
 
-# Least privilege for the official Pages deploy flow.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
-# One in-flight Pages deploy at a time; don't cancel a publish midway.
+# One in-flight deploy at a time; don't cancel a publish midway.
 concurrency:
-  group: pages
+  group: firebase-hosting
   cancel-in-progress: false
 
 jobs:
-  build:
-    name: Build (Astro)
+  deploy:
+    name: Build & Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Builds with `astro build` (runs `prebuild` icon generation) and uploads the
-      # GitHub Pages artifact. `astro build` derives base/site from astro.config.mjs,
-      # which falls back to the GitHub Pages defaults when these are unset. To move to a
-      # custom domain, set repo variables SITE_URL=https://mentara.ai and BASE_PATH=/
-      # (and add public/CNAME) — no code change. See landing/README.md → Custom domain.
-      - name: Build site
-        uses: withastro/action@v3
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # Builds with `astro build` (runs the `prebuild` icon generation first). SITE_URL /
+      # BASE_PATH derive the canonical/OG/hreflang/sitemap URLs (astro.config.mjs); unset
+      # repo variables fall back to the mentara.ai defaults there. See README → Custom
+      # domain / Firebase Hosting for pointing this at a different project or domain.
+      - name: Build site
+        run: npm run build
         env:
           SITE_URL: ${{ vars.SITE_URL }}
           BASE_PATH: ${{ vars.BASE_PATH }}
 
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # Requires a repo secret FIREBASE_SERVICE_ACCOUNT holding a Firebase service-account
+      # JSON key (Firebase console → Project settings → Service accounts → Generate new
+      # private key). This repo is public — that key must live ONLY in GitHub Actions
+      # secrets, never committed. Set the real project id in .firebaserc first.
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: default
+          channelId: live
 
   # Quality gate — independent of deploy on purpose: a Lighthouse dip must never block a
   # publish. Assertions are warnings (see lighthouserc.json).

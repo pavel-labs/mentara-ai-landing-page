@@ -173,8 +173,8 @@ export const en: Dict = {
       },
       {
         tier: 'PRO',
-        price: '$19',
-        cadence: '/ month',
+        price: 'TBD',
+        cadence: 'at launch',
         blurb: 'For the engineer in an active loop.',
         features: [
           'Unlimited sessions',
