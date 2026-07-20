@@ -1,33 +1,30 @@
 ---
-import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
 import type { Locale } from '../i18n';
 import { localePath, localeHome, withBase } from '../i18n';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from './Nav.astro';
 import Footer from './Footer.astro';
 import { findClusterBySlug } from '../content/blog-clusters';
+import { getPublishedPosts, formatPostDate, type BlogPost } from '../content/blog';
 
 interface Props {
   locale: Locale;
-  post: CollectionEntry<'blog'>;
+  post: BlogPost;
 }
 const { locale, post } = Astro.props;
 const { Content } = await render(post);
 const cluster = findClusterBySlug(post.id);
-const collection = await getCollection('blog', (p) => !p.data.draft);
+const publishedPosts = await getPublishedPosts();
 const relatedPosts =
   cluster == null
     ? []
-    : collection
+    : publishedPosts
         .filter((candidate) => cluster.slugs.includes(candidate.id) && candidate.id !== post.id)
         .sort((a, b) => cluster.slugs.indexOf(a.id) - cluster.slugs.indexOf(b.id))
         .slice(0, 4);
 const clusterCta = cluster?.cta ?? null;
-const fmt = post.data.date.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
+const fmt = formatPostDate(post.data.date, 'long');
 ---
 
 <BaseLayout locale={locale} title={`${post.data.title} — Mentara`} description={post.data.summary}>

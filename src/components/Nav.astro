@@ -1,6 +1,6 @@
 ---
 import { SITE } from '../consts';
-import { getDict, withBase, type Locale } from '../i18n';
+import { getDict, resolveNavHref, type Locale } from '../i18n';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
@@ -9,16 +9,7 @@ interface Props {
 }
 const { locale, homeHref = '#main' } = Astro.props;
 const t = getDict(locale);
-const resolveHref = (href: string) => {
-  if (href.startsWith('#') && homeHref !== '#main') {
-    return `${homeHref}${href}`;
-  }
-  if (href.startsWith('/')) {
-    const localizedPath = locale === 'en' ? href : `/${locale}${href}`;
-    return withBase(localizedPath);
-  }
-  return href;
-};
+const resolveHref = (href: string) => resolveNavHref(locale, homeHref, href);
 ---
 
 <header class="nav">

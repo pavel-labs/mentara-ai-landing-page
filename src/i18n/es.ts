@@ -8,8 +8,8 @@ export const es: Dict = {
   meta: {
     title: 'Mentara — entrevistas técnicas de práctica con IA para ingenieros',
     description:
-      'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA que se adapta, te aprieta y te puntúa en tiempo real — para que la entrevista de verdad se sienta como una repetición. iOS, Android y web.',
-    tagline: 'Ensaya la entrevista.',
+      'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA que se adapta, te aprieta y te puntúa en tiempo real — para que llegues a la entrevista real preparado. iOS, Android y web.',
+    tagline: 'Practica entrevistas reales.',
     launchLabel: 'Disponible en 2026',
   },
 
@@ -23,10 +23,10 @@ export const es: Dict = {
 
   hero: {
     eyebrow: 'Entrevistas de práctica con IA · para ingenieros',
-    titleLead: 'Ensaya la entrevista.',
+    titleLead: 'Practica entrevistas técnicas.',
     titleAccent: 'Antes de que',
-    titleTail: 'te examine a ti.',
-    lede: 'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA: se adapta, te aprieta y te puntúa en tiempo real — para que la de verdad se sienta como una repetición.',
+    titleTail: 'llegue la de verdad.',
+    lede: 'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA: se adapta, te aprieta y te puntúa en tiempo real — para que llegues preparado a la de verdad.',
     availability: 'Disponible en 2026 · iOS, Android y web',
   },
 
@@ -40,11 +40,11 @@ export const es: Dict = {
 
   product: {
     eyebrow: 'Un vistazo a la app',
-    heading: 'La entrevista, en cualquier pantalla.',
-    lede: 'Una pantalla, una tarea: mantenerte en la entrevista. La pregunta, tu respuesta y la señal en directo de cómo está sonando — en el móvil o en el navegador, sin nada que distraiga.',
+    heading: 'La entrevista, en tu pantalla.',
+    lede: 'Una pantalla, un propósito: mantener tu atención en la entrevista. La pregunta, tu respuesta y una lectura en directo de cómo lo estás haciendo — en el móvil o en el navegador, sin nada que distraiga.',
     notes: [
       'Habla o escribe — el entrevistador reacciona igual',
-      'La puntuación se mueve mientras hablas, no después',
+      'La puntuación se actualiza mientras hablas, no después',
       'El presupuesto de pistas está a la vista: lo racionas como en la de verdad',
     ],
     ui: {
@@ -71,11 +71,11 @@ export const es: Dict = {
 
   features: {
     eyebrow: 'Lo que te llevas',
-    heading: 'Un sparring, no una app de tipo test.',
+    heading: 'Un entrevistador que repregunta, no una app de tipo test.',
     items: [
       {
         index: '01',
-        title: 'Un entrevistador que te devuelve la bola',
+        title: 'Un entrevistador que repregunta',
         body: 'No un chatbot que lee preguntas. La IA se mantiene en el papel según tu rol, tu nivel y el tipo de entrevistador — repregunta, va a los casos límite y aprieta más cuando te relajas.',
       },
       {
@@ -91,26 +91,26 @@ export const es: Dict = {
       {
         index: '04',
         title: 'Un progreso que se acumula',
-        body: 'XP, rachas, niveles y logros convierten el estudio disperso en un hábito. Aparece cada día y mira cómo se dobla la curva.',
+        body: 'XP, rachas, niveles y logros convierten el estudio disperso en un hábito. Aparece cada día y mira crecer tu progreso.',
       },
     ],
   },
 
   audience: {
     eyebrow: 'Para quién es',
-    heading: 'Hecho para el ingeniero que está en ello ahora mismo.',
+    heading: 'Hecho para ingenieros que se están preparando ahora.',
     groups: [
       {
         tag: 'Recién graduados',
-        body: 'Pasa del “en teoría me lo sé” al “llevo yo la entrevista” antes de tu primer onsite.',
+        body: 'Pasa del “en teoría me lo sé” al “puedo con la entrevista” antes de tu primer onsite.',
       },
       {
         tag: 'Cambio de carrera',
-        body: 'Cierra rápido la brecha en soltura de entrevista — repeticiones con feedback, no a ciegas.',
+        body: 'Cierra rápido la falta de experiencia en entrevistas — practica con feedback, no a ciegas.',
       },
       {
         tag: 'Nivel senior',
-        body: 'Practica System Design y el interrogatorio de nivel staff hasta que el panel real aburra.',
+        body: 'Practica System Design y preguntas duras de nivel staff hasta que el panel real se sienta rutinario.',
       },
     ],
     versus: {
@@ -131,7 +131,7 @@ export const es: Dict = {
 
   steps: {
     eyebrow: 'Cómo funciona',
-    heading: 'Tres pasos a una entrevista sin sudores.',
+    heading: 'Cómo funciona, en tres pasos.',
     items: [
       {
         n: '1',
@@ -153,7 +153,7 @@ export const es: Dict = {
 
   pricing: {
     eyebrow: 'Precios',
-    heading: 'Gratis para empezar. Calderilla al lado de una oferta perdida.',
+    heading: 'Gratis para empezar, con planes de pago para practicar más.',
     flag: 'El más elegido',
     cta: 'Disponible en el lanzamiento',
     foot: 'Los precios son orientativos y se fijan en el lanzamiento.',
@@ -229,7 +229,7 @@ export const es: Dict = {
 
   waitlist: {
     eyebrow: 'Acceso anticipado',
-    heading: 'Métete antes que nadie.',
+    heading: 'Apúntate a la lista de espera.',
     sub: 'Apúntate a la lista — entérate del lanzamiento el primero, sin spam.',
     label: 'Correo electrónico',
     placeholder: 'tu@empresa.dev',
@@ -242,15 +242,15 @@ export const es: Dict = {
 
   cta: {
     eyebrow: 'Disponible en 2026',
-    titleLead: 'La próxima entrevista ya llega.',
-    titleAccent: 'Entra con los deberes hechos.',
-    lede: 'Mentara llega en 2026 a iOS, Android y web. Pilla el email de lanzamiento — y practica hasta que la de verdad aburra.',
+    titleLead: 'Mentara llega en 2026.',
+    titleAccent: 'Empieza a practicar pronto.',
+    lede: 'Mentara llega en 2026 a iOS, Android y web. Apúntate para recibir novedades del lanzamiento y empieza a practicar pronto.',
   },
 
   contentHub: {
     compare: {
       eyebrow: 'Comparar',
-      title: 'Elige el bucle de práctica que de verdad necesitas.',
+      title: 'Elige el método de preparación que de verdad necesitas.',
       lede: 'Páginas de comparación para quienes dudan entre drills en solitario, mocks con otra persona, práctica por voz, herramientas de IA y coaching.',
       primary: 'Ver páginas de comparación',
       secondary: 'Ver todos los recursos',
@@ -284,7 +284,6 @@ export const es: Dict = {
     legal: 'Legal',
     privacy: 'Privacidad',
     terms: 'Términos',
-    blog: 'Blog',
   },
 
   legal: {
@@ -298,7 +297,7 @@ export const es: Dict = {
 
   notFound: {
     eyebrow: 'Error',
-    message: 'Esta ruta no compiló nunca. La página que buscas no existe — o todavía no ha salido.',
+    message: 'Esta página no existe — o todavía no se ha publicado.',
     back: 'Volver al inicio',
   },
 };

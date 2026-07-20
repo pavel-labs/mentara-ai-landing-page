@@ -1,11 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from './Nav.astro';
 import Footer from './Footer.astro';
 import type { Locale } from '../i18n';
 import { getDict } from '../i18n';
-import { BLOG_CLUSTERS } from '../content/blog-clusters';
+import { getPublishedPosts, clustersWithPosts } from '../content/blog';
 import { localePath, localeHome } from '../i18n';
 
 interface Props {
@@ -14,14 +13,8 @@ interface Props {
 const { locale } = Astro.props;
 const t = getDict(locale);
 
-const posts = (await getCollection('blog', (p) => !p.data.draft)).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
-);
-const postById = new Map(posts.map((post) => [post.id, post] as const));
-const clusters = BLOG_CLUSTERS.map((cluster) => ({
-  ...cluster,
-  posts: cluster.slugs.map((slug) => postById.get(slug)).filter((p): p is NonNullable<typeof p> => p != null),
-}));
+const posts = await getPublishedPosts();
+const clusters = clustersWithPosts(posts);
 ---
 
 <BaseLayout

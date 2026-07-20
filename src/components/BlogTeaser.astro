@@ -1,7 +1,7 @@
 ---
 import type { Locale } from '../i18n';
-import { getDict, withBase } from '../i18n';
-import { getCollection } from 'astro:content';
+import { getDict, localePath } from '../i18n';
+import { getPublishedPosts, formatPostDate } from '../content/blog';
 
 interface Props {
   locale: Locale;
@@ -9,12 +9,7 @@ interface Props {
 const { locale } = Astro.props;
 const t = getDict(locale);
 
-const posts = (await getCollection('blog', (p) => !p.data.draft))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 4);
-
-const fmt = (d: Date) =>
-  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+const posts = (await getPublishedPosts()).slice(0, 4);
 ---
 
 <section class="journal" aria-labelledby="journal-title">
@@ -25,16 +20,16 @@ const fmt = (d: Date) =>
         <h2 id="journal-title" class="h2">{t.contentHub.blog.title}</h2>
         <p class="journal__lede">{t.contentHub.blog.lede}</p>
       </div>
-      <a class="journal__all" href={withBase('blog')}>{t.contentHub.blog.primary} →</a>
+      <a class="journal__all" href={localePath(locale, 'blog')}>{t.contentHub.blog.primary} →</a>
     </div>
 
     <div class="journal__grid">
       {
         posts.map((post) => (
           <article class="journal__card">
-            <a href={withBase(`blog/${post.id}`)} class="journal__link">
+            <a href={localePath(locale, `blog/${post.id}`)} class="journal__link">
               <time class="journal__date mono" datetime={post.data.date.toISOString()}>
-                {fmt(post.data.date)}
+                {formatPostDate(post.data.date)}
               </time>
               <h3 class="journal__title">{post.data.title}</h3>
               <p class="journal__summary">{post.data.summary}</p>

@@ -8,8 +8,8 @@ export const de: Dict = {
   meta: {
     title: 'Mentara — KI-Übungsinterviews für Software-Engineers',
     description:
-      'Mentara führt realistische technische Übungsinterviews mit einem KI-Interviewer, der sich anpasst, nachhakt und dich in Echtzeit bewertet — damit sich das echte Gespräch wie eine Wiederholung anfühlt. iOS, Android und Web.',
-    tagline: 'Probe den Ernstfall.',
+      'Mentara führt realistische technische Übungsinterviews mit einem KI-Interviewer durch, der sich anpasst, nachhakt und dich in Echtzeit bewertet — damit du gut vorbereitet ins echte Interview gehst. iOS, Android und Web.',
+    tagline: 'Übe echte Interviews.',
     launchLabel: 'Start 2026',
   },
 
@@ -23,10 +23,10 @@ export const de: Dict = {
 
   hero: {
     eyebrow: 'KI-Übungsinterviews · für Engineers',
-    titleLead: 'Probe den Ernstfall.',
-    titleAccent: 'Bevor er',
-    titleTail: 'dich rannimmt.',
-    lede: 'Mentara führt realistische technische Übungsinterviews mit einem KI-Interviewer: Er passt sich an, hakt nach und bewertet dich in Echtzeit — damit sich das echte Gespräch wie eine Wiederholung anfühlt.',
+    titleLead: 'Übe technische Interviews.',
+    titleAccent: 'Bevor',
+    titleTail: 'das echte beginnt.',
+    lede: 'Mentara führt realistische technische Übungsinterviews mit einem KI-Interviewer: Er passt sich an, hakt nach und bewertet dich in Echtzeit — damit du gut vorbereitet ins echte Interview gehst.',
     availability: 'Start 2026 · iOS, Android & Web',
   },
 
@@ -40,12 +40,12 @@ export const de: Dict = {
 
   product: {
     eyebrow: 'Ein Blick in die App',
-    heading: 'Das Gespräch, auf jedem Screen.',
-    lede: 'Ein Screen, eine Aufgabe: dich im Gespräch halten. Die Frage, deine Antwort und das Live-Feedback, wie es ankommt — am Handy oder im Browser, ohne Ablenkung.',
+    heading: 'Das Interview, auf deinem Screen.',
+    lede: 'Ein Screen, ein Zweck: deine Aufmerksamkeit beim Interview halten. Die Frage, deine Antwort und eine Live-Einschätzung, wie es läuft — am Handy oder im Browser, ohne Ablenkung.',
     notes: [
-      'Sprich oder tippe — der Interviewer reagiert so wie so',
-      'Die Bewertung bewegt sich, während du sprichst, nicht danach',
-      'Das Hinweis-Budget ist sichtbar — du teilst es dir ein wie im Ernstfall',
+      'Sprich oder tippe — der Interviewer reagiert in beiden Fällen',
+      'Die Bewertung aktualisiert sich, während du sprichst, nicht danach',
+      'Dein Hinweis-Budget ist sichtbar — du teilst es dir ein wie im echten Interview',
     ],
     ui: {
       track: 'system-design · L5',
@@ -71,11 +71,11 @@ export const de: Dict = {
 
   features: {
     eyebrow: 'Was du bekommst',
-    heading: 'Ein Sparringspartner, keine Quiz-App.',
+    heading: 'Ein Interviewer, der nachfragt — keine Quiz-App.',
     items: [
       {
         index: '01',
-        title: 'Ein Interviewer, der zurückgibt',
+        title: 'Ein Interviewer, der nachhakt',
         body: 'Kein Chatbot, der Fragen vorliest. Die KI bleibt in der Rolle für deine Position, dein Level und deinen Interviewer-Typ — hakt nach, geht an die Edge Cases und wird härter, sobald du dich zurücklehnst.',
       },
       {
@@ -91,26 +91,26 @@ export const de: Dict = {
       {
         index: '04',
         title: 'Fortschritt, der sich summiert',
-        body: 'XP, Streaks, Level und Erfolge machen aus zerstreutem Pauken eine Gewohnheit. Sei jeden Tag dabei — und sieh zu, wie die Kurve kippt.',
+        body: 'XP, Streaks, Level und Erfolge machen aus zerstreutem Pauken eine Gewohnheit. Sei jeden Tag dabei und sieh, wie dein Fortschritt wächst.',
       },
     ],
   },
 
   audience: {
     eyebrow: 'Für wen das ist',
-    heading: 'Gemacht für Engineers, die gerade mittendrin sind.',
+    heading: 'Für Engineers, die sich gerade auf Interviews vorbereiten.',
     groups: [
       {
         tag: 'Berufseinsteiger',
-        body: 'Aus „auf dem Papier kann ich das“ wird „ich führe das Gespräch“ — vor deinem ersten Onsite.',
+        body: 'Aus „Ich kann’s in der Theorie“ wird „Ich schaff das Interview“ — noch vor deinem ersten Onsite.',
       },
       {
         tag: 'Quereinsteiger',
-        body: 'Schließ die Lücke beim Interview-Können schnell — Wiederholungen mit Feedback statt Raten.',
+        body: 'Schließ die Interview-Erfahrungslücke schnell — Übung mit Feedback statt Rätselraten.',
       },
       {
         tag: 'Senior-Level',
-        body: 'Trainier System Design und den Staff-Level-Grill, bis das echte Panel langweilig wirkt.',
+        body: 'Übe System Design und harte Staff-Level-Fragen, bis das echte Panel Routine wird.',
       },
     ],
     versus: {
@@ -131,7 +131,7 @@ export const de: Dict = {
 
   steps: {
     eyebrow: 'So läuft’s',
-    heading: 'Drei Schritte zum souveränen Gespräch.',
+    heading: 'So funktioniert’s, in drei Schritten.',
     items: [
       {
         n: '1',
@@ -153,7 +153,7 @@ export const de: Dict = {
 
   pricing: {
     eyebrow: 'Preise',
-    heading: 'Gratis starten. Ein Witz neben einem geplatzten Angebot.',
+    heading: 'Kostenlos starten, mit bezahlten Plänen für mehr Übung.',
     flag: 'Beliebt',
     cta: 'Zum Start verfügbar',
     foot: 'Preise sind Richtwerte und werden zum Start festgelegt.',
@@ -229,7 +229,7 @@ export const de: Dict = {
 
   waitlist: {
     eyebrow: 'Früher Zugang',
-    heading: 'Sei dabei, bevor’s alle sind.',
+    heading: 'Warteliste beitreten.',
     sub: 'Trag dich in die Warteliste ein — erfahr als Erste:r vom Start, kein Spam.',
     label: 'E-Mail-Adresse',
     placeholder: 'du@firma.dev',
@@ -242,15 +242,15 @@ export const de: Dict = {
 
   cta: {
     eyebrow: 'Start 2026',
-    titleLead: 'Das nächste Gespräch kommt.',
-    titleAccent: 'Geh vorbereitet rein.',
-    lede: 'Mentara kommt 2026 auf iOS, Android und ins Web. Hol dir die Start-Mail — und üb, bis das echte Gespräch langweilig ist.',
+    titleLead: 'Mentara startet 2026.',
+    titleAccent: 'Fang früh an zu üben.',
+    lede: 'Mentara kommt 2026 auf iOS, Android und ins Web. Melde dich für Neuigkeiten zum Start an und fang früh an zu üben.',
   },
 
   contentHub: {
     compare: {
       eyebrow: 'Vergleichen',
-      title: 'Wähle den Übungsmodus, den du wirklich brauchst.',
+      title: 'Wähle die Vorbereitung, die du wirklich brauchst.',
       lede: 'Vergleichsseiten für Menschen, die zwischen Solo-Drills, Peer-Mocks, Sprachpraxis, KI-Tools und Coaching abwägen.',
       primary: 'Vergleichsseiten ansehen',
       secondary: 'Alle Ressourcen öffnen',
@@ -284,7 +284,6 @@ export const de: Dict = {
     legal: 'Rechtliches',
     privacy: 'Datenschutz',
     terms: 'AGB',
-    blog: 'Blog',
   },
 
   legal: {
@@ -298,8 +297,7 @@ export const de: Dict = {
 
   notFound: {
     eyebrow: 'Fehler',
-    message:
-      'Diese Route wurde nie kompiliert. Die gesuchte Seite gibt es nicht — oder noch nicht.',
+    message: 'Diese Seite gibt es nicht — oder sie ist noch nicht veröffentlicht.',
     back: 'Zurück zur Startseite',
   },
 };
