@@ -16,7 +16,7 @@ npm run preview # serve the production build
 npm test        # vitest – i18n helpers + translation parity
 ```
 
-Node 18.20.8+ (the repo CI / monorepo uses Node 24).
+Node 22.12+ (required by Astro 6; CI runs Node 22).
 
 ## Tests
 
