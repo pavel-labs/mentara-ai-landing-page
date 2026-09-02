@@ -2,7 +2,10 @@
 
 export const SITE = {
   name: 'Mentara',
-  domain: 'https://mentara.ai',
+  // Fallback origin for the rare build without `site` configured. Kept in step with
+  // astro.config.mjs's SITE_URL default: the live Firebase domain, since no custom
+  // domain has been decided yet.
+  domain: 'https://mentara-ai-landing.web.app',
 } as const;
 
 export const WAITLIST = {

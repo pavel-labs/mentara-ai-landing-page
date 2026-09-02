@@ -5,7 +5,9 @@
 // `effectiveDate` is the single place to bump the "last updated" stamp.
 
 export const LEGAL_EFFECTIVE_DATE = '2026-05-18';
-export const LEGAL_CONTACT = 'privacy@mentara.ai'; // TODO: confirm real address before launch
+// TODO: replace before launch – depends on the (still undecided) custom domain. Shown
+// verbatim in the privacy policy and terms, so it must be a mailbox that actually exists.
+export const LEGAL_CONTACT = 'privacy@mentara-ai-landing.web.app';
 
 export interface LegalSection {
   heading: string;

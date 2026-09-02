@@ -38,8 +38,9 @@ jobs:
 
       # Builds with `astro build` (runs the `prebuild` icon generation first). SITE_URL /
       # BASE_PATH derive the canonical/OG/hreflang/sitemap URLs (astro.config.mjs); unset
-      # repo variables fall back to the mentara.ai defaults there. See README → Custom
-      # domain / Firebase Hosting for pointing this at a different project or domain.
+      # repo variables fall back to the live *.web.app domain there. Set the SITE_URL
+      # variable to the custom domain once one is chosen and its DNS points at Firebase.
+      # See README → Custom domain / Firebase Hosting.
       - name: Build site
         run: npm run build
         env:
