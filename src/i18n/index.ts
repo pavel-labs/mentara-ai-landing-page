@@ -21,6 +21,22 @@ export function getDict(locale: Locale): Dict {
   return dictionaries[locale];
 }
 
+// localStorage key holding an explicit language choice (written by the language
+// switcher). Its presence is what stops the browser-language auto-redirect from
+// overriding a decision the visitor already made.
+export const LOCALE_STORAGE_KEY = 'mentara.locale';
+
+// Picks the best supported locale for a browser's language list ("ru-RU", "de-AT", …).
+// Region subtags are ignored, order is honoured, and an unsupported list yields null so
+// the caller can fall back to the default locale instead of guessing.
+export function pickLocale(preferred: readonly string[] | undefined): Locale | null {
+  for (const tag of preferred ?? []) {
+    const base = String(tag).toLowerCase().split('-')[0];
+    if (isLocale(base)) return base;
+  }
+  return null;
+}
+
 // Single source of truth for the deploy base prefix (no trailing slash).
 // `import.meta.env.BASE_URL` has no guaranteed trailing slash across Astro versions, and
 // is absent under Vitest – the `?? '/'` keeps the helpers pure-testable.

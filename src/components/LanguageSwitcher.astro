@@ -1,5 +1,5 @@
 ---
-import { LOCALES, getDict, localeHome, type Locale } from '../i18n';
+import { LOCALES, LOCALE_STORAGE_KEY, getDict, localeHome, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -7,7 +7,7 @@ interface Props {
 const { locale } = Astro.props;
 ---
 
-<nav class="lang" aria-label="Language">
+<nav class="lang" aria-label="Language" data-lang-store={LOCALE_STORAGE_KEY}>
   {
     LOCALES.map((l) => {
       const current = l === locale;
@@ -26,6 +26,26 @@ const { locale } = Astro.props;
     })
   }
 </nav>
+
+{/*
+  Clicking a language is an explicit choice: remember it so the browser-language
+  auto-redirect on the home page stops second-guessing the visitor.
+*/}
+<script>
+  document.querySelectorAll<HTMLElement>('.lang[data-lang-store]').forEach((nav) => {
+    const key = nav.dataset.langStore;
+    if (key == null) return;
+    nav.addEventListener('click', (event) => {
+      const link = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[hreflang]');
+      if (link == null) return;
+      try {
+        localStorage.setItem(key, link.hreflang);
+      } catch {
+        // Private mode / storage disabled – the click still navigates.
+      }
+    });
+  });
+</script>
 
 <style>
   .lang {
