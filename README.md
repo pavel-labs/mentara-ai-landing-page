@@ -94,13 +94,17 @@ See `.env.example`. All `PUBLIC_*` (inlined into the static build – no secrets
 
 Set these as env in the GitHub Action (or repo variables) for the deployed build.
 
-## Firebase Hosting & custom domain (mentara.ai)
+## Firebase Hosting & custom domain
 
 Deployed on **Firebase Hosting** (`firebase.json`, `.firebaserc`, `dist/` as the public
 dir). Everything is written to switch domains with **no code change** –
 canonical/OG/hreflang/sitemap and `robots.txt` all derive from `site`/`base`
-(`astro.config.mjs`), which already default to the root base path and the `mentara.ai`
-custom domain.
+(`astro.config.mjs`).
+
+**The custom domain is not decided yet.** The site is served from the auto-assigned
+Firebase domain `https://mentara-ai-landing.web.app`, which is also the `SITE_URL`
+default. Do not hardcode a candidate domain anywhere: point `SITE_URL` at an origin only
+once it actually serves this site.
 
 **One-time setup:**
 
@@ -116,14 +120,16 @@ custom domain.
    committed. Until it is set the workflow **skips** the deploy step with a warning
    (the build and Lighthouse jobs still run), so a missing secret shows up as a warning
    rather than a failed run.
-3. **Custom domain**: Firebase console → Hosting → Add custom domain → `mentara.ai` (and
-   `www.mentara.ai`). Firebase walks you through a TXT record for verification, then gives
-   you the `A`/`CNAME` records to add at your DNS provider, and auto-provisions the TLS
-   certificate.
-4. **Repo variables** (only needed before the domain is live): set
-   `SITE_URL=https://mentara-ai-landing.web.app` to build/preview against the
-   auto-assigned Firebase domain; leave unset (or `SITE_URL=https://mentara.ai`) once DNS
-   is pointed at Firebase – that's already the default.
+3. **Custom domain** – *pending, no domain picked*. Once there is one: Firebase console
+   → Hosting → Add custom domain → `<the-domain>` (and its `www.` variant). Firebase walks
+   you through a TXT record for verification, then gives you the `A`/`CNAME` records to add
+   at your DNS provider, and auto-provisions the TLS certificate.
+4. **Repo variables** – **the day that domain actually resolves to this site**: set
+   `SITE_URL=https://<the-domain>` (Settings → Secrets and variables → Actions →
+   Variables). Not a day earlier: canonical, `og:image`, `hreflang` and sitemap URLs are
+   built from it, so pointing them at a domain that is parked, unregistered, or serving
+   something else tells Google the canonical page lives there and leaves every shared link
+   without a preview. It is one variable – no code edit.
 
 Note: this project only uses Firebase **Hosting** – no client-side Firebase SDK
 (`firebase-app.js`, Analytics, Auth, etc.) is wired up, and none is needed for Hosting to
@@ -131,10 +137,10 @@ work. Registering the "web app" in the Firebase console (which produces an
 `initializeApp(firebaseConfig)` snippet) is optional and unrelated to deploying this site;
 skip it unless a future feature actually needs a client-side Firebase product.
 
-After the domain is live, `robots.txt`, the sitemap, all hreflang/canonical/OG URLs, and
-`localeHome` all resolve to `https://mentara.ai/...` with no further change. Then point the
-mobile app's `EXPO_PUBLIC_TERMS_URL` / `EXPO_PUBLIC_PRIVACY_URL` at `https://mentara.ai/terms`
-and `/privacy` (they already default there).
+After a domain is live and `SITE_URL` is set, `robots.txt`, the sitemap, all
+hreflang/canonical/OG URLs, and `localeHome` resolve under it with no further change. Then
+point the mobile app's `EXPO_PUBLIC_TERMS_URL` / `EXPO_PUBLIC_PRIVACY_URL` at that domain's
+`/terms` and `/privacy`.
 
 For an ad-hoc push outside CI: `npm run deploy` (builds, then `firebase deploy` via
 `npx firebase-tools` – requires `firebase login` locally first).
