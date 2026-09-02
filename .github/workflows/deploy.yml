@@ -18,6 +18,11 @@ jobs:
   deploy:
     name: Build & Deploy
     runs-on: ubuntu-latest
+    # FIREBASE_SERVICE_ACCOUNT lives as an *environment* secret on the `firebase`
+    # environment; without this line the job cannot see it and the deploy step is skipped.
+    environment:
+      name: firebase
+      url: https://mentara-ai-landing.web.app
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,13 +49,32 @@ jobs:
       # Requires a repo secret FIREBASE_SERVICE_ACCOUNT holding a Firebase service-account
       # JSON key (Firebase console → Project settings → Service accounts → Generate new
       # private key). This repo is public – that key must live ONLY in GitHub Actions
-      # secrets, never committed. Set the real project id in .firebaserc first.
+      # secrets, never committed.
+      #
+      # The deploy is skipped (not failed) when the secret is absent: a fork or a fresh
+      # clone should still get a green build instead of an opaque "Input required and not
+      # supplied: firebaseServiceAccount" crash inside the action.
+      - name: Check deploy credentials
+        id: creds
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          if [ -n "$SA" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::FIREBASE_SERVICE_ACCOUNT is not set – skipping the Firebase deploy. Add the service-account JSON under Settings → Secrets and variables → Actions to enable publishing."
+          fi
+
+      # projectId is the real Firebase project id, not the .firebaserc alias – the action
+      # does not resolve aliases.
       - name: Deploy to Firebase Hosting
+        if: steps.creds.outputs.present == 'true'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          projectId: default
+          projectId: mentara-ai-landing
           channelId: live
 
   # Quality gate – independent of deploy on purpose: a Lighthouse dip must never block a
