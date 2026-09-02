@@ -10,6 +10,8 @@ const { locale, compact = false } = Astro.props;
 const w = getDict(locale).waitlist;
 const enabled = WAITLIST.endpoint.length > 0;
 const fieldId = `wl-${compact ? 'b' : 'a'}-${locale}`;
+const devId = `${fieldId}-dev`;
+const devNoteId = `${devId}-note`;
 // Virtual path counted as a conversion (see the success handler / README).
 const trackPath = withBase('waitlist/success');
 ---
@@ -44,6 +46,20 @@ const trackPath = withBase('waitlist/success');
             {w.cta}
           </button>
         </div>
+        {/*
+          Opt-in for the unstable pre-launch build. Deliberately a checkbox on the
+          existing form rather than a second form: same audience, same endpoint, and a
+          separate CTA would compete with the waitlist for attention. Unchecked, the
+          browser sends nothing – so a plain signup stays exactly as it was.
+        */}
+        <label class="wl__dev" for={devId}>
+          <input id={devId} type="checkbox" name="dev_build" value="yes" aria-describedby={devNoteId} />
+          <span>
+            {w.devBuild}
+            <small id={devNoteId}>{w.devBuildNote}</small>
+          </span>
+        </label>
+
         {/* Honeypot – bots fill it, humans never see it. */}
         <input
           class="wl__hp"
@@ -163,6 +179,32 @@ const trackPath = withBase('waitlist/success');
     width: 1px;
     height: 1px;
     opacity: 0;
+  }
+  .wl__dev {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    margin-top: 0.85rem;
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: var(--bone-dim);
+  }
+  .wl__dev input {
+    /* Native control, only resized: the platform checkbox keeps its keyboard and
+       screen-reader behaviour for free. */
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.18rem;
+    flex: none;
+    accent-color: var(--amber);
+    cursor: pointer;
+  }
+  .wl__dev small {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: var(--bone-faint);
   }
   .wl__status {
     min-height: 1.2rem;

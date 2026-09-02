@@ -239,6 +239,8 @@ export const es: Dict = {
     success: 'Listo, estás en la lista. Te escribimos en el lanzamiento.',
     error: 'Algo se rompió por nuestro lado. Vuelve a intentarlo en un momento.',
     offNote: 'Abre pronto – define PUBLIC_FORMSPREE_ENDPOINT para activar el formulario.',
+    devBuild: 'Enviadme también la compilación de desarrollo',
+    devBuildNote: 'Inestable, incompleta y actualizada sin aviso: espera fallos y datos que se borran.',
   },
 
   cta: {

@@ -239,6 +239,8 @@ export const de: Dict = {
     success: 'Passt, du bist auf der Liste. Wir melden uns zum Start.',
     error: 'Bei uns ist was schiefgelaufen. Versuch’s gleich nochmal.',
     offNote: 'Öffnet bald – setze PUBLIC_FORMSPREE_ENDPOINT, um das Formular zu aktivieren.',
+    devBuild: 'Schick mir auch den frühen Dev-Build',
+    devBuildNote: 'Instabil, unfertig und ohne Ankündigung aktualisiert - rechne mit Fehlern und zurückgesetzten Daten.',
   },
 
   cta: {
