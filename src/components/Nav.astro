@@ -39,9 +39,16 @@ const resolveHref = (href: string) => resolveNavHref(locale, homeHref, href);
         <summary class="menu__btn" aria-label={t.a11yMenu}>
           <span class="menu__bars" aria-hidden="true"></span>
         </summary>
-        <nav class="menu__panel" aria-label={t.a11yMenu}>
-          {t.nav.map((l) => <a href={resolveHref(l.href)}>{l.label}</a>)}
-        </nav>
+        <div class="menu__panel">
+          <nav aria-label={t.a11yMenu}>
+            {t.nav.map((l) => <a href={resolveHref(l.href)}>{l.label}</a>)}
+          </nav>
+          {/* Five locales no longer fit next to the brand on a phone, so on the
+              narrowest screens the switcher moves in here instead of overflowing. */}
+          <div class="menu__lang">
+            <LanguageSwitcher locale={locale} />
+          </div>
+        </div>
       </details>
     </div>
   </div>
@@ -193,14 +200,23 @@ const resolveHref = (href: string) => resolveNavHref(locale, homeHref, href);
     position: absolute;
     top: calc(100% + 0.7rem);
     right: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
     min-width: 12rem;
     padding: 0.5rem;
     background: var(--ink-1);
     border: 1px solid var(--line-strong);
     border-radius: 2px;
+  }
+  .menu__panel nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  /* Shown only while the in-bar switcher is hidden (see the 560px breakpoint). */
+  .menu__lang {
+    display: none;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--line);
   }
   .menu__panel a {
     font-family: var(--font-mono);
@@ -226,6 +242,16 @@ const resolveHref = (href: string) => resolveNavHref(locale, homeHref, href);
       display: none;
     }
     .menu {
+      display: block;
+    }
+  }
+
+  /* Brand + 5-locale switcher + menu button stop fitting on a phone-width bar. */
+  @media (max-width: 560px) {
+    .nav__end > :global(.lang) {
+      display: none;
+    }
+    .menu__lang {
       display: block;
     }
   }

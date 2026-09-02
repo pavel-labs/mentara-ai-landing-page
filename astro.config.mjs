@@ -17,17 +17,17 @@ export default defineConfig({
   site: SITE_URL,
   base: BASE_PATH,
   trailingSlash: 'ignore',
-  // English at the root (/), German at /de/, Russian at /ru/.
+  // English at the root (/), every other locale under /<code>/ (de, es, ru, pl).
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'de', 'es', 'ru'],
+    locales: ['en', 'de', 'es', 'ru', 'pl'],
     routing: { prefixDefaultLocale: false },
   },
   integrations: [
     sitemap({
       i18n: {
         defaultLocale: 'en',
-        locales: { en: 'en-US', de: 'de-DE', es: 'es-ES', ru: 'ru-RU' },
+        locales: { en: 'en-US', de: 'de-DE', es: 'es-ES', ru: 'ru-RU', pl: 'pl-PL' },
       },
     }),
   ],
