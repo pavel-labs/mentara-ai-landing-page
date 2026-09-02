@@ -1,17 +1,18 @@
 import { de } from './de';
 import { en } from './en';
 import { es } from './es';
+import { pl } from './pl';
 import { ru } from './ru';
 import type { Dict } from './types';
 
 export type { Dict } from './types';
 
-export const LOCALES = ['en', 'de', 'es', 'ru'] as const;
+export const LOCALES = ['en', 'de', 'es', 'ru', 'pl'] as const;
 export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = 'en';
 
-const dictionaries: Record<Locale, Dict> = { en, de, es, ru };
+const dictionaries: Record<Locale, Dict> = { en, de, es, ru, pl };
 
 export function isLocale(value: string): value is Locale {
   return (LOCALES as readonly string[]).includes(value);
