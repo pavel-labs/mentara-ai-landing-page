@@ -53,10 +53,11 @@ describe('localeHome', () => {
 
 describe('localeUrl', () => {
   it('is an absolute URL under the given origin', () => {
-    const origin = new URL('https://mentara.ai');
-    expect(localeUrl('en', origin)).toBe('https://mentara.ai/');
-    expect(localeUrl('de', origin)).toBe('https://mentara.ai/de/');
-    expect(localeUrl('ru', origin)).toBe('https://mentara.ai/ru/');
+    // Arbitrary origin on purpose – the helper must not care which domain ships.
+    const origin = new URL('https://example.test');
+    expect(localeUrl('en', origin)).toBe('https://example.test/');
+    expect(localeUrl('de', origin)).toBe('https://example.test/de/');
+    expect(localeUrl('ru', origin)).toBe('https://example.test/ru/');
   });
 });
 

@@ -5,12 +5,19 @@ import { defineConfig } from 'astro/config';
 // no code change.
 //
 // Deployed on Firebase Hosting, which serves from the domain root (no repo-subpath like
-// GitHub Pages needed), so BASE_PATH defaults to '/'. SITE_URL defaults to the eventual
-// mentara.ai custom domain (see README → Custom domain); override it to build against the
-// auto-assigned <project-id>.web.app / .firebaseapp.com domain before DNS cutover.
+// GitHub Pages needed), so BASE_PATH defaults to '/'.
+//
+// SITE_URL defaults to the live Firebase domain because no custom domain is decided yet.
+// Never point it at a domain the project does not actually serve: canonical / og:image /
+// hreflang / sitemap URLs all derive from it, so a wrong value tells Google and every
+// link preview that the real page lives somewhere it does not.
+// When a domain is chosen and its DNS points at Firebase, set the repo variable
+// SITE_URL=https://<the-domain> (Settings → Secrets and variables → Actions → Variables)
+// — no code change needed. See README → Custom domain.
+//
 // `||` (not `??`) on purpose: unset GitHub Actions `vars.*` arrive as "" — empty must
 // fall back to the default, otherwise an unconfigured deploy would break.
-const SITE_URL = process.env.SITE_URL || 'https://mentara.ai';
+const SITE_URL = process.env.SITE_URL || 'https://mentara-ai-landing.web.app';
 const BASE_PATH = process.env.BASE_PATH || '/';
 
 export default defineConfig({
