@@ -4,6 +4,7 @@ export const es: Dict = {
   langName: 'Español',
   ogLocale: 'es_ES',
   a11ySkip: 'Saltar al contenido',
+  a11yMenu: 'Menú',
 
   meta: {
     title: 'Mentara – entrevistas técnicas de práctica con IA para ingenieros',

@@ -25,13 +25,45 @@ const resolveHref = (href: string) => resolveNavHref(locale, homeHref, href);
 
     <div class="nav__end">
       <LanguageSwitcher locale={locale} />
-      <span class="pill" aria-label={t.meta.launchLabel}>
+      <span class="pill">
         <span class="dot" aria-hidden="true"></span>
         {t.meta.launchLabel}
       </span>
+
+      {/*
+        Narrow-screen navigation. Built on <details> so it opens, closes and takes
+        keyboard focus natively – no JS needed for the core behaviour, which also means
+        it still works if the enhancement script fails to load.
+      */}
+      <details class="menu">
+        <summary class="menu__btn" aria-label={t.a11yMenu}>
+          <span class="menu__bars" aria-hidden="true"></span>
+        </summary>
+        <nav class="menu__panel" aria-label={t.a11yMenu}>
+          {t.nav.map((l) => <a href={resolveHref(l.href)}>{l.label}</a>)}
+        </nav>
+      </details>
     </div>
   </div>
 </header>
+
+{/*
+  Enhancement only: close the sheet after picking a link (an in-page anchor does not
+  reload, so <details> would stay open over the target) and on Escape.
+*/}
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('details.menu').forEach((menu) => {
+    menu.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('.menu__panel a')) menu.open = false;
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        menu.querySelector<HTMLElement>('.menu__btn')?.focus();
+      }
+    });
+  });
+</script>
 
 <style>
   .nav__end {
@@ -108,9 +140,93 @@ const resolveHref = (href: string) => resolveNavHref(locale, homeHref, href);
   .links a:hover::after {
     width: 100%;
   }
+  /* ---- narrow-screen menu ---- */
+  .menu {
+    display: none;
+    position: relative;
+  }
+  .menu__btn {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+  }
+  .menu__btn::-webkit-details-marker {
+    display: none;
+  }
+  /* Three bars drawn from one element: the middle is the box, the outer two its
+     pseudo-elements. Turns into an X while the sheet is open. */
+  .menu__bars,
+  .menu__bars::before,
+  .menu__bars::after {
+    display: block;
+    width: 1.1rem;
+    height: 1.5px;
+    background: var(--bone);
+    transition: transform 0.2s var(--ease);
+  }
+  .menu__bars::before,
+  .menu__bars::after {
+    content: '';
+    position: relative;
+  }
+  .menu__bars::before {
+    top: -0.42rem;
+  }
+  .menu__bars::after {
+    top: 0.3rem;
+  }
+  .menu[open] .menu__bars {
+    background: transparent;
+  }
+  .menu[open] .menu__bars::before {
+    transform: translateY(0.42rem) rotate(45deg);
+  }
+  .menu[open] .menu__bars::after {
+    transform: translateY(-0.3rem) rotate(-45deg);
+  }
+  .menu__panel {
+    position: absolute;
+    top: calc(100% + 0.7rem);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 12rem;
+    padding: 0.5rem;
+    background: var(--ink-1);
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+  }
+  .menu__panel a {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--bone-dim);
+    padding: 0.6rem 0.7rem;
+    border-radius: 2px;
+  }
+  .menu__panel a:hover {
+    color: var(--bone);
+    background: rgba(236, 231, 221, 0.05);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .menu__bars,
+    .menu__bars::before,
+    .menu__bars::after {
+      transition: none;
+    }
+  }
+
   @media (max-width: 820px) {
     .links {
       display: none;
+    }
+    .menu {
+      display: block;
     }
   }
   /* The pill carries the long localized launch label ("Disponible en 2026"). Drop it

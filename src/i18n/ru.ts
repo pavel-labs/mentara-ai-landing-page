@@ -4,6 +4,7 @@ export const ru: Dict = {
   langName: 'Русский',
   ogLocale: 'ru_RU',
   a11ySkip: 'К содержимому',
+  a11yMenu: 'Меню',
 
   meta: {
     title: 'Mentara – ИИ-симуляции технических интервью для инженеров',

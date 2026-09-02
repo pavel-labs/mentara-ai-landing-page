@@ -4,6 +4,7 @@ export const en: Dict = {
   langName: 'English',
   ogLocale: 'en_US',
   a11ySkip: 'Skip to content',
+  a11yMenu: 'Menu',
 
   meta: {
     title: 'Mentara – AI mock technical interviews for software engineers',

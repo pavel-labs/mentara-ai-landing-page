@@ -53,12 +53,14 @@ const sv = [88, 82, 76, 91];
           <div class="ring" role="img" aria-label={`8.7 ${t.panel.of}`}>
             <div class="ring__val">8.7<small>{t.panel.of}</small></div>
           </div>
+          {/* The bar length is the only visual carrier of each score, so the value is
+              spelled out for assistive tech instead of being lost with the CSS. */}
           <ul class="bars">
             {
               t.panel.scores.map((label, i) => (
                 <li style={`--v:${sv[i]}%; --i:${i}`}>
                   <span>{label}</span>
-                  <i></i>
+                  <i role="img" aria-label={`${sv[i]}%`} />
                 </li>
               ))
             }

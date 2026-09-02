@@ -44,6 +44,8 @@ export interface Dict {
   ogLocale: string;
   /** Skip-to-content link label (keyboard a11y). */
   a11ySkip: string;
+  /** Accessible name of the mobile navigation toggle. */
+  a11yMenu: string;
 
   meta: {
     title: string;

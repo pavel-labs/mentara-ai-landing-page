@@ -4,6 +4,7 @@ export const de: Dict = {
   langName: 'Deutsch',
   ogLocale: 'de_DE',
   a11ySkip: 'Zum Inhalt springen',
+  a11yMenu: 'Menü',
 
   meta: {
     title: 'Mentara – KI-Übungsinterviews für Software-Engineers',
