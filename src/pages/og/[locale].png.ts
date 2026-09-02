@@ -19,7 +19,7 @@ export const GET: APIRoute = async ({ params }) => {
       [16, 15, 18],
       [11, 11, 13],
     ],
-    border: { color: [255, 106, 43], width: 10, side: 'inline-start' },
+    border: { color: [210, 96, 58], width: 10, side: 'inline-start' },
     padding: 80,
     font: {
       title: { color: [236, 231, 221], size: 80, weight: 'Bold', lineHeight: 1.1 },
