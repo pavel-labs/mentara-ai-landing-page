@@ -5,7 +5,10 @@
   --ink-3: #1d1c22;
   --bone: #ece7dd;
   --bone-dim: #a5a097;
-  --bone-faint: #6f6b64;
+  /* Contrast-floor colour: 5.4:1 on --ink and 4.95:1 on the lighter --ink-2 panels.
+     Do not darken it – WCAG AA (1.4.3) wants 4.5:1 for the small mono captions and the
+     input placeholder that use it. */
+  --bone-faint: #8a857c;
   --amber: #d2603a;
   --amber-soft: #e0805c;
   --amber-glow: rgba(210, 96, 58, 0.12);

@@ -17,7 +17,7 @@ const { locale } = Astro.props;
           class:list={['lang__opt', { 'lang__opt--on': current }]}
           hreflang={l}
           lang={l}
-          aria-current={current ? 'true' : undefined}
+          aria-current={current ? 'page' : undefined}
           title={getDict(l).langName}
         >
           {l.toUpperCase()}
