@@ -21,7 +21,7 @@ interface Props {
 const { locale } = Astro.props;
 ---
 
-<BaseLayout locale={locale}>
+<BaseLayout locale={locale} autoLocale>
   <Nav locale={locale} />
   <main id="main">
     <Hero locale={locale} />

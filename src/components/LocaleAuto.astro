@@ -1,0 +1,51 @@
+---
+import { LOCALES, LOCALE_STORAGE_KEY, localeHome, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+// Build-time map locale → home URL, so the client never has to redo base-path math.
+const homes = Object.fromEntries(LOCALES.map((l) => [l, localeHome(l)]));
+---
+
+{/*
+  Sends a first-time visitor to the home page in their browser's language. Rendered on
+  locale home pages only (BaseLayout's `autoLocale` prop) – deep links keep the language
+  they were shared in, which matters because the blog is English-only by design.
+
+  Inline and in <head> on purpose: it must decide before first paint, otherwise a
+  redirected visitor sees the wrong language flash first.
+*/}
+<script is:inline define:vars={{ current: locale, homes, storageKey: LOCALE_STORAGE_KEY }}>
+  (function autoLocale() {
+    // An explicit pick in the language switcher always wins over browser languages.
+    function storedChoice() {
+      try {
+        const saved = localStorage.getItem(storageKey);
+        return saved && homes[saved] ? saved : null;
+      } catch {
+        // Private mode or storage disabled – fall through to browser languages.
+        return null;
+      }
+    }
+
+    // "ru-RU" → "ru". Ordered by the visitor's own preference list.
+    function browserChoice() {
+      const tags = navigator.languages?.length ? navigator.languages : [navigator.language];
+      for (const tag of tags) {
+        const language = String(tag ?? '')
+          .toLowerCase()
+          .split('-')[0];
+        if (homes[language]) return language;
+      }
+      return null;
+    }
+
+    const target = storedChoice() ?? browserChoice();
+
+    // `replace`, not `assign`: Back should leave the site, not bounce through the redirect.
+    if (target && target !== current) location.replace(homes[target]);
+  })();
+</script>

@@ -7,6 +7,7 @@ import {
   isLocale,
   localeHome,
   localeUrl,
+  pickLocale,
   withBase,
 } from './index';
 
@@ -65,5 +66,27 @@ describe('LOCALES', () => {
       expect(getDict(l)).toBeTruthy();
       expect(localeHome(l).startsWith('/')).toBe(true);
     }
+  });
+});
+
+describe('pickLocale', () => {
+  it('matches on the base subtag and honours list order', () => {
+    expect(pickLocale(['ru-RU', 'en-US'])).toBe('ru');
+    expect(pickLocale(['de-AT'])).toBe('de');
+    expect(pickLocale(['es'])).toBe('es');
+  });
+
+  it('skips unsupported languages instead of failing the whole list', () => {
+    expect(pickLocale(['fr-FR', 'pt-BR', 'de'])).toBe('de');
+  });
+
+  it('is case-insensitive', () => {
+    expect(pickLocale(['RU'])).toBe('ru');
+  });
+
+  it('returns null when nothing matches, so callers keep the default locale', () => {
+    expect(pickLocale(['fr', 'ja'])).toBe(null);
+    expect(pickLocale([])).toBe(null);
+    expect(pickLocale(undefined)).toBe(null);
   });
 });
