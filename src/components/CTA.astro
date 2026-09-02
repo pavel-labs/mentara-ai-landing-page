@@ -46,11 +46,10 @@ const c = getDict(locale).cta;
     text-align: center;
     gap: 1.4rem;
     padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 5rem);
-    border: 1px solid color-mix(in oklab, var(--amber) 35%, transparent);
+    border: 1px solid var(--line-strong);
     border-radius: var(--radius-lg);
-    background:
-      radial-gradient(120% 130% at 50% 0%, var(--amber-glow), transparent 60%),
-      var(--ink-1);
+    background: var(--ink-1);
+    border-top: 2px solid var(--amber);
     overflow: hidden;
   }
   .cta__panel::before {
@@ -61,17 +60,17 @@ const c = getDict(locale).cta;
       linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 3rem,
       linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 3rem 100%;
     mask-image: radial-gradient(80% 80% at 50% 50%, #000, transparent 75%);
-    opacity: 0.6;
+    opacity: 0.35;
   }
   .cta__panel > * {
     position: relative;
   }
   .cta__title {
     font-family: var(--font-display);
-    font-weight: 660;
-    font-size: clamp(2.1rem, 1.2rem + 4vw, 4rem);
-    line-height: 1.0;
-    letter-spacing: -0.03em;
+    font-weight: 600;
+    font-size: clamp(2rem, 1.2rem + 3.4vw, 3.4rem);
+    line-height: 1.06;
+    letter-spacing: -0.018em;
   }
   .cta__title .accent {
     color: var(--amber);

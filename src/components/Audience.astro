@@ -80,12 +80,12 @@ const { groups, versus } = a;
     align-self: flex-start;
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--amber);
-    border: 1px solid color-mix(in oklab, var(--amber) 40%, transparent);
-    border-radius: 999px;
-    padding: 0.3rem 0.7rem;
+    color: var(--bone-dim);
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    padding: 0.3rem 0.6rem;
   }
   .who-card p {
     color: var(--bone-dim);
@@ -110,15 +110,12 @@ const { groups, versus } = a;
     border-right: 1px solid var(--line);
   }
   .vs__col--us {
-    background: linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--amber) 8%, var(--ink-1)),
-      var(--ink-1)
-    );
+    background: var(--ink-1);
+    box-shadow: inset 2px 0 0 var(--amber);
   }
   .vs__name {
     font-family: var(--font-display);
-    font-weight: 620;
+    font-weight: 600;
     font-size: 1.25rem;
     letter-spacing: -0.01em;
   }
