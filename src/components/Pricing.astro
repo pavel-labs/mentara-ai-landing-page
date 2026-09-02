@@ -66,12 +66,8 @@ const pr = getDict(locale).pricing;
   }
   .tier--hot {
     border-color: var(--amber);
-    background: linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--amber) 9%, var(--ink-1)),
-      var(--ink-1)
-    );
-    box-shadow: 0 30px 70px -50px var(--amber-glow);
+    background: var(--ink-1);
+    border-top-width: 2px;
   }
   .tier__flag {
     position: absolute;
@@ -79,17 +75,17 @@ const pr = getDict(locale).pricing;
     left: clamp(1.6rem, 3vw, 2.4rem);
     font-family: var(--font-mono);
     font-size: 0.66rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink);
     background: var(--amber);
-    padding: 0.3rem 0.7rem;
-    border-radius: 999px;
+    padding: 0.3rem 0.6rem;
+    border-radius: 2px;
   }
   .tier__name {
     font-family: var(--font-mono);
     font-size: 0.8rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.09em;
     color: var(--bone-dim);
   }
   .tier__price {
@@ -100,7 +96,7 @@ const pr = getDict(locale).pricing;
   }
   .tier__amt {
     font-family: var(--font-display);
-    font-weight: 680;
+    font-weight: 620;
     font-size: clamp(2.4rem, 1.6rem + 2vw, 3.1rem);
     letter-spacing: -0.03em;
   }
@@ -141,7 +137,7 @@ const pr = getDict(locale).pricing;
     color: var(--bone-dim);
     padding: 0.85rem 1rem;
     border: 1px dashed var(--line-strong);
-    border-radius: 999px;
+    border-radius: 2px;
     cursor: not-allowed;
   }
   .tier--hot .tier__cta {

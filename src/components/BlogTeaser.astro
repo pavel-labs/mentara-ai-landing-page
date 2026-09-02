@@ -46,9 +46,7 @@ const posts = (await getPublishedPosts()).slice(0, 4);
     padding-block: clamp(4rem, 8vw, 7rem);
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
-    background:
-      radial-gradient(circle at top right, color-mix(in oklab, var(--amber) 10%, transparent), transparent 32%),
-      linear-gradient(180deg, color-mix(in oklab, var(--ink-2) 55%, transparent), transparent);
+    background: color-mix(in oklab, var(--ink-2) 40%, transparent);
   }
   .journal__inner {
     display: flex;

@@ -6,10 +6,10 @@
   --bone: #ece7dd;
   --bone-dim: #a5a097;
   --bone-faint: #6f6b64;
-  --amber: #ff6a2b;
-  --amber-soft: #ff8a55;
-  --amber-glow: rgba(255, 106, 43, 0.22);
-  --sage: #8fc9a0;
+  --amber: #d2603a;
+  --amber-soft: #e0805c;
+  --amber-glow: rgba(210, 96, 58, 0.12);
+  --sage: #86ab90;
   --line: rgba(236, 231, 221, 0.1);
   --line-strong: rgba(236, 231, 221, 0.2);
 
@@ -19,8 +19,8 @@
 
   --maxw: 1180px;
   --gutter: clamp(1.25rem, 5vw, 4rem);
-  --radius: 14px;
-  --radius-lg: 22px;
+  --radius: 3px;
+  --radius-lg: 5px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -65,12 +65,11 @@ body::before {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(120% 90% at 85% -10%, var(--amber-glow), transparent 55%),
-    radial-gradient(80% 70% at 5% 5%, rgba(143, 201, 160, 0.06), transparent 50%),
-    linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 4.5rem,
-    linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 4.5rem 100%;
+    radial-gradient(110% 80% at 88% -15%, var(--amber-glow), transparent 50%),
+    linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 7rem,
+    linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 7rem 100%;
   background-color: var(--ink);
-  mask-image: radial-gradient(140% 110% at 50% 0%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(140% 110% at 50% 0%, #000 40%, transparent 95%);
 }
 
 body::after {
@@ -79,7 +78,7 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.22;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
 }
@@ -130,8 +129,8 @@ h2,
 h3 {
   font-family: var(--font-display);
   font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
+  line-height: 1.06;
+  letter-spacing: -0.018em;
   text-wrap: balance;
   /* Long words in non-English locales (e.g. RU "отрепетировало") must wrap inside the
      column instead of overflowing under the hero panel. */
@@ -140,9 +139,9 @@ h3 {
 
 .display {
   /* Lower max so very long localized words don't blow past the column at huge vw. */
-  font-size: clamp(2.6rem, 1.4rem + 4.8vw, 5rem);
-  font-weight: 650;
-  line-height: 0.99;
+  font-size: clamp(2.5rem, 1.4rem + 4.4vw, 4.4rem);
+  font-weight: 600;
+  line-height: 1.04;
   overflow-wrap: break-word;
 }
 
@@ -160,11 +159,11 @@ h3 {
 
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--amber);
+  color: var(--bone-dim);
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -172,9 +171,9 @@ h3 {
 
 .eyebrow::before {
   content: '';
-  width: 1.6rem;
+  width: 1.1rem;
   height: 1px;
-  background: var(--amber);
+  background: var(--line-strong);
 }
 
 .mono {
@@ -201,22 +200,21 @@ h3 {
   font-family: var(--font-mono);
   font-size: 0.84rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 0.85rem 1.4rem;
+  letter-spacing: 0.01em;
+  padding: 0.8rem 1.35rem;
   background: var(--bg);
   color: var(--fg);
   border: 1px solid var(--bg);
-  border-radius: 999px;
+  border-radius: 2px;
   transition:
-    transform 0.25s var(--ease),
-    box-shadow 0.25s var(--ease),
-    background 0.2s;
-  will-change: transform;
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px -12px var(--amber-glow);
+  background: color-mix(in oklab, var(--bg) 86%, var(--bone));
+  border-color: color-mix(in oklab, var(--bg) 86%, var(--bone));
 }
 
 .btn--ghost {
@@ -226,8 +224,8 @@ h3 {
 }
 
 .btn--ghost:hover {
-  border-color: var(--bone);
-  box-shadow: none;
+  background: rgba(236, 231, 221, 0.05);
+  border-color: var(--bone-dim);
 }
 
 .pill {
@@ -236,30 +234,29 @@ h3 {
   gap: 0.5rem;
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--bone-dim);
-  padding: 0.4rem 0.85rem;
+  padding: 0.35rem 0.7rem;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 2px;
   background: rgba(236, 231, 221, 0.02);
 }
 
 .dot {
-  width: 0.45rem;
-  height: 0.45rem;
+  width: 0.4rem;
+  height: 0.4rem;
   border-radius: 50%;
   background: var(--sage);
-  box-shadow: 0 0 0 3px rgba(143, 201, 160, 0.18);
 }
 
 /* ---- reveal-on-load (CSS only, staggered) --------------------------------- */
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(22px);
-  animation: reveal 0.9s var(--ease) forwards;
-  animation-delay: calc(var(--d, 0) * 90ms);
+  transform: translateY(8px);
+  animation: reveal 0.45s var(--ease) forwards;
+  animation-delay: calc(var(--d, 0) * 55ms);
 }
 
 @keyframes reveal {
