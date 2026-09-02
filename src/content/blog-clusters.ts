@@ -51,6 +51,7 @@ export const BLOG_CLUSTERS: BlogClusterDefinition[] = [
     },
     slugs: [
       'how-to-practice-system-design-alone',
+      'thinking-out-loud-in-coding-interviews',
       'system-design-vs-coding-interviews',
       'inside-an-ai-interview-simulator',
     ],

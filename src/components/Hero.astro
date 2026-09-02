@@ -111,10 +111,8 @@ const sv = [88, 82, 76, 91];
     min-width: 0;
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-lg);
-    background: linear-gradient(180deg, var(--ink-2), var(--ink-1));
-    box-shadow:
-      0 1px 0 rgba(236, 231, 221, 0.04) inset,
-      0 40px 80px -50px #000;
+    background: var(--ink-1);
+    box-shadow: 0 1px 0 rgba(236, 231, 221, 0.03) inset;
     overflow: hidden;
   }
   .panel__bar {
@@ -151,7 +149,7 @@ const sv = [88, 82, 76, 91];
   .line .who {
     font-family: var(--font-mono);
     font-size: 0.68rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--bone-faint);
   }
@@ -205,7 +203,7 @@ const sv = [88, 82, 76, 91];
   }
   .ring__val {
     font-family: var(--font-display);
-    font-weight: 650;
+    font-weight: 610;
     font-size: 1.4rem;
     letter-spacing: -0.02em;
   }
@@ -240,7 +238,7 @@ const sv = [88, 82, 76, 91];
     position: absolute;
     inset: 0;
     width: var(--v);
-    background: linear-gradient(90deg, var(--amber), var(--amber-soft));
+    background: var(--amber);
     transform-origin: left;
     animation: grow 1s var(--ease) backwards;
     animation-delay: calc(0.7s + var(--i) * 120ms);

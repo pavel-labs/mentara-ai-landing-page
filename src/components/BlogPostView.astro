@@ -159,10 +159,9 @@ const fmt = formatPostDate(post.data.date, 'long');
   .article-cta {
     margin-top: 1.6rem;
     padding: 1.4rem;
-    border: 1px solid color-mix(in oklab, var(--amber) 28%, transparent);
-    background:
-      radial-gradient(circle at top right, color-mix(in oklab, var(--amber) 10%, transparent), transparent 35%),
-      color-mix(in oklab, var(--ink-2) 58%, transparent);
+    border: 1px solid var(--line-strong);
+    border-left: 2px solid var(--amber);
+    background: color-mix(in oklab, var(--ink-2) 58%, transparent);
   }
   .article-cta__eyebrow {
     font-family: var(--font-mono);

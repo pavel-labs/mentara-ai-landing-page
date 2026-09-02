@@ -95,10 +95,8 @@ const p = getDict(locale).product;
     padding: 0.8rem;
     border: 1px solid var(--line-strong);
     border-radius: 2.6rem;
-    background: linear-gradient(160deg, var(--ink-3), var(--ink-1));
-    box-shadow:
-      0 1px 0 rgba(236, 231, 221, 0.05) inset,
-      0 50px 90px -50px #000;
+    background: var(--ink-2);
+    box-shadow: 0 1px 0 rgba(236, 231, 221, 0.04) inset;
   }
   .device__notch {
     position: absolute;
@@ -114,8 +112,7 @@ const p = getDict(locale).product;
   .device__screen {
     height: 100%;
     border-radius: 2rem;
-    background: radial-gradient(120% 80% at 80% 0%, rgba(255, 106, 43, 0.12), transparent 55%),
-      var(--ink);
+    background: var(--ink);
     border: 1px solid var(--line);
     padding: 2.2rem 1.1rem 1.1rem;
     display: flex;
@@ -137,7 +134,7 @@ const p = getDict(locale).product;
   .who {
     font-family: var(--font-mono);
     font-size: 0.62rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--bone-faint);
   }
@@ -188,7 +185,7 @@ const p = getDict(locale).product;
   }
   .app__num {
     font-family: var(--font-display);
-    font-weight: 680;
+    font-weight: 620;
     font-size: 1.7rem;
     color: var(--bone);
     line-height: 1;
