@@ -108,9 +108,14 @@ custom domain.
    project, Hosting enabled.
 2. **CI deploy secret**: Firebase console → Project settings → Service accounts →
    Generate new private key, then add its JSON as the GitHub Actions secret
-   `FIREBASE_SERVICE_ACCOUNT` (Settings → Secrets and variables → Actions → Secrets).
+   `FIREBASE_SERVICE_ACCOUNT`. It is stored as an **environment** secret on the
+   `firebase` environment (Settings → Environments → firebase), which is why the deploy
+   job declares `environment: firebase` – environment secrets are invisible to jobs that
+   do not.
    ⚠️ This repo is **public** – that key must live only as a GitHub secret, never
-   committed.
+   committed. Until it is set the workflow **skips** the deploy step with a warning
+   (the build and Lighthouse jobs still run), so a missing secret shows up as a warning
+   rather than a failed run.
 3. **Custom domain**: Firebase console → Hosting → Add custom domain → `mentara.ai` (and
    `www.mentara.ai`). Firebase walks you through a TXT record for verification, then gives
    you the `A`/`CNAME` records to add at your DNS provider, and auto-provisions the TLS
