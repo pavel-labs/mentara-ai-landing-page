@@ -132,6 +132,9 @@ export interface Dict {
     success: string;
     error: string;
     offNote: string;
+    /** Opt-in for the unstable early/dev build, and the warning under it. */
+    devBuild: string;
+    devBuildNote: string;
   };
 
   cta: {

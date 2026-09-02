@@ -239,6 +239,8 @@ export const en: Dict = {
     success: "You're on the list. We'll email you at launch.",
     error: 'Something broke on our end. Try again in a moment.',
     offNote: 'Opens shortly – set PUBLIC_FORMSPREE_ENDPOINT to enable the form.',
+    devBuild: 'Also send me the early dev build',
+    devBuildNote: 'Unstable, incomplete, and updated without notice - expect rough edges and reset data.',
   },
 
   cta: {
