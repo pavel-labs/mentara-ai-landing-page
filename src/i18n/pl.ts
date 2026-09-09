@@ -240,7 +240,8 @@ export const pl: Dict = {
     error: 'Coś poszło nie tak po naszej stronie. Spróbuj za chwilę.',
     offNote: 'Wkrótce ruszamy – ustaw PUBLIC_FORMSPREE_ENDPOINT, aby włączyć formularz.',
     devBuild: 'Wyślijcie mi też wczesną wersję deweloperską',
-    devBuildNote: 'Niestabilna, niekompletna i aktualizowana bez uprzedzenia - licz się z błędami i kasowaniem danych.',
+    devBuildNote:
+      'Niestabilna, niekompletna i aktualizowana bez uprzedzenia - licz się z błędami i kasowaniem danych.',
   },
 
   cta: {
