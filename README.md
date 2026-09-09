@@ -120,7 +120,7 @@ once it actually serves this site.
    committed. Until it is set the workflow **skips** the deploy step with a warning
    (the build and Lighthouse jobs still run), so a missing secret shows up as a warning
    rather than a failed run.
-3. **Custom domain** – *pending, no domain picked*. Once there is one: Firebase console
+3. **Custom domain** – _pending, no domain picked_. Once there is one: Firebase console
    → Hosting → Add custom domain → `<the-domain>` (and its `www.` variant). Firebase walks
    you through a TXT record for verification, then gives you the `A`/`CNAME` records to add
    at your DNS provider, and auto-provisions the TLS certificate.
