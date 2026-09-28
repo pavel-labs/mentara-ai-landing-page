@@ -1,14 +1,17 @@
 ---
 import StoreBadges from './StoreBadges.astro';
 import Waitlist from './Waitlist.astro';
-import { getDict, type Locale } from '../i18n';
+import { getDict, localePath, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = getDict(locale);
-const sv = [88, 82, 76, 91];
+const m = t.interview.mock;
+// The illustration shows the interview in its deep-dive phase: the moment a follow-up
+// lands on the candidate's own answer, which is the product's core difference.
+const activePhase = 2;
 ---
 
 <section class="hero">
@@ -17,14 +20,15 @@ const sv = [88, 82, 76, 91];
       <p class="eyebrow" data-reveal style="--d:0">{t.hero.eyebrow}</p>
 
       <h1 class="display" data-reveal style="--d:1">
-        {t.hero.titleLead}<br />
-        <span class="accent">{t.hero.titleAccent}</span> {t.hero.titleTail}
+        {t.hero.titleLead}
+        <span class="accent">{t.hero.titleAccent}</span>
       </h1>
 
       <p class="lede" data-reveal style="--d:2">{t.hero.lede}</p>
 
       <div class="hero__cta" data-reveal style="--d:3">
         <Waitlist locale={locale} />
+        <a class="link-arrow" href={localePath(locale, 'enterprise')}>{t.hero.teamsLink} →</a>
         <StoreBadges locale={locale} />
         <p class="mono hero__launch">
           <span class="dot" aria-hidden="true"></span>
@@ -33,54 +37,60 @@ const sv = [88, 82, 76, 91];
       </div>
     </div>
 
-    <aside class="panel" data-reveal style="--d:3" aria-label={t.product.heading}>
-      <div class="panel__bar">
-        <span class="panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="mono">{t.panel.label}</span>
+    <figure class="mock hero__mock" data-reveal style="--d:3" aria-label={m.label}>
+      <div class="mock__bar">
+        <span>{m.label}</span>
       </div>
-
-      <div class="panel__body">
-        <div class="line line--ai">
-          <span class="who">{t.panel.interviewer}</span>
-          <p>{t.panel.aiLine}</p>
+      <ol class="phases" aria-label={m.phases.join(' → ')}>
+        {
+          m.phases.map((p, i) => (
+            <li
+              class:list={['phase', { 'phase--done': i < activePhase, 'phase--on': i === activePhase }]}
+              aria-current={i === activePhase ? 'step' : undefined}
+            >
+              {p}
+            </li>
+          ))
+        }
+      </ol>
+      <div class="mock__body">
+        <div class="line">
+          <span class="who">{m.interviewer}</span>
+          <p class="bubble">{m.q}</p>
         </div>
-        <div class="line line--you">
-          <span class="who">{t.panel.you}</span>
-          <p>{t.panel.youLine}</p>
+        <div class="line">
+          <span class="who">{m.you}</span>
+          <p class="bubble bubble--you">{m.a}</p>
         </div>
-
-        <div class="score">
-          <div class="ring" role="img" aria-label={`8.7 ${t.panel.of}`}>
-            <div class="ring__val">8.7<small>{t.panel.of}</small></div>
-          </div>
-          {/* The bar length is the only visual carrier of each score, so the value is
-              spelled out for assistive tech instead of being lost with the CSS. */}
-          <ul class="bars">
-            {
-              t.panel.scores.map((label, i) => (
-                <li style={`--v:${sv[i]}%; --i:${i}`}>
-                  <span>{label}</span>
-                  <i role="img" aria-label={`${sv[i]}%`} />
-                </li>
-              ))
-            }
-          </ul>
+        <div class="line line--follow">
+          <span class="who">{m.interviewer}</span>
+          <p class="bubble">{m.followUp}</p>
+        </div>
+        <div class="hero__foot">
+          <span class="hints" aria-label={m.hints}>
+            <i></i><i></i><i class="spent"></i>
+            <span class="mono">{m.hints}</span>
+          </span>
+          <span class="mic mono">
+            <span class="mic__dot" aria-hidden="true"></span>
+            {m.voice}
+          </span>
         </div>
       </div>
-    </aside>
+    </figure>
   </div>
 </section>
 
 <style>
   .hero {
     padding-top: clamp(3rem, 7vw, 6rem);
-    padding-bottom: clamp(4rem, 8vw, 7rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
   }
   .hero__grid {
     display: grid;
     /* minmax(0,…): without it, fr tracks keep min-width:auto and the longer copy in
        some locales (e.g. Russian) inflates the left track, starving the panel. */
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     gap: clamp(2rem, 5vw, 4.5rem);
     align-items: center;
   }
@@ -90,7 +100,13 @@ const sv = [88, 82, 76, 91];
     gap: 1.6rem;
     min-width: 0;
   }
+  .hero .display {
+    /* The positioning line is longer than the old headline; a smaller ceiling keeps the
+       waitlist above the fold on a laptop screen. */
+    font-size: clamp(2.3rem, 1.3rem + 3.6vw, 3.9rem);
+  }
   .display .accent {
+    display: block;
     color: var(--amber);
     font-style: italic;
   }
@@ -106,164 +122,85 @@ const sv = [88, 82, 76, 91];
     gap: 0.6rem;
   }
 
-  /* ---- live-mock panel ---- */
-  .panel {
-    /* min-width:0 so the panel can never push its grid track wider than its share
-       (paired with the minmax(0,…) tracks); overflow:hidden clips its own content. */
-    min-width: 0;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius-lg);
-    background: var(--ink-1);
-    box-shadow: 0 1px 0 rgba(236, 231, 221, 0.03) inset;
-    overflow: hidden;
-  }
-  .panel__bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.85rem 1.1rem;
+  .phases {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     border-bottom: 1px solid var(--line);
-    background: rgba(0, 0, 0, 0.25);
   }
-  .panel__dots {
-    display: inline-flex;
-    gap: 0.4rem;
+  .phase {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+    padding: 0.6rem 0.5rem;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  .panel__dots i {
-    width: 0.62rem;
-    height: 0.62rem;
-    border-radius: 50%;
-    background: var(--ink-3);
+  .phase--done {
+    color: var(--bone-dim);
+    border-bottom-color: var(--line-strong);
   }
-  .panel__dots i:first-child {
-    background: var(--amber);
-  }
-  .panel__body {
-    padding: 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  .phase--on {
+    color: var(--bone);
+    border-bottom-color: var(--amber);
   }
   .line {
     display: grid;
     gap: 0.35rem;
   }
-  .line .who {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--bone-faint);
+  .line--follow .bubble {
+    border-left: 2px solid var(--amber);
   }
-  .line p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    padding: 0.7rem 0.9rem;
-    border-radius: 12px;
-  }
-  .line--ai p {
-    background: var(--ink-3);
-    border: 1px solid var(--line);
-  }
-  .line--you p {
-    background: color-mix(in oklab, var(--amber) 14%, var(--ink-2));
-    border: 1px solid color-mix(in oklab, var(--amber) 30%, transparent);
-    color: var(--bone);
-  }
-
-  .score {
+  .hero__foot {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 1.3rem;
-    margin-top: 0.4rem;
-    padding-top: 1.2rem;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding-top: 1rem;
     border-top: 1px dashed var(--line-strong);
   }
-
-  @property --p {
-    syntax: '<number>';
-    inherits: false;
-    initial-value: 0;
+  .hints {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
   }
-  .ring {
-    --p: 87;
-    flex: none;
-    width: 5.4rem;
-    height: 5.4rem;
+  .hints i {
+    width: 0.5rem;
+    height: 0.5rem;
     border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background:
-      radial-gradient(closest-side, var(--ink-1) 78%, transparent 79%),
-      conic-gradient(var(--amber) calc(var(--p) * 1%), var(--ink-3) 0);
-    animation: fill 1.4s var(--ease) 0.5s backwards;
+    background: var(--amber);
   }
-  @keyframes fill {
-    from {
-      --p: 0;
-    }
+  .hints i.spent {
+    background: var(--ink-3);
   }
-  .ring__val {
-    font-family: var(--font-display);
-    font-weight: 610;
-    font-size: 1.4rem;
-    letter-spacing: -0.02em;
+  .hints .mono {
+    margin-left: 0.3rem;
   }
-  .ring__val small {
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    color: var(--bone-faint);
-  }
-  .bars {
-    list-style: none;
-    display: grid;
-    gap: 0.55rem;
-    flex: 1;
-  }
-  .bars li {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.3rem;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
+  .mic {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
     color: var(--bone-dim);
   }
-  .bars li i {
-    height: 4px;
-    border-radius: 2px;
-    background: var(--ink-3);
-    position: relative;
-    overflow: hidden;
-  }
-  .bars li i::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    width: var(--v);
-    background: var(--amber);
-    transform-origin: left;
-    animation: grow 1s var(--ease) backwards;
-    animation-delay: calc(0.7s + var(--i) * 120ms);
-  }
-  @keyframes grow {
-    from {
-      transform: scaleX(0);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .ring,
-    .bars li i::after {
-      animation: none;
-    }
+  .mic__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--sage);
   }
 
   @media (max-width: 920px) {
     .hero__grid {
-      grid-template-columns: 1fr;
-    }
-    .panel {
-      order: -1;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>

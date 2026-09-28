@@ -1,48 +1,51 @@
 ---
+// Factual product facts under the hero. Deliberately no usage numbers, ratings or logos:
+// there are none yet, and invented credibility is worse than none.
 import { getDict, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
-const items = getDict(locale).trust;
+const items = getDict(locale).proof;
 ---
 
-<div class="trust">
-  <div class="container trust__row">
+<div class="proof">
+  <ul class="container proof__row">
     {
       items.map((item) => (
-        <span class="trust__item">
-          <span class="trust__tick" aria-hidden="true">›</span>
+        <li class="proof__item">
+          <span class="proof__tick" aria-hidden="true">›</span>
           {item}
-        </span>
+        </li>
       ))
     }
-  </div>
+  </ul>
 </div>
 
 <style>
-  .trust {
+  .proof {
     border-block: 1px solid var(--line);
     background: rgba(0, 0, 0, 0.22);
   }
-  .trust__row {
+  .proof__row {
+    list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem 2.4rem;
+    gap: 0.8rem 2.2rem;
     padding-block: 1.1rem;
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     letter-spacing: 0.06em;
     color: var(--bone-dim);
     text-transform: uppercase;
   }
-  .trust__item {
+  .proof__item {
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
   }
-  .trust__tick {
+  .proof__tick {
     color: var(--amber);
   }
 </style>

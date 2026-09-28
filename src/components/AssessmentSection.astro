@@ -1,0 +1,162 @@
+---
+import { getDict, type Locale } from '../i18n';
+import FlowSteps from './FlowSteps.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const a = getDict(locale).assessment;
+const m = a.mock;
+// Illustrative solution. Code is language-neutral, so it is not translated.
+const code = [
+  'function merge(intervals) {',
+  '  intervals.sort((a, b) => a[0] - b[0]);',
+  '  const out = [];',
+  '  for (const [s, e] of intervals) {',
+  '    const last = out.at(-1);',
+  '    if (last && s <= last[1]) last[1] = Math.max(last[1], e);',
+  '    else out.push([s, e]);',
+  '  }',
+  '  return out;',
+  '}',
+];
+---
+
+<section id="assessments" class="assess">
+  <div class="container split">
+    <div class="split__copy">
+      <p class="eyebrow">{a.eyebrow}</p>
+      <h2 class="h2">{a.heading}</h2>
+      <p class="lede">{a.lede}</p>
+      <FlowSteps steps={a.steps} layout="column" />
+      <p class="note">{a.separate}</p>
+    </div>
+
+    <figure class="mock" aria-label={m.label}>
+      <div class="mock__bar">
+        <span>{m.label}</span>
+        <span class="assess__timer">{m.timer}</span>
+      </div>
+      <div class="mock__body">
+        <p class="assess__problem">{m.problem}</p>
+        <pre class="code" aria-hidden="true"><code>{code.map((l, i) => <span class="code__line"><span class="code__n">{i + 1}</span>{l}</span>)}</code></pre>
+        <div class="assess__actions" aria-hidden="true">
+          <span class="fake-btn fake-btn--ghost">{m.run}</span>
+          <span class="fake-btn">{m.submit}</span>
+        </div>
+        <div class="assess__result">
+          <span class="who">{m.examples}</span>
+          <span class="assess__pass">{m.passed}</span>
+        </div>
+        <div class="assess__review">
+          <span class="who">{m.review}</span>
+          <ul>
+            {m.reviewLines.map((l) => <li>{l}</li>)}
+          </ul>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .assess {
+    background: rgba(0, 0, 0, 0.18);
+    border-block: 1px solid var(--line);
+  }
+  @media (min-width: 901px) {
+    /* The copy column (five steps) is much taller than the editor; keep the editor in
+       view while the steps scroll past. */
+    .assess .mock {
+      align-self: start;
+      position: sticky;
+      top: 6rem;
+    }
+  }
+  .assess__timer {
+    color: var(--amber);
+    flex: none;
+  }
+  .assess__problem {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .code {
+    margin: 0;
+    padding: 0.8rem 0;
+    background: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    line-height: 1.7;
+    color: var(--bone-dim);
+    overflow-x: auto;
+  }
+  .code__line {
+    display: block;
+    white-space: pre;
+    padding-right: 1rem;
+  }
+  .code__n {
+    display: inline-block;
+    width: 2.2rem;
+    padding-right: 0.8rem;
+    text-align: right;
+    color: var(--bone-faint);
+    opacity: 0.5;
+    user-select: none;
+  }
+  .assess__actions {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: flex-end;
+  }
+  .fake-btn {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 0.5rem 0.9rem;
+    border-radius: 2px;
+    background: var(--amber);
+    color: var(--ink);
+    border: 1px solid var(--amber);
+  }
+  .fake-btn--ghost {
+    background: transparent;
+    color: var(--bone);
+    border-color: var(--line-strong);
+  }
+  .assess__result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid color-mix(in oklab, var(--sage) 40%, transparent);
+    border-radius: var(--radius);
+    background: color-mix(in oklab, var(--sage) 8%, transparent);
+  }
+  .assess__pass {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--sage);
+  }
+  .assess__review {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .assess__review ul {
+    list-style: none;
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.88rem;
+    color: var(--bone-dim);
+  }
+  .assess__review li::before {
+    content: '› ';
+    color: var(--amber);
+  }
+</style>

@@ -1,19 +1,22 @@
 // The full translatable surface. Every locale file implements this exact shape, so a
 // missing/renamed key is a TypeScript error, not a silent untranslated string.
+//
+// Copy rule: only describe what the product does today. Anything planned goes in a
+// clearly labelled "not yet" list, never in a feature claim.
 
 export interface NavLink {
   label: string;
   href: string;
 }
 
-export interface Feature {
-  index: string;
+/** One step of a product flow ("Choose role → … → Report"). */
+export interface FlowStep {
   title: string;
   body: string;
 }
 
-export interface Step {
-  n: string;
+/** A titled point in a feature grid. */
+export interface Point {
   title: string;
   body: string;
 }
@@ -25,16 +28,15 @@ export interface Tier {
   blurb: string;
   features: string[];
   featured: boolean;
+  /** Button label. */
+  cta: string;
+  /** '#waitlist' for pre-launch plans, '/enterprise#contact' for the sales path. */
+  href: string;
 }
 
 export interface Faq {
   q: string;
   a: string;
-}
-
-export interface Badge {
-  small: string;
-  strong: string;
 }
 
 export interface Dict {
@@ -60,63 +62,106 @@ export interface Dict {
     eyebrow: string;
     titleLead: string;
     titleAccent: string;
-    titleTail: string;
     lede: string;
     availability: string;
+    teamsLink: string;
   };
 
-  trust: string[];
+  /** Short factual chips under the hero. No stats, no claims about users. */
+  proof: string[];
 
-  product: {
+  why: {
     eyebrow: string;
     heading: string;
     lede: string;
-    notes: string[];
-    ui: {
-      track: string;
-      timer: string;
+    them: { label: string; points: string[] };
+    us: { label: string; points: string[] };
+  };
+
+  interview: {
+    eyebrow: string;
+    heading: string;
+    lede: string;
+    steps: FlowStep[];
+    honesty: string;
+    mock: {
+      label: string;
+      /** warm-up → technical → deep-dive → wrap-up, in that order. */
+      phases: string[];
       interviewer: string;
       you: string;
       q: string;
       a: string;
-      liveScore: string;
+      followUp: string;
       hints: string;
+      voice: string;
     };
   };
 
-  panel: {
-    label: string;
-    interviewer: string;
-    you: string;
-    aiLine: string;
-    youLine: string;
-    of: string;
-    scores: string[];
-  };
-
-  features: { eyebrow: string; heading: string; items: Feature[] };
-
-  audience: {
+  assessment: {
     eyebrow: string;
     heading: string;
-    groups: { tag: string; body: string }[];
-    versus: {
-      them: string;
-      themPoints: string[];
-      us: string;
-      usPoints: string[];
+    lede: string;
+    steps: FlowStep[];
+    separate: string;
+    mock: {
+      label: string;
+      timer: string;
+      problem: string;
+      run: string;
+      submit: string;
+      examples: string;
+      passed: string;
+      review: string;
+      reviewLines: string[];
     };
   };
 
-  steps: { eyebrow: string; heading: string; items: Step[] };
+  report: {
+    eyebrow: string;
+    heading: string;
+    lede: string;
+    points: Point[];
+    mock: {
+      label: string;
+      overall: string;
+      categories: string[];
+      competencyTitle: string;
+      competencies: { name: string; band: string }[];
+      evidenceTitle: string;
+      evidence: string;
+      nextTitle: string;
+      next: string;
+    };
+  };
+
+  progress: {
+    eyebrow: string;
+    heading: string;
+    lede: string;
+    points: Point[];
+    mock: {
+      label: string;
+      challenges: { title: string; xp: string; done: boolean }[];
+      streak: string;
+      level: string;
+    };
+  };
 
   pricing: {
     eyebrow: string;
     heading: string;
     flag: string;
-    cta: string;
     foot: string;
     tiers: Tier[];
+  };
+
+  teamsBand: {
+    eyebrow: string;
+    heading: string;
+    lede: string;
+    points: Point[];
+    cta: string;
   };
 
   faq: { eyebrow: string; heading: string; items: Faq[] };
@@ -142,6 +187,59 @@ export interface Dict {
     titleLead: string;
     titleAccent: string;
     lede: string;
+  };
+
+  enterprise: {
+    metaTitle: string;
+    metaDescription: string;
+    hero: {
+      eyebrow: string;
+      title: string;
+      lede: string;
+      primary: string;
+      secondary: string;
+    };
+    useCases: {
+      eyebrow: string;
+      heading: string;
+      items: { tag: string; title: string; body: string; points: string[] }[];
+    };
+    steps: { eyebrow: string; heading: string; items: FlowStep[] };
+    privacy: {
+      eyebrow: string;
+      heading: string;
+      lede: string;
+      sees: { label: string; points: string[] };
+      never: { label: string; points: string[] };
+    };
+    roles: {
+      eyebrow: string;
+      heading: string;
+      items: { role: string; body: string }[];
+    };
+    notYet: { heading: string; lede: string; items: string[] };
+    article: { eyebrow: string; title: string; cta: string };
+    form: {
+      eyebrow: string;
+      heading: string;
+      sub: string;
+      name: string;
+      email: string;
+      company: string;
+      teamSize: string;
+      useCase: string;
+      useCases: { upskilling: string; hiring: string; both: string };
+      message: string;
+      messageHint: string;
+      submit: string;
+      sending: string;
+      success: string;
+      invalid: string;
+      rateLimited: string;
+      error: string;
+      offNote: string;
+      privacyNote: string;
+    };
   };
 
   contentHub: {
