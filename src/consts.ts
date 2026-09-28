@@ -13,3 +13,10 @@ export const WAITLIST = {
   // Overridable per build via PUBLIC_FORMSPREE_ENDPOINT (e.g. a staging form).
   endpoint: import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://formspree.io/f/meedqggp',
 } as const;
+
+export const API = {
+  // Backend origin for the public Enterprise inquiry endpoint (POST /enterprise/inquiries).
+  // Empty → the contact form renders disabled instead of posting to nowhere. The backend
+  // must list this site's origin in ALLOWED_ORIGINS for the browser to be allowed to call it.
+  baseUrl: (import.meta.env.PUBLIC_API_URL ?? '').replace(/\/$/, ''),
+} as const;

@@ -7,7 +7,16 @@ import '@fontsource/jetbrains-mono/600.css';
 import '../styles/global.css';
 import { SITE } from '../consts';
 import LocaleAuto from '../components/LocaleAuto.astro';
-import { DEFAULT_LOCALE, LOCALES, getDict, localeUrl, withBase, type Locale } from '../i18n';
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  getDict,
+  localePath,
+  localeUrl,
+  pathWithoutLocale,
+  withBase,
+  type Locale,
+} from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -15,16 +24,40 @@ interface Props {
   description?: string;
   /** Home pages only: send first-time visitors to their browser language. */
   autoLocale?: boolean;
+  /** Emit FAQPage structured data – only on pages that actually render the FAQ. */
+  includeFaq?: boolean;
+  /** Extra JSON-LD nodes for this page (BreadcrumbList, BlogPosting, …). */
+  jsonLd?: Record<string, unknown>[];
+  ogType?: 'website' | 'article';
+  /**
+   * Content that exists in one language only (the English blog) and is merely served
+   * under every locale prefix. The canonical then points at the English URL and no
+   * hreflang alternates are emitted – otherwise each locale copy is a duplicate page.
+   */
+  singleLanguage?: boolean;
 }
 
-const { locale, title, description, autoLocale = false } = Astro.props;
+const {
+  locale,
+  title,
+  description,
+  autoLocale = false,
+  includeFaq = false,
+  jsonLd: pageJsonLd = [],
+  ogType = 'website',
+  singleLanguage = false,
+} = Astro.props;
 const t = getDict(locale);
 const pageTitle = title ?? t.meta.title;
 const pageDesc = description ?? t.meta.description;
 
 // All asset paths go through the single `withBase` joiner – no ad-hoc base math here.
 const origin = Astro.site ?? new URL(SITE.domain);
-const canonical = new URL(Astro.url.pathname, origin).href;
+const pagePath = pathWithoutLocale(Astro.url.pathname);
+const canonical = new URL(
+  singleLanguage ? localePath(DEFAULT_LOCALE, pagePath) : Astro.url.pathname,
+  origin,
+).href;
 const favicon = withBase('favicon.svg');
 const ogImage = new URL(withBase(`og/${locale}.png`), origin).href;
 const sitemapHref = withBase('sitemap-index.xml');
@@ -32,14 +65,30 @@ const rssHref = withBase('rss.xml');
 const manifestHref = withBase('site.webmanifest');
 const appleIcon = withBase('apple-touch-icon.png');
 
-// hreflang alternates for every locale + x-default → the default locale home.
-const alternates = LOCALES.map((l) => ({ hreflang: l, href: localeUrl(l, origin) }));
+// hreflang alternates: the same page in every locale, x-default → its English version.
+// Every localized route exists in all locales (the parity test and the per-locale page
+// wrappers guarantee it), so the swap of the locale prefix is always a real page.
+const alternateHref = (l: Locale) => new URL(localePath(l, pagePath), origin).href;
+const alternates = singleLanguage
+  ? []
+  : LOCALES.map((l) => ({ hreflang: l, href: alternateHref(l) }));
 
 // Cloudflare Web Analytics – privacy-friendly, cookieless. Only injected when a token is
 // provided, so dev/forks ship no beacon and no consent banner is needed.
 const cfToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 
-// One JSON-LD @graph: the app, the org, and the FAQ (unlocks the FAQ rich result).
+// One JSON-LD @graph: the org, the app, the FAQ where it is shown, and any page nodes.
+// FAQPage is emitted only next to a rendered FAQ – markup for content that is not on the
+// page is what Google treats as spam.
+const faqNode = {
+  '@type': 'FAQPage',
+  inLanguage: locale,
+  mainEntity: t.faq.items.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -54,21 +103,22 @@ const jsonLd = {
       '@type': 'SoftwareApplication',
       name: SITE.name,
       applicationCategory: 'EducationApplication',
-      operatingSystem: 'iOS, Android, Web',
-      description: pageDesc,
-      url: canonical,
+      operatingSystem: 'Web, iOS, Android',
+      description: t.meta.description,
+      url: localeUrl(locale, origin),
       publisher: { '@id': `${origin.origin}/#org` },
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      // Only the Free plan has a public price; Pro is set at launch, Enterprise by contract.
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', name: 'Free' },
+      featureList: [
+        t.interview.eyebrow,
+        t.assessment.eyebrow,
+        t.report.eyebrow,
+        t.progress.eyebrow,
+        t.teamsBand.eyebrow,
+      ],
     },
-    {
-      '@type': 'FAQPage',
-      inLanguage: locale,
-      mainEntity: t.faq.items.map((f) => ({
-        '@type': 'Question',
-        name: f.q,
-        acceptedAnswer: { '@type': 'Answer', text: f.a },
-      })),
-    },
+    ...(includeFaq ? [faqNode] : []),
+    ...pageJsonLd,
   ],
 };
 ---
@@ -86,7 +136,11 @@ const jsonLd = {
     <meta name="description" content={pageDesc} />
     <link rel="canonical" href={canonical} />
     {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
-    <link rel="alternate" hreflang="x-default" href={localeUrl(DEFAULT_LOCALE, origin)} />
+    {
+      !singleLanguage && (
+        <link rel="alternate" hreflang="x-default" href={alternateHref(DEFAULT_LOCALE)} />
+      )
+    }
     <meta name="theme-color" content="#0b0b0d" />
     <meta name="color-scheme" content="dark" />
 
@@ -97,7 +151,7 @@ const jsonLd = {
     <link rel="sitemap" href={sitemapHref} />
     <link rel="alternate" type="application/rss+xml" title="Mentara Blog" href={rssHref} />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:locale" content={t.ogLocale} />
     <meta property="og:title" content={pageTitle} />

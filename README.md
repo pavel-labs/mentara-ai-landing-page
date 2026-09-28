@@ -1,7 +1,14 @@
 # Mentara – Landing Page
 
-Marketing landing page for **Mentara**, an AI-powered mock technical interview app for
-software engineers. Static, SEO/performance-first, English only (for now).
+Marketing site for **Mentara**: AI technical interview practice, coding assessments and
+feedback for developers, plus Mentara for teams (Enterprise). Static, SEO/performance-first,
+five languages.
+
+**Copy rule:** the site only claims what the product does today. Before adding a feature to
+the copy, check it in the app (or `docs/en/*` in the monorepo); planned Enterprise items live
+in the explicit "not available yet" list on `/enterprise`, never in a feature claim. No
+invented users, customers, statistics, testimonials or logos. Pro's price comes from the
+store at runtime, so the site says "set at launch" rather than hardcoding one.
 
 Built with **[Astro](https://astro.build)** (ships ~zero JS), self-hosted variable fonts,
 and a hand-rolled dark "editorial-terminal" design system – no UI kit, no tracking.
@@ -58,16 +65,29 @@ src/
   legal.ts              # DRAFT privacy/terms clauses (English authoritative)
   content.config.ts · content/blog/*.md   # changelog collection (English)
   layouts/BaseLayout    # <head>, SEO/OG/JSON-LD/hreflang/RSS, fonts, global.css
-  components/   # Landing + Legal + Nav, Hero, Trust, ShowProduct, Features,
-                #   Audience, HowItWorks, Pricing, FAQ, CTA, Footer, Waitlist,
-                #   StoreBadges, LanguageSwitcher
-  pages/        # {locale}/index, {locale}/privacy, {locale}/terms, 404,
-                #   blog/index, blog/[slug], rss.xml, og/[locale].png
+  components/   # Landing = Hero, Proof, WhyPractice, InterviewSection,
+                #   AssessmentSection, ReportSection, ProgressSection, Pricing,
+                #   TeamsBand, FAQ, CTA, BlogTeaser; EnterprisePageView +
+                #   EnterpriseForm; shared FlowSteps, SectionHead, Nav, Footer, …
+  pages/        # {locale}/index, {locale}/enterprise, {locale}/privacy,
+                #   {locale}/terms, 404, blog/index, blog/[slug], rss.xml,
+                #   og/[locale].png
 scripts/gen-icons.mjs   # rasterizes favicon.svg → png icons (npm prebuild)
 public/                  # favicon.svg, site.webmanifest, robots.txt
 ```
 
 ## Pages beyond the landing
+
+- **Enterprise**: `/{locale}/enterprise` – Mentara for teams: the two use cases (upskilling,
+  hiring), how a trial starts, what the organization can and cannot see, roles, a "not
+  available yet" list, and the contact form. The product illustrations on the home page are
+  designed HTML/CSS mocks built from the app's real labels, not screenshots; replace them
+  with real captures once those exist.
+- **Contact form** (`EnterpriseForm.astro`): POSTs JSON to the backend's public
+  `POST {PUBLIC_API_URL}/enterprise/inquiries` (fields mirror `EnterpriseInquiryBodySchema`
+  in `@mentara/shared`; `website` is the server-side honeypot), so leads show up in the admin
+  console. Success fires `__mentaraTrack?.('enterprise_inquiry')` and a virtual
+  `…/enterprise/success` pageview, like the waitlist.
 
 - **Legal**: `/{locale}/privacy` + `/{locale}/terms` (all 4 locales). The page shell,
   headings and a prominent **draft notice** are localized; the clauses themselves stay in
@@ -75,7 +95,16 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
   binding legal text is a liability. Bump `LEGAL_EFFECTIVE_DATE` / `LEGAL_CONTACT` there.
   **These are unreviewed drafts – have counsel review before launch.**
 - **Blog/changelog**: Astro content collection (`src/content/blog/*.md`, English),
-  `/blog` + `/blog/<slug>` + `/rss.xml` (auto-discovered `<link rel=alternate>`).
+  `/blog` + `/blog/<slug>` + `/rss.xml` (auto-discovered `<link rel=alternate>`). Posts are
+  English-only but served under every locale prefix for the localized chrome, so those
+  copies canonicalize to the English URL (`BaseLayout singleLanguage`) and are left out of
+  the sitemap. Posts carry `BlogPosting` + `BreadcrumbList` JSON-LD.
+- **Language redirect** (`LocaleAuto.astro`): only the root home `/` sends a first-time
+  visitor to their browser's language. An explicit `/de/`, `/ru/`, … URL is never overridden
+  by browser language (a shared link or a search result already chose it, and crawlers
+  render with an English locale); a pick in the language switcher wins everywhere.
+- **hreflang**: every localized page lists the same page in each locale (not the locale
+  homes); `FAQPage` JSON-LD is emitted only on the home page, where the FAQ is rendered.
 - **Per-locale OG**: `/og/<locale>.png` generated at build; each page references its own.
 - **Waitlist conversion**: on success the form fires `window.__mentaraTrack?.('waitlist_signup')`
   (provider-agnostic hook) and a virtual `…/waitlist/success` pushState. Cloudflare Web
@@ -90,7 +119,11 @@ See `.env.example`. All `PUBLIC_*` (inlined into the static build – no secrets
   disabled placeholder (never ships a broken POST).
 - `PUBLIC_CF_BEACON_TOKEN` – Cloudflare Web Analytics. Empty → no beacon injected, no
   cookie banner needed.
-- `SITE_URL` / `BASE_PATH` – hosting overrides (default = GitHub Pages project URL).
+- `PUBLIC_API_URL` – backend origin for the Enterprise contact form (e.g.
+  `https://api.example.com`, no trailing slash). Empty → the form renders a disabled note.
+  The backend must list this site's origin in `ALLOWED_ORIGINS`, or the browser blocks the
+  request (CORS). See the monorepo's `docs/en/environment.md`.
+- `SITE_URL` / `BASE_PATH` – hosting overrides (default = the Firebase `*.web.app` domain).
 
 Set these as env in the GitHub Action (or repo variables) for the deployed build.
 

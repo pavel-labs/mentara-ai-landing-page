@@ -7,223 +7,330 @@ export const es: Dict = {
   a11yMenu: 'Menú',
 
   meta: {
-    title: 'Mentara – entrevistas técnicas de práctica con IA para ingenieros',
+    title:
+      'Mentara – práctica de entrevistas técnicas con IA y evaluaciones de código para desarrolladores',
     description:
-      'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA que se adapta, te aprieta y te puntúa en tiempo real – para que llegues a la entrevista real preparado. iOS, Android y web.',
-    tagline: 'Practica entrevistas reales.',
+      'Practica entrevistas técnicas estructuradas con un entrevistador de IA que repregunta sobre tus respuestas, resuelve evaluaciones de código calificadas con tests ocultos y recibe un informe que muestra tus puntos débiles con evidencia. Planes Free y Pro, y Enterprise para equipos.',
+    tagline: 'Practica la entrevista, no solo las preguntas.',
     launchLabel: 'Disponible en 2026',
   },
 
   nav: [
-    { label: 'Producto', href: '#product' },
-    { label: 'Funciones', href: '#features' },
-    { label: 'Blog', href: '/blog' },
+    { label: 'Entrevistas', href: '#interview' },
+    { label: 'Evaluaciones', href: '#assessments' },
     { label: 'Precios', href: '#pricing' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Equipos', href: '/enterprise' },
+    { label: 'Blog', href: '/blog' },
   ],
 
   hero: {
-    eyebrow: 'Entrevistas de práctica con IA · para ingenieros',
-    titleLead: 'Practica entrevistas técnicas.',
-    titleAccent: 'Antes de que',
-    titleTail: 'llegue la de verdad.',
-    lede: 'Mentara hace entrevistas técnicas de práctica realistas con un entrevistador de IA: se adapta, te aprieta y te puntúa en tiempo real – para que llegues preparado a la de verdad.',
-    availability: 'Disponible en 2026 · iOS, Android y web',
+    eyebrow: 'Práctica de entrevistas para desarrolladores y equipos',
+    titleLead: 'Practica la entrevista técnica,',
+    titleAccent: 'no solo las preguntas.',
+    lede: 'Mentara hace una entrevista estructurada para tu rol y tu stack, repregunta sobre lo que realmente dijiste, califica tu código con tests ocultos y te da un informe que señala tus puntos débiles – para que la siguiente sesión vaya a por ellos.',
+    availability: 'Disponible en 2026 · Web, iOS y Android',
+    teamsLink: 'Para equipos de ingeniería',
   },
 
-  trust: [
-    'Procesos al nivel de FAANG',
-    '10+ tracks de práctica',
-    'Puntuación en tiempo real',
-    'Dificultad adaptativa',
-    'iOS · Android · Web',
+  proof: [
+    'Frontend · Backend · Algoritmos',
+    '19 tecnologías',
+    'De junior a senior',
+    '15, 30 o 60 minutos',
+    'Escribe o habla',
+    '5 idiomas de entrevista',
   ],
 
-  product: {
-    eyebrow: 'Un vistazo a la app',
-    heading: 'La entrevista, en tu pantalla.',
-    lede: 'Una pantalla, un propósito: mantener tu atención en la entrevista. La pregunta, tu respuesta y una lectura en directo de cómo lo estás haciendo – en el móvil o en el navegador, sin nada que distraiga.',
-    notes: [
-      'Habla o escribe – el entrevistador reacciona igual',
-      'La puntuación se actualiza mientras hablas, no después',
-      'El presupuesto de pistas está a la vista: lo racionas como en la de verdad',
-    ],
-    ui: {
-      track: 'system-design · L5',
-      timer: '14:22',
-      interviewer: 'entrevistador',
-      you: 'tú',
-      q: 'La escritura está caliente en una sola clave. ¿Cómo evitas que un nodo se funda?',
-      a: 'Le pongo sal a la clave de partición, reparto lecturas entre réplicas y meto un write-behind…',
-      liveScore: 'puntuación',
-      hints: 'pistas',
-    },
-  },
-
-  panel: {
-    label: 'session · system-design · L5',
-    interviewer: 'entrevistador',
-    you: 'tú',
-    aiLine: 'Cuéntame cómo lo repartirías en shards para que una clave caliente no tumbe un nodo.',
-    youLine: 'Le añado sal a la clave de partición y reparto las lecturas entre réplicas…',
-    of: '/10',
-    scores: ['Técnica', 'Comunicación', 'Casos límite', 'Resolución'],
-  },
-
-  features: {
-    eyebrow: 'Lo que te llevas',
-    heading: 'Un entrevistador que repregunta, no una app de tipo test.',
-    items: [
-      {
-        index: '01',
-        title: 'Un entrevistador que repregunta',
-        body: 'No un chatbot que lee preguntas. La IA se mantiene en el papel según tu rol, tu nivel y el tipo de entrevistador – repregunta, va a los casos límite y aprieta más cuando te relajas.',
-      },
-      {
-        index: '02',
-        title: 'Puntuado mientras hablas',
-        body: 'Señal en directo de profundidad técnica, comunicación, casos límite y resolución – actualizada cada pocos turnos, no enterrada en un análisis posterior.',
-      },
-      {
-        index: '03',
-        title: 'Tracks de práctica con estructura',
-        body: 'Rondas de Algoritmos, System Design, Behavioral y de Dominio con dificultad calibrada. Practica justo la ronda que te da miedo, no un saco de preguntas al azar.',
-      },
-      {
-        index: '04',
-        title: 'Un progreso que se acumula',
-        body: 'XP, rachas, niveles y logros convierten el estudio disperso en un hábito. Aparece cada día y mira crecer tu progreso.',
-      },
-    ],
-  },
-
-  audience: {
-    eyebrow: 'Para quién es',
-    heading: 'Hecho para ingenieros que se están preparando ahora.',
-    groups: [
-      {
-        tag: 'Recién graduados',
-        body: 'Pasa del “en teoría me lo sé” al “puedo con la entrevista” antes de tu primer onsite.',
-      },
-      {
-        tag: 'Cambio de carrera',
-        body: 'Cierra rápido la falta de experiencia en entrevistas – practica con feedback, no a ciegas.',
-      },
-      {
-        tag: 'Nivel senior',
-        body: 'Practica System Design y preguntas duras de nivel staff hasta que el panel real se sienta rutinario.',
-      },
-    ],
-    versus: {
-      them: 'Machacar LeetCode en solitario',
-      themPoints: [
-        'Nadie aprieta una respuesta vaga',
-        'Ni una palabra sobre comunicación y estructura',
-        'Te calificas tú mismo – con la mano blanda',
+  why: {
+    eyebrow: 'Por qué practicar aquí',
+    heading: 'Leer respuestas no es lo mismo que darlas.',
+    lede: 'Casi toda la preparación acaba en una lista de preguntas leídas. Una entrevista te pide explicar, aprieta en la parte débil y sigue adelante estés listo o no. Eso es lo que Mentara te deja practicar.',
+    them: {
+      label: 'Listas de preguntas y un chatbot genérico',
+      points: [
+        'Tú eliges las preguntas, así que eliges las fáciles',
+        'Nadie pregunta «¿por qué?» tras una respuesta vaga',
+        'El código nunca se ejecuta: «parece correcto» cuenta como correcto',
+        'Te calificas tú, y cada sesión empieza de cero',
       ],
-      us: 'Mentara',
-      usPoints: [
-        'Un entrevistador que repregunta y sube el listón',
-        'Puntúa la comunicación, no solo la respuesta',
-        'Un informe honesto y qué arreglar después',
+    },
+    us: {
+      label: 'Una sesión de Mentara',
+      points: [
+        'Una entrevista cronometrada para tu rol, nivel y stack, con estructura fija',
+        'Repreguntas construidas sobre tu propia respuesta',
+        'Evaluaciones de código calificadas con tests que no ves',
+        'Un informe con evidencia, y puntos débiles que guían tu próxima sesión',
       ],
     },
   },
 
-  steps: {
-    eyebrow: 'Cómo funciona',
-    heading: 'Cómo funciona, en tres pasos.',
-    items: [
+  interview: {
+    eyebrow: 'Entrevistas con IA',
+    heading: 'Una entrevista estructurada que reacciona a tus respuestas.',
+    lede: 'Cada entrevista pasa por calentamiento, preguntas técnicas, una inmersión a fondo y un cierre. El entrevistador repregunta sobre lo que dijiste, acota la pregunta cuando te atascas y va más allá cuando la respuesta es buena.',
+    steps: [
       {
-        n: '1',
-        title: 'Elige la ronda',
-        body: 'Track, rol y dificultad. Fija el tipo de entrevistador – screening amable o interrogatorio de nivel staff.',
+        title: 'Elige tu rol',
+        body: 'Frontend, backend o algoritmos, en nivel junior, middle o senior.',
       },
       {
-        n: '2',
-        title: 'Lanza la simulación en directo',
-        body: 'Razona en voz alta o escribe código. El entrevistador se adapta sobre la marcha y puntúa cada intercambio.',
+        title: 'Elige tu stack',
+        body: 'Hasta seis tecnologías: React, TypeScript, Node.js, system design y más.',
       },
       {
-        n: '3',
-        title: 'Recibe el informe',
-        body: 'Un desglose puntuado y un plan de estudio enfocado – justo lo que pulir antes de la entrevista de verdad.',
+        title: 'Configura la entrevista',
+        body: '15, 30 o 60 minutos, uno de tres entrevistadores, feedback estricto o de apoyo, en uno de cinco idiomas.',
+      },
+      {
+        title: 'Responde en voz alta o por escrito',
+        body: 'Escribe, o habla y tu respuesta se transcribe. Hasta tres pistas si te atascas.',
+      },
+      {
+        title: 'Recibe tu informe',
+        body: 'Puntuaciones, evidencia y una ruta de aprendizaje en cuanto termina la entrevista.',
       },
     ],
+    honesty:
+      'Es un entrevistador de IA, no una persona. Está hecho para llevar una entrevista técnica consistente y estructurada – y tus últimas sesiones influyen en lo que pregunta después.',
+    mock: {
+      label: 'Entrevista · Frontend · Senior · 30 min',
+      phases: ['Calentamiento', 'Técnica', 'A fondo', 'Cierre'],
+      interviewer: 'Entrevistador',
+      you: 'Tú',
+      q: 'Tu lista se vuelve a renderizar con cada tecla en el buscador. ¿Cómo averiguarías por qué?',
+      a: 'Abriría el React Profiler, grabaría una pulsación y miraría qué componentes se renderizaron y por qué…',
+      followUp:
+        'Supón que el profiler muestra que se renderiza toda la lista. ¿Cuáles son las dos causas más probables?',
+      hints: 'Quedan 2 de 3 pistas',
+      voice: 'Toca para responder',
+    },
+  },
+
+  assessment: {
+    eyebrow: 'Evaluaciones de código',
+    heading: 'Escribe el código. Los tests ocultos lo califican.',
+    lede: 'El código tiene su propio espacio en Mentara: una evaluación aparte, con tiempo, editor, ejemplos ejecutables y un envío real. La entrevista sigue siendo una conversación; la evaluación comprueba el código.',
+    steps: [
+      {
+        title: 'Lee el problema',
+        body: 'De uno a cinco problemas, con ejemplos. Si la evaluación tiene temporizador, lo aplica el servidor.',
+      },
+      {
+        title: 'Escribe tu solución',
+        body: 'JavaScript, TypeScript, Python, Java, Go o C++. Puedes cambiar de lenguaje a mitad del intento.',
+      },
+      {
+        title: 'Ejecuta los ejemplos',
+        body: 'Ejecuta los ejemplos visibles o tu propia entrada tantas veces como quieras antes de enviar.',
+      },
+      {
+        title: 'Envía',
+        body: 'Tu código se califica con tests ocultos que nunca salen del servidor.',
+      },
+      {
+        title: 'Lee la revisión',
+        body: 'Una revisión con IA de calidad del código, eficiencia y legibilidad, por problema, con puntos fuertes y débiles.',
+      },
+    ],
+    separate:
+      '¿Por qué por separado? Explicar un diseño y escribir código que funciona son habilidades distintas. Mezclarlas en un chat oculta cuál necesita trabajo.',
+    mock: {
+      label: 'Evaluación de código · 2 problemas',
+      timer: 'quedan 38:12',
+      problem: 'Fusionar intervalos solapados',
+      run: 'Ejecutar ejemplos',
+      submit: 'Enviar',
+      examples: 'Ejemplos',
+      passed: '3 / 3 superados',
+      review: 'Revisión',
+      reviewLines: [
+        'Correcto en casos límite: entrada vacía, intervalos que se tocan',
+        'O(n log n): domina la ordenación',
+        'Conviene dar un nombre más claro al acumulador',
+      ],
+    },
+  },
+
+  report: {
+    eyebrow: 'Feedback',
+    heading: 'Sabe exactamente qué mejorar después.',
+    lede: 'La entrevista termina con un informe, no con una palmadita en la espalda. Cada puntuación está ligada a algo que dijiste, y las carencias se convierten en tu próximo plan de práctica.',
+    points: [
+      {
+        title: 'Puntuaciones que puedes rastrear',
+        body: 'Global, más profundidad técnica, comunicación, casos límite y resolución de problemas. Salen de la evidencia en tus respuestas, no de un número que se inventa el modelo.',
+      },
+      {
+        title: 'Resultados por competencia',
+        body: 'Cada habilidad que cubrió la entrevista se marca como fuerte, sólida, en desarrollo o a mejorar – o «no evaluada» cuando no hubo evidencia suficiente.',
+      },
+      {
+        title: 'Puntos fuertes y débiles',
+        body: 'Qué fue bien, qué mejorar, y citas de tus propias respuestas que muestran por qué.',
+      },
+      {
+        title: 'Una ruta de aprendizaje',
+        body: 'Temas priorizados con una estimación de tiempo. Tu próxima entrevista retoma tus puntos débiles.',
+      },
+    ],
+    mock: {
+      label: 'Tu informe',
+      overall: 'Global',
+      categories: ['Técnica', 'Comunicación', 'Casos límite', 'Resolución'],
+      competencyTitle: 'Por competencia',
+      competencies: [
+        { name: 'Renderizado en React', band: 'Fuerte' },
+        { name: 'Gestión de estado', band: 'Sólida' },
+        { name: 'Rendimiento web', band: 'En desarrollo' },
+      ],
+      evidenceTitle: 'Evidencia de tus respuestas',
+      evidence:
+        '«Memoizaría el componente de fila»: arreglo correcto, pero nunca se nombró la causa (un callback nuevo en cada render).',
+      nextTitle: 'Siguiente foco',
+      next: 'Rendimiento web · ~3 h',
+    },
+  },
+
+  progress: {
+    eyebrow: 'Sigue adelante',
+    heading: 'Un motivo para volver mañana.',
+    lede: 'La habilidad para entrevistas se pierde sin práctica. Los retos diarios te dan una tarea pequeña y concreta cada día, basada en tu propio historial.',
+    points: [
+      {
+        title: 'Retos diarios',
+        body: 'Hasta tres al día: terminar sin pistas, superar tu última puntuación, repasar un punto débil, practicar una tecnología.',
+      },
+      {
+        title: 'Rachas y niveles',
+        body: 'La XP te lleva de Intern a CTO. Una congelación de racha cubre algún día perdido.',
+      },
+      {
+        title: 'Logros',
+        body: 'Recorridos de constancia, mejora, roles y tecnologías – se ganan practicando, no abriendo la app.',
+      },
+      {
+        title: 'Progreso en el tiempo',
+        body: 'Tu evolución de puntuación, tus puntos débiles recurrentes y todos tus informes en un solo lugar.',
+      },
+    ],
+    mock: {
+      label: 'Reto de hoy',
+      challenges: [
+        { title: 'Completa una entrevista', xp: '+30 XP', done: true },
+        { title: 'Termina sin pistas', xp: '+50 XP', done: false },
+        { title: 'Repasa Rendimiento web', xp: '+80 XP', done: false },
+      ],
+      streak: 'Racha de 12 días',
+      level: 'Nivel · Mid',
+    },
   },
 
   pricing: {
     eyebrow: 'Precios',
-    heading: 'Gratis para empezar, con planes de pago para practicar más.',
-    flag: 'El más elegido',
-    cta: 'Disponible en el lanzamiento',
-    foot: 'Los precios son orientativos y se fijan en el lanzamiento.',
+    heading: 'Empieza gratis. Mejora cuando estés buscando trabajo en serio.',
+    flag: 'Para búsquedas activas',
+    foot: 'El precio de Pro se fija en el lanzamiento y se muestra en la tienda de apps y en la web antes de pagar.',
     tiers: [
       {
-        tier: 'FREE',
-        price: '$0',
+        tier: 'Free',
+        price: '0 $',
         cadence: 'para siempre',
-        blurb: 'Prueba entrevistas de práctica de verdad.',
+        blurb: 'Todo lo que necesitas para practicar con regularidad.',
         features: [
-          'Unas pocas sesiones / mes',
-          'Tracks básicos',
-          'Puntuación en directo',
-          'Progreso básico',
+          '5 entrevistas de texto cada 30 días',
+          '3 entrevistas de voz cada 30 días',
+          'Informe completo tras cada entrevista',
+          'Todos los roles, niveles y tecnologías',
+          'Evaluaciones de código',
+          'Retos diarios y logros',
         ],
         featured: false,
+        cta: 'Apuntarme a la lista',
+        href: '#waitlist',
       },
       {
-        tier: 'PRO',
-        price: 'TBD',
-        cadence: 'en el lanzamiento',
-        blurb: 'Para el ingeniero metido en plena búsqueda.',
+        tier: 'Pro',
+        price: 'TBA',
+        cadence: 'precio al lanzamiento',
+        blurb: 'Para las semanas en que te estás entrevistando de verdad.',
         features: [
-          'Sesiones ilimitadas',
-          'Informe completo + plan de estudio',
-          'Todos los tracks y tipos de entrevistador',
-          'Progreso con gamificación',
+          'Todo lo de Free',
+          'Entrevistas de texto ilimitadas',
+          'Entrevistas de voz ilimitadas',
+          'Modo realista: muestra dónde te atascaste y cuánto valdría la sesión sin ayuda externa',
         ],
         featured: true,
+        cta: 'Apuntarme a la lista',
+        href: '#waitlist',
       },
       {
-        tier: 'ENTERPRISE',
-        price: 'Custom',
-        cadence: 'hablamos',
-        blurb: 'Bootcamps, grupos universitarios y equipos.',
+        tier: 'Enterprise',
+        price: 'A medida',
+        cadence: 'por puesto',
+        blurb: 'Para equipos de ingeniería y contratación.',
         features: [
-          'Plazas y gestión de grupos',
-          'Analítica agregada',
-          'SSO y controles de admin',
-          'Soporte prioritario',
+          'Pro para cada puesto',
+          'Entrevistas de empresa con vuestro stack',
+          'Invitaciones a candidatos con consentimiento',
+          'Informe de equipo respetuoso con la privacidad',
+          'Prueba de 14 días con 5 puestos',
         ],
         featured: false,
+        cta: 'Hablemos',
+        href: '/enterprise#contact',
       },
     ],
   },
 
+  teamsBand: {
+    eyebrow: 'Mentara para equipos',
+    heading: 'Práctica de entrevistas y cribado consistentes para equipos de ingeniería.',
+    lede: 'Da a tus ingenieros práctica estructurada con vuestro stack, y a los candidatos la misma entrevista siempre – sin convertir la práctica en vigilancia.',
+    points: [
+      {
+        title: 'Entrevistas de empresa',
+        body: 'Fija una vez el rol, nivel, stack, duración y preguntas semilla. Todos reciben la misma entrevista.',
+      },
+      {
+        title: 'Invitaciones a candidatos',
+        body: 'Envía un enlace de un solo uso. El candidato consiente primero; tú ves el informe, no la transcripción.',
+      },
+      {
+        title: 'Informe de equipo',
+        body: 'Actividad por persona y medias de habilidad solo para grupos de cinco o más. Nadie lee la transcripción de un empleado.',
+      },
+    ],
+    cta: 'Ver Mentara para equipos',
+  },
+
   faq: {
     eyebrow: 'FAQ',
-    heading: 'Respuestas directas.',
+    heading: 'Respuestas claras.',
     items: [
       {
-        q: '¿De verdad se siente como una entrevista real?',
-        a: 'De eso va justo. El entrevistador mantiene un papel, repregunta, pone en aprietos las respuestas flojas y sube la dificultad – silencios incómodos incluidos.',
+        q: '¿En qué se diferencia de pedirle preguntas de entrevista a ChatGPT?',
+        a: 'Un chatbot responde lo que le preguntas. Mentara dirige la entrevista: tiene estructura fija y límite de tiempo, repregunta cuando tu respuesta es débil, te puntúa con evidencia según una rúbrica, ejecuta tu código contra tests ocultos y recuerda tus últimas sesiones.',
       },
       {
-        q: '¿Tengo que programar en voz alta?',
-        a: 'Tú decides. Razona en voz alta, escribe código o las dos cosas. Las rondas behavioral y de system design van de conversar; en las de algoritmos puedes enviar código.',
+        q: '¿El entrevistador de IA es como una persona real?',
+        a: 'No, y no fingimos que lo sea. Está hecho para llevar una entrevista técnica consistente: repreguntas, reloj y estructura. Es práctica para la de verdad, no un sustituto.',
       },
       {
-        q: '¿Qué tracks hay?',
-        a: 'Rondas de Algoritmos, System Design, Behavioral y de Dominio – por roles y niveles de seniority, con una dificultad que se ajusta a ti.',
+        q: '¿Puedo escribir código?',
+        a: 'Sí, en una evaluación de código: editor, ejemplos ejecutables, temporizador si la evaluación lo tiene y tests ocultos al enviar. La entrevista en sí es una conversación hablada o escrita.',
       },
       {
-        q: '¿Cuándo y dónde se lanza?',
-        a: 'Mentara se lanza en 2026 en iOS, Android y web. Las fichas en las tiendas y la app web salen en el lanzamiento – esta página es el adelanto.',
+        q: '¿Puedo responder en voz alta?',
+        a: 'Sí. Toca el micrófono, habla y tu respuesta se transcribe. El plan Free incluye 3 entrevistas de voz cada 30 días; Pro no tiene límite.',
       },
       {
-        q: '¿Los datos de mi sesión son privados?',
-        a: 'Tus transcripciones y puntuaciones son tuyas. Alimentan tus informes y tu progreso, y no se venden. Una política de privacidad completa llega con las apps.',
+        q: '¿Qué ve mi empresa si usa Mentara?',
+        a: 'Solo tu fecha de alta, cuántas entrevistas hiciste en los últimos 30 días y cuándo estuviste activo por última vez. Las medias de habilidad del equipo aparecen solo cuando han contribuido al menos cinco personas. Ningún rol de una organización puede leer tus transcripciones ni tus informes individuales.',
+      },
+      {
+        q: '¿Cuándo puedo usarlo?',
+        a: 'Mentara se lanza en 2026 en la web, iOS y Android. Apúntate a la lista de espera y te escribiremos cuando abra.',
       },
     ],
   },
@@ -246,9 +353,153 @@ export const es: Dict = {
 
   cta: {
     eyebrow: 'Disponible en 2026',
-    titleLead: 'Mentara llega en 2026.',
-    titleAccent: 'Empieza a practicar pronto.',
-    lede: 'Mentara llega en 2026 a iOS, Android y web. Apúntate para recibir novedades del lanzamiento y empieza a practicar pronto.',
+    titleLead: 'Tu próxima entrevista se acerca.',
+    titleAccent: 'Practica antes de que llegue.',
+    lede: 'Mentara abre en la web, iOS y Android en 2026. Apúntate a la lista de espera y te escribiremos ese mismo día.',
+  },
+
+  enterprise: {
+    metaTitle: 'Mentara para equipos – práctica de entrevistas técnicas y cribado de candidatos',
+    metaDescription:
+      'Práctica de entrevistas con IA y evaluaciones de código para equipos de ingeniería: entrevistas de empresa con vuestro stack, invitaciones a candidatos con consentimiento y un informe de equipo que nunca expone transcripciones individuales.',
+    hero: {
+      eyebrow: 'Mentara para equipos',
+      title: 'Entrevistas técnicas estructuradas para todo tu equipo.',
+      lede: 'Ayuda a tus ingenieros a mantenerse en forma y evalúa a los candidatos siempre igual. Mentara da a tu organización entrevistas específicas de la empresa, evaluaciones de código e informes – con límites claros sobre lo que pueden ver los responsables.',
+      primary: 'Hablemos',
+      secondary: 'Lee: cómo usan los equipos la práctica de entrevistas con IA',
+    },
+    useCases: {
+      eyebrow: 'Dos usos',
+      heading: 'Haz crecer a tus ingenieros. Evalúa candidatos de forma consistente.',
+      items: [
+        {
+          tag: 'Formación',
+          title: 'Práctica estructurada para tus ingenieros',
+          body: 'La habilidad para entrevistas se pierde entre cambios de trabajo y ascensos. Los puestos dan a cada ingeniero práctica de nivel Pro con el stack que vuestro equipo usa de verdad.',
+          points: [
+            'Práctica de nivel Pro para cada puesto',
+            'Entrevistas de empresa con vuestras tecnologías y nivel',
+            'Un informe de equipo hecho de agregados, no de transcripciones',
+          ],
+        },
+        {
+          tag: 'Contratación',
+          title: 'La misma primera entrevista para cada candidato',
+          body: 'Una entrevista de empresa fija el rol, nivel, stack, duración, idioma y vuestras preguntas semilla, para comparar a los candidatos en igualdad de condiciones.',
+          points: [
+            'Enlaces de un solo uso que solo se abren con el correo invitado',
+            'El candidato ve un aviso claro y consiente primero',
+            'Recibes el informe y los resultados de los tests – no la transcripción ni el código',
+          ],
+        },
+      ],
+    },
+    steps: {
+      eyebrow: 'Cómo funciona',
+      heading: 'De la primera llamada a la primera entrevista.',
+      items: [
+        {
+          title: 'Hablemos',
+          body: 'Cuéntanos sobre tu equipo y si buscáis contratar, formar o ambas cosas.',
+        },
+        {
+          title: 'Empieza la prueba',
+          body: 'Activamos vuestra organización: 14 días, 5 puestos, 10 invitaciones a candidatos.',
+        },
+        {
+          title: 'Invita a tu equipo',
+          body: 'Comparte un enlace de invitación. Owners y admins gestionan puestos y roles.',
+        },
+        {
+          title: 'Crea entrevistas de empresa',
+          body: 'Elige rol, nivel y stack, y añade hasta 30 preguntas semilla con los conceptos que esperas.',
+        },
+        {
+          title: 'Practica e invita',
+          body: 'Los ingenieros practican; los reclutadores envían invitaciones a candidatos y leen los resultados.',
+        },
+      ],
+    },
+    privacy: {
+      eyebrow: 'Privacidad desde el diseño',
+      heading: 'Practicar solo funciona si nadie te está vigilando.',
+      lede: 'Los ingenieros practican con honestidad cuando sus errores son privados. Por eso los límites están dentro del producto, no en una política.',
+      sees: {
+        label: 'Lo que ve la organización',
+        points: [
+          'Fecha de alta, entrevistas de los últimos 30 días y última actividad de cada miembro',
+          'Medias de habilidad del equipo – solo si han contribuido al menos cinco personas',
+          'De candidatos que consintieron: el informe y los resultados de la evaluación',
+        ],
+      },
+      never: {
+        label: 'Lo que ningún rol puede ver',
+        points: [
+          'La transcripción de la entrevista de un empleado',
+          'El informe o las puntuaciones individuales de un empleado',
+          'La transcripción o el código enviado por un candidato',
+        ],
+      },
+    },
+    roles: {
+      eyebrow: 'Roles',
+      heading: 'Cuatro roles, cada uno con una tarea clara.',
+      items: [
+        { role: 'Owner', body: 'Todo, incluida la gestión de otros owners.' },
+        {
+          role: 'Admin',
+          body: 'Miembros e invitaciones, entrevistas de empresa, invitaciones a candidatos e informe de equipo.',
+        },
+        {
+          role: 'Recruiter',
+          body: 'Usa las entrevistas de empresa para enviar y gestionar invitaciones a candidatos.',
+        },
+        { role: 'Member', body: 'Practica, también con vuestras entrevistas de empresa.' },
+      ],
+    },
+    notYet: {
+      heading: 'Todavía no disponible',
+      lede: 'Preferimos decirlo ahora que en una reunión de compras.',
+      items: [
+        'SSO y aprovisionamiento SCIM',
+        'Integraciones con ATS',
+        'Marca personalizada',
+        'Problemas de código creados por la empresa',
+        'Compra self-service – los contratos se acuerdan con nosotros',
+      ],
+    },
+    article: {
+      eyebrow: 'Para leer más',
+      title:
+        'Práctica de entrevistas con IA para equipos de ingeniería: qué puede y qué no (en inglés)',
+      cta: 'Leer el artículo',
+    },
+    form: {
+      eyebrow: 'Hablemos',
+      heading: 'Cuéntanos sobre tu equipo.',
+      sub: 'Respondemos por correo, normalmente en dos días laborables.',
+      name: 'Tu nombre',
+      email: 'Correo del trabajo',
+      company: 'Empresa',
+      teamSize: 'Tamaño del equipo',
+      useCase: '¿Qué necesitáis?',
+      useCases: {
+        upskilling: 'Práctica para nuestros ingenieros',
+        hiring: 'Cribado de candidatos',
+        both: 'Ambas cosas',
+      },
+      message: '¿Algo más?',
+      messageHint: 'Stack, plazos, número de candidatos – opcional.',
+      submit: 'Enviar',
+      sending: 'Enviando…',
+      success: 'Gracias – hemos recibido tu mensaje y te responderemos por correo.',
+      invalid: 'Revisa los campos de arriba y vuelve a intentarlo.',
+      rateLimited: 'Demasiadas solicitudes desde esta red. Inténtalo de nuevo en una hora.',
+      error: 'Algo falló por nuestro lado. Vuelve a intentarlo en un momento.',
+      offNote: 'El formulario de contacto abrirá en breve.',
+      privacyNote: 'Solo usamos estos datos para responderte.',
+    },
   },
 
   contentHub: {
@@ -262,15 +513,15 @@ export const es: Dict = {
     resources: {
       eyebrow: 'Recursos',
       title: 'Rutas de lectura estructuradas para preparar entrevistas técnicas.',
-      lede: 'Puntos de entrada agrupados para quienes comparan herramientas, practican system design, afinan respuestas behavioral o se preparan para loops senior y staff.',
+      lede: 'Puntos de entrada agrupados para quienes comparan herramientas, practican system design, afinan respuestas behavioral, se preparan para loops senior y staff – y para equipos.',
     },
     blog: {
       eyebrow: 'Recursos',
-      title: 'Comparativas, estrategia de práctica y notas de producto.',
-      lede: 'Creado para captar búsquedas con intención alta y dar a candidatos serios una vía mejor al producto que un pitch genérico de landing.',
+      title: 'Estrategia de preparación, comparativas y notas de producto.',
+      lede: 'Artículos prácticos para preparar entrevistas técnicas – y sobre cómo los equipos pueden organizar la práctica de entrevistas a escala.',
       primary: 'Ver todos los artículos',
       pathsEyebrow: 'Rutas de lectura',
-      pathsTitle: 'Grupos temáticos, no una pila aleatoria de artículos.',
+      pathsTitle: 'Agrupados según lo que estás preparando.',
     },
   },
 
@@ -283,7 +534,8 @@ export const es: Dict = {
   },
 
   footer: {
-    blurb: 'Entrevistas de práctica con IA para ingenieros – iOS, Android y web.',
+    blurb:
+      'Práctica de entrevistas técnicas y evaluaciones de código para desarrolladores y equipos.',
     explore: 'Explorar',
     legal: 'Legal',
     privacy: 'Privacidad',

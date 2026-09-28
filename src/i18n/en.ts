@@ -7,198 +7,300 @@ export const en: Dict = {
   a11yMenu: 'Menu',
 
   meta: {
-    title: 'Mentara – AI mock technical interviews for software engineers',
+    title: 'Mentara – AI technical interview practice and coding assessments for developers',
     description:
-      'Mentara runs realistic technical mock interviews with an AI interviewer that adapts, pushes back, and scores you in real time – so you walk into the real interview prepared. iOS, Android, and the web.',
-    tagline: 'Practice real interviews.',
+      'Practice structured technical interviews with an AI interviewer that follows up on your answers, take coding assessments graded by hidden tests, and get a report that shows your weak areas with evidence. Free and Pro plans, plus Enterprise for teams.',
+    tagline: 'Practice the interview, not just the questions.',
     launchLabel: 'Launching 2026',
   },
 
   nav: [
-    { label: 'Product', href: '#product' },
-    { label: 'Features', href: '#features' },
-    { label: 'Blog', href: '/blog' },
+    { label: 'Interviews', href: '#interview' },
+    { label: 'Assessments', href: '#assessments' },
     { label: 'Pricing', href: '#pricing' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Teams', href: '/enterprise' },
+    { label: 'Blog', href: '/blog' },
   ],
 
   hero: {
-    eyebrow: 'AI mock interviews · built for engineers',
-    titleLead: 'Practice technical interviews.',
-    titleAccent: 'Before',
-    titleTail: 'the real one happens.',
-    lede: 'Mentara runs realistic technical mock interviews with an AI interviewer that adapts, pushes back, and scores you in real time – so you walk into the real interview prepared.',
-    availability: 'Launching 2026 · iOS, Android & Web',
+    eyebrow: 'Interview practice for developers and teams',
+    titleLead: 'Practice the technical interview,',
+    titleAccent: 'not just the questions.',
+    lede: 'Mentara runs a structured interview for your role and stack, follows up on what you actually said, grades your code against hidden tests, and gives you a report that points to your weak areas – so the next session targets them.',
+    availability: 'Launching 2026 · Web, iOS & Android',
+    teamsLink: 'For engineering teams',
   },
 
-  trust: [
-    'FAANG-style loops',
-    '10+ practice tracks',
-    'Real-time scoring',
-    'Adaptive difficulty',
-    'iOS · Android · Web',
+  proof: [
+    'Frontend · Backend · Algorithms',
+    '19 technologies',
+    'Junior to Senior',
+    '15, 30 or 60 minutes',
+    'Type or speak',
+    '5 interview languages',
   ],
 
-  product: {
-    eyebrow: 'A look at the app',
-    heading: 'The interview, on your screen.',
-    lede: "One screen, one purpose: keep your attention on the interview. The question, your answer, and a live read on how you're doing – on your phone or in the browser, with nothing else competing for attention.",
-    notes: [
-      'Talk or type – the interviewer reacts either way',
-      'The score updates while you speak, not after',
-      'Your hint budget is visible, so you ration it like the real thing',
-    ],
-    ui: {
-      track: 'system-design · L5',
-      timer: '14:22',
-      interviewer: 'interviewer',
-      you: 'you',
-      q: 'Your write path is hot on one key. How do you keep one node from melting?',
-      a: 'Salt the partition key, fan reads across replicas, and add a write-behind…',
-      liveScore: 'live score',
-      hints: 'hints',
-    },
-  },
-
-  panel: {
-    label: 'session · system-design · L5',
-    interviewer: 'interviewer',
-    you: 'you',
-    aiLine: "Walk me through how you'd shard this so a hot key doesn't melt one node.",
-    youLine: "I'd add a salt to the partition key and fan reads across replicas…",
-    of: '/10',
-    scores: ['Technical', 'Communication', 'Edge cases', 'Problem-solving'],
-  },
-
-  features: {
-    eyebrow: 'What you get',
-    heading: 'An interviewer that pushes back, not a quiz app.',
-    items: [
-      {
-        index: '01',
-        title: 'An interviewer that pushes back',
-        body: 'Not a chatbot reading questions. The AI interviewer stays in character for your role, level, and persona – follows up, probes edge cases, and gets harder if you start coasting.',
-      },
-      {
-        index: '02',
-        title: 'Scored while you talk',
-        body: 'Live signal on technical depth, communication, edge-case handling, and problem-solving – updated every few turns, not buried in a post-mortem.',
-      },
-      {
-        index: '03',
-        title: 'Structured practice tracks',
-        body: 'Algorithms, System Design, Behavioral, and Domain rounds with calibrated difficulty. Train the round you actually fear, not a random grab bag.',
-      },
-      {
-        index: '04',
-        title: 'Progress that compounds',
-        body: 'XP, streaks, levels, and achievements turn scattered cramming into a habit. Show up daily and watch your progress add up.',
-      },
-    ],
-  },
-
-  audience: {
-    eyebrow: 'Who it’s for',
-    heading: 'Built for engineers preparing right now.',
-    groups: [
-      {
-        tag: 'New grads',
-        body: 'Turn “I know it on paper” into “I can handle the interview” before your first onsite.',
-      },
-      {
-        tag: 'Career switchers',
-        body: 'Close the interview-experience gap fast – practice with feedback, not guesswork.',
-      },
-      {
-        tag: 'Senior loops',
-        body: 'Practice system design and tough staff-level questions until the real panel feels routine.',
-      },
-    ],
-    versus: {
-      them: 'Grinding LeetCode alone',
-      themPoints: [
-        'No one pushes back on a hand-wavy answer',
-        'Silent on communication & structure',
-        'You grade yourself – generously',
+  why: {
+    eyebrow: 'Why practice here',
+    heading: 'Reading answers is not the same as giving them.',
+    lede: 'Most prep ends with a list of questions you have read. An interview asks you to explain, gets specific about the weak part, and moves on whether you are ready or not. That is the part Mentara lets you practice.',
+    them: {
+      label: 'Question lists and a general chatbot',
+      points: [
+        'You pick the questions, so you pick the easy ones',
+        'Nobody asks "why?" after a vague answer',
+        'Code is never run, so "looks right" counts as right',
+        'You grade yourself, and every session starts from zero',
       ],
-      us: 'Mentara',
-      usPoints: [
-        'An interviewer that follows up and escalates',
-        'Scored on communication, not just the answer',
-        'An honest report + what to fix next',
+    },
+    us: {
+      label: 'A Mentara session',
+      points: [
+        'A timed interview for your role, level and stack, with a fixed structure',
+        'Follow-up questions built on your own answer',
+        'Coding assessments graded by tests you cannot see',
+        'A report with evidence, and weak areas that shape your next session',
       ],
     },
   },
 
-  steps: {
-    eyebrow: 'How it works',
-    heading: 'How it works, in three steps.',
-    items: [
+  interview: {
+    eyebrow: 'AI interviews',
+    heading: 'A structured interview that reacts to your answers.',
+    lede: 'Each interview moves through warm-up, technical questions, a deep dive and a wrap-up. The interviewer asks follow-ups on what you said, narrows the question when you stall, and pushes further when an answer is strong.',
+    steps: [
       {
-        n: '1',
-        title: 'Pick the round',
-        body: 'Choose a track, role, and difficulty. Set the persona – friendly screen or a staff-level grilling.',
+        title: 'Choose your role',
+        body: 'Frontend, backend or algorithms, at junior, middle or senior level.',
       },
       {
-        n: '2',
-        title: 'Run the live mock',
-        body: 'Talk it through or write code. The interviewer adapts in real time and scores each exchange.',
+        title: 'Pick your stack',
+        body: 'Up to six technologies – React, TypeScript, Node.js, system design and more.',
       },
       {
-        n: '3',
-        title: 'Get the report',
-        body: 'A scored breakdown plus a focused study path – exactly what to fix before the real loop.',
+        title: 'Set the interview',
+        body: '15, 30 or 60 minutes, one of three interviewers, strict or supportive feedback, in one of five languages.',
+      },
+      {
+        title: 'Answer out loud or in text',
+        body: 'Type, or speak and have your answer transcribed. Up to three hints if you get stuck.',
+      },
+      {
+        title: 'Get your report',
+        body: 'Scores, evidence and a learning path the moment the interview ends.',
       },
     ],
+    honesty:
+      'It is an AI interviewer, not a person. It is built to run a consistent, structured technical interview – and your last sessions shape what it asks next.',
+    mock: {
+      label: 'Interview · Frontend · Senior · 30 min',
+      phases: ['Warm-up', 'Technical', 'Deep dive', 'Wrap-up'],
+      interviewer: 'Interviewer',
+      you: 'You',
+      q: 'Your list re-renders on every keystroke in the search box. How would you find out why?',
+      a: 'I’d open the React Profiler, record a keystroke, and check which components rendered and why…',
+      followUp:
+        'Say the profiler shows the whole list re-rendering. What are the two most likely causes?',
+      hints: 'Hints 2 of 3 left',
+      voice: 'Tap to answer',
+    },
+  },
+
+  assessment: {
+    eyebrow: 'Coding assessments',
+    heading: 'Write the code. Hidden tests grade it.',
+    lede: 'Coding has its own place in Mentara: a separate, timed assessment with an editor, runnable examples and a real submission. The interview stays a conversation; the assessment checks the code.',
+    steps: [
+      {
+        title: 'Read the problem',
+        body: 'One to five problems, with examples. A timer, when the assessment has one, is enforced by the server.',
+      },
+      {
+        title: 'Write your solution',
+        body: 'JavaScript, TypeScript, Python, Java, Go or C++. You can switch language mid-attempt.',
+      },
+      {
+        title: 'Run the examples',
+        body: 'Run the visible examples or your own input as often as you like before you commit.',
+      },
+      {
+        title: 'Submit',
+        body: 'Your code is graded against hidden tests that never leave the server.',
+      },
+      {
+        title: 'Read the review',
+        body: 'An AI review of code quality, efficiency and readability, per problem, with strengths and weak areas.',
+      },
+    ],
+    separate:
+      'Why separate? Talking through a design and writing working code are different skills. Mixing them in one chat hides which one needs the work.',
+    mock: {
+      label: 'Coding assessment · 2 problems',
+      timer: '38:12 left',
+      problem: 'Merge overlapping intervals',
+      run: 'Run examples',
+      submit: 'Submit',
+      examples: 'Examples',
+      passed: '3 / 3 passed',
+      review: 'Review',
+      reviewLines: [
+        'Correct on edge cases: empty input, touching intervals',
+        'O(n log n) – the sort dominates',
+        'Consider naming the accumulator',
+      ],
+    },
+  },
+
+  report: {
+    eyebrow: 'Feedback',
+    heading: 'Know exactly what to fix next.',
+    lede: 'The interview ends with a report, not a pat on the back. Every score is tied to something you actually said, and the gaps become your next practice plan.',
+    points: [
+      {
+        title: 'Scores you can trace',
+        body: 'Overall, plus technical depth, communication, edge cases and problem solving. Scores come from evidence in your answers, not a number the model made up.',
+      },
+      {
+        title: 'Per-competency results',
+        body: 'Each skill the interview covered is marked strong, solid, developing or needs work – or "not assessed" when there was not enough evidence.',
+      },
+      {
+        title: 'Strengths and weak areas',
+        body: 'What went well, what to improve, and quotes from your own answers that show why.',
+      },
+      {
+        title: 'A learning path',
+        body: 'Prioritised topics with a time estimate. Your next interview picks up your weak areas.',
+      },
+    ],
+    mock: {
+      label: 'Your report',
+      overall: 'Overall',
+      categories: ['Technical', 'Communication', 'Edge cases', 'Problem solving'],
+      competencyTitle: 'By competency',
+      competencies: [
+        { name: 'React rendering', band: 'Strong' },
+        { name: 'State management', band: 'Solid' },
+        { name: 'Web performance', band: 'Developing' },
+      ],
+      evidenceTitle: 'Evidence from your answers',
+      evidence:
+        '“I’d memoize the row component” – correct fix, but the cause (a new callback each render) was never named.',
+      nextTitle: 'Next focus',
+      next: 'Web performance · ~3 h',
+    },
+  },
+
+  progress: {
+    eyebrow: 'Keep going',
+    heading: 'A reason to come back tomorrow.',
+    lede: 'Interview skill fades without practice. Daily challenges give you a small, concrete task each day, based on your own history.',
+    points: [
+      {
+        title: 'Daily challenges',
+        body: 'Up to three a day: finish without hints, beat your last score, revisit a weak area, practice a technology.',
+      },
+      {
+        title: 'Streaks and levels',
+        body: 'XP moves you from Intern to CTO. A streak freeze covers the odd missed day.',
+      },
+      {
+        title: 'Achievements',
+        body: 'Tracks for consistency, improvement, roles and technologies – earned by practicing, not by opening the app.',
+      },
+      {
+        title: 'Progress over time',
+        body: 'Your score trend, your recurring weak areas and every past report in one place.',
+      },
+    ],
+    mock: {
+      label: 'Today’s challenge',
+      challenges: [
+        { title: 'Complete one interview', xp: '+30 XP', done: true },
+        { title: 'Finish without hints', xp: '+50 XP', done: false },
+        { title: 'Revisit Web performance', xp: '+80 XP', done: false },
+      ],
+      streak: '12-day streak',
+      level: 'Level · Mid',
+    },
   },
 
   pricing: {
     eyebrow: 'Pricing',
-    heading: 'Free to start, with paid plans for more practice.',
-    flag: 'Most popular',
-    cta: 'Available at launch',
-    foot: 'Prices are indicative and finalized at launch.',
+    heading: 'Start free. Upgrade when you are in an active job search.',
+    flag: 'For active job searches',
+    foot: 'Pro pricing is set at launch and shown in the app store and on the web before you pay.',
     tiers: [
       {
-        tier: 'FREE',
+        tier: 'Free',
         price: '$0',
         cadence: 'forever',
-        blurb: 'Try real mock interviews.',
+        blurb: 'Everything you need to practice regularly.',
         features: [
-          'A few sessions / month',
-          'Core practice tracks',
-          'Live scoring',
-          'Basic progress',
+          '5 text interviews every 30 days',
+          '3 voice interviews every 30 days',
+          'Full report after every interview',
+          'All roles, levels and technologies',
+          'Coding assessments',
+          'Daily challenges and achievements',
         ],
         featured: false,
+        cta: 'Join the waitlist',
+        href: '#waitlist',
       },
       {
-        tier: 'PRO',
-        price: 'TBD',
-        cadence: 'at launch',
-        blurb: 'For the engineer in an active loop.',
+        tier: 'Pro',
+        price: 'TBA',
+        cadence: 'set at launch',
+        blurb: 'For the weeks when you are interviewing for real.',
         features: [
-          'Unlimited sessions',
-          'Full scored reports + study path',
-          'All tracks & personas',
-          'Gamified progression',
+          'Everything in Free',
+          'Unlimited text interviews',
+          'Unlimited voice interviews',
+          'Realistic mode: shows where you got stuck and what the session was worth without outside help',
         ],
         featured: true,
+        cta: 'Join the waitlist',
+        href: '#waitlist',
       },
       {
-        tier: 'ENTERPRISE',
+        tier: 'Enterprise',
         price: 'Custom',
-        cadence: 'talk to us',
-        blurb: 'Bootcamps, university cohorts, and teams.',
+        cadence: 'per seat',
+        blurb: 'For engineering teams and hiring.',
         features: [
-          'Seats & cohort management',
-          'Aggregate analytics',
-          'SSO & admin controls',
-          'Priority support',
+          'Pro for every seat',
+          'Company interviews on your stack',
+          'Candidate assignments with consent',
+          'Privacy-first team report',
+          '14-day trial with 5 seats',
         ],
         featured: false,
+        cta: 'Talk to us',
+        href: '/enterprise#contact',
       },
     ],
+  },
+
+  teamsBand: {
+    eyebrow: 'Mentara for teams',
+    heading: 'Consistent interview practice and screening for engineering teams.',
+    lede: 'Give engineers structured practice on your stack, and give candidates the same interview every time – without turning practice into surveillance.',
+    points: [
+      {
+        title: 'Company interviews',
+        body: 'Fix the role, level, stack, length and seed questions once. Everyone gets the same interview.',
+      },
+      {
+        title: 'Candidate assignments',
+        body: 'Send a single-use link. The candidate consents first; you see the report, not the transcript.',
+      },
+      {
+        title: 'Team report',
+        body: 'Activity per person, skill averages only for groups of five or more. No one reads an employee’s transcript.',
+      },
+    ],
+    cta: 'See Mentara for teams',
   },
 
   faq: {
@@ -206,24 +308,28 @@ export const en: Dict = {
     heading: 'Straight answers.',
     items: [
       {
-        q: 'Does it actually feel like a real interview?',
-        a: 'That is the whole point. The interviewer holds a persona, asks follow-ups, challenges weak answers, and escalates difficulty – the awkward silences included.',
+        q: 'How is this different from asking ChatGPT for interview questions?',
+        a: 'A chatbot answers what you ask. Mentara runs the interview: it has a fixed structure and time limit, follows up on your weak answers, scores you from evidence against a rubric, runs your code against hidden tests, and remembers your last sessions.',
       },
       {
-        q: 'Do I have to code out loud?',
-        a: 'You choose. Talk through your reasoning, write code, or both. Behavioral and system-design rounds are conversation-first; algorithm rounds let you submit code.',
+        q: 'Is the AI interviewer like a real person?',
+        a: 'No, and we do not pretend it is. It is built to run a consistent technical interview – follow-ups, a clock and a structure. It is practice for the real thing, not a replacement for it.',
       },
       {
-        q: 'Which tracks are covered?',
-        a: 'Algorithms, System Design, Behavioral, and Domain rounds, across roles and seniority levels, with difficulty that calibrates to you.',
+        q: 'Can I write code?',
+        a: 'Yes, in a coding assessment: an editor, runnable examples, a timer when the assessment has one, and hidden tests on submit. The interview itself is a spoken or typed conversation.',
       },
       {
-        q: 'When and where does it launch?',
-        a: 'Mentara launches in 2026 on iOS, Android, and the web. The store listings and web app go live at launch – this page is the early look.',
+        q: 'Can I answer out loud?',
+        a: 'Yes. Tap the mic, speak, and your answer is transcribed. The Free plan includes 3 voice interviews every 30 days; Pro has no limit.',
       },
       {
-        q: 'Is my session data private?',
-        a: 'Your transcripts and scores are yours. They power your reports and progress and are not sold. A full privacy policy ships with the apps.',
+        q: 'What does my employer see if my company uses Mentara?',
+        a: 'Only your join date, how many interviews you did in the last 30 days, and when you were last active. Team skill averages appear only when at least five people contributed. No role in an organization can read your transcripts or your individual reports.',
+      },
+      {
+        q: 'When can I use it?',
+        a: 'Mentara launches in 2026 on the web, iOS and Android. Join the waitlist and we will email you when it opens.',
       },
     ],
   },
@@ -246,9 +352,152 @@ export const en: Dict = {
 
   cta: {
     eyebrow: 'Launching 2026',
-    titleLead: 'Mentara launches in 2026.',
-    titleAccent: 'Start practicing early.',
-    lede: 'Mentara lands on iOS, Android, and the web in 2026. Sign up for launch updates and start practicing early.',
+    titleLead: 'Your next interview is coming.',
+    titleAccent: 'Practice before it does.',
+    lede: 'Mentara opens on the web, iOS and Android in 2026. Join the waitlist and we will email you the day it does.',
+  },
+
+  enterprise: {
+    metaTitle: 'Mentara for teams – technical interview practice and candidate screening',
+    metaDescription:
+      'Structured AI interview practice and coding assessments for engineering teams: company interviews on your stack, candidate assignments with consent, and a team report that never exposes individual transcripts.',
+    hero: {
+      eyebrow: 'Mentara for teams',
+      title: 'Structured technical interviews for your whole team.',
+      lede: 'Help engineers stay sharp and screen candidates the same way every time. Mentara gives your organization company-specific interviews, coding assessments and reporting – with clear limits on what managers can see.',
+      primary: 'Talk to us',
+      secondary: 'Read: how teams use AI interview practice',
+    },
+    useCases: {
+      eyebrow: 'Two ways teams use it',
+      heading: 'Grow your engineers. Screen candidates consistently.',
+      items: [
+        {
+          tag: 'Upskilling',
+          title: 'Structured practice for your engineers',
+          body: 'Interview skill fades between job changes and promotions. Seats give each engineer Pro-level practice on the stack your team actually uses.',
+          points: [
+            'Pro-level practice for every seat',
+            'Company interviews on your technologies and level',
+            'A team report built from aggregates, not transcripts',
+          ],
+        },
+        {
+          tag: 'Hiring',
+          title: 'The same first interview for every candidate',
+          body: 'A company interview fixes the role, level, stack, length, language and your seed questions, so candidates are compared on the same ground.',
+          points: [
+            'Single-use links that open only for the invited email',
+            'The candidate sees a clear disclosure and consents first',
+            'You get the report and test results – not the transcript or the code',
+          ],
+        },
+      ],
+    },
+    steps: {
+      eyebrow: 'How it works',
+      heading: 'From first call to first interview.',
+      items: [
+        {
+          title: 'Talk to us',
+          body: 'Tell us about your team and whether you are hiring, upskilling or both.',
+        },
+        {
+          title: 'Start a trial',
+          body: 'We activate your organization: 14 days, 5 seats, 10 candidate assignments.',
+        },
+        {
+          title: 'Invite your team',
+          body: 'Share an invite link. Owners and admins manage seats and roles.',
+        },
+        {
+          title: 'Build company interviews',
+          body: 'Pick role, level and stack, add up to 30 seed questions with the concepts you expect.',
+        },
+        {
+          title: 'Practice and assign',
+          body: 'Engineers practice; recruiters send candidate assignments and read the results.',
+        },
+      ],
+    },
+    privacy: {
+      eyebrow: 'Privacy by design',
+      heading: 'Practice only works if people are not being watched.',
+      lede: 'Engineers practice honestly when mistakes stay private. So the limits are built into the product, not left to policy.',
+      sees: {
+        label: 'What the organization sees',
+        points: [
+          'Each member’s join date, interviews in the last 30 days and last activity',
+          'Team skill averages – only when at least five people contributed',
+          'For candidates who consented: the report and assessment results',
+        ],
+      },
+      never: {
+        label: 'What no role can see',
+        points: [
+          'An employee’s interview transcript',
+          'An employee’s individual report or scores',
+          'A candidate’s transcript or submitted code',
+        ],
+      },
+    },
+    roles: {
+      eyebrow: 'Roles',
+      heading: 'Four roles, each with a clear job.',
+      items: [
+        { role: 'Owner', body: 'Everything, including managing other owners.' },
+        {
+          role: 'Admin',
+          body: 'Members and invites, company interviews, candidate assignments and the team report.',
+        },
+        {
+          role: 'Recruiter',
+          body: 'Uses company interviews to send and manage candidate assignments.',
+        },
+        { role: 'Member', body: 'Practices, including your company interviews.' },
+      ],
+    },
+    notYet: {
+      heading: 'Not available yet',
+      lede: 'We would rather tell you now than in a procurement call.',
+      items: [
+        'SSO and SCIM provisioning',
+        'ATS integrations',
+        'Custom branding',
+        'Company-authored coding problems',
+        'Self-serve checkout – contracts are set up with us',
+      ],
+    },
+    article: {
+      eyebrow: 'Further reading',
+      title: 'AI interview practice for engineering teams: what it can and can’t do',
+      cta: 'Read the article',
+    },
+    form: {
+      eyebrow: 'Talk to us',
+      heading: 'Tell us about your team.',
+      sub: 'We reply by email, usually within two business days.',
+      name: 'Your name',
+      email: 'Work email',
+      company: 'Company',
+      teamSize: 'Team size',
+      useCase: 'What do you need?',
+      useCases: {
+        upskilling: 'Practice for our engineers',
+        hiring: 'Screening candidates',
+        both: 'Both',
+      },
+      message: 'Anything else?',
+      messageHint: 'Stack, timeline, number of candidates – optional.',
+      submit: 'Send',
+      sending: 'Sending…',
+      success: 'Thanks – we have your message and will reply by email.',
+      invalid: 'Please check the fields above and try again.',
+      rateLimited: 'Too many requests from this network. Try again in an hour.',
+      error: 'Something went wrong on our end. Try again in a moment.',
+      offNote: 'The contact form opens shortly.',
+      privacyNote: 'We use these details only to reply to you.',
+    },
   },
 
   contentHub: {
@@ -262,15 +511,15 @@ export const en: Dict = {
     resources: {
       eyebrow: 'Resources',
       title: 'Structured reading paths for technical interview prep.',
-      lede: 'Grouped entry points for candidates comparing tools, practicing system design, tightening behavioral answers, or preparing for senior and staff loops.',
+      lede: 'Grouped entry points for candidates comparing tools, practicing system design, tightening behavioral answers, preparing for senior and staff loops – and for teams.',
     },
     blog: {
       eyebrow: 'Resources',
-      title: 'Comparison pages, prep strategy, and product notes.',
-      lede: 'Built to catch high-intent search traffic and give serious candidates a sharper way into the product than a generic landing page pitch.',
+      title: 'Interview prep strategy, comparisons and product notes.',
+      lede: 'Practical articles on preparing for technical interviews – and how teams can run interview practice at scale.',
       primary: 'Browse all articles',
       pathsEyebrow: 'Reading paths',
-      pathsTitle: 'Search clusters, not a random pile of posts.',
+      pathsTitle: 'Grouped by what you are preparing for.',
     },
   },
 
@@ -283,7 +532,7 @@ export const en: Dict = {
   },
 
   footer: {
-    blurb: 'AI mock interviews for engineers – iOS, Android & web.',
+    blurb: 'Technical interview practice and coding assessments for developers and teams.',
     explore: 'Explore',
     legal: 'Legal',
     privacy: 'Privacy',

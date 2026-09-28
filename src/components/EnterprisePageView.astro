@@ -1,0 +1,366 @@
+---
+// /enterprise – Mentara for teams. Every capability named here is live in the product;
+// planned items are listed separately under "not available yet".
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+import { getDict, localeHome, localePath, localeUrl, type Locale } from '../i18n';
+import EnterpriseForm from './EnterpriseForm.astro';
+import FlowSteps from './FlowSteps.astro';
+import Footer from './Footer.astro';
+import Nav from './Nav.astro';
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const e = t.enterprise;
+const origin = Astro.site ?? new URL(SITE.domain);
+const articleHref = localePath(locale, 'blog/ai-interview-practice-for-engineering-teams');
+
+const breadcrumb = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: SITE.name, item: localeUrl(locale, origin) },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: e.hero.eyebrow,
+      item: new URL(localePath(locale, 'enterprise'), origin).href,
+    },
+  ],
+};
+---
+
+<BaseLayout
+  locale={locale}
+  title={e.metaTitle}
+  description={e.metaDescription}
+  jsonLd={[breadcrumb]}
+>
+  <Nav locale={locale} homeHref={localeHome(locale)} />
+  <main id="main">
+    <section class="ent-hero">
+      <div class="container ent-hero__inner">
+        <p class="eyebrow" data-reveal style="--d:0">{e.hero.eyebrow}</p>
+        <h1 class="display" data-reveal style="--d:1">{e.hero.title}</h1>
+        <p class="lede" data-reveal style="--d:2">{e.hero.lede}</p>
+        <div class="ent-hero__cta" data-reveal style="--d:3">
+          <a class="btn" href="#contact">{e.hero.primary}</a>
+          <a class="link-arrow" href={articleHref}>{e.hero.secondary} →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="ent-cases">
+      <div class="container">
+        <SectionHead eyebrow={e.useCases.eyebrow} heading={e.useCases.heading} />
+        <div class="cases">
+          {
+            e.useCases.items.map((c) => (
+              <article class="case">
+                <span class="case__tag">{c.tag}</span>
+                <h3 class="case__title">{c.title}</h3>
+                <p class="case__body">{c.body}</p>
+                <ul class="case__list">
+                  {c.points.map((p) => (
+                    <li>
+                      <span aria-hidden="true">✓</span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="ent-steps">
+      <div class="container">
+        <SectionHead eyebrow={e.steps.eyebrow} heading={e.steps.heading} />
+        <FlowSteps steps={e.steps.items} />
+      </div>
+    </section>
+
+    <section class="ent-privacy">
+      <div class="container">
+        <SectionHead eyebrow={e.privacy.eyebrow} heading={e.privacy.heading} />
+        <p class="lede ent-privacy__lede">{e.privacy.lede}</p>
+        <div class="sees">
+          <div class="sees__col">
+            <h3 class="sees__name">{e.privacy.sees.label}</h3>
+            <ul>
+              {e.privacy.sees.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </div>
+          <div class="sees__col sees__col--never">
+            <h3 class="sees__name">{e.privacy.never.label}</h3>
+            <ul>
+              {e.privacy.never.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ent-roles">
+      <div class="container split ent-roles__split">
+        <div class="split__copy">
+          <SectionHead eyebrow={e.roles.eyebrow} heading={e.roles.heading} />
+          <dl class="roles">
+            {
+              e.roles.items.map((r) => (
+                <div class="roles__row">
+                  <dt>{r.role}</dt>
+                  <dd>{r.body}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+        <aside class="notyet" aria-labelledby="notyet-title">
+          <h3 id="notyet-title" class="notyet__title">{e.notYet.heading}</h3>
+          <p class="notyet__lede">{e.notYet.lede}</p>
+          <ul>
+            {e.notYet.items.map((i) => <li>{i}</li>)}
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="ent-contact">
+      <div class="container">
+        <EnterpriseForm locale={locale} />
+        <a class="article" href={articleHref}>
+          <span class="eyebrow">{e.article.eyebrow}</span>
+          <span class="article__title">{e.article.title}</span>
+          <span class="article__cta mono">{e.article.cta} →</span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>
+
+<style>
+  .ent-hero {
+    padding-top: clamp(3rem, 7vw, 6rem);
+    padding-bottom: clamp(2rem, 5vw, 4rem);
+  }
+  .ent-hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 60rem;
+  }
+  .ent-hero__inner .lede {
+    max-width: 58ch;
+  }
+  .ent-hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem 1.8rem;
+    margin-top: 0.4rem;
+  }
+
+  .cases {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+  .case {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: clamp(1.4rem, 3vw, 2.2rem);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: var(--ink-1);
+    min-width: 0;
+  }
+  .case__tag {
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid color-mix(in oklab, var(--amber) 40%, transparent);
+    padding: 0.25rem 0.55rem;
+    border-radius: 2px;
+  }
+  .case__title {
+    font-size: clamp(1.3rem, 1.1rem + 0.6vw, 1.6rem);
+  }
+  .case__body {
+    color: var(--bone-dim);
+  }
+  .case__list {
+    list-style: none;
+    display: grid;
+    gap: 0.6rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+  .case__list li {
+    display: grid;
+    grid-template-columns: 1.2rem minmax(0, 1fr);
+    gap: 0.4rem;
+    font-size: 0.95rem;
+  }
+  .case__list span {
+    color: var(--amber);
+  }
+
+  .ent-steps,
+  .ent-roles {
+    background: rgba(0, 0, 0, 0.18);
+    border-block: 1px solid var(--line);
+  }
+
+  .ent-privacy__lede {
+    max-width: 58ch;
+    margin-top: calc(-1 * clamp(1rem, 2.5vw, 2rem));
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .sees {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .sees__col {
+    padding: clamp(1.4rem, 3vw, 2.2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+  }
+  .sees__col--never {
+    background: var(--ink-1);
+    border-left: 1px solid var(--line-strong);
+  }
+  .sees__name {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+  .sees__col--never .sees__name {
+    color: var(--amber);
+  }
+  .sees ul {
+    list-style: none;
+    display: grid;
+    gap: 0.8rem;
+  }
+  .sees li {
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .sees li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--sage);
+  }
+  .sees__col--never li::before {
+    content: '✕';
+    color: var(--amber);
+  }
+
+  .ent-roles__split {
+    align-items: start;
+  }
+  .roles {
+    display: grid;
+    border-top: 1px solid var(--line);
+  }
+  .roles__row {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .roles dt {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--bone);
+  }
+  .roles dd {
+    color: var(--bone-dim);
+    font-size: 0.95rem;
+  }
+  .notyet {
+    padding: clamp(1.4rem, 3vw, 2rem);
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .notyet__title {
+    font-size: 1.2rem;
+  }
+  .notyet__lede {
+    color: var(--bone-dim);
+    font-size: 0.95rem;
+  }
+  .notyet ul {
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--bone-dim);
+  }
+  .notyet li::before {
+    content: '○ ';
+    color: var(--bone-faint);
+  }
+
+  .article {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    padding: clamp(1.4rem, 3vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    transition: border-color 0.2s;
+  }
+  .article:hover {
+    border-color: var(--line-strong);
+  }
+  .article__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1rem + 0.8vw, 1.5rem);
+    font-weight: 600;
+  }
+  .article__cta {
+    color: var(--amber);
+  }
+
+  @media (max-width: 820px) {
+    .cases,
+    .sees {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .sees__col--never {
+      border-left: 0;
+      border-top: 1px solid var(--line-strong);
+    }
+    .roles__row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.25rem;
+    }
+  }
+</style>

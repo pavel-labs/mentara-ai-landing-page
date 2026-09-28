@@ -4,7 +4,7 @@
 //
 // `effectiveDate` is the single place to bump the "last updated" stamp.
 
-export const LEGAL_EFFECTIVE_DATE = '2026-05-18';
+export const LEGAL_EFFECTIVE_DATE = '2026-09-28';
 // TODO: replace before launch – depends on the (still undecided) custom domain. Shown
 // verbatim in the privacy policy and terms, so it must be a mailbox that actually exists.
 export const LEGAL_CONTACT = 'privacy@mentara-ai-landing.web.app';
@@ -27,7 +27,8 @@ export const PRIVACY: LegalSection[] = [
     body: [
       'Account: your email address and authentication identifiers, via our auth provider (Clerk).',
       'Interview content: the transcripts, code, and answers you produce during a session, and the scores and reports generated from them.',
-      'Subscriptions: purchase and entitlement status via the Apple App Store, Google Play, and RevenueCat. We never receive or store your card details.',
+      'Voice: if you answer out loud, the audio of your answer is sent to a speech-to-text provider to transcribe it into your session.',
+      'Subscriptions and purchases: purchase and entitlement status via the Apple App Store, Google Play, RevenueCat and, for purchases on the web, Stripe. We never receive or store your card details.',
       'Device: a push notification token (if you enable notifications) so we can tell you when a report is ready.',
       'Analytics: privacy-friendly, cookieless aggregate usage via Cloudflare Web Analytics – no cross-site tracking, no advertising identifiers.',
       'Diagnostics: limited product diagnostics to find and fix bugs.',
@@ -36,7 +37,7 @@ export const PRIVACY: LegalSection[] = [
   {
     heading: '3. How we use it',
     body: [
-      'To run mock interviews, generate live scoring and reports, track your progress, operate subscriptions, send the notifications you opted into, and keep the service secure and working.',
+      'To run interviews and coding assessments, generate your scores and reports, track your progress, operate subscriptions, send the notifications you opted into, and keep the service secure and working.',
     ],
   },
   {
@@ -48,7 +49,9 @@ export const PRIVACY: LegalSection[] = [
   {
     heading: '5. Sharing',
     body: [
-      'We share data only with processors that run the service: authentication (Clerk), subscriptions (Apple, Google, RevenueCat), AI model providers, analytics (Cloudflare), and infrastructure/hosting. We do not sell your data.',
+      'We share data only with processors that run the service: authentication (Clerk), subscriptions and payments (Apple, Google, RevenueCat, Stripe), AI model and speech-to-text providers, analytics (Cloudflare), and infrastructure/hosting. We do not sell your data.',
+      'Organizations: if you join an organization on Mentara (for example through your employer), it sees only your join date, how many interviews you did in the last 30 days, and your last activity. Team skill averages are shown only when at least five people contributed. No one in the organization can read your transcripts or individual reports.',
+      'Candidate assignments: if you accept an interview or assessment sent by a company, you are shown what will be shared before you start. The company sees the resulting report or test results and scores – not your transcript or submitted code.',
     ],
   },
   {
@@ -85,7 +88,7 @@ export const TERMS: LegalSection[] = [
   {
     heading: '2. The service',
     body: [
-      'Mentara provides AI-driven mock technical interviews, scoring, and practice tracks. It is a practice tool. It is under active development and features may change or be unavailable.',
+      'Mentara provides AI technical interview practice, coding assessments, feedback reports and progress tracking, and organization features for teams. It is a practice tool. It is under active development and features may change or be unavailable.',
     ],
   },
   {
@@ -97,7 +100,7 @@ export const TERMS: LegalSection[] = [
   {
     heading: '4. Subscriptions & billing',
     body: [
-      'Paid plans are sold and billed through the Apple App Store or Google Play under their terms. Subscriptions auto-renew until cancelled; manage or cancel them in your store account. Refunds follow the applicable store’s policy.',
+      'Paid plans are sold and billed through the Apple App Store, Google Play or, on the web, our payment processors, under their terms. Subscriptions auto-renew until cancelled; manage or cancel them where you bought them. Refunds follow the policy of the platform you purchased through. Enterprise plans are billed under a separate agreement.',
     ],
   },
   {
