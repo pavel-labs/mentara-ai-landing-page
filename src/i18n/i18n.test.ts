@@ -6,6 +6,7 @@ import {
   getDict,
   isLocale,
   localeHome,
+  localePath,
   localeUrl,
   pathWithoutLocale,
   pickLocale,
@@ -111,5 +112,23 @@ describe('pathWithoutLocale', () => {
 
   it('does not mistake a path segment that only looks like a locale', () => {
     expect(pathWithoutLocale('/blog/ru-guide')).toBe('blog/ru-guide');
+  });
+});
+
+describe('localePath', () => {
+  it('ends page URLs in a slash, matching Firebase trailingSlash:true', () => {
+    expect(localePath('en', 'blog/foo')).toBe('/blog/foo/');
+    expect(localePath('ru', 'enterprise')).toBe('/ru/enterprise/');
+  });
+
+  it('keeps a fragment after the slash', () => {
+    expect(localePath('de', 'enterprise#contact')).toBe('/de/enterprise/#contact');
+    expect(localePath('en', '#waitlist')).toBe('/#waitlist');
+  });
+
+  it('leaves files, already-slashed paths and the home alone', () => {
+    expect(localePath('en', 'rss.xml')).toBe('/rss.xml');
+    expect(localePath('en', 'blog/')).toBe('/blog/');
+    expect(localePath('en', '')).toBe('/');
   });
 });

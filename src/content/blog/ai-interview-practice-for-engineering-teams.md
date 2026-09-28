@@ -38,7 +38,7 @@ out loud. Nobody asks a follow-up on a vague answer, so the vagueness never show
 **Peer mocks.** Valuable, and the best way to get human judgment on how someone comes across.
 But they are hard to schedule, easy to turn into a friendly chat, and almost nobody will run
 five mocks on the same narrow topic so a colleague can fix one recurring mistake. We compared
-the two formats in more detail in [peer mock interviews vs. AI mock interviews](/blog/peer-mock-interviews-vs-ai).
+the two formats in more detail in [peer mock interviews vs. AI mock interviews](/blog/peer-mock-interviews-vs-ai/).
 
 **Take-home exercises.** Useful for hiring, less so for practice. They take hours, candidates
 increasingly resent them, and the feedback, if any, arrives days later.
@@ -176,7 +176,7 @@ A simple plan:
 5. **Ask the participants.** Whether it felt useful is the leading indicator of whether they
    will keep using it.
 
-If you want to try this with your team, [tell us about it](/enterprise#contact). For individual
+If you want to try this with your team, [tell us about it](/enterprise/#contact). For individual
 engineers, the [home page](/) explains how a single interview works, and
-[inside an AI interview simulator](/blog/inside-an-ai-interview-simulator) goes one level deeper
+[inside an AI interview simulator](/blog/inside-an-ai-interview-simulator/) goes one level deeper
 into the architecture.
