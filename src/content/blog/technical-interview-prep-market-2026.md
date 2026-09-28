@@ -114,14 +114,14 @@ The last category deserves a plain statement. Tools that listen to a live interv
 supply answers are marketed openly, and the data above suggests they are used. They are also
 what in-person rounds and detection systems are being built to catch, and they train nothing
 that survives the moment the assistance is gone. We covered the difference between practice
-formats in more detail in [AI mock interview vs. LeetCode](/blog/ai-mock-interview-vs-leetcode)
-and [peer mock interviews vs. AI](/blog/peer-mock-interviews-vs-ai).
+formats in more detail in [AI mock interview vs. LeetCode](/blog/ai-mock-interview-vs-leetcode/)
+and [peer mock interviews vs. AI](/blog/peer-mock-interviews-vs-ai/).
 
 ## What this means if you are preparing
 
 1. **Practice explaining, not just solving.** The skill with the most scarcity value is a
    clear account of your reasoning, including trade-offs – see
-   [thinking out loud in coding interviews](/blog/thinking-out-loud-in-coding-interviews).
+   [thinking out loud in coding interviews](/blog/thinking-out-loud-in-coding-interviews/).
 2. **Practice being questioned.** Follow-ups are where preparation that relied on recognition
    falls apart. Practice needs someone – or something – that asks "why?" about your answer.
 3. **Verify your own code.** Whether the interview bans AI or requires it, the candidate who
@@ -133,7 +133,7 @@ and [peer mock interviews vs. AI](/blog/peer-mock-interviews-vs-ai).
 
 - **Consistency is now the scarce resource.** When scores are noisier, a structured first
   round – same questions, same rubric, evidence behind each score – is worth more than a
-  harder puzzle. Our [article for engineering teams](/blog/ai-interview-practice-for-engineering-teams)
+  harder puzzle. Our [article for engineering teams](/blog/ai-interview-practice-for-engineering-teams/)
   covers how to set that up.
 - **Separate conversation from code.** A discussion of design and a graded coding exercise
   measure different things, and mixing them hides which one is weak.
@@ -149,7 +149,7 @@ report whose scores are tied to evidence from what you said. Its optional Realis
 designed as coaching rather than policing: it marks where you got stuck and shows what a
 session would have been worth without outside help.
 
-For teams, [Mentara for teams](/enterprise) adds company interviews, candidate assignments
+For teams, [Mentara for teams](/enterprise/) adds company interviews, candidate assignments
 with consent, and a team report built from aggregates rather than transcripts. Mentara
 launches in 2026 – the [waitlist is open](/#waitlist).
 

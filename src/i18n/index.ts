@@ -63,11 +63,24 @@ export function localeUrl(locale: Locale, origin: URL): string {
   return new URL(localeHome(locale), origin).href;
 }
 
-// Builds a base-prefixed URL for a path under a given locale.
-// Default locale paths are not prefixed: localePath('en', 'blog/foo') → '/blog/foo'
-// Other locales are prefixed:            localePath('es', 'blog/foo') → '/es/blog/foo'
+// Page URLs end in a slash: Astro emits every page as <path>/index.html and Firebase
+// Hosting is configured with trailingSlash:true, so '/blog/foo' would cost a 301 on every
+// click and every canonical/hreflang/sitemap lookup. Files ('rss.xml') and an empty path
+// are left alone; a '#fragment' stays after the slash.
+function withTrailingSlash(path: string): string {
+  const hashAt = path.indexOf('#');
+  const pathname = hashAt === -1 ? path : path.slice(0, hashAt);
+  const hash = hashAt === -1 ? '' : path.slice(hashAt);
+  const isFile = /\.[a-z0-9]+$/i.test(pathname);
+  const done = pathname === '' || pathname.endsWith('/') || isFile;
+  return `${done ? pathname : `${pathname}/`}${hash}`;
+}
+
+// Builds a base-prefixed page URL for a path under a given locale.
+// Default locale paths are not prefixed: localePath('en', 'blog/foo') → '/blog/foo/'
+// Other locales are prefixed:            localePath('es', 'blog/foo') → '/es/blog/foo/'
 export function localePath(locale: Locale, path: string): string {
-  return withBase(locale === DEFAULT_LOCALE ? path : `${locale}/${path}`);
+  return withBase(withTrailingSlash(locale === DEFAULT_LOCALE ? path : `${locale}/${path}`));
 }
 
 // Resolves a nav-entry href against a "home" context shared by Nav and Footer: a hash
