@@ -1,5 +1,5 @@
 ---
-import { LOCALES, LOCALE_STORAGE_KEY, localeHome, type Locale } from '../i18n';
+import { DEFAULT_LOCALE, LOCALES, LOCALE_STORAGE_KEY, localeHome, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -15,10 +15,25 @@ const homes = Object.fromEntries(LOCALES.map((l) => [l, localeHome(l)]));
   locale home pages only (BaseLayout's `autoLocale` prop) – deep links keep the language
   they were shared in, which matters because the blog is English-only by design.
 
+  Browser language is consulted only on the default-locale home (`/`, the x-default).
+  An explicit /de/, /ru/, … URL is a choice already made – by the person who shared the
+  link or by a search result – so it is never overridden by browser language. That also
+  keeps crawlers (which render with an English locale) from being bounced off the
+  localized homes, which would keep them out of the index. A stored switcher pick still
+  wins everywhere.
+
   Inline and in <head> on purpose: it must decide before first paint, otherwise a
   redirected visitor sees the wrong language flash first.
 */}
-<script is:inline define:vars={{ current: locale, homes, storageKey: LOCALE_STORAGE_KEY }}>
+<script
+  is:inline
+  define:vars={{
+    current: locale,
+    isDefault: locale === DEFAULT_LOCALE,
+    homes,
+    storageKey: LOCALE_STORAGE_KEY,
+  }}
+>
   (function autoLocale() {
     // An explicit pick in the language switcher always wins over browser languages.
     function storedChoice() {
@@ -43,7 +58,7 @@ const homes = Object.fromEntries(LOCALES.map((l) => [l, localeHome(l)]));
       return null;
     }
 
-    const target = storedChoice() ?? browserChoice();
+    const target = storedChoice() ?? (isDefault ? browserChoice() : null);
 
     // `replace`, not `assign`: Back should leave the site, not bounce through the redirect.
     if (target && target !== current) location.replace(homes[target]);
