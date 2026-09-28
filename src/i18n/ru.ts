@@ -265,7 +265,7 @@ export const ru: Dict = {
       },
       {
         tier: 'Enterprise',
-        price: 'Индивидуально',
+        price: 'По запросу',
         cadence: 'за место',
         blurb: 'Для инженерных команд и найма.',
         features: [

@@ -266,7 +266,7 @@ export const pl: Dict = {
       },
       {
         tier: 'Enterprise',
-        price: 'Indywidualnie',
+        price: 'Wycena',
         cadence: 'za miejsce',
         blurb: 'Dla zespołów inżynierskich i rekrutacji.',
         features: [

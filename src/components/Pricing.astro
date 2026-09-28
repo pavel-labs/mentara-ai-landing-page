@@ -103,9 +103,13 @@ const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);
   .tier__amt {
     font-family: var(--font-display);
     font-weight: 620;
-    font-size: clamp(2.1rem, 1.5rem + 2vw, 3.1rem);
+    /* Capped so the longest localized price ("По запросу", "Individuell") stays on one
+       line in a three-column row. */
+    font-size: clamp(2rem, 1.4rem + 1.6vw, 2.6rem);
     letter-spacing: -0.03em;
-    overflow-wrap: anywhere;
+    /* Last-resort guard only: keep price words short enough to fit ("По запросу", not
+       "Индивидуально"), so this never splits a word in practice. */
+    overflow-wrap: break-word;
   }
   .tier__cad {
     font-family: var(--font-mono);
@@ -121,6 +125,9 @@ const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);
     list-style: none;
     display: grid;
     gap: 0.7rem;
+    /* flex:1 lets the list absorb the spare height so every CTA sits on the same line;
+       align-content keeps the items packed at the top instead of spreading them out. */
+    align-content: start;
     flex: 1;
     border-top: 1px solid var(--line);
     padding-top: 1.4rem;
