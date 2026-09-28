@@ -83,3 +83,16 @@ export function resolveNavHref(locale: Locale, homeHref: string, href: string): 
   }
   return href;
 }
+
+// The locale-independent part of a URL path, without the deploy base or a leading slash:
+// '/ru/enterprise/' → 'enterprise/', '/enterprise' → 'enterprise', '/de/' → ''. Used to
+// point a page's hreflang alternates at the same page in every locale, not at the homes.
+export function pathWithoutLocale(pathname: string): string {
+  const base = basePrefix();
+  const rest = (pathname.startsWith(base) ? pathname.slice(base.length) : pathname).replace(
+    /^\//,
+    '',
+  );
+  const [first = '', ...tail] = rest.split('/');
+  return isLocale(first) && first !== DEFAULT_LOCALE ? tail.join('/') : rest;
+}
