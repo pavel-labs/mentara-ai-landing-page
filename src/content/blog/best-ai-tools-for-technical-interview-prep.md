@@ -54,8 +54,9 @@ That means:
 
 - role- and level-aware technical interviews,
 - voice or text practice,
-- live scoring across multiple dimensions,
-- and a report that turns one session into the plan for the next one.
+- coding assessments graded by hidden tests, kept separate from the conversation,
+- and a report, scored from evidence across multiple dimensions, that turns one session into
+  the plan for the next one.
 
 If you are comparing AI prep products, that is the distinction worth making. The most useful
 tool is not the one that explains the most. It is the one that changes how you perform when
