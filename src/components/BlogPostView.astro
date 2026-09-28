@@ -164,7 +164,8 @@ const jsonLd = [
     letter-spacing: -0.02em;
     margin-top: 1rem;
   }
-  .prose :global(ul) {
+  .prose :global(ul),
+  .prose :global(ol) {
     padding-left: 1.2rem;
     display: flex;
     flex-direction: column;
@@ -176,6 +177,31 @@ const jsonLd = [
   }
   .prose :global(strong) {
     color: var(--bone);
+  }
+  /* Comparison tables: block + overflow so a wide table scrolls inside itself on a phone
+     instead of widening the whole page. */
+  .prose :global(table) {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .prose :global(th),
+  .prose :global(td) {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--line-strong);
+    text-align: left;
+    vertical-align: top;
+    min-width: 10rem;
+  }
+  .prose :global(th) {
+    color: var(--bone);
+    font-weight: 600;
+    background: var(--ink-1);
+  }
+  .prose :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--line);
   }
   .related {
     margin-top: 1.5rem;
