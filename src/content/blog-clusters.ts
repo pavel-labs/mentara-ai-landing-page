@@ -29,6 +29,7 @@ export const BLOG_CLUSTERS: BlogClusterDefinition[] = [
       secondaryHref: '/compare',
     },
     slugs: [
+      'technical-interview-prep-market-2026',
       'ai-mock-interview-vs-leetcode',
       'peer-mock-interviews-vs-ai',
       'human-coach-vs-ai-interview-practice',
