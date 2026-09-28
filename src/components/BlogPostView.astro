@@ -1,7 +1,8 @@
 ---
 import { render } from 'astro:content';
 import type { Locale } from '../i18n';
-import { localePath, localeHome, withBase } from '../i18n';
+import { DEFAULT_LOCALE, localePath, localeHome, resolveNavHref } from '../i18n';
+import { SITE } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from './Nav.astro';
 import Footer from './Footer.astro';
@@ -25,9 +26,55 @@ const relatedPosts =
         .slice(0, 4);
 const clusterCta = cluster?.cta ?? null;
 const fmt = formatPostDate(post.data.date, 'long');
+// Cluster CTAs point at site routes ('/enterprise#contact', '/#waitlist'); resolve them
+// under the reader's locale so a Russian reader lands on the Russian page.
+const ctaHref = (href: string) => resolveNavHref(locale, '#main', href);
+
+// Posts are English-only: the canonical is the English URL (see BaseLayout
+// `singleLanguage`), so the structured data names that URL too.
+const origin = Astro.site ?? new URL(SITE.domain);
+const postUrl = new URL(localePath(DEFAULT_LOCALE, `blog/${post.id}`), origin).href;
+const jsonLd = [
+  {
+    '@type': 'BlogPosting',
+    headline: post.data.title,
+    description: post.data.summary,
+    datePublished: post.data.date.toISOString(),
+    inLanguage: 'en',
+    mainEntityOfPage: postUrl,
+    url: postUrl,
+    author: { '@id': `${origin.origin}/#org` },
+    publisher: { '@id': `${origin.origin}/#org` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: SITE.name,
+        item: new URL(localePath(DEFAULT_LOCALE, ''), origin).href,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: new URL(localePath(DEFAULT_LOCALE, 'blog'), origin).href,
+      },
+      { '@type': 'ListItem', position: 3, name: post.data.title, item: postUrl },
+    ],
+  },
+];
 ---
 
-<BaseLayout locale={locale} title={`${post.data.title} – Mentara`} description={post.data.summary}>
+<BaseLayout
+  locale={locale}
+  title={`${post.data.title} – Mentara`}
+  description={post.data.summary}
+  ogType="article"
+  singleLanguage
+  jsonLd={jsonLd}
+>
   <Nav locale={locale} homeHref={localeHome(locale)} />
   <main id="main" class="post">
     <article class="container post__inner">
@@ -59,13 +106,13 @@ const fmt = formatPostDate(post.data.date, 'long');
             <h2 class="article-cta__title">{clusterCta.title}</h2>
             <p class="article-cta__body">{clusterCta.body}</p>
             <div class="article-cta__actions">
-              <a class="article-cta__primary" href={withBase(clusterCta.primaryHref)}>
+              <a class="article-cta__primary" href={ctaHref(clusterCta.primaryHref)}>
                 {clusterCta.primaryLabel}
               </a>
               {
                 clusterCta.secondaryLabel &&
                   clusterCta.secondaryHref && (
-                    <a class="article-cta__secondary" href={withBase(clusterCta.secondaryHref)}>
+                    <a class="article-cta__secondary" href={ctaHref(clusterCta.secondaryHref)}>
                       {clusterCta.secondaryLabel}
                     </a>
                   )
@@ -117,7 +164,8 @@ const fmt = formatPostDate(post.data.date, 'long');
     letter-spacing: -0.02em;
     margin-top: 1rem;
   }
-  .prose :global(ul) {
+  .prose :global(ul),
+  .prose :global(ol) {
     padding-left: 1.2rem;
     display: flex;
     flex-direction: column;
@@ -129,6 +177,31 @@ const fmt = formatPostDate(post.data.date, 'long');
   }
   .prose :global(strong) {
     color: var(--bone);
+  }
+  /* Comparison tables: block + overflow so a wide table scrolls inside itself on a phone
+     instead of widening the whole page. */
+  .prose :global(table) {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .prose :global(th),
+  .prose :global(td) {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--line-strong);
+    text-align: left;
+    vertical-align: top;
+    min-width: 10rem;
+  }
+  .prose :global(th) {
+    color: var(--bone);
+    font-weight: 600;
+    background: var(--ink-1);
+  }
+  .prose :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--line);
   }
   .related {
     margin-top: 1.5rem;

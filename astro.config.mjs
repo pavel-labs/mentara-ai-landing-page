@@ -32,6 +32,10 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      // Blog posts are English-only; /<locale>/blog/<slug> copies canonicalize to the
+      // English URL (BaseLayout `singleLanguage`), so listing them would only advertise
+      // duplicates.
+      filter: (page) => !/\/(?:de|es|ru|pl)\/blog\/[^/]+\/?$/.test(new URL(page).pathname),
       i18n: {
         defaultLocale: 'en',
         locales: { en: 'en-US', de: 'de-DE', es: 'es-ES', ru: 'ru-RU', pl: 'pl-PL' },

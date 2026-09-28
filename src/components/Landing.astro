@@ -3,16 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import type { Locale } from '../i18n';
 import Nav from './Nav.astro';
 import Hero from './Hero.astro';
-import Trust from './Trust.astro';
-import ShowProduct from './ShowProduct.astro';
-import Features from './Features.astro';
-import CompareTeaser from './CompareTeaser.astro';
-import BlogTeaser from './BlogTeaser.astro';
-import Audience from './Audience.astro';
-import HowItWorks from './HowItWorks.astro';
+import Proof from './Proof.astro';
+import WhyPractice from './WhyPractice.astro';
+import InterviewSection from './InterviewSection.astro';
+import AssessmentSection from './AssessmentSection.astro';
+import ReportSection from './ReportSection.astro';
+import ProgressSection from './ProgressSection.astro';
 import Pricing from './Pricing.astro';
+import TeamsBand from './TeamsBand.astro';
 import FAQ from './FAQ.astro';
 import CTA from './CTA.astro';
+import BlogTeaser from './BlogTeaser.astro';
 import Footer from './Footer.astro';
 
 interface Props {
@@ -21,20 +22,21 @@ interface Props {
 const { locale } = Astro.props;
 ---
 
-<BaseLayout locale={locale} autoLocale>
+<BaseLayout locale={locale} autoLocale includeFaq>
   <Nav locale={locale} />
   <main id="main">
     <Hero locale={locale} />
-    <Trust locale={locale} />
-    <ShowProduct locale={locale} />
-    <Features locale={locale} />
-    <CompareTeaser locale={locale} />
-    <BlogTeaser locale={locale} />
-    <Audience locale={locale} />
-    <HowItWorks locale={locale} />
+    <Proof locale={locale} />
+    <WhyPractice locale={locale} />
+    <InterviewSection locale={locale} />
+    <AssessmentSection locale={locale} />
+    <ReportSection locale={locale} />
+    <ProgressSection locale={locale} />
     <Pricing locale={locale} />
+    <TeamsBand locale={locale} />
     <FAQ locale={locale} />
     <CTA locale={locale} />
+    <BlogTeaser locale={locale} />
   </main>
   <Footer locale={locale} />
 </BaseLayout>
