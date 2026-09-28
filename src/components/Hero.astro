@@ -198,6 +198,18 @@ const activePhase = 2;
     background: var(--sage);
   }
 
+  /* Four phase names in one row do not fit a phone in the longer languages
+     ("Podsumowanie", "Calentamiento") in spaced uppercase; drop the tracking there so
+     they fit whole instead of being cut off with an ellipsis. */
+  @media (max-width: 520px) {
+    .phase {
+      padding-inline: 0.15rem;
+      font-size: 0.6rem;
+      letter-spacing: 0;
+      text-transform: none;
+      text-overflow: clip;
+    }
+  }
   @media (max-width: 920px) {
     .hero__grid {
       grid-template-columns: minmax(0, 1fr);
