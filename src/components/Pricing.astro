@@ -53,7 +53,9 @@ const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);
 <style>
   .tiers {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* minmax(0,…): a long localized price ("Индивидуально") must not widen its track
+       past the viewport. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
     align-items: stretch;
   }
@@ -93,6 +95,7 @@ const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);
   }
   .tier__price {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     gap: 0.5rem;
     margin-top: 0.7rem;
@@ -100,8 +103,9 @@ const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);
   .tier__amt {
     font-family: var(--font-display);
     font-weight: 620;
-    font-size: clamp(2.4rem, 1.6rem + 2vw, 3.1rem);
+    font-size: clamp(2.1rem, 1.5rem + 2vw, 3.1rem);
     letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
   }
   .tier__cad {
     font-family: var(--font-mono);
@@ -141,7 +145,7 @@ const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);
   }
   @media (max-width: 860px) {
     .tiers {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       max-width: 26rem;
       margin-inline: auto;
     }

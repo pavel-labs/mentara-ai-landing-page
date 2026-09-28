@@ -344,8 +344,12 @@ h3 {
 
 .mock__bar > span {
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+/* The label wraps rather than being cut with an ellipsis: in some languages it is twice
+   as long as in English, and a truncated "Zadanie programistyczne · 2 pr…" reads broken. */
+.mock__bar > span:last-child:not(:first-child) {
+  flex: none;
   white-space: nowrap;
 }
 
