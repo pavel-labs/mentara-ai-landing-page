@@ -99,6 +99,10 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
   English-only but served under every locale prefix for the localized chrome, so those
   copies canonicalize to the English URL (`BaseLayout singleLanguage`) and are left out of
   the sitemap. Posts carry `BlogPosting` + `BreadcrumbList` JSON-LD.
+- **Language redirect** (`LocaleAuto.astro`): only the root home `/` sends a first-time
+  visitor to their browser's language. An explicit `/de/`, `/ru/`, … URL is never overridden
+  by browser language (a shared link or a search result already chose it, and crawlers
+  render with an English locale); a pick in the language switcher wins everywhere.
 - **hreflang**: every localized page lists the same page in each locale (not the locale
   homes); `FAQPage` JSON-LD is emitted only on the home page, where the FAQ is rendered.
 - **Per-locale OG**: `/og/<locale>.png` generated at build; each page references its own.
