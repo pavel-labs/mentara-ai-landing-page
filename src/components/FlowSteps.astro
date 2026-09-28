@@ -1,0 +1,86 @@
+---
+// A product flow as an ordered list: "Choose role → … → Report". Horizontal when there is
+// room (`row`), a numbered vertical list otherwise. Pure markup – the numbers come from
+// the list itself, so a screen reader announces "1 of 5" without extra ARIA.
+import type { FlowStep } from '../i18n/types';
+
+interface Props {
+  steps: FlowStep[];
+  layout?: 'row' | 'column';
+}
+const { steps, layout = 'row' } = Astro.props;
+---
+
+<ol class:list={['flow', `flow--${layout}`]}>
+  {
+    steps.map((s, i) => (
+      <li class="flow__step">
+        <span class="flow__n" aria-hidden="true">
+          {String(i + 1).padStart(2, '0')}
+        </span>
+        <h3 class="flow__title">{s.title}</h3>
+        <p class="flow__body">{s.body}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .flow {
+    list-style: none;
+    display: grid;
+    gap: 1.2rem;
+  }
+  .flow--row {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  }
+  .flow__step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line-strong);
+    min-width: 0;
+  }
+  .flow--row .flow__step::after {
+    /* The arrow between steps; hidden on the last one. */
+    content: '→';
+    position: absolute;
+    top: -0.8rem;
+    right: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--bone-faint);
+    background: var(--ink);
+    padding-left: 0.4rem;
+  }
+  .flow--row .flow__step:last-child::after {
+    content: none;
+  }
+  .flow--column .flow__step {
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    column-gap: 0.8rem;
+    row-gap: 0.25rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+  }
+  .flow--column .flow__n {
+    grid-row: span 2;
+  }
+  .flow__n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--amber);
+  }
+  .flow__title {
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+  .flow__body {
+    font-size: 0.92rem;
+    color: var(--bone-dim);
+    line-height: 1.55;
+  }
+</style>

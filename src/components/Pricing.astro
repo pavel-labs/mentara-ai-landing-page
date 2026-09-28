@@ -1,5 +1,5 @@
 ---
-import { getDict, type Locale } from '../i18n';
+import { getDict, resolveNavHref, type Locale } from '../i18n';
 import SectionHead from './SectionHead.astro';
 
 interface Props {
@@ -7,6 +7,9 @@ interface Props {
 }
 const { locale } = Astro.props;
 const pr = getDict(locale).pricing;
+// Pricing lives on the home page, so '#waitlist' is an in-page anchor and
+// '/enterprise#contact' resolves to the localized Enterprise page.
+const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);
 ---
 
 <section id="pricing">
@@ -36,9 +39,9 @@ const pr = getDict(locale).pricing;
                 </li>
               ))}
             </ul>
-            <span class="tier__cta" aria-disabled="true">
-              {pr.cta}
-            </span>
+            <a class:list={['btn', 'tier__cta', { 'btn--ghost': !p.featured }]} href={hrefFor(p.href)}>
+              {p.cta}
+            </a>
           </article>
         ))
       }
@@ -130,19 +133,7 @@ const pr = getDict(locale).pricing;
     padding-top: 0.1rem;
   }
   .tier__cta {
-    text-align: center;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
-    color: var(--bone-dim);
-    padding: 0.85rem 1rem;
-    border: 1px dashed var(--line-strong);
-    border-radius: 2px;
-    cursor: not-allowed;
-  }
-  .tier--hot .tier__cta {
-    color: var(--amber);
-    border-color: color-mix(in oklab, var(--amber) 45%, transparent);
+    justify-content: center;
   }
   .tiers__foot {
     margin-top: 1.5rem;

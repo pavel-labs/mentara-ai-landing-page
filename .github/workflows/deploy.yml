@@ -46,6 +46,8 @@ jobs:
         env:
           SITE_URL: ${{ vars.SITE_URL }}
           BASE_PATH: ${{ vars.BASE_PATH }}
+          # Enterprise contact form target. Unset → the form ships disabled, not broken.
+          PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
 
       # Requires a repo secret FIREBASE_SERVICE_ACCOUNT holding a Firebase service-account
       # JSON key (Firebase console → Project settings → Service accounts → Generate new
