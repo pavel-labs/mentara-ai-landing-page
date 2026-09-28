@@ -7,6 +7,7 @@ import {
   isLocale,
   localeHome,
   localeUrl,
+  pathWithoutLocale,
   pickLocale,
   withBase,
 } from './index';
@@ -89,5 +90,26 @@ describe('pickLocale', () => {
     expect(pickLocale(['fr', 'ja'])).toBe(null);
     expect(pickLocale([])).toBe(null);
     expect(pickLocale(undefined)).toBe(null);
+  });
+});
+
+describe('pathWithoutLocale', () => {
+  it('strips a non-default locale prefix', () => {
+    expect(pathWithoutLocale('/ru/enterprise/')).toBe('enterprise/');
+    expect(pathWithoutLocale('/de/blog/some-post')).toBe('blog/some-post');
+  });
+
+  it('leaves default-locale paths as they are', () => {
+    expect(pathWithoutLocale('/enterprise/')).toBe('enterprise/');
+    expect(pathWithoutLocale('/')).toBe('');
+  });
+
+  it('maps a locale home to the empty path', () => {
+    expect(pathWithoutLocale('/pl/')).toBe('');
+    expect(pathWithoutLocale('/es')).toBe('');
+  });
+
+  it('does not mistake a path segment that only looks like a locale', () => {
+    expect(pathWithoutLocale('/blog/ru-guide')).toBe('blog/ru-guide');
   });
 });
