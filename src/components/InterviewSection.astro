@@ -1,0 +1,31 @@
+---
+import { getDict, type Locale } from '../i18n';
+import FlowSteps from './FlowSteps.astro';
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const iv = getDict(locale).interview;
+---
+
+<section id="interview">
+  <div class="container">
+    <SectionHead eyebrow={iv.eyebrow} heading={iv.heading} />
+    <p class="lede iv__lede">{iv.lede}</p>
+    <FlowSteps steps={iv.steps} />
+    <p class="note iv__note">{iv.honesty}</p>
+  </div>
+</section>
+
+<style>
+  .iv__lede {
+    max-width: 62ch;
+    margin-top: calc(-1 * clamp(1rem, 2.5vw, 2rem));
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+  .iv__note {
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+</style>

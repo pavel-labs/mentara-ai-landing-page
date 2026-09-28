@@ -1,0 +1,212 @@
+---
+import { getDict, type Locale } from '../i18n';
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const r = getDict(locale).report;
+const m = r.mock;
+// Illustrative values only; the tones follow the app's strong / solid / developing bands.
+const catScores = [8.1, 7.4, 6.2, 7.8];
+const bandTone = ['strong', 'solid', 'developing'] as const;
+---
+
+<section id="report">
+  <div class="container">
+    <SectionHead eyebrow={r.eyebrow} heading={r.heading} />
+    <div class="split report__split">
+      <figure class="mock" aria-label={m.label}>
+        <div class="mock__bar"><span>{m.label}</span></div>
+        <div class="mock__body">
+          <div class="report__top">
+            <div class="report__overall">
+              <span class="report__num">7.4</span>
+              <span class="who">{m.overall}</span>
+            </div>
+            <ul class="report__cats">
+              {
+                m.categories.map((c, i) => (
+                  <li style={`--v:${String((catScores[i] ?? 0) * 10)}%`}>
+                    <span>{c}</span>
+                    <span class="report__val">{(catScores[i] ?? 0).toFixed(1)}</span>
+                    <i aria-hidden="true" />
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="report__block">
+            <span class="who">{m.competencyTitle}</span>
+            <ul class="report__comp">
+              {
+                m.competencies.map((c, i) => (
+                  <li>
+                    <span>{c.name}</span>
+                    <span class:list={['band', `band--${bandTone[i] ?? 'solid'}`]}>{c.band}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="report__block">
+            <span class="who">{m.evidenceTitle}</span>
+            <p class="bubble report__quote">{m.evidence}</p>
+          </div>
+          <div class="report__next">
+            <span class="who">{m.nextTitle}</span>
+            <span class="report__nextval">{m.next}</span>
+          </div>
+        </div>
+      </figure>
+
+      <div class="split__copy">
+        <p class="lede">{r.lede}</p>
+        <ul class="report__points">
+          {
+            r.points.map((p) => (
+              <li>
+                <h3>{p.title}</h3>
+                <p>{p.body}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .report__split {
+    align-items: start;
+  }
+  .report__top {
+    display: flex;
+    gap: 1.3rem;
+    align-items: center;
+  }
+  .report__overall {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 50%;
+    border: 3px solid var(--amber);
+  }
+  .report__num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 620;
+    line-height: 1;
+  }
+  .report__overall .who {
+    font-size: 0.56rem;
+  }
+  .report__cats {
+    list-style: none;
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .report__cats li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.25rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--bone-dim);
+  }
+  .report__cats li > span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .report__val {
+    color: var(--bone);
+  }
+  .report__cats i {
+    grid-column: 1 / -1;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--amber) var(--v), var(--ink-3) var(--v));
+  }
+  .report__block {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .report__comp {
+    list-style: none;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .report__comp li {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    font-size: 0.88rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .band {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    flex: none;
+  }
+  .band--strong {
+    color: var(--sage);
+    background: color-mix(in oklab, var(--sage) 14%, transparent);
+  }
+  .band--solid {
+    color: var(--bone);
+    background: var(--ink-3);
+  }
+  .band--developing {
+    color: var(--amber-soft);
+    background: color-mix(in oklab, var(--amber) 14%, transparent);
+  }
+  .report__quote {
+    font-size: 0.86rem;
+    color: var(--bone-dim);
+  }
+  .report__next {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px dashed var(--line-strong);
+  }
+  .report__nextval {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--amber);
+  }
+  .report__points {
+    list-style: none;
+    display: grid;
+    gap: 1.4rem;
+    margin-top: 0.6rem;
+  }
+  .report__points li {
+    display: grid;
+    gap: 0.35rem;
+    padding-left: 1rem;
+    border-left: 1px solid var(--line-strong);
+  }
+  .report__points h3 {
+    font-size: 1.1rem;
+  }
+  .report__points p {
+    color: var(--bone-dim);
+    font-size: 0.95rem;
+  }
+</style>

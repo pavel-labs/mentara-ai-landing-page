@@ -1,0 +1,336 @@
+---
+// Sales inquiry → the backend's public POST /enterprise/inquiries, so the lead lands in the
+// admin console's inquiry list rather than someone's inbox. Field names and option values
+// mirror EnterpriseInquiryBodySchema in @mentara/shared; `website` is the server-side
+// honeypot (a filled one is accepted with 202 and silently dropped).
+import { API } from '../consts';
+import { getDict, withBase, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const f = getDict(locale).enterprise.form;
+const enabled = API.baseUrl.length > 0;
+const endpoint = `${API.baseUrl}/enterprise/inquiries`;
+const teamSizes = ['1-10', '11-50', '51-200', '201+'] as const;
+const useCases = ['upskilling', 'hiring', 'both'] as const;
+const id = (name: string) => `ent-${name}`;
+// Virtual path counted as a conversion, same approach as the waitlist.
+const trackPath = withBase('enterprise/success');
+---
+
+<div class="ent-form" id="contact">
+  <div class="ent-form__head">
+    <p class="eyebrow">{f.eyebrow}</p>
+    <h2 class="h2">{f.heading}</h2>
+    <p class="ent-form__sub">{f.sub}</p>
+  </div>
+
+  {
+    enabled ? (
+      <form
+        class="ef"
+        action={endpoint}
+        method="POST"
+        novalidate
+        data-track-path={trackPath}
+        data-sending={f.sending}
+        data-success={f.success}
+        data-invalid={f.invalid}
+        data-rate-limited={f.rateLimited}
+        data-error={f.error}
+      >
+        <div class="ef__grid">
+          <label class="ef__field" for={id('name')}>
+            <span class="ef__label">{f.name}</span>
+            <input id={id('name')} name="name" required maxlength="120" autocomplete="name" />
+          </label>
+          <label class="ef__field" for={id('email')}>
+            <span class="ef__label">{f.email}</span>
+            <input
+              id={id('email')}
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              inputmode="email"
+            />
+          </label>
+          <label class="ef__field" for={id('company')}>
+            <span class="ef__label">{f.company}</span>
+            <input
+              id={id('company')}
+              name="company"
+              required
+              maxlength="160"
+              autocomplete="organization"
+            />
+          </label>
+          <label class="ef__field" for={id('teamSize')}>
+            <span class="ef__label">{f.teamSize}</span>
+            <select id={id('teamSize')} name="teamSize" required>
+              {teamSizes.map((size) => <option value={size}>{size}</option>)}
+            </select>
+          </label>
+        </div>
+
+        <fieldset class="ef__field ef__radios">
+          <legend class="ef__label">{f.useCase}</legend>
+          {
+            useCases.map((value, i) => (
+              <label class="ef__radio">
+                <input type="radio" name="useCase" value={value} checked={i === 2} />
+                <span>{f.useCases[value]}</span>
+              </label>
+            ))
+          }
+        </fieldset>
+
+        <label class="ef__field" for={id('message')}>
+          <span class="ef__label">{f.message}</span>
+          <textarea
+            id={id('message')}
+            name="message"
+            rows="4"
+            maxlength="2000"
+            aria-describedby={id('message-hint')}></textarea>
+          <small id={id('message-hint')} class="ef__hint">{f.messageHint}</small>
+        </label>
+
+        <input
+          class="ef__hp"
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+        />
+
+        <div class="ef__submit">
+          <button class="btn" type="submit">{f.submit}</button>
+          <small class="ef__hint">{f.privacyNote}</small>
+        </div>
+        <p class="ef__status" role="status" aria-live="polite" />
+      </form>
+    ) : (
+      <p class="ef ef--off" role="note">
+        {f.offNote}
+      </p>
+    )
+  }
+</div>
+
+<script is:inline>
+  // Progressive enhancement: JSON POST with inline status. The endpoint only accepts
+  // JSON, so without JS the button submits nothing useful – the form is JS-only by
+  // necessity, and says so by validating natively first.
+  document.querySelectorAll('form.ef').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = form.querySelector('.ef__status');
+      const btn = form.querySelector('button[type=submit]');
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const data = new FormData(form);
+      const body = {
+        name: String(data.get('name') || '').trim(),
+        email: String(data.get('email') || '').trim(),
+        company: String(data.get('company') || '').trim(),
+        teamSize: String(data.get('teamSize') || ''),
+        useCase: String(data.get('useCase') || 'both'),
+      };
+      const message = String(data.get('message') || '').trim();
+      if (message) body.message = message;
+      const website = String(data.get('website') || '');
+      if (website) body.website = website;
+
+      btn.disabled = true;
+      status.textContent = form.dataset.sending;
+      status.dataset.state = 'pending';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        if (res.ok) {
+          form.reset();
+          status.textContent = form.dataset.success;
+          status.dataset.state = 'ok';
+          try {
+            window.__mentaraTrack?.('enterprise_inquiry');
+            const real = location.pathname + location.search + location.hash;
+            history.pushState(null, '', form.dataset.trackPath);
+            history.replaceState(null, '', real);
+          } catch {
+            /* analytics must never break the success UX */
+          }
+        } else {
+          status.textContent =
+            res.status === 400
+              ? form.dataset.invalid
+              : res.status === 429
+                ? form.dataset.rateLimited
+                : form.dataset.error;
+          status.dataset.state = 'err';
+        }
+      } catch {
+        status.textContent = form.dataset.error;
+        status.dataset.state = 'err';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .ent-form {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    padding: clamp(1.6rem, 4vw, 3rem);
+    border: 1px solid var(--line-strong);
+    border-top: 2px solid var(--amber);
+    border-radius: var(--radius-lg);
+    background: var(--ink-1);
+    scroll-margin-top: 6rem;
+  }
+  .ent-form__head {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .ent-form__head .h2 {
+    font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.5rem);
+  }
+  .ent-form__sub {
+    color: var(--bone-dim);
+  }
+  .ef {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    min-width: 0;
+  }
+  .ef__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
+  }
+  .ef__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    min-width: 0;
+    border: 0;
+  }
+  .ef__label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+    padding: 0;
+  }
+  .ef input:not([type='radio']),
+  .ef select,
+  .ef textarea {
+    width: 100%;
+    background: var(--ink-2);
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    color: var(--bone);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 0.75rem 0.9rem;
+  }
+  .ef textarea {
+    resize: vertical;
+  }
+  .ef input:focus-visible,
+  .ef select:focus-visible,
+  .ef textarea:focus-visible {
+    outline: none;
+    border-color: var(--amber);
+  }
+  .ef__radios {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .ef__radios legend {
+    width: 100%;
+    margin-bottom: 0.45rem;
+  }
+  .ef__radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .ef__radio:has(input:checked) {
+    border-color: var(--amber);
+    background: color-mix(in oklab, var(--amber) 10%, transparent);
+  }
+  .ef__radio input {
+    accent-color: var(--amber);
+  }
+  .ef__hint {
+    font-size: 0.8rem;
+    color: var(--bone-faint);
+  }
+  .ef__submit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ef .btn:disabled {
+    opacity: 0.6;
+    cursor: progress;
+  }
+  .ef__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .ef__status {
+    min-height: 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--bone-dim);
+  }
+  .ef__status[data-state='ok'] {
+    color: var(--sage);
+  }
+  .ef__status[data-state='err'] {
+    color: var(--amber);
+  }
+  .ef--off {
+    border: 1px dashed var(--line-strong);
+    border-radius: 2px;
+    padding: 1.2rem;
+    color: var(--bone-dim);
+    align-self: start;
+  }
+  @media (max-width: 900px) {
+    .ent-form {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 520px) {
+    .ef__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

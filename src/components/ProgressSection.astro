@@ -1,0 +1,111 @@
+---
+import { getDict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const p = getDict(locale).progress;
+const m = p.mock;
+---
+
+<section id="progress" class="progress">
+  <div class="container">
+    <div class="split">
+      <div class="split__copy">
+        <p class="eyebrow">{p.eyebrow}</p>
+        <h2 class="h2">{p.heading}</h2>
+        <p class="lede">{p.lede}</p>
+      </div>
+
+      <figure class="mock" aria-label={m.label}>
+        <div class="mock__bar">
+          <span>{m.label}</span>
+          <span class="progress__streak">{m.streak}</span>
+        </div>
+        <ul class="mock__body challenges">
+          {
+            m.challenges.map((c) => (
+              <li class:list={['challenge', { 'challenge--done': c.done }]}>
+                <span class="challenge__box" aria-hidden="true">
+                  {c.done ? '✓' : ''}
+                </span>
+                <span class="challenge__title">{c.title}</span>
+                <span class="challenge__xp">{c.xp}</span>
+              </li>
+            ))
+          }
+          <li class="challenge__level mono">{m.level}</li>
+        </ul>
+      </figure>
+    </div>
+
+    <ul class="points progress__points">
+      {
+        p.points.map((pt) => (
+          <li>
+            <h3>{pt.title}</h3>
+            <p>{pt.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .progress {
+    background: rgba(0, 0, 0, 0.18);
+    border-block: 1px solid var(--line);
+  }
+  .progress__streak {
+    color: var(--amber);
+    flex: none;
+  }
+  .challenges {
+    list-style: none;
+  }
+  .challenge {
+    display: grid;
+    grid-template-columns: 1.4rem minmax(0, 1fr) auto;
+    gap: 0.8rem;
+    align-items: center;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--ink);
+  }
+  .challenge__box {
+    display: grid;
+    place-items: center;
+    width: 1.3rem;
+    height: 1.3rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    font-size: 0.7rem;
+  }
+  .challenge--done .challenge__box {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: var(--ink);
+  }
+  .challenge--done .challenge__title {
+    color: var(--bone-dim);
+    text-decoration: line-through;
+    text-decoration-color: var(--bone-faint);
+  }
+  .challenge__title {
+    font-size: 0.92rem;
+  }
+  .challenge__xp {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--amber);
+  }
+  .challenge__level {
+    text-align: right;
+  }
+  .progress__points {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+  }
+</style>

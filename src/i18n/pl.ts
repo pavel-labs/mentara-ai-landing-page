@@ -7,198 +7,301 @@ export const pl: Dict = {
   a11yMenu: 'Menu',
 
   meta: {
-    title: 'Mentara – próbne rozmowy techniczne z AI dla programistów',
+    title:
+      'Mentara – ćwiczenie rozmów technicznych z AI i zadania programistyczne dla programistów',
     description:
-      'Mentara prowadzi realistyczne próbne rozmowy techniczne z rekruterem AI, który dostosowuje się, dopytuje i ocenia cię na bieżąco – żebyś na prawdziwą rozmowę wszedł przygotowany. iOS, Android i przeglądarka.',
-    tagline: 'Ćwicz prawdziwe rozmowy.',
+      'Ćwicz ustrukturyzowane rozmowy techniczne z rekruterem AI, który dopytuje o twoje odpowiedzi, rozwiązuj zadania programistyczne oceniane ukrytymi testami i dostawaj raport, który pokazuje twoje słabe strony wraz z dowodami. Plany Free i Pro oraz Enterprise dla zespołów.',
+    tagline: 'Ćwicz rozmowę, nie tylko pytania.',
     launchLabel: 'Start w 2026',
   },
 
   nav: [
-    { label: 'Produkt', href: '#product' },
-    { label: 'Funkcje', href: '#features' },
-    { label: 'Blog', href: '/blog' },
+    { label: 'Rozmowy', href: '#interview' },
+    { label: 'Zadania', href: '#assessments' },
     { label: 'Cennik', href: '#pricing' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Zespoły', href: '/enterprise' },
+    { label: 'Blog', href: '/blog' },
   ],
 
   hero: {
-    eyebrow: 'Próbne rozmowy z AI · dla inżynierów',
-    titleLead: 'Ćwicz rozmowy techniczne.',
-    titleAccent: 'Zanim',
-    titleTail: 'dojdzie do tej prawdziwej.',
-    lede: 'Mentara prowadzi realistyczne próbne rozmowy techniczne z rekruterem AI, który dostosowuje się, dopytuje i ocenia cię na bieżąco – żebyś na prawdziwą rozmowę wszedł przygotowany.',
-    availability: 'Start w 2026 · iOS, Android i przeglądarka',
+    eyebrow: 'Trening rozmów dla programistów i zespołów',
+    titleLead: 'Ćwicz rozmowę techniczną,',
+    titleAccent: 'nie tylko pytania.',
+    lede: 'Mentara prowadzi ustrukturyzowaną rozmowę dla twojej roli i stacku, dopytuje o to, co naprawdę powiedziałeś, ocenia twój kod ukrytymi testami i daje raport, który wskazuje słabe strony – żeby kolejna sesja celowała właśnie w nie.',
+    availability: 'Start w 2026 · przeglądarka, iOS i Android',
+    teamsLink: 'Dla zespołów inżynierskich',
   },
 
-  trust: [
-    'Ścieżki w stylu FAANG',
-    'Ponad 10 ścieżek ćwiczeń',
-    'Ocena na żywo',
-    'Adaptacyjna trudność',
-    'iOS · Android · Web',
+  proof: [
+    'Frontend · Backend · Algorytmy',
+    '19 technologii',
+    'Od juniora do seniora',
+    '15, 30 lub 60 minut',
+    'Pisz albo mów',
+    '5 języków rozmowy',
   ],
 
-  product: {
-    eyebrow: 'Rzut oka na aplikację',
-    heading: 'Rozmowa na twoim ekranie.',
-    lede: 'Jeden ekran, jeden cel: utrzymać uwagę na rozmowie. Pytanie, twoja odpowiedź i bieżąca informacja o tym, jak ci idzie – na telefonie albo w przeglądarce, bez niczego, co rozprasza.',
-    notes: [
-      'Mów albo pisz – rekruter zareaguje tak czy inaczej',
-      'Ocena zmienia się w trakcie mówienia, a nie po wszystkim',
-      'Widzisz limit podpowiedzi, więc oszczędzasz je jak na prawdziwej rozmowie',
-    ],
-    ui: {
-      track: 'system-design · L5',
-      timer: '14:22',
-      interviewer: 'rekruter',
-      you: 'ty',
-      q: 'Twoje zapisy uderzają w jeden gorący klucz. Jak nie dopuścisz do przeciążenia węzła?',
-      a: 'Dodałbym sól do klucza partycjonowania, rozłożył odczyty na repliki i dorzucił write-behind…',
-      liveScore: 'ocena na żywo',
-      hints: 'podpowiedzi',
-    },
-  },
-
-  panel: {
-    label: 'sesja · system-design · L5',
-    interviewer: 'rekruter',
-    you: 'ty',
-    aiLine: 'Opowiedz, jak podzieliłbyś to na shardy, żeby gorący klucz nie położył jednego węzła.',
-    youLine: 'Dodałbym sól do klucza partycjonowania i rozłożył odczyty na repliki…',
-    of: '/10',
-    scores: ['Technika', 'Komunikacja', 'Przypadki brzegowe', 'Rozwiązywanie problemów'],
-  },
-
-  features: {
-    eyebrow: 'Co dostajesz',
-    heading: 'Rekruter, który dopytuje – a nie aplikacja z quizem.',
-    items: [
-      {
-        index: '01',
-        title: 'Rekruter, który dopytuje',
-        body: 'To nie chatbot czytający pytania. Rekruter AI trzyma się roli, poziomu i charakteru rozmowy – dopytuje, drąży przypadki brzegowe i podkręca trudność, gdy zaczynasz jechać na luzie.',
-      },
-      {
-        index: '02',
-        title: 'Ocena w trakcie mówienia',
-        body: 'Bieżący sygnał o głębi technicznej, komunikacji, przypadkach brzegowych i sposobie rozwiązywania problemów – aktualizowany co kilka wymian zdań, a nie ukryty w podsumowaniu.',
-      },
-      {
-        index: '03',
-        title: 'Uporządkowane ścieżki ćwiczeń',
-        body: 'Algorytmy, system design, rozmowy behawioralne i rundy domenowe ze skalibrowaną trudnością. Trenuj tę rundę, której naprawdę się boisz, a nie przypadkowy zestaw.',
-      },
-      {
-        index: '04',
-        title: 'Postęp, który się kumuluje',
-        body: 'XP, serie dni, poziomy i osiągnięcia zamieniają chaotyczne zrywy w nawyk. Wracaj codziennie i patrz, jak postęp się sumuje.',
-      },
-    ],
-  },
-
-  audience: {
-    eyebrow: 'Dla kogo to jest',
-    heading: 'Dla inżynierów, którzy przygotowują się właśnie teraz.',
-    groups: [
-      {
-        tag: 'Po studiach',
-        body: 'Zamień „znam to z teorii” na „poradzę sobie na rozmowie”, zanim pójdziesz na pierwszy onsite.',
-      },
-      {
-        tag: 'Po zmianie branży',
-        body: 'Szybko nadrób brak doświadczenia w rozmowach – ćwicz z informacją zwrotną, a nie na wyczucie.',
-      },
-      {
-        tag: 'Rozmowy na seniora',
-        body: 'Ćwicz system design i trudne pytania na poziomie staff, aż prawdziwy panel stanie się rutyną.',
-      },
-    ],
-    versus: {
-      them: 'Samotne katowanie LeetCode',
-      themPoints: [
-        'Nikt nie drąży odpowiedzi rzuconej ogólnikami',
-        'Zero informacji o komunikacji i strukturze',
-        'Oceniasz się sam – i to hojnie',
+  why: {
+    eyebrow: 'Dlaczego ćwiczyć tutaj',
+    heading: 'Czytanie odpowiedzi to nie to samo, co ich udzielanie.',
+    lede: 'Większość przygotowań kończy się listą przeczytanych pytań. Na rozmowie musisz wyjaśniać, ktoś drąży słaby punkt i idzie dalej, czy jesteś gotowy, czy nie. Właśnie to pozwala ćwiczyć Mentara.',
+    them: {
+      label: 'Listy pytań i zwykły chatbot',
+      points: [
+        'Sam wybierasz pytania, więc wybierasz łatwe',
+        'Nikt nie zapyta „dlaczego?” po mglistej odpowiedzi',
+        'Kod nigdy nie jest uruchamiany, więc „wygląda dobrze” liczy się jako dobrze',
+        'Oceniasz się sam, a każda sesja zaczyna się od zera',
       ],
-      us: 'Mentara',
-      usPoints: [
-        'Rekruter, który dopytuje i podkręca poziom',
-        'Ocena za komunikację, nie tylko za odpowiedź',
-        'Uczciwy raport i lista tego, co poprawić',
+    },
+    us: {
+      label: 'Sesja w Mentara',
+      points: [
+        'Rozmowa na czas dla twojej roli, poziomu i stacku, o stałej strukturze',
+        'Pytania uzupełniające zbudowane na twojej własnej odpowiedzi',
+        'Zadania programistyczne oceniane testami, których nie widzisz',
+        'Raport z dowodami, a słabe strony kształtują kolejną sesję',
       ],
     },
   },
 
-  steps: {
-    eyebrow: 'Jak to działa',
-    heading: 'Jak to działa – w trzech krokach.',
-    items: [
+  interview: {
+    eyebrow: 'Rozmowy z AI',
+    heading: 'Ustrukturyzowana rozmowa, która reaguje na twoje odpowiedzi.',
+    lede: 'Każda rozmowa przechodzi przez rozgrzewkę, pytania techniczne, pogłębienie i podsumowanie. Rekruter dopytuje o to, co powiedziałeś, zawęża pytanie, gdy utkniesz, i idzie dalej, gdy odpowiedź jest mocna.',
+    steps: [
       {
-        n: '1',
-        title: 'Wybierz rundę',
-        body: 'Wybierz ścieżkę, rolę i poziom trudności. Ustaw charakter rozmowy – życzliwy screening albo przesłuchanie na poziomie staff.',
+        title: 'Wybierz rolę',
+        body: 'Frontend, backend lub algorytmy, na poziomie junior, middle lub senior.',
       },
       {
-        n: '2',
-        title: 'Przeprowadź próbną rozmowę',
-        body: 'Tłumacz na głos albo pisz kod. Rekruter dostosowuje się na bieżąco i ocenia każdą wymianę zdań.',
+        title: 'Wybierz stack',
+        body: 'Do sześciu technologii – React, TypeScript, Node.js, system design i więcej.',
       },
       {
-        n: '3',
+        title: 'Ustaw rozmowę',
+        body: '15, 30 lub 60 minut, jeden z trzech rekruterów, surowy lub wspierający feedback, w jednym z pięciu języków.',
+      },
+      {
+        title: 'Odpowiadaj na głos lub pisemnie',
+        body: 'Pisz albo mów, a odpowiedź zostanie przepisana. Do trzech podpowiedzi, gdy utkniesz.',
+      },
+      {
         title: 'Odbierz raport',
-        body: 'Rozpisana ocena plus konkretny plan nauki – dokładnie to, co poprawić przed prawdziwą rozmową.',
+        body: 'Oceny, dowody i ścieżka nauki zaraz po zakończeniu rozmowy.',
       },
     ],
+    honesty:
+      'To rekruter AI, nie człowiek. Został zbudowany, by prowadzić spójną, ustrukturyzowaną rozmowę techniczną – a twoje ostatnie sesje wpływają na to, o co zapyta dalej.',
+    mock: {
+      label: 'Rozmowa · Frontend · Senior · 30 min',
+      phases: ['Rozgrzewka', 'Technika', 'Pogłębienie', 'Podsumowanie'],
+      interviewer: 'Rekruter',
+      you: 'Ty',
+      q: 'Twoja lista renderuje się ponownie przy każdym naciśnięciu klawisza w wyszukiwarce. Jak sprawdzisz dlaczego?',
+      a: 'Otworzę React Profiler, nagram jedno naciśnięcie i sprawdzę, które komponenty się wyrenderowały i dlaczego…',
+      followUp:
+        'Załóżmy, że profiler pokazuje ponowne renderowanie całej listy. Jakie są dwie najbardziej prawdopodobne przyczyny?',
+      hints: 'Zostały 2 z 3 podpowiedzi',
+      voice: 'Dotknij, by odpowiedzieć',
+    },
+  },
+
+  assessment: {
+    eyebrow: 'Zadania programistyczne',
+    heading: 'Napisz kod. Ocenią go ukryte testy.',
+    lede: 'Kod ma w Mentara swoje miejsce: osobne zadanie na czas z edytorem, uruchamialnymi przykładami i prawdziwym zgłoszeniem rozwiązania. Rozmowa pozostaje rozmową; zadanie sprawdza kod.',
+    steps: [
+      {
+        title: 'Przeczytaj treść',
+        body: 'Od jednego do pięciu problemów z przykładami. Jeśli zadanie ma limit czasu, pilnuje go serwer.',
+      },
+      {
+        title: 'Napisz rozwiązanie',
+        body: 'JavaScript, TypeScript, Python, Java, Go lub C++. Język możesz zmienić w trakcie podejścia.',
+      },
+      {
+        title: 'Uruchom przykłady',
+        body: 'Uruchamiaj widoczne przykłady lub własne dane wejściowe dowolnie często przed wysłaniem.',
+      },
+      {
+        title: 'Wyślij',
+        body: 'Twój kod jest oceniany ukrytymi testami, które nigdy nie opuszczają serwera.',
+      },
+      {
+        title: 'Przeczytaj recenzję',
+        body: 'Recenzja AI jakości kodu, wydajności i czytelności, dla każdego problemu, z mocnymi i słabymi stronami.',
+      },
+    ],
+    separate:
+      'Dlaczego osobno? Omówienie projektu i napisanie działającego kodu to różne umiejętności. Wymieszane w jednym czacie ukrywają, która z nich wymaga pracy.',
+    mock: {
+      label: 'Zadanie programistyczne · 2 problemy',
+      timer: 'zostało 38:12',
+      problem: 'Scal nachodzące na siebie przedziały',
+      run: 'Uruchom przykłady',
+      submit: 'Wyślij',
+      examples: 'Przykłady',
+      passed: '3 / 3 zaliczone',
+      review: 'Recenzja',
+      reviewLines: [
+        'Poprawne w przypadkach brzegowych: puste dane, stykające się przedziały',
+        'O(n log n) – dominuje sortowanie',
+        'Warto nadać akumulatorowi czytelną nazwę',
+      ],
+    },
+  },
+
+  report: {
+    eyebrow: 'Feedback',
+    heading: 'Wiesz dokładnie, co poprawić dalej.',
+    lede: 'Rozmowa kończy się raportem, a nie poklepaniem po plecach. Każda ocena jest powiązana z czymś, co naprawdę powiedziałeś, a luki stają się twoim kolejnym planem ćwiczeń.',
+    points: [
+      {
+        title: 'Oceny, które da się prześledzić',
+        body: 'Ogólna oraz głębia techniczna, komunikacja, przypadki brzegowe i rozwiązywanie problemów. Oceny wynikają z dowodów w twoich odpowiedziach, a nie z liczby wymyślonej przez model.',
+      },
+      {
+        title: 'Wyniki według kompetencji',
+        body: 'Każda umiejętność sprawdzona w rozmowie dostaje ocenę: mocna, solidna, rozwijana lub do poprawy – albo „nieoceniona”, gdy zabrakło dowodów.',
+      },
+      {
+        title: 'Mocne i słabe strony',
+        body: 'Co poszło dobrze, co poprawić i cytaty z twoich odpowiedzi, które pokazują dlaczego.',
+      },
+      {
+        title: 'Ścieżka nauki',
+        body: 'Tematy według priorytetu z szacowanym czasem. Kolejna rozmowa wraca do twoich słabych stron.',
+      },
+    ],
+    mock: {
+      label: 'Twój raport',
+      overall: 'Ogólnie',
+      categories: ['Technika', 'Komunikacja', 'Przypadki brzegowe', 'Rozwiązywanie'],
+      competencyTitle: 'Według kompetencji',
+      competencies: [
+        { name: 'Renderowanie w React', band: 'Mocna' },
+        { name: 'Zarządzanie stanem', band: 'Solidna' },
+        { name: 'Wydajność webowa', band: 'Rozwijana' },
+      ],
+      evidenceTitle: 'Dowody z twoich odpowiedzi',
+      evidence:
+        '„Zmemoizowałbym komponent wiersza” – poprawna poprawka, ale przyczyna (nowy callback przy każdym renderze) nie padła.',
+      nextTitle: 'Następny cel',
+      next: 'Wydajność webowa · ~3 h',
+    },
+  },
+
+  progress: {
+    eyebrow: 'Nie zwalniaj',
+    heading: 'Powód, żeby wrócić jutro.',
+    lede: 'Umiejętność przechodzenia rozmów zanika bez ćwiczeń. Codzienne wyzwania dają ci każdego dnia małe, konkretne zadanie oparte na twojej historii.',
+    points: [
+      {
+        title: 'Codzienne wyzwania',
+        body: 'Do trzech dziennie: skończ bez podpowiedzi, pobij swój ostatni wynik, wróć do słabej strony, poćwicz technologię.',
+      },
+      {
+        title: 'Serie i poziomy',
+        body: 'XP prowadzą cię od Intern do CTO. Zamrożenie serii ratuje pojedynczy opuszczony dzień.',
+      },
+      {
+        title: 'Osiągnięcia',
+        body: 'Ścieżki za regularność, postępy, role i technologie – zdobywane ćwiczeniem, a nie samym otwarciem aplikacji.',
+      },
+      {
+        title: 'Postępy w czasie',
+        body: 'Trend twoich wyników, powracające słabe strony i wszystkie dawne raporty w jednym miejscu.',
+      },
+    ],
+    mock: {
+      label: 'Wyzwanie dnia',
+      challenges: [
+        { title: 'Ukończ jedną rozmowę', xp: '+30 XP', done: true },
+        { title: 'Skończ bez podpowiedzi', xp: '+50 XP', done: false },
+        { title: 'Wróć do wydajności webowej', xp: '+80 XP', done: false },
+      ],
+      streak: 'Seria 12 dni',
+      level: 'Poziom · Mid',
+    },
   },
 
   pricing: {
     eyebrow: 'Cennik',
-    heading: 'Start za darmo, płatne plany na więcej ćwiczeń.',
-    flag: 'Najpopularniejszy',
-    cta: 'Dostępne na starcie',
-    foot: 'Ceny są orientacyjne i zostaną ustalone na premierę.',
+    heading: 'Zacznij za darmo. Przejdź na Pro, gdy aktywnie szukasz pracy.',
+    flag: 'Na aktywne szukanie pracy',
+    foot: 'Cena Pro zostanie ustalona na premierę i pokazana w sklepie z aplikacjami oraz w przeglądarce przed zapłatą.',
     tiers: [
       {
-        tier: 'FREE',
-        price: '0 zł',
+        tier: 'Free',
+        price: '0 $',
         cadence: 'na zawsze',
-        blurb: 'Sprawdź prawdziwe próbne rozmowy.',
+        blurb: 'Wszystko, czego potrzebujesz do regularnych ćwiczeń.',
         features: [
-          'Kilka sesji w miesiącu',
-          'Podstawowe ścieżki ćwiczeń',
-          'Ocena na żywo',
-          'Podstawowy postęp',
+          '5 rozmów tekstowych co 30 dni',
+          '3 rozmowy głosowe co 30 dni',
+          'Pełny raport po każdej rozmowie',
+          'Wszystkie role, poziomy i technologie',
+          'Zadania programistyczne',
+          'Codzienne wyzwania i osiągnięcia',
         ],
         featured: false,
+        cta: 'Zapisz się na listę',
+        href: '#waitlist',
       },
       {
-        tier: 'PRO',
-        price: 'Wkrótce',
-        cadence: 'na premierę',
-        blurb: 'Dla inżyniera w trakcie rekrutacji.',
+        tier: 'Pro',
+        price: 'TBA',
+        cadence: 'cena na premierę',
+        blurb: 'Na tygodnie, w których naprawdę chodzisz na rozmowy.',
         features: [
-          'Sesje bez limitu',
-          'Pełne raporty z oceną i plan nauki',
-          'Wszystkie ścieżki i charaktery rozmów',
-          'Grywalizacja postępów',
+          'Wszystko z Free',
+          'Nielimitowane rozmowy tekstowe',
+          'Nielimitowane rozmowy głosowe',
+          'Tryb realistyczny: pokazuje, gdzie utknąłeś i ile sesja byłaby warta bez pomocy z zewnątrz',
         ],
         featured: true,
+        cta: 'Zapisz się na listę',
+        href: '#waitlist',
       },
       {
-        tier: 'ENTERPRISE',
+        tier: 'Enterprise',
         price: 'Indywidualnie',
-        cadence: 'porozmawiajmy',
-        blurb: 'Bootcampy, grupy studenckie i zespoły.',
+        cadence: 'za miejsce',
+        blurb: 'Dla zespołów inżynierskich i rekrutacji.',
         features: [
-          'Zarządzanie miejscami i grupami',
-          'Analityka zbiorcza',
-          'SSO i panel administratora',
-          'Priorytetowe wsparcie',
+          'Pro dla każdego miejsca',
+          'Rozmowy firmowe na waszym stacku',
+          'Zaproszenia kandydatów za ich zgodą',
+          'Raport zespołu z poszanowaniem prywatności',
+          '14 dni próbnych z 5 miejscami',
         ],
         featured: false,
+        cta: 'Porozmawiajmy',
+        href: '/enterprise#contact',
       },
     ],
+  },
+
+  teamsBand: {
+    eyebrow: 'Mentara dla zespołów',
+    heading: 'Spójny trening rozmów i selekcja kandydatów dla zespołów inżynierskich.',
+    lede: 'Daj inżynierom ustrukturyzowane ćwiczenia na waszym stacku, a kandydatom za każdym razem tę samą rozmowę – bez zamieniania ćwiczeń w nadzór.',
+    points: [
+      {
+        title: 'Rozmowy firmowe',
+        body: 'Raz ustal rolę, poziom, stack, długość i pytania startowe. Każdy dostaje tę samą rozmowę.',
+      },
+      {
+        title: 'Zaproszenia kandydatów',
+        body: 'Wyślij jednorazowy link. Kandydat najpierw wyraża zgodę; ty widzisz raport, nie transkrypcję.',
+      },
+      {
+        title: 'Raport zespołu',
+        body: 'Aktywność na osobę, średnie umiejętności tylko dla grup od pięciu osób. Nikt nie czyta transkrypcji pracownika.',
+      },
+    ],
+    cta: 'Zobacz Mentara dla zespołów',
   },
 
   faq: {
@@ -206,24 +309,28 @@ export const pl: Dict = {
     heading: 'Konkretne odpowiedzi.',
     items: [
       {
-        q: 'Czy to naprawdę przypomina prawdziwą rozmowę?',
-        a: 'O to właśnie chodzi. Rekruter trzyma się swojej roli, dopytuje, podważa słabe odpowiedzi i podnosi poprzeczkę – łącznie z niezręcznymi chwilami ciszy.',
+        q: 'Czym to się różni od pytania ChatGPT o pytania rekrutacyjne?',
+        a: 'Chatbot odpowiada na to, o co pytasz. Mentara prowadzi rozmowę: ma stałą strukturę i limit czasu, dopytuje przy słabych odpowiedziach, ocenia na podstawie dowodów według rubryki, uruchamia twój kod na ukrytych testach i pamięta twoje ostatnie sesje.',
       },
       {
-        q: 'Czy muszę programować na głos?',
-        a: 'Ty decydujesz. Możesz tłumaczyć tok rozumowania, pisać kod albo jedno i drugie. Rundy behawioralne i system design opierają się na rozmowie, w algorytmicznych wysyłasz kod.',
+        q: 'Czy rekruter AI jest jak prawdziwy człowiek?',
+        a: 'Nie, i nie udajemy, że jest. Został zbudowany, by prowadzić spójną rozmowę techniczną – z dopytywaniem, zegarem i strukturą. To trening przed prawdziwą rozmową, a nie jej zamiennik.',
       },
       {
-        q: 'Jakie ścieżki są dostępne?',
-        a: 'Algorytmy, system design, rozmowy behawioralne i rundy domenowe – dla różnych ról i poziomów, z trudnością dopasowaną do ciebie.',
+        q: 'Czy mogę pisać kod?',
+        a: 'Tak, w zadaniu programistycznym: edytor, uruchamialne przykłady, limit czasu, jeśli zadanie go ma, i ukryte testy po wysłaniu. Sama rozmowa to konwersacja głosowa lub pisemna.',
       },
       {
-        q: 'Kiedy i gdzie będzie premiera?',
-        a: 'Mentara startuje w 2026 roku na iOS, Androidzie i w przeglądarce. Wpisy w sklepach i aplikacja webowa ruszają na premierę – ta strona to wcześniejszy podgląd.',
+        q: 'Czy mogę odpowiadać na głos?',
+        a: 'Tak. Dotknij mikrofonu, mów, a odpowiedź zostanie przepisana. Plan Free obejmuje 3 rozmowy głosowe co 30 dni; Pro nie ma limitu.',
       },
       {
-        q: 'Czy dane z sesji są prywatne?',
-        a: 'Twoje transkrypcje i oceny należą do ciebie. Zasilają twoje raporty i postępy i nie są sprzedawane. Pełna polityka prywatności trafi razem z aplikacjami.',
+        q: 'Co widzi mój pracodawca, jeśli firma korzysta z Mentara?',
+        a: 'Tylko datę dołączenia, liczbę rozmów z ostatnich 30 dni i czas ostatniej aktywności. Średnie umiejętności zespołu pojawiają się dopiero, gdy wkład wniosło co najmniej pięć osób. Żadna rola w organizacji nie może czytać twoich transkrypcji ani indywidualnych raportów.',
+      },
+      {
+        q: 'Kiedy będę mógł z tego korzystać?',
+        a: 'Mentara startuje w 2026 roku w przeglądarce, na iOS i Androidzie. Zapisz się na listę, a napiszemy, gdy ruszymy.',
       },
     ],
   },
@@ -246,9 +353,153 @@ export const pl: Dict = {
 
   cta: {
     eyebrow: 'Start w 2026',
-    titleLead: 'Mentara startuje w 2026 roku.',
-    titleAccent: 'Zacznij ćwiczyć wcześniej.',
-    lede: 'Mentara trafia na iOS, Androida i do przeglądarki w 2026 roku. Zapisz się po informacje o premierze i zacznij ćwiczyć wcześniej.',
+    titleLead: 'Twoja kolejna rozmowa nadchodzi.',
+    titleAccent: 'Poćwicz, zanim nadejdzie.',
+    lede: 'Mentara startuje w przeglądarce, na iOS i Androidzie w 2026 roku. Zapisz się na listę, a napiszemy tego samego dnia.',
+  },
+
+  enterprise: {
+    metaTitle: 'Mentara dla zespołów – trening rozmów technicznych i selekcja kandydatów',
+    metaDescription:
+      'Ustrukturyzowany trening rozmów z AI i zadania programistyczne dla zespołów inżynierskich: rozmowy firmowe na waszym stacku, zaproszenia kandydatów za zgodą i raport zespołu, który nigdy nie ujawnia indywidualnych transkrypcji.',
+    hero: {
+      eyebrow: 'Mentara dla zespołów',
+      title: 'Ustrukturyzowane rozmowy techniczne dla całego zespołu.',
+      lede: 'Pomóż inżynierom trzymać formę i oceniaj kandydatów za każdym razem tak samo. Mentara daje twojej organizacji rozmowy firmowe, zadania programistyczne i raporty – z jasnymi granicami tego, co widzą menedżerowie.',
+      primary: 'Porozmawiajmy',
+      secondary: 'Przeczytaj: jak zespoły korzystają z treningu rozmów z AI',
+    },
+    useCases: {
+      eyebrow: 'Dwa zastosowania',
+      heading: 'Rozwijaj inżynierów. Oceniaj kandydatów spójnie.',
+      items: [
+        {
+          tag: 'Rozwój',
+          title: 'Ustrukturyzowane ćwiczenia dla twoich inżynierów',
+          body: 'Umiejętność rozmów zanika między zmianami pracy a awansami. Miejsca dają każdemu inżynierowi ćwiczenia na poziomie Pro na stacku, którego zespół naprawdę używa.',
+          points: [
+            'Ćwiczenia na poziomie Pro dla każdego miejsca',
+            'Rozmowy firmowe z waszych technologii i na waszym poziomie',
+            'Raport zespołu z danych zbiorczych, nie z transkrypcji',
+          ],
+        },
+        {
+          tag: 'Rekrutacja',
+          title: 'Ta sama pierwsza rozmowa dla każdego kandydata',
+          body: 'Rozmowa firmowa ustala rolę, poziom, stack, długość, język i wasze pytania startowe, więc kandydaci są porównywani na równych zasadach.',
+          points: [
+            'Jednorazowe linki, które otwierają się tylko dla zaproszonego adresu e-mail',
+            'Kandydat widzi jasną informację i najpierw wyraża zgodę',
+            'Dostajesz raport i wyniki testów – nie transkrypcję ani kod',
+          ],
+        },
+      ],
+    },
+    steps: {
+      eyebrow: 'Jak to działa',
+      heading: 'Od pierwszej rozmowy do pierwszego wywiadu.',
+      items: [
+        {
+          title: 'Porozmawiajmy',
+          body: 'Opowiedz o zespole i o tym, czy rekrutujecie, rozwijacie ludzi, czy jedno i drugie.',
+        },
+        {
+          title: 'Rozpocznij okres próbny',
+          body: 'Aktywujemy waszą organizację: 14 dni, 5 miejsc, 10 zaproszeń kandydatów.',
+        },
+        {
+          title: 'Zaproś zespół',
+          body: 'Udostępnij link z zaproszeniem. Owner i Admin zarządzają miejscami i rolami.',
+        },
+        {
+          title: 'Zbuduj rozmowy firmowe',
+          body: 'Wybierz rolę, poziom i stack, dodaj do 30 pytań startowych z oczekiwanymi pojęciami.',
+        },
+        {
+          title: 'Ćwicz i zapraszaj',
+          body: 'Inżynierowie ćwiczą; rekruterzy wysyłają zaproszenia kandydatom i czytają wyniki.',
+        },
+      ],
+    },
+    privacy: {
+      eyebrow: 'Prywatność w projekcie',
+      heading: 'Ćwiczenia działają tylko wtedy, gdy nikt nie patrzy.',
+      lede: 'Inżynierowie ćwiczą uczciwie, gdy ich błędy pozostają prywatne. Dlatego ograniczenia są wbudowane w produkt, a nie zostawione polityce.',
+      sees: {
+        label: 'Co widzi organizacja',
+        points: [
+          'Datę dołączenia, liczbę rozmów z ostatnich 30 dni i ostatnią aktywność każdego członka',
+          'Średnie umiejętności zespołu – tylko gdy wkład wniosło co najmniej pięć osób',
+          'U kandydatów, którzy wyrazili zgodę: raport i wyniki zadań',
+        ],
+      },
+      never: {
+        label: 'Czego nie widzi żadna rola',
+        points: [
+          'Transkrypcji rozmowy pracownika',
+          'Indywidualnego raportu ani ocen pracownika',
+          'Transkrypcji ani wysłanego kodu kandydata',
+        ],
+      },
+    },
+    roles: {
+      eyebrow: 'Role',
+      heading: 'Cztery role, każda z jasnym zadaniem.',
+      items: [
+        { role: 'Owner', body: 'Wszystko, łącznie z zarządzaniem innymi właścicielami.' },
+        {
+          role: 'Admin',
+          body: 'Członkowie i zaproszenia, rozmowy firmowe, zaproszenia kandydatów i raport zespołu.',
+        },
+        {
+          role: 'Recruiter',
+          body: 'Korzysta z rozmów firmowych, by wysyłać zaproszenia kandydatom i nimi zarządzać.',
+        },
+        { role: 'Member', body: 'Ćwiczy, także na waszych rozmowach firmowych.' },
+      ],
+    },
+    notYet: {
+      heading: 'Jeszcze niedostępne',
+      lede: 'Wolimy powiedzieć to teraz niż na spotkaniu z działem zakupów.',
+      items: [
+        'SSO i provisioning SCIM',
+        'Integracje z ATS',
+        'Własny branding',
+        'Zadania programistyczne tworzone przez firmę',
+        'Samodzielny zakup – umowy zawierane są z nami',
+      ],
+    },
+    article: {
+      eyebrow: 'Więcej do czytania',
+      title:
+        'Trening rozmów z AI dla zespołów inżynierskich: co potrafi, a czego nie (po angielsku)',
+      cta: 'Przeczytaj artykuł',
+    },
+    form: {
+      eyebrow: 'Porozmawiajmy',
+      heading: 'Opowiedz nam o swoim zespole.',
+      sub: 'Odpowiadamy e-mailem, zwykle w ciągu dwóch dni roboczych.',
+      name: 'Imię i nazwisko',
+      email: 'Służbowy e-mail',
+      company: 'Firma',
+      teamSize: 'Wielkość zespołu',
+      useCase: 'Czego potrzebujecie?',
+      useCases: {
+        upskilling: 'Ćwiczeń dla naszych inżynierów',
+        hiring: 'Selekcji kandydatów',
+        both: 'Jednego i drugiego',
+      },
+      message: 'Coś jeszcze?',
+      messageHint: 'Stack, terminy, liczba kandydatów – opcjonalnie.',
+      submit: 'Wyślij',
+      sending: 'Wysyłanie…',
+      success: 'Dziękujemy – mamy twoją wiadomość i odpowiemy e-mailem.',
+      invalid: 'Sprawdź pola powyżej i spróbuj ponownie.',
+      rateLimited: 'Zbyt wiele zapytań z tej sieci. Spróbuj ponownie za godzinę.',
+      error: 'Coś poszło nie tak po naszej stronie. Spróbuj za chwilę.',
+      offNote: 'Formularz kontaktowy wkrótce ruszy.',
+      privacyNote: 'Używamy tych danych wyłącznie, by ci odpowiedzieć.',
+    },
   },
 
   contentHub: {
@@ -262,15 +513,15 @@ export const pl: Dict = {
     resources: {
       eyebrow: 'Materiały',
       title: 'Uporządkowane ścieżki lektur do przygotowań na rozmowy techniczne.',
-      lede: 'Pogrupowane punkty wyjścia dla kandydatów, którzy porównują narzędzia, ćwiczą system design, dopracowują odpowiedzi behawioralne albo przygotowują się na rozmowy senior i staff.',
+      lede: 'Pogrupowane punkty wyjścia dla kandydatów, którzy porównują narzędzia, ćwiczą system design, dopracowują odpowiedzi behawioralne, przygotowują się na rozmowy senior i staff – oraz dla zespołów.',
     },
     blog: {
       eyebrow: 'Materiały',
-      title: 'Porównania, strategia przygotowań i notatki o produkcie.',
-      lede: 'Tworzone po to, by trafiać do osób szukających konkretów i dać poważnym kandydatom lepsze wejście w produkt niż ogólnikowa strona reklamowa.',
+      title: 'Strategia przygotowań do rozmów, porównania i notatki o produkcie.',
+      lede: 'Praktyczne artykuły o przygotowaniu do rozmów technicznych – i o tym, jak zespoły mogą prowadzić trening rozmów na dużą skalę.',
       primary: 'Przeglądaj wszystkie artykuły',
       pathsEyebrow: 'Ścieżki lektur',
-      pathsTitle: 'Tematyczne zestawy, a nie przypadkowa sterta wpisów.',
+      pathsTitle: 'Pogrupowane według tego, do czego się przygotowujesz.',
     },
   },
 
@@ -283,7 +534,7 @@ export const pl: Dict = {
   },
 
   footer: {
-    blurb: 'Próbne rozmowy z AI dla inżynierów – iOS, Android i przeglądarka.',
+    blurb: 'Trening rozmów technicznych i zadania programistyczne dla programistów i zespołów.',
     explore: 'Nawigacja',
     legal: 'Informacje prawne',
     privacy: 'Prywatność',
