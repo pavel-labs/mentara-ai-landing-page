@@ -1,5 +1,5 @@
 export interface BlogClusterDefinition {
-  id: 'compare' | 'system-design' | 'behavioral' | 'senior';
+  id: 'compare' | 'system-design' | 'behavioral' | 'senior' | 'teams';
   title: string;
   lede: string;
   cta: {
@@ -88,6 +88,25 @@ export const BLOG_CLUSTERS: BlogClusterDefinition[] = [
       secondaryHref: '/resources',
     },
     slugs: ['senior-software-engineer-interview-prep', 'staff-engineer-interview-preparation'],
+  },
+  {
+    id: 'teams',
+    title: 'For Engineering Teams',
+    lede: 'For engineering leaders and recruiters running interview practice or first-round screening across a team.',
+    cta: {
+      eyebrow: 'Mentara for teams',
+      title: 'Consistent interview practice and screening, without surveillance.',
+      body: 'Company interviews on your stack, candidate assignments with consent, and a team report built from aggregates – never individual transcripts.',
+      primaryLabel: 'Talk to us',
+      primaryHref: '/enterprise#contact',
+      secondaryLabel: 'See Mentara for teams',
+      secondaryHref: '/enterprise',
+    },
+    slugs: [
+      'ai-interview-practice-for-engineering-teams',
+      'peer-mock-interviews-vs-ai',
+      'inside-an-ai-interview-simulator',
+    ],
   },
 ];
 
