@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import Articles from '../../../components/Articles.astro';
+import { LOCALES, localeHome } from '../../../i18n';
+import { marketingLabels } from '../../../marketing/content';
+export function getStaticPaths() { return LOCALES.filter((locale) => locale !== 'en').map((locale) => ({ params: { locale }, props: { locale } })); }
+const { locale } = Astro.props;
+---
+<BaseLayout locale={locale} title={`${marketingLabels(locale).articles} · Mentara`}>
+  <Nav locale={locale} homeHref={localeHome(locale)} />
+  <main id="main"><Articles locale={locale} /></main>
+  <Footer locale={locale} />
+</BaseLayout>

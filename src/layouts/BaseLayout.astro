@@ -29,6 +29,10 @@ interface Props {
   /** Extra JSON-LD nodes for this page (BreadcrumbList, BlogPosting, …). */
   jsonLd?: Record<string, unknown>[];
   ogType?: 'website' | 'article';
+  ogImageUrl?: string;
+  suppressAlternates?: boolean;
+  faqItems?: { q: string; a: string }[];
+  analytics?: boolean;
   /**
    * Content that exists in one language only (the English blog) and is merely served
    * under every locale prefix. The canonical then points at the English URL and no
@@ -46,6 +50,7 @@ const {
   jsonLd: pageJsonLd = [],
   ogType = 'website',
   singleLanguage = false,
+  ogImageUrl, suppressAlternates = false, faqItems, analytics = true,
 } = Astro.props;
 const t = getDict(locale);
 const pageTitle = title ?? t.meta.title;
@@ -59,7 +64,7 @@ const canonical = new URL(
   origin,
 ).href;
 const favicon = withBase('favicon.svg');
-const ogImage = new URL(withBase(`og/${locale}.png`), origin).href;
+const ogImage = ogImageUrl ?? new URL(withBase(`og/${locale}.png`), origin).href;
 const sitemapHref = withBase('sitemap-index.xml');
 const rssHref = withBase('rss.xml');
 const manifestHref = withBase('site.webmanifest');
@@ -69,7 +74,7 @@ const appleIcon = withBase('apple-touch-icon.png');
 // Every localized route exists in all locales (the parity test and the per-locale page
 // wrappers guarantee it), so the swap of the locale prefix is always a real page.
 const alternateHref = (l: Locale) => new URL(localePath(l, pagePath), origin).href;
-const alternates = singleLanguage
+const alternates = singleLanguage || suppressAlternates
   ? []
   : LOCALES.map((l) => ({ hreflang: l, href: alternateHref(l) }));
 
@@ -83,7 +88,7 @@ const cfToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 const faqNode = {
   '@type': 'FAQPage',
   inLanguage: locale,
-  mainEntity: t.faq.items.map((f) => ({
+  mainEntity: (faqItems ?? t.faq.items).map((f) => ({
     '@type': 'Question',
     name: f.q,
     acceptedAnswer: { '@type': 'Answer', text: f.a },
@@ -132,12 +137,13 @@ const jsonLd = {
     {/* Before paint, so a redirected visitor never sees the wrong language flash. */}
     {autoLocale && <LocaleAuto locale={locale} />}
 
+    <slot name="head" />
     <title>{pageTitle}</title>
     <meta name="description" content={pageDesc} />
     <link rel="canonical" href={canonical} />
     {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
     {
-      !singleLanguage && (
+      !singleLanguage && !suppressAlternates && (
         <link rel="alternate" hreflang="x-default" href={alternateHref(DEFAULT_LOCALE)} />
       )
     }
@@ -163,10 +169,10 @@ const jsonLd = {
     <meta name="twitter:description" content={pageDesc} />
     <meta name="twitter:image" content={ogImage} />
 
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />
 
     {
-      cfToken && (
+      analytics && cfToken && (
         <script
           is:inline
           defer
@@ -179,6 +185,7 @@ const jsonLd = {
   <body>
     <a href="#main" class="skip">{t.a11ySkip}</a>
     <slot />
+    {analytics && <script src="../marketing/analytics.ts"></script>}
     <style>
       .skip {
         position: absolute;

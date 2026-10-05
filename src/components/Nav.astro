@@ -1,6 +1,7 @@
 ---
 import { SITE } from '../consts';
 import { getDict, resolveNavHref, type Locale } from '../i18n';
+import { marketingLanding, marketingLinks, marketingLabels } from '../marketing/content';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
@@ -9,6 +10,10 @@ interface Props {
 }
 const { locale, homeHref = '#main' } = Astro.props;
 const t = getDict(locale);
+const content = marketingLanding(locale);
+const labels = marketingLabels(locale);
+const links = marketingLinks(locale);
+const nav = content ? [{ label: labels.products, href: '#product' }, { label: content.pricing.heading, href: '#pricing' }, { label: labels.articles, href: '/articles' }] : [...t.nav, { label: labels.articles, href: '/articles' }];
 const resolveHref = (href: string) => resolveNavHref(locale, homeHref, href);
 ---
 
@@ -20,15 +25,15 @@ const resolveHref = (href: string) => resolveNavHref(locale, homeHref, href);
     </a>
 
     <nav class="links" aria-label="Primary">
-      {t.nav.map((l) => <a href={resolveHref(l.href)}>{l.label}</a>)}
+      {nav.map((l) => <a href={resolveHref(l.href)} data-marketing-event={l.href === '#pricing' ? 'pricing_cta' : l.href.startsWith('/enterprise') ? 'enterprise_cta' : undefined}>{l.label}</a>)}
     </nav>
 
     <div class="nav__end">
       <LanguageSwitcher locale={locale} />
-      <span class="pill">
+      {links.webAppUrl ? <a class="btn btn--ghost nav__app" href={links.webAppUrl} data-marketing-event="web_app_cta">{labels.open}</a> : <span class="pill">
         <span class="dot" aria-hidden="true"></span>
         {t.meta.launchLabel}
-      </span>
+      </span>}
 
       {/*
         Narrow-screen navigation. Built on <details> so it opens, closes and takes
@@ -41,7 +46,8 @@ const resolveHref = (href: string) => resolveNavHref(locale, homeHref, href);
         </summary>
         <div class="menu__panel">
           <nav aria-label={t.a11yMenu}>
-            {t.nav.map((l) => <a href={resolveHref(l.href)}>{l.label}</a>)}
+            {links.webAppUrl && <a href={links.webAppUrl} data-marketing-event="web_app_cta">{labels.open}</a>}
+            {nav.map((l) => <a href={resolveHref(l.href)} data-marketing-event={l.href === '#pricing' ? 'pricing_cta' : l.href.startsWith('/enterprise') ? 'enterprise_cta' : undefined}>{l.label}</a>)}
           </nav>
           {/* Five locales no longer fit next to the brand on a phone, so on the
               narrowest screens the switcher moves in here instead of overflowing. */}
@@ -120,7 +126,7 @@ const resolveHref = (href: string) => resolveNavHref(locale, homeHref, href);
   }
   .links {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     min-width: 0;
     font-family: var(--font-mono);
     font-size: 0.84rem;
@@ -247,7 +253,9 @@ const resolveHref = (href: string) => resolveNavHref(locale, homeHref, href);
   }
 
   /* Brand + 5-locale switcher + menu button stop fitting on a phone-width bar. */
+  .nav__app { font-size: .75rem; padding: .55rem .7rem; }
   @media (max-width: 560px) {
+    .nav__app { display: none; }
     .nav__end > :global(.lang) {
       display: none;
     }

@@ -1,12 +1,15 @@
 ---
 import StoreBadges from './StoreBadges.astro';
 import Waitlist from './Waitlist.astro';
+import { marketingLabels, marketingLinks } from '../marketing/content';
 import { getDict, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
+const links = marketingLinks(locale);
+const labels = marketingLabels(locale);
 const c = getDict(locale).cta;
 ---
 
@@ -20,7 +23,7 @@ const c = getDict(locale).cta;
       </h2>
       <p class="lede cta__lede">{c.lede}</p>
       <div class="cta__act">
-        <Waitlist locale={locale} compact />
+        <>{links.webAppUrl ? <a class="btn" href={links.webAppUrl} data-marketing-event="web_app_cta">{labels.open} →</a> : <Waitlist locale={locale} compact />}</>
         <StoreBadges locale={locale} />
       </div>
     </div>
