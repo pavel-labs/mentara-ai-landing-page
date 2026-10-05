@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { localeHome, localePath } from '../i18n';
+import { SITE } from '../consts';
+import type { IMarketingPublishedArticle } from '../marketing/types.generated';
+import { marketingLabels, marketingLinks } from '../marketing/content';
+import '../marketing/styles.css';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import ArticleBlocks from './ArticleBlocks.astro';
+interface Props { article: IMarketingPublishedArticle }
+const { article } = Astro.props;
+const labels = marketingLabels(article.locale);
+const links = marketingLinks(article.locale);
+const url = new URL(localePath(article.locale, `articles/${article.slug}`), Astro.site ?? SITE.domain).href;
+const jsonLd = [{ '@type': 'Article', headline: article.title, description: article.excerpt, datePublished: article.publishedAt, author: { '@type': 'Person', name: article.author }, publisher: { '@id': `${new URL(url).origin}/#org` }, mainEntityOfPage: url, inLanguage: article.locale, ...(article.cover ? { image: article.cover.url } : {}) }];
+---
+<BaseLayout locale={article.locale} title={article.seo.title} description={article.seo.description} ogImageUrl={article.seo.image?.url ?? article.cover?.url} ogType="article" suppressAlternates jsonLd={jsonLd}>
+  <Nav locale={article.locale} homeHref={localeHome(article.locale)} />
+  <main id="main" class="cms-article" data-marketing-article>
+    <a class="link-arrow" href={localePath(article.locale, 'articles')}>← {labels.articles}</a>
+    <header>
+      <p class="mono">{article.author} · <time datetime={article.publishedAt}>{article.publishedAt.slice(0, 10)}</time></p>
+      <h1>{article.title}</h1>
+      <p class="lede">{article.excerpt}</p>
+      <div class="cms-tags">{article.tags.map((tag) => <span>{tag}</span>)}</div>
+      {article.cover && <img src={article.cover.url} alt={article.cover.alt} width="960" height="540" fetchpriority="high" />}
+    </header>
+    <ArticleBlocks blocks={article.blocks} />
+    {links.webAppUrl && <a class="btn" href={links.webAppUrl} data-marketing-event="web_app_cta">{labels.open} →</a>}
+  </main>
+  <Footer locale={article.locale} />
+</BaseLayout>

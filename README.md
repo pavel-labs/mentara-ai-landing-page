@@ -196,11 +196,8 @@ For an ad-hoc push outside CI: `npm run deploy` (builds, then `firebase deploy` 
   `public/favicon.svg` by `npm run prebuild` and are gitignored (regenerated in CI).
 - **SEO**: JSON-LD `@graph` (Organization + SoftwareApplication + `FAQPage`), sitemap,
   robots, manifest. The FAQ is rich-result eligible.
-- Store badges are intentionally **non-interactive "Coming soon"** until the apps ship.
-- **Security**: two open `astro` advisories (`define:vars` XSS, server-island replay) do
-  not apply here – this site uses neither and is fully static with no user input.
-  `astro@6` is a breaking major `astro-og-canvas` doesn't support yet; revisit when it
-  does. Not force-upgraded on purpose.
+- Store badges link to configured app detail URLs; unconfigured stores show **Coming soon**.
+- **Security**: content is validated before static generation; article text and SEO JSON-LD are escaped. Preview accepts drafts only from configured admin origins and never parses text as HTML.
 - Deploy: Firebase Hosting via `.github/workflows/deploy.yml` (build →
   `FirebaseExtended/action-hosting-deploy`), plus a **non-blocking** Lighthouse CI `audit`
   job (`lighthouserc.json`, ≥0.9 budgets as warnings). Any static host also works:
@@ -212,3 +209,41 @@ This repository is consumed as a **git submodule** at `landing/` inside the
 `mentara-ai` monorepo (kept outside the npm-workspaces glob so it stays fully
 independent – its own `package.json`, lockfile, and deploy). Develop here; the monorepo
 just pins a commit.
+
+## Admin-managed marketing content
+
+The Mentara admin console owns content; this site owns layout, responsive styles and animation.
+Normal edits need no source change. It receives only published content from `/marketing/export`
+during prebuild, validates the generated shared contract and emits static HTML. If a configured
+API is unavailable or invalid, the build fails before deployment and the live site remains.
+Without `PUBLIC_API_URL`, a local clone builds the existing content and no managed articles.
+
+Managed homepages cover hero, ordered/visible product sections, pricing descriptions, FAQ,
+SEO, footer and links in five languages. Billing reference prices come from the existing
+catalog; checkout prices remain authoritative. `/articles/<slug>/` and localized equivalents
+render complete Article metadata, canonical URLs, sitemap and RSS entries. The existing code
+blog is preserved. Slugs stay fixed. Text/code is escaped; arbitrary HTML is not supported.
+Hosted HTTPS images require alt text; image uploads and scheduled publishing are not added.
+
+Set public build variables in this repository:
+
+- `PUBLIC_API_URL`: backend origin for published content, Enterprise enquiries and CTA counters.
+- `PUBLIC_WEB_APP_URL`: actual web product destination; absent → unavailable CTA.
+- `PUBLIC_APP_STORE_URL`, `PUBLIC_GOOGLE_PLAY_URL`: actual app detail URLs; absent → coming soon.
+- `PUBLIC_ADMIN_ORIGINS`: comma-separated exact admin origins trusted by `/preview/`.
+
+Published page links override those fallback product/store destinations. Users can choose any
+available platform; there is no forced platform redirect. Content-independent pages use these
+central links too. CTA events store anonymous locale/event counts; no tracking runs in preview.
+
+The backend can trigger the existing Firebase workflow with repository-dispatch event
+`marketing-content-published`, or an operator can run it manually. Content save and publish are
+separate; a failed dispatch/build is retriable. `/marketing/defaults/<locale>.json` lets the
+admin copy current local content into a draft. `/preview/` reuses real website CSS, checks the
+parent window and admin origin, and validates drafts before rendering DOM text nodes. Drafts
+never enter URLs or the public export. Preview is noindex, excluded from sitemap/analytics.
+
+Contracts are generated from the main repo with `npm run marketing:contract`, which builds
+`@mentara/shared` first. Keep generated JSON/types with both coordinated PRs. Run
+`npm test` and `npm run build` before review. The CSS 3D hero needs no WebGL dependency and
+honors reduced-motion preferences.

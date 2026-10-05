@@ -1,0 +1,21 @@
+---
+import { localePath, type Locale } from '../i18n';
+import { marketingLabels, publishedArticles } from '../marketing/content';
+import '../marketing/styles.css';
+interface Props { locale: Locale; compact?: boolean }
+const { locale, compact = false } = Astro.props;
+const articles = publishedArticles(locale).slice(0, compact ? 3 : undefined);
+const labels = marketingLabels(locale);
+---
+<section class="container cms-section" id="articles">
+  <h2>{labels.articles}</h2>
+  <div class="cms-features">
+    {articles.map((article) => <article class="cms-card">
+      {article.cover && <img src={article.cover.url} alt={article.cover.alt} width="640" height="360" loading="lazy" />}
+      <p class="mono">{article.author} · <time datetime={article.publishedAt}>{article.publishedAt.slice(0, 10)}</time></p>
+      <h3><a href={localePath(locale, `articles/${article.slug}`)} data-marketing-event="article_open">{article.title}</a></h3>
+      <p>{article.excerpt}</p>
+      <a class="link-arrow" href={localePath(locale, `articles/${article.slug}`)} data-marketing-event="article_open">{labels.read} →</a>
+    </article>)}
+  </div>
+</section>
