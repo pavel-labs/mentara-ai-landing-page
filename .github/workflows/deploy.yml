@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   # Manual re-deploy from the Actions tab.
+  repository_dispatch:
+    types: [marketing-content-published]
   workflow_dispatch:
 
 permissions:
@@ -36,6 +38,16 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Validate publication configuration
+        if: github.event_name == 'repository_dispatch'
+        env:
+          PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
+        run: |
+          if [ -z "$PUBLIC_API_URL" ]; then
+            echo "::error::Set PUBLIC_API_URL before enabling managed content publication. The live website has not changed."
+            exit 1
+          fi
+
       # Builds with `astro build` (runs the `prebuild` icon generation first). SITE_URL /
       # BASE_PATH derive the canonical/OG/hreflang/sitemap URLs (astro.config.mjs); unset
       # repo variables fall back to the live *.web.app domain there. Set the SITE_URL
@@ -48,6 +60,10 @@ jobs:
           BASE_PATH: ${{ vars.BASE_PATH }}
           # Enterprise contact form target. Unset → the form ships disabled, not broken.
           PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
+          PUBLIC_WEB_APP_URL: ${{ vars.PUBLIC_WEB_APP_URL }}
+          PUBLIC_APP_STORE_URL: ${{ vars.PUBLIC_APP_STORE_URL }}
+          PUBLIC_GOOGLE_PLAY_URL: ${{ vars.PUBLIC_GOOGLE_PLAY_URL }}
+          PUBLIC_ADMIN_ORIGINS: ${{ vars.PUBLIC_ADMIN_ORIGINS }}
 
       # Requires a repo secret FIREBASE_SERVICE_ACCOUNT holding a Firebase service-account
       # JSON key (Firebase console → Project settings → Service accounts → Generate new

@@ -1,0 +1,354 @@
+{
+  "article": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "locale": { "type": "string", "enum": ["en", "de", "es", "ru", "pl"] },
+      "slug": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100,
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "title": { "type": "string", "minLength": 1, "maxLength": 180 },
+      "excerpt": { "type": "string", "minLength": 1, "maxLength": 1000 },
+      "cover": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "maxLength": 2048,
+                "pattern": "^https:\\/\\/[a-z0-9.-]+(?::\\d{1,5})?(?:[/?#]|$)"
+              },
+              "alt": { "type": "string", "minLength": 1, "maxLength": 200 }
+            },
+            "required": ["url", "alt"],
+            "additionalProperties": false
+          },
+          { "type": "null" }
+        ]
+      },
+      "author": { "type": "string", "minLength": 1, "maxLength": 100 },
+      "tags": {
+        "maxItems": 10,
+        "type": "array",
+        "items": { "type": "string", "minLength": 1, "maxLength": 40 }
+      },
+      "blocks": {
+        "minItems": 1,
+        "maxItems": 100,
+        "type": "array",
+        "items": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string", "enum": ["paragraph", "heading", "quote"] },
+                "text": { "type": "string", "minLength": 1, "maxLength": 6000 }
+              },
+              "required": ["type", "text"],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string", "const": "list" },
+                "items": {
+                  "minItems": 1,
+                  "maxItems": 30,
+                  "type": "array",
+                  "items": { "type": "string", "minLength": 1, "maxLength": 1000 }
+                },
+                "ordered": { "type": "boolean" }
+              },
+              "required": ["type", "items", "ordered"],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string", "const": "code" },
+                "code": { "type": "string", "minLength": 1, "maxLength": 16000 },
+                "language": { "type": "string", "maxLength": 40, "pattern": "^[a-z0-9+#.-]*$" }
+              },
+              "required": ["type", "code", "language"],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string", "const": "link" },
+                "label": { "type": "string", "minLength": 1, "maxLength": 200 },
+                "url": {
+                  "type": "string",
+                  "maxLength": 2048,
+                  "pattern": "^https:\\/\\/[a-z0-9.-]+(?::\\d{1,5})?(?:[/?#]|$)"
+                }
+              },
+              "required": ["type", "label", "url"],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string", "const": "image" },
+                "url": {
+                  "type": "string",
+                  "maxLength": 2048,
+                  "pattern": "^https:\\/\\/[a-z0-9.-]+(?::\\d{1,5})?(?:[/?#]|$)"
+                },
+                "alt": { "type": "string", "minLength": 1, "maxLength": 200 }
+              },
+              "required": ["type", "url", "alt"],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "seo": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "description": { "type": "string", "minLength": 1, "maxLength": 300 },
+          "image": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "pattern": "^https:\\/\\/[a-z0-9.-]+(?::\\d{1,5})?(?:[/?#]|$)"
+                  },
+                  "alt": { "type": "string", "minLength": 1, "maxLength": 200 }
+                },
+                "required": ["url", "alt"],
+                "additionalProperties": false
+              },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": ["title", "description", "image"],
+        "additionalProperties": false
+      }
+    },
+    "required": ["locale", "slug", "title", "excerpt", "cover", "author", "tags", "blocks", "seo"],
+    "additionalProperties": false
+  },
+  "landing": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "locale": { "type": "string", "enum": ["en", "de", "es", "ru", "pl"] },
+      "hero": {
+        "type": "object",
+        "properties": {
+          "eyebrow": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "heading": { "type": "string", "minLength": 1, "maxLength": 180 },
+          "description": { "type": "string", "minLength": 1, "maxLength": 1000 },
+          "ctaLabel": { "type": "string", "minLength": 1, "maxLength": 60 },
+          "image": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "pattern": "^https:\\/\\/[a-z0-9.-]+(?::\\d{1,5})?(?:[/?#]|$)"
+                  },
+                  "alt": { "type": "string", "minLength": 1, "maxLength": 200 }
+                },
+                "required": ["url", "alt"],
+                "additionalProperties": false
+              },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": ["eyebrow", "heading", "description", "ctaLabel", "image"],
+        "additionalProperties": false
+      },
+      "features": {
+        "maxItems": 5,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "mock-interviews",
+                "quick-practice",
+                "coding-assessments",
+                "progress",
+                "enterprise"
+              ]
+            },
+            "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+            "description": { "type": "string", "minLength": 1, "maxLength": 1200 },
+            "image": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "maxLength": 2048,
+                      "pattern": "^https:\\/\\/[a-z0-9.-]+(?::\\d{1,5})?(?:[/?#]|$)"
+                    },
+                    "alt": { "type": "string", "minLength": 1, "maxLength": 200 }
+                  },
+                  "required": ["url", "alt"],
+                  "additionalProperties": false
+                },
+                { "type": "null" }
+              ]
+            },
+            "enabled": { "type": "boolean" }
+          },
+          "required": ["id", "title", "description", "image", "enabled"],
+          "additionalProperties": false
+        }
+      },
+      "pricing": {
+        "type": "object",
+        "properties": {
+          "heading": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "description": { "type": "string", "minLength": 1, "maxLength": 1000 },
+          "freeDescription": { "type": "string", "minLength": 1, "maxLength": 500 },
+          "proDescription": { "type": "string", "minLength": 1, "maxLength": 500 },
+          "enterpriseDescription": { "type": "string", "minLength": 1, "maxLength": 500 }
+        },
+        "required": [
+          "heading",
+          "description",
+          "freeDescription",
+          "proDescription",
+          "enterpriseDescription"
+        ],
+        "additionalProperties": false
+      },
+      "faq": {
+        "maxItems": 30,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "question": { "type": "string", "minLength": 1, "maxLength": 200 },
+            "answer": { "type": "string", "minLength": 1, "maxLength": 2000 },
+            "enabled": { "type": "boolean" }
+          },
+          "required": ["question", "answer", "enabled"],
+          "additionalProperties": false
+        }
+      },
+      "links": {
+        "type": "object",
+        "properties": {
+          "webAppUrl": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2048,
+                "pattern": "^https:\\/\\/[a-z0-9.-]+(?::\\d{1,5})?(?:[/?#]|$)"
+              },
+              { "type": "null" }
+            ]
+          },
+          "appStoreUrl": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2048,
+                "allOf": [
+                  { "pattern": "^https:\\/\\/[a-z0-9.-]+(?::\\d{1,5})?(?:[/?#]|$)" },
+                  {
+                    "pattern": "^https:\\/\\/apps\\.apple\\.com\\/(?:[a-z]{2}\\/)?app\\/(?:[^/?#]+\\/)?id\\d+(?:[/?#].*)?$"
+                  }
+                ]
+              },
+              { "type": "null" }
+            ]
+          },
+          "googlePlayUrl": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2048,
+                "allOf": [
+                  { "pattern": "^https:\\/\\/[a-z0-9.-]+(?::\\d{1,5})?(?:[/?#]|$)" },
+                  {
+                    "pattern": "^https:\\/\\/play\\.google\\.com\\/store\\/apps\\/details\\?(?:[^#]*&)?id=[a-zA-Z0-9._-]+(?:[&#].*)?$"
+                  }
+                ]
+              },
+              { "type": "null" }
+            ]
+          },
+          "social": {
+            "maxItems": 8,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string", "minLength": 1, "maxLength": 60 },
+                "url": {
+                  "type": "string",
+                  "maxLength": 2048,
+                  "pattern": "^https:\\/\\/[a-z0-9.-]+(?::\\d{1,5})?(?:[/?#]|$)"
+                }
+              },
+              "required": ["label", "url"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": ["webAppUrl", "appStoreUrl", "googlePlayUrl", "social"],
+        "additionalProperties": false
+      },
+      "seo": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "description": { "type": "string", "minLength": 1, "maxLength": 300 },
+          "image": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "pattern": "^https:\\/\\/[a-z0-9.-]+(?::\\d{1,5})?(?:[/?#]|$)"
+                  },
+                  "alt": { "type": "string", "minLength": 1, "maxLength": 200 }
+                },
+                "required": ["url", "alt"],
+                "additionalProperties": false
+              },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": ["title", "description", "image"],
+        "additionalProperties": false
+      },
+      "footerDescription": { "type": "string", "minLength": 1, "maxLength": 500 }
+    },
+    "required": [
+      "locale",
+      "hero",
+      "features",
+      "pricing",
+      "faq",
+      "links",
+      "seo",
+      "footerDescription"
+    ],
+    "additionalProperties": false
+  }
+}

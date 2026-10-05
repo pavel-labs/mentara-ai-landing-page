@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../marketing/styles.css';
+---
+<BaseLayout locale="en" title="Mentara content preview" suppressAlternates analytics={false}>
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+  <main id="main" class="container cms-section" aria-live="polite"><p>Load a draft from the Marketing editor.</p></main>
+  <script>
+    import { renderPreview } from '../../marketing/preview';
+    import { previewOrigin } from '../../marketing/preview-message';
+    const allowed = (import.meta.env.PUBLIC_ADMIN_ORIGINS ?? '').split(',').map(previewOrigin).filter((origin): origin is string => origin !== null);
+    window.addEventListener('message', (event: MessageEvent<unknown>) => {
+      if (event.source !== window.parent || event.source === window || !allowed.includes(event.origin)) return;
+      renderPreview(document.getElementById('main'), event.data);
+    });
+  </script>
+</BaseLayout>

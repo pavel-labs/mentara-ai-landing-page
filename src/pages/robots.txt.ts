@@ -8,7 +8,10 @@ import { withBase } from '../i18n';
 export function GET(context: APIContext) {
   const origin = context.site ?? new URL(SITE.domain);
   const sitemap = new URL(withBase('sitemap-index.xml'), origin).href;
-  return new Response(`User-agent: *\nAllow: /\n\nSitemap: ${sitemap}\n`, {
-    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
-  });
+  return new Response(
+    `User-agent: *\nAllow: /\nDisallow: ${withBase('preview/')}\n\nSitemap: ${sitemap}\n`,
+    {
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    },
+  );
 }

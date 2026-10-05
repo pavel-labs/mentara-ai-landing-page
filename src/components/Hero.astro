@@ -1,12 +1,15 @@
 ---
 import StoreBadges from './StoreBadges.astro';
 import Waitlist from './Waitlist.astro';
+import { marketingLabels, marketingLinks } from '../marketing/content';
 import { getDict, localePath, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
+const links = marketingLinks(locale);
+const labels = marketingLabels(locale);
 const t = getDict(locale);
 const m = t.interview.mock;
 // The illustration shows the interview in its deep-dive phase: the moment a follow-up
@@ -27,12 +30,12 @@ const activePhase = 2;
       <p class="lede" data-reveal style="--d:2">{t.hero.lede}</p>
 
       <div class="hero__cta" data-reveal style="--d:3">
-        <Waitlist locale={locale} />
-        <a class="link-arrow" href={localePath(locale, 'enterprise')}>{t.hero.teamsLink} →</a>
+        <>{links.webAppUrl ? <a class="btn" href={links.webAppUrl} data-marketing-event="web_app_cta">{labels.open} →</a> : <Waitlist locale={locale} />}</>
+        <a class="link-arrow" href={localePath(locale, 'enterprise')} data-marketing-event="enterprise_cta">{t.hero.teamsLink} →</a>
         <StoreBadges locale={locale} />
         <p class="mono hero__launch">
           <span class="dot" aria-hidden="true"></span>
-          {t.hero.availability}
+          {links.webAppUrl ? labels.available : t.hero.availability}
         </p>
       </div>
     </div>
@@ -201,6 +204,9 @@ const activePhase = 2;
   /* Four phase names in one row do not fit a phone in the longer languages
      ("Podsumowanie", "Calentamiento") in spaced uppercase; drop the tracking there so
      they fit whole instead of being cut off with an ellipsis. */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 921px) {
+    .hero__mock { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); box-shadow: 24px 28px 70px #0006; }
+  }
   @media (max-width: 520px) {
     .phase {
       padding-inline: 0.15rem;
