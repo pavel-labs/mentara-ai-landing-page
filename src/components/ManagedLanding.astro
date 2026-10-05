@@ -1,0 +1,20 @@
+---
+import '../marketing/styles.css';
+import { marketingLabels, marketingSnapshot } from '../marketing/content';
+import { localePath } from '../i18n';
+import type { IMarketingLanding } from '../marketing/types.generated';
+import StoreBadges from './StoreBadges.astro';
+interface Props { content: IMarketingLanding }
+const { content: c } = Astro.props;
+const l = marketingLabels(c.locale);
+const prices = marketingSnapshot.pricing?.displayPrices;
+const plans = [
+  { name: 'Free', price: '$0', description: c.pricing.freeDescription },
+  { name: 'Pro', price: prices?.proMonthly ?? l.prices, description: c.pricing.proDescription },
+  { name: 'Enterprise', price: l.contact, description: c.pricing.enterpriseDescription },
+];
+---
+<section class="container cms-hero"><div class="cms-copy"><p class="eyebrow" data-preview="hero.eyebrow">{c.hero.eyebrow}</p><h1 class="display" data-preview="hero.heading">{c.hero.heading}</h1><p class="lede" data-preview="hero.description">{c.hero.description}</p><div data-preview="cta">{c.links.webAppUrl && <a class="btn" href={c.links.webAppUrl} data-marketing-event="web_app_cta" data-preview="hero.cta">{c.hero.ctaLabel} →</a>}</div><StoreBadges locale={c.locale} links={c.links} /></div><div class="cms-visual" data-preview="hero.image">{c.hero.image ? <img class="cms-media" src={c.hero.image.url} alt={c.hero.image.alt} width="640" height="640" fetchpriority="high" /> : <div class="cms-scene" aria-hidden="true"><div class="cms-card"><span class="eyebrow">Mentara</span><h2>{l.products}</h2><div class="cms-bars"><i></i><i></i><i></i></div><div class="cms-float"><span class="mono">React · TypeScript</span><strong>Mock Interviews<br />Quick Practice<br />Coding Assessments</strong></div></div></div>}</div></section>
+<section class="container cms-section" id="product"><h2 class="h2">{l.products}</h2><div class="cms-grid" data-preview="features">{c.features.filter((f) => f.enabled).map((f) => <article class="cms-feature" id={f.id}>{f.image && <img src={f.image.url} alt={f.image.alt} width="640" height="360" loading="lazy" />}<h3>{f.title}</h3><p>{f.description}</p>{f.id === 'enterprise' && <a href={localePath(c.locale, 'enterprise')} data-marketing-event="enterprise_cta">{l.contact} →</a>}</article>)}</div></section>
+<section class="container cms-section" id="pricing"><h2 class="h2" data-preview="pricing.heading">{c.pricing.heading}</h2><div class="cms-plans">{plans.map((p, index) => <article class="cms-plan"><h3>{p.name}</h3><div class="cms-price">{p.price}</div>{index === 1 && prices && <p class="mono">{l.month}</p>}<p data-preview={`pricing.${['freeDescription','proDescription','enterpriseDescription'][index]}`}>{p.description}</p>{index === 2 ? <a class="btn btn--ghost" href={localePath(c.locale, 'enterprise#contact')} data-marketing-event="enterprise_cta">{l.contact}</a> : c.links.webAppUrl && <a class="btn btn--ghost" href={c.links.webAppUrl} data-marketing-event="pricing_cta">{c.hero.ctaLabel}</a>}</article>)}</div><p class="mono" data-preview="pricing.description">{c.pricing.description}</p></section>
+<section class="container cms-section cms-faq" id="faq"><h2 class="h2">{l.faq}</h2><div data-preview="faq">{c.faq.filter((f) => f.enabled).map((f) => <details><summary>{f.question}</summary><p>{f.answer}</p></details>)}</div></section>

@@ -28,3 +28,6 @@ pnpm-debug.log*
 .DS_Store
 .vscode/
 .idea/
+
+# Downloaded published CMS snapshot (never commit production content)
+src/marketing/snapshot.generated.json

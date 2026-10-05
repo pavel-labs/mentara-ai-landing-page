@@ -15,16 +15,30 @@ import FAQ from './FAQ.astro';
 import CTA from './CTA.astro';
 import BlogTeaser from './BlogTeaser.astro';
 import Footer from './Footer.astro';
+import ManagedLanding from './ManagedLanding.astro';
+import Articles from './Articles.astro';
+import { marketingLanding, publishedArticles } from '../marketing/content';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
+const content = marketingLanding(locale);
+const enabledFaq = content?.faq.filter((item) => item.enabled);
 ---
 
-<BaseLayout locale={locale} autoLocale includeFaq>
+<BaseLayout
+  locale={locale}
+  autoLocale
+  includeFaq={content ? (enabledFaq?.length ?? 0) > 0 : true}
+  title={content?.seo.title}
+  description={content?.seo.description}
+  ogImageUrl={content?.seo.image?.url}
+  faqItems={enabledFaq?.map((item) => ({ q: item.question, a: item.answer }))}
+>
   <Nav locale={locale} />
   <main id="main">
+    {content ? <ManagedLanding content={content} /> : <>
     <Hero locale={locale} />
     <Proof locale={locale} />
     <WhyPractice locale={locale} />
@@ -36,6 +50,8 @@ const { locale } = Astro.props;
     <TeamsBand locale={locale} />
     <FAQ locale={locale} />
     <CTA locale={locale} />
+    </>}
+    {publishedArticles(locale).length > 0 && <Articles locale={locale} compact />}
     <BlogTeaser locale={locale} />
   </main>
   <Footer locale={locale} />

@@ -1,5 +1,6 @@
 ---
 import { getDict, resolveNavHref, type Locale } from '../i18n';
+import { marketingSnapshot, marketingLinks, marketingLabels } from '../marketing/content';
 import SectionHead from './SectionHead.astro';
 
 interface Props {
@@ -7,6 +8,9 @@ interface Props {
 }
 const { locale } = Astro.props;
 const pr = getDict(locale).pricing;
+const links = marketingLinks(locale);
+const labels = marketingLabels(locale);
+const tiers = pr.tiers.map((tier, index) => ({ ...tier, ...(index === 1 ? { price: marketingSnapshot.pricing?.displayPrices.proMonthly ?? labels.prices, cadence: marketingSnapshot.pricing ? labels.month : '' } : {}), ...(index < 2 && links.webAppUrl ? { href: links.webAppUrl, cta: labels.open } : {}) }));
 // Pricing lives on the home page, so '#waitlist' is an in-page anchor and
 // '/enterprise#contact' resolves to the localized Enterprise page.
 const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);
@@ -18,7 +22,7 @@ const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);
 
     <div class="tiers">
       {
-        pr.tiers.map((p) => (
+        tiers.map((p) => (
           <article class:list={['tier', { 'tier--hot': p.featured }]}>
             {p.featured && <span class="tier__flag">{pr.flag}</span>}
             <header class="tier__head">
@@ -39,7 +43,7 @@ const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);
                 </li>
               ))}
             </ul>
-            <a class:list={['btn', 'tier__cta', { 'btn--ghost': !p.featured }]} href={hrefFor(p.href)}>
+            <a class:list={['btn', 'tier__cta', { 'btn--ghost': !p.featured }]} href={p.href.startsWith('https://') ? p.href : hrefFor(p.href)} data-marketing-event={p.tier === 'Enterprise' ? 'enterprise_cta' : 'pricing_cta'}>
               {p.cta}
             </a>
           </article>

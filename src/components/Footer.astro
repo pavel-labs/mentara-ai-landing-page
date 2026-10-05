@@ -1,4 +1,6 @@
 ---
+import { marketingLanding, marketingLinks, marketingLabels } from '../marketing/content';
+import StoreBadges from './StoreBadges.astro';
 import { SITE } from '../consts';
 import { getDict, localeHome, localePath, resolveNavHref, type Locale } from '../i18n';
 
@@ -7,6 +9,9 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = getDict(locale);
+const content = marketingLanding(locale);
+const links = marketingLinks(locale);
+const labels = marketingLabels(locale);
 const year = new Date().getFullYear();
 // Footer is shared by the landing AND the legal pages, so section links must point at the
 // localized home + anchor (not a bare #anchor that 404s the scroll off-page).
@@ -17,13 +22,16 @@ const home = localeHome(locale);
 <footer class="foot">
   <div class="container foot__grid">
     <div class="foot__brand">
-      <a href="#main" class="foot__word">{SITE.name}</a>
-      <p class="mono">{t.footer.blurb}</p>
+      <a href={home} class="foot__word">{SITE.name}</a>
+      <p class="mono">{content?.footerDescription ?? t.footer.blurb}</p>
+      <StoreBadges locale={locale} />
     </div>
 
     <nav class="foot__nav" aria-label="Footer">
       <span class="foot__label">{t.footer.explore}</span>
-      {t.nav.map((l) => <a href={resolveNavHref(locale, home, l.href)}>{l.label}</a>)}
+      {content ? <><a href={`${home}#product`}>{labels.products}</a><a href={`${home}#pricing`}>{content.pricing.heading}</a></> : t.nav.map((l) => <a href={resolveNavHref(locale, home, l.href)}>{l.label}</a>)}
+      <a href={localePath(locale, 'articles')}>{labels.articles}</a>
+      {links.social.map((link) => <a href={link.url} rel="noopener noreferrer">{link.label}</a>)}
     </nav>
 
     <nav class="foot__nav" aria-label="Legal">
@@ -35,7 +43,7 @@ const home = localeHome(locale);
 
   <div class="container foot__base">
     <span class="mono">© {year} {SITE.name}</span>
-    <span class="mono">{t.meta.launchLabel}</span>
+    <span class="mono">{links.webAppUrl ? labels.available : t.meta.launchLabel}</span>
   </div>
 </footer>
 
@@ -57,6 +65,7 @@ const home = localeHome(locale);
     font-size: 1.6rem;
     letter-spacing: -0.02em;
   }
+  .foot__brand :global(.badges) { margin-top: 1.4rem; }
   .foot__brand .mono {
     margin-top: 0.7rem;
   }

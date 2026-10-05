@@ -1,0 +1,16 @@
+---
+import type { MarketingArticleBlock } from '../marketing/types.generated';
+interface Props { blocks: MarketingArticleBlock[] }
+const { blocks } = Astro.props;
+---
+<div class="cms-prose" data-preview="article.blocks">{blocks.map((block) => {
+  switch(block.type) {
+    case 'heading': return <h2>{block.text}</h2>;
+    case 'paragraph': return <p>{block.text}</p>;
+    case 'quote': return <blockquote>{block.text}</blockquote>;
+    case 'code': return <pre><code class={block.language ? `language-${block.language}` : undefined}>{block.code}</code></pre>;
+    case 'list': return block.ordered ? <ol>{block.items.map((item) => <li>{item}</li>)}</ol> : <ul>{block.items.map((item) => <li>{item}</li>)}</ul>;
+    case 'link': return <p><a href={block.url} rel="noopener noreferrer">{block.label}</a></p>;
+    case 'image': return <figure><img src={block.url} alt={block.alt} width="960" height="540" loading="lazy" /><figcaption>{block.alt}</figcaption></figure>;
+  }
+})}</div>

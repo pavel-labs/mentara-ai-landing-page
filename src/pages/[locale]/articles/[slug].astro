@@ -1,0 +1,7 @@
+---
+import MarketingArticle from '../../../components/MarketingArticle.astro';
+import { marketingSnapshot } from '../../../marketing/content';
+export function getStaticPaths() { return marketingSnapshot.articles.filter((article) => article.locale !== 'en').map((article) => ({ params: { locale: article.locale, slug: article.slug }, props: { article } })); }
+const { article } = Astro.props;
+---
+<MarketingArticle article={article} />
