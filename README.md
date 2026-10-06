@@ -215,8 +215,10 @@ just pins a commit.
 The Mentara admin console owns content; this site owns layout, responsive styles and animation.
 Normal edits need no source change. It receives only published content from `/marketing/export`
 during prebuild, validates the generated shared contract and emits static HTML. If a configured
-API is unavailable or invalid, the build fails before deployment and the live site remains.
-Without `PUBLIC_API_URL`, a local clone builds the existing content and no managed articles.
+managed API is unavailable or invalid, the build fails before deployment and the live site remains.
+Managed content is off by default: without `MARKETING_CONTENT_ENABLED=true`, builds use the
+existing local content and no managed articles, even when `PUBLIC_API_URL` is already configured
+for Enterprise enquiries. This lets the website deploy before the new backend routes are ready.
 
 Managed homepages cover hero, ordered/visible product sections, pricing descriptions, FAQ,
 SEO, footer and links in five languages. Billing reference prices come from the existing
@@ -227,7 +229,11 @@ Hosted HTTPS images require alt text; image uploads and scheduled publishing are
 
 Set public build variables in this repository:
 
-- `PUBLIC_API_URL`: backend origin for published content, Enterprise enquiries and CTA counters.
+- `PUBLIC_API_URL`: backend origin for Enterprise enquiries and CTA counters; also used for
+  published content after explicit activation.
+- `MARKETING_CONTENT_ENABLED`: defaults to `false`. Set `true` only after the deployed backend
+  returns HTTP 200 and a valid snapshot from `GET /marketing/export`. An enabled build requires
+  `PUBLIC_API_URL` and stops on a fetch/validation error. Keep it enabled once CMS content is live.
 - `PUBLIC_WEB_APP_URL`: actual web product destination; absent → unavailable CTA.
 - `PUBLIC_APP_STORE_URL`, `PUBLIC_GOOGLE_PLAY_URL`: actual app detail URLs; absent → coming soon.
 - `PUBLIC_ADMIN_ORIGINS`: comma-separated exact admin origins trusted by `/preview/`.
@@ -238,7 +244,9 @@ central links too. CTA events store anonymous locale/event counts; no tracking r
 
 The backend can trigger the existing Firebase workflow with repository-dispatch event
 `marketing-content-published`, or an operator can run it manually. Content save and publish are
-separate; a failed dispatch/build is retriable. `/marketing/defaults/<locale>.json` lets the
+separate; a failed dispatch/build is retriable. Automated publication requires explicit activation;
+disabled content cannot trigger a deployment of local defaults. Both deployment and Lighthouse
+builds receive the activation flag. `/marketing/defaults/<locale>.json` lets the
 admin copy current local content into a draft. `/preview/` reuses real website CSS, checks the
 parent window and admin origin, and validates drafts before rendering DOM text nodes. Drafts
 never enter URLs or the public export. Preview is noindex, excluded from sitemap/analytics.
