@@ -42,9 +42,10 @@ jobs:
         if: github.event_name == 'repository_dispatch'
         env:
           PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
+          MARKETING_CONTENT_ENABLED: ${{ vars.MARKETING_CONTENT_ENABLED }}
         run: |
-          if [ -z "$PUBLIC_API_URL" ]; then
-            echo "::error::Set PUBLIC_API_URL before enabling managed content publication. The live website has not changed."
+          if [ "$MARKETING_CONTENT_ENABLED" != "true" ] || [ -z "$PUBLIC_API_URL" ]; then
+            echo "::error::Deploy the marketing API, then set PUBLIC_API_URL and MARKETING_CONTENT_ENABLED=true before publishing managed content. The live website has not changed."
             exit 1
           fi
 
@@ -60,6 +61,7 @@ jobs:
           BASE_PATH: ${{ vars.BASE_PATH }}
           # Enterprise contact form target. Unset → the form ships disabled, not broken.
           PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
+          MARKETING_CONTENT_ENABLED: ${{ vars.MARKETING_CONTENT_ENABLED }}
           PUBLIC_WEB_APP_URL: ${{ vars.PUBLIC_WEB_APP_URL }}
           PUBLIC_APP_STORE_URL: ${{ vars.PUBLIC_APP_STORE_URL }}
           PUBLIC_GOOGLE_PLAY_URL: ${{ vars.PUBLIC_GOOGLE_PLAY_URL }}
@@ -120,6 +122,8 @@ jobs:
         run: npm run build
         env:
           BASE_PATH: /
+          PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
+          MARKETING_CONTENT_ENABLED: ${{ vars.MARKETING_CONTENT_ENABLED }}
 
       - name: Lighthouse CI
         uses: treosh/lighthouse-ci-action@v12
