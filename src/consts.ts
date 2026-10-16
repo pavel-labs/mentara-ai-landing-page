@@ -1,7 +1,7 @@
 // Non-translatable constants only. All user-facing copy lives in `src/i18n/*`.
 
 export const SITE = {
-  name: 'Mentara',
+  name: 'Mentarika',
   // Fallback origin for the rare build without `site` configured. Kept in step with
   // astro.config.mjs's SITE_URL default: the live Firebase domain, since no custom
   // domain has been decided yet.

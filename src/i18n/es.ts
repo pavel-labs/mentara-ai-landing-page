@@ -8,7 +8,7 @@ export const es: Dict = {
 
   meta: {
     title:
-      'Mentara – práctica de entrevistas técnicas con IA y evaluaciones de código para desarrolladores',
+      'Mentarika – práctica de entrevistas técnicas con IA y evaluaciones de código para desarrolladores',
     description:
       'Practica entrevistas técnicas estructuradas con un entrevistador de IA que repregunta sobre tus respuestas, resuelve evaluaciones de código calificadas con tests ocultos y recibe un informe que muestra tus puntos débiles con evidencia. Planes Free y Pro, y Enterprise para equipos.',
     tagline: 'Practica la entrevista, no solo las preguntas.',
@@ -27,7 +27,7 @@ export const es: Dict = {
     eyebrow: 'Práctica de entrevistas para desarrolladores y equipos',
     titleLead: 'Practica la entrevista técnica,',
     titleAccent: 'no solo las preguntas.',
-    lede: 'Mentara hace una entrevista estructurada para tu rol y tu stack, repregunta sobre lo que realmente dijiste, califica tu código con tests ocultos y te da un informe que señala tus puntos débiles – para que la siguiente sesión vaya a por ellos.',
+    lede: 'Mentarika hace una entrevista estructurada para tu rol y tu stack, repregunta sobre lo que realmente dijiste, califica tu código con tests ocultos y te da un informe que señala tus puntos débiles – para que la siguiente sesión vaya a por ellos.',
     availability: 'Disponible en 2026 · Web, iOS y Android',
     teamsLink: 'Para equipos de ingeniería',
   },
@@ -44,7 +44,7 @@ export const es: Dict = {
   why: {
     eyebrow: 'Por qué practicar aquí',
     heading: 'Leer respuestas no es lo mismo que darlas.',
-    lede: 'Casi toda la preparación acaba en una lista de preguntas leídas. Una entrevista te pide explicar, aprieta en la parte débil y sigue adelante estés listo o no. Eso es lo que Mentara te deja practicar.',
+    lede: 'Casi toda la preparación acaba en una lista de preguntas leídas. Una entrevista te pide explicar, aprieta en la parte débil y sigue adelante estés listo o no. Eso es lo que Mentarika te deja practicar.',
     them: {
       label: 'Listas de preguntas y un chatbot genérico',
       points: [
@@ -55,7 +55,7 @@ export const es: Dict = {
       ],
     },
     us: {
-      label: 'Una sesión de Mentara',
+      label: 'Una sesión de Mentarika',
       points: [
         'Una entrevista cronometrada para tu rol, nivel y stack, con estructura fija',
         'Repreguntas construidas sobre tu propia respuesta',
@@ -110,7 +110,7 @@ export const es: Dict = {
   assessment: {
     eyebrow: 'Evaluaciones de código',
     heading: 'Escribe el código. Los tests ocultos lo califican.',
-    lede: 'El código tiene su propio espacio en Mentara: una evaluación aparte, con tiempo, editor, ejemplos ejecutables y un envío real. La entrevista sigue siendo una conversación; la evaluación comprueba el código.',
+    lede: 'El código tiene su propio espacio en Mentarika: una evaluación aparte, con tiempo, editor, ejemplos ejecutables y un envío real. La entrevista sigue siendo una conversación; la evaluación comprueba el código.',
     steps: [
       {
         title: 'Lee el problema',
@@ -284,7 +284,7 @@ export const es: Dict = {
   },
 
   teamsBand: {
-    eyebrow: 'Mentara para equipos',
+    eyebrow: 'Mentarika para equipos',
     heading: 'Práctica de entrevistas y cribado consistentes para equipos de ingeniería.',
     lede: 'Da a tus ingenieros práctica estructurada con vuestro stack, y a los candidatos la misma entrevista siempre – sin convertir la práctica en vigilancia.',
     points: [
@@ -301,7 +301,7 @@ export const es: Dict = {
         body: 'Actividad por persona y medias de habilidad solo para grupos de cinco o más. Nadie lee la transcripción de un empleado.',
       },
     ],
-    cta: 'Ver Mentara para equipos',
+    cta: 'Ver Mentarika para equipos',
   },
 
   faq: {
@@ -310,7 +310,7 @@ export const es: Dict = {
     items: [
       {
         q: '¿En qué se diferencia de pedirle preguntas de entrevista a ChatGPT?',
-        a: 'Un chatbot responde lo que le preguntas. Mentara dirige la entrevista: tiene estructura fija y límite de tiempo, repregunta cuando tu respuesta es débil, te puntúa con evidencia según una rúbrica, ejecuta tu código contra tests ocultos y recuerda tus últimas sesiones.',
+        a: 'Un chatbot responde lo que le preguntas. Mentarika dirige la entrevista: tiene estructura fija y límite de tiempo, repregunta cuando tu respuesta es débil, te puntúa con evidencia según una rúbrica, ejecuta tu código contra tests ocultos y recuerda tus últimas sesiones.',
       },
       {
         q: '¿El entrevistador de IA es como una persona real?',
@@ -325,12 +325,12 @@ export const es: Dict = {
         a: 'Sí. Toca el micrófono, habla y tu respuesta se transcribe. El plan Free incluye 3 entrevistas de voz cada 30 días; Pro no tiene límite.',
       },
       {
-        q: '¿Qué ve mi empresa si usa Mentara?',
+        q: '¿Qué ve mi empresa si usa Mentarika?',
         a: 'Solo tu fecha de alta, cuántas entrevistas hiciste en los últimos 30 días y cuándo estuviste activo por última vez. Las medias de habilidad del equipo aparecen solo cuando han contribuido al menos cinco personas. Ningún rol de una organización puede leer tus transcripciones ni tus informes individuales.',
       },
       {
         q: '¿Cuándo puedo usarlo?',
-        a: 'Mentara se lanza en 2026 en la web, iOS y Android. Apúntate a la lista de espera y te escribiremos cuando abra.',
+        a: 'Mentarika se lanza en 2026 en la web, iOS y Android. Apúntate a la lista de espera y te escribiremos cuando abra.',
       },
     ],
   },
@@ -355,17 +355,17 @@ export const es: Dict = {
     eyebrow: 'Disponible en 2026',
     titleLead: 'Tu próxima entrevista se acerca.',
     titleAccent: 'Practica antes de que llegue.',
-    lede: 'Mentara abre en la web, iOS y Android en 2026. Apúntate a la lista de espera y te escribiremos ese mismo día.',
+    lede: 'Mentarika abre en la web, iOS y Android en 2026. Apúntate a la lista de espera y te escribiremos ese mismo día.',
   },
 
   enterprise: {
-    metaTitle: 'Mentara para equipos – práctica de entrevistas técnicas y cribado de candidatos',
+    metaTitle: 'Mentarika para equipos – práctica de entrevistas técnicas y cribado de candidatos',
     metaDescription:
       'Práctica de entrevistas con IA y evaluaciones de código para equipos de ingeniería: entrevistas de empresa con vuestro stack, invitaciones a candidatos con consentimiento y un informe de equipo que nunca expone transcripciones individuales.',
     hero: {
-      eyebrow: 'Mentara para equipos',
+      eyebrow: 'Mentarika para equipos',
       title: 'Entrevistas técnicas estructuradas para todo tu equipo.',
-      lede: 'Ayuda a tus ingenieros a mantenerse en forma y evalúa a los candidatos siempre igual. Mentara da a tu organización entrevistas específicas de la empresa, evaluaciones de código e informes – con límites claros sobre lo que pueden ver los responsables.',
+      lede: 'Ayuda a tus ingenieros a mantenerse en forma y evalúa a los candidatos siempre igual. Mentarika da a tu organización entrevistas específicas de la empresa, evaluaciones de código e informes – con límites claros sobre lo que pueden ver los responsables.',
       primary: 'Hablemos',
       secondary: 'Lee: cómo usan los equipos la práctica de entrevistas con IA',
     },

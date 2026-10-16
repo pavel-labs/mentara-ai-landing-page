@@ -1,7 +1,7 @@
-# Mentara – Landing Page
+# Mentarika – Landing Page
 
-Marketing site for **Mentara**: AI technical interview practice, coding assessments and
-feedback for developers, plus Mentara for teams (Enterprise). Static, SEO/performance-first,
+Marketing site for **Mentarika**: AI technical interview practice, coding assessments and
+feedback for developers, plus Mentarika for teams (Enterprise). Static, SEO/performance-first,
 five languages.
 
 **Copy rule:** the site only claims what the product does today. Before adding a feature to
@@ -78,7 +78,7 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
 
 ## Pages beyond the landing
 
-- **Enterprise**: `/{locale}/enterprise` – Mentara for teams: the two use cases (upskilling,
+- **Enterprise**: `/{locale}/enterprise` – Mentarika for teams: the two use cases (upskilling,
   hiring), how a trial starts, what the organization can and cannot see, roles, a "not
   available yet" list, and the contact form. The product illustrations on the home page are
   designed HTML/CSS mocks built from the app's real labels, not screenshots; replace them
@@ -212,7 +212,7 @@ just pins a commit.
 
 ## Admin-managed marketing content
 
-The Mentara admin console owns content; this site owns layout, responsive styles and animation.
+The Mentarika admin console owns content; this site owns layout, responsive styles and animation.
 Normal edits need no source change. It receives only published content from `/marketing/export`
 during prebuild, validates the generated shared contract and emits static HTML. If a configured
 managed API is unavailable or invalid, the build fails before deployment and the live site remains.

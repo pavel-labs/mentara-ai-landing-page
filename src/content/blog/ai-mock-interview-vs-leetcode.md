@@ -36,7 +36,7 @@ A good mock interviewer should not act like a congratulatory chatbot. It should 
 character, push on vague answers, ask the obvious follow-up you hoped to avoid, and make
 you show your reasoning instead of just your final answer.
 
-That is the gap Mentara is built for. Not to replace deliberate problem practice, but to
+That is the gap Mentarika is built for. Not to replace deliberate problem practice, but to
 turn isolated prep into something closer to the actual room.
 
 ## The practical prep stack
@@ -52,4 +52,4 @@ That loop is slower than endless problem volume, but it is much closer to how ca
 actually improve.
 
 If you want the follow-up pressure, the scoring, and the post-session study path in one
-place, join the [Mentara waitlist](/).
+place, join the [Mentarika waitlist](/).

@@ -20,9 +20,9 @@ export const BLOG_CLUSTERS: BlogClusterDefinition[] = [
     title: 'Comparison Pages',
     lede: 'For high-intent readers comparing prep methods, formats, and tool categories.',
     cta: {
-      eyebrow: 'Where Mentara fits',
+      eyebrow: 'Where Mentarika fits',
       title: 'Move from comparing prep tools to practicing with pressure.',
-      body: 'If the gap is not more content but more realistic interview reps, Mentara is being built for that exact jump.',
+      body: 'If the gap is not more content but more realistic interview reps, Mentarika is being built for that exact jump.',
       primaryLabel: 'Join the waitlist',
       primaryHref: '/#waitlist',
       secondaryLabel: 'Browse compare hub',
@@ -44,7 +44,7 @@ export const BLOG_CLUSTERS: BlogClusterDefinition[] = [
     cta: {
       eyebrow: 'Practice the room',
       title: 'Turn solo prep into a defended technical conversation.',
-      body: 'Mentara is aimed at candidates who need follow-up pressure, not just another pile of prompts or solved examples.',
+      body: 'Mentarika is aimed at candidates who need follow-up pressure, not just another pile of prompts or solved examples.',
       primaryLabel: 'Get launch access',
       primaryHref: '/#waitlist',
       secondaryLabel: 'See all resources',
@@ -82,7 +82,7 @@ export const BLOG_CLUSTERS: BlogClusterDefinition[] = [
     cta: {
       eyebrow: 'Built for higher-stakes loops',
       title: 'Prepare for judgment-heavy interviews, not just harder coding screens.',
-      body: 'Mentara is designed to make trade-offs, communication, and pressure visible earlier, which matters much more in senior and staff loops.',
+      body: 'Mentarika is designed to make trade-offs, communication, and pressure visible earlier, which matters much more in senior and staff loops.',
       primaryLabel: 'Get launch access',
       primaryHref: '/#waitlist',
       secondaryLabel: 'Read more strategy',
@@ -95,12 +95,12 @@ export const BLOG_CLUSTERS: BlogClusterDefinition[] = [
     title: 'For Engineering Teams',
     lede: 'For engineering leaders and recruiters running interview practice or first-round screening across a team.',
     cta: {
-      eyebrow: 'Mentara for teams',
+      eyebrow: 'Mentarika for teams',
       title: 'Consistent interview practice and screening, without surveillance.',
       body: 'Company interviews on your stack, candidate assignments with consent, and a team report built from aggregates – never individual transcripts.',
       primaryLabel: 'Talk to us',
       primaryHref: '/enterprise#contact',
-      secondaryLabel: 'See Mentara for teams',
+      secondaryLabel: 'See Mentarika for teams',
       secondaryHref: '/enterprise',
     },
     slugs: [

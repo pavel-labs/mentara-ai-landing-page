@@ -18,7 +18,7 @@ export const PRIVACY: LegalSection[] = [
   {
     heading: '1. Scope',
     body: [
-      'This policy explains what Mentara ("we") collects when you use the Mentara app (iOS, Android, web) and this site, and how it is used. Mentara is an AI mock-interview practice product for software engineers.',
+      'This policy explains what Mentarika ("we") collects when you use the Mentarika app (iOS, Android, web) and this site, and how it is used. Mentarika is an AI mock-interview practice product for software engineers.',
       'This is a pre-launch draft. The final policy shipped with the apps is authoritative.',
     ],
   },
@@ -50,7 +50,7 @@ export const PRIVACY: LegalSection[] = [
     heading: '5. Sharing',
     body: [
       'We share data only with processors that run the service: authentication (Clerk), subscriptions and payments (Apple, Google, RevenueCat, Stripe), AI model and speech-to-text providers, analytics (Cloudflare), and infrastructure/hosting. We do not sell your data.',
-      'Organizations: if you join an organization on Mentara (for example through your employer), it sees only your join date, how many interviews you did in the last 30 days, and your last activity. Team skill averages are shown only when at least five people contributed. No one in the organization can read your transcripts or individual reports.',
+      'Organizations: if you join an organization on Mentarika (for example through your employer), it sees only your join date, how many interviews you did in the last 30 days, and your last activity. Team skill averages are shown only when at least five people contributed. No one in the organization can read your transcripts or individual reports.',
       'Candidate assignments: if you accept an interview or assessment sent by a company, you are shown what will be shared before you start. The company sees the resulting report or test results and scores – not your transcript or submitted code.',
     ],
   },
@@ -68,7 +68,7 @@ export const PRIVACY: LegalSection[] = [
   },
   {
     heading: '8. Children',
-    body: ['Mentara is not directed to children and is intended for users 16+.'],
+    body: ['Mentarika is not directed to children and is intended for users 16+.'],
   },
   {
     heading: '9. Changes & contact',
@@ -82,13 +82,13 @@ export const TERMS: LegalSection[] = [
   {
     heading: '1. Acceptance',
     body: [
-      'By using Mentara you agree to these terms. If you do not agree, do not use the service. This is a pre-launch draft.',
+      'By using Mentarika you agree to these terms. If you do not agree, do not use the service. This is a pre-launch draft.',
     ],
   },
   {
     heading: '2. The service',
     body: [
-      'Mentara provides AI technical interview practice, coding assessments, feedback reports and progress tracking, and organization features for teams. It is a practice tool. It is under active development and features may change or be unavailable.',
+      'Mentarika provides AI technical interview practice, coding assessments, feedback reports and progress tracking, and organization features for teams. It is a practice tool. It is under active development and features may change or be unavailable.',
     ],
   },
   {

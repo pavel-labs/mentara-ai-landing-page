@@ -55,6 +55,6 @@ That usually requires:
 That is where AI has an edge. Not because it is more human, but because it is available
 enough to become a real practice habit.
 
-Mentara is built around that habit loop: realistic technical pressure, immediate scoring,
+Mentarika is built around that habit loop: realistic technical pressure, immediate scoring,
 and a report that turns each session into the next one’s plan. If that is the missing layer
 in your prep, join the [waitlist](/).

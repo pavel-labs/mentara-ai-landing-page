@@ -40,7 +40,7 @@ expecting it to transfer automatically to another.
 Use text to build clean thinking. Use voice to test whether that thinking survives contact
 with pressure.
 
-That is one of the reasons Mentara supports both. The product is not trying to force a
+That is one of the reasons Mentarika supports both. The product is not trying to force a
 single modality. It is trying to give you a progression:
 
 - type when you need reps,

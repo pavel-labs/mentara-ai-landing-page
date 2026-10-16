@@ -48,5 +48,5 @@ That is why interview prep should split the loops on purpose.
 - Review them separately.
 - Track different failure patterns for each.
 
-Mentara is built around that idea: different round types, different pressure, same goal. Not
+Mentarika is built around that idea: different round types, different pressure, same goal. Not
 just more practice, but better-shaped practice.
