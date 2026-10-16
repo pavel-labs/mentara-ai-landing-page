@@ -7,7 +7,7 @@
 export const LEGAL_EFFECTIVE_DATE = '2026-09-28';
 // TODO: replace before launch – depends on the (still undecided) custom domain. Shown
 // verbatim in the privacy policy and terms, so it must be a mailbox that actually exists.
-export const LEGAL_CONTACT = 'privacy@mentarika.app';
+export const LEGAL_CONTACT = 'privacy@mentara-ai-landing.web.app';
 
 export interface LegalSection {
   heading: string;

@@ -24,7 +24,7 @@ jobs:
     # environment; without this line the job cannot see it and the deploy step is skipped.
     environment:
       name: firebase
-      url: https://mentarika.app
+      url: https://mentara-ai-landing.web.app
     steps:
       - name: Checkout
         uses: actions/checkout@v4
