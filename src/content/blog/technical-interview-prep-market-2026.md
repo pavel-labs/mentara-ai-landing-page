@@ -140,21 +140,21 @@ and [peer mock interviews vs. AI](/blog/peer-mock-interviews-vs-ai/).
 - **Decide what you are measuring.** Some teams now test AI-assisted work on purpose. Others
   want unassisted fundamentals. Both are defensible; being unclear about it is not.
 
-## Where Mentara fits
+## Where Mentarika fits
 
-Mentara is built around the parts of the interview that this market now rewards: a
+Mentarika is built around the parts of the interview that this market now rewards: a
 structured technical interview for your role and stack with follow-ups on your own answers,
 coding assessments graded by hidden tests and kept separate from the conversation, and a
 report whose scores are tied to evidence from what you said. Its optional Realistic mode is
 designed as coaching rather than policing: it marks where you got stuck and shows what a
 session would have been worth without outside help.
 
-For teams, [Mentara for teams](/enterprise/) adds company interviews, candidate assignments
-with consent, and a team report built from aggregates rather than transcripts. Mentara
+For teams, [Mentarika for teams](/enterprise/) adds company interviews, candidate assignments
+with consent, and a team report built from aggregates rather than transcripts. Mentarika
 launches in 2026 – the [waitlist is open](/#waitlist).
 
 ---
 
 _Sources are linked inline. Market-size figures come from commercial research publishers and
 disagree with each other; cheating figures come from vendors of assessment and detection
-products. Mentara sells interview practice, so read this article with that in mind too._
+products. Mentarika sells interview practice, so read this article with that in mind too._

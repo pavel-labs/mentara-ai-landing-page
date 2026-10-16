@@ -46,6 +46,6 @@ The strongest setup is often:
 
 That makes the coach more effective and the practice more grounded.
 
-Mentara is built for the repetition layer of that stack: realistic pressure, fast scoring,
+Mentarika is built for the repetition layer of that stack: realistic pressure, fast scoring,
 and enough convenience that you can practice again tomorrow instead of waiting for your next
 calendar slot.

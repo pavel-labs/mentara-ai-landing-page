@@ -1,5 +1,5 @@
 ---
-title: 'Building Mentara: the road to 2026'
+title: 'Building Mentarika: the road to 2026'
 date: 2026-05-18
 summary: 'Why we are building an AI interviewer that pushes back, and what ships at launch.'
 ---
@@ -9,7 +9,7 @@ challenges a hand-wavy answer, and you grade yourself far too generously. Then t
 loop punishes exactly the things the quiz never measured: communication, structure, and
 holding up under follow-ups.
 
-Mentara is the opposite of that. An AI interviewer that stays in character for your role
+Mentarika is the opposite of that. An AI interviewer that stays in character for your role
 and level, follows up, probes edge cases, and gets harder when you cruise – collecting
 evidence **while you talk**, so the report reflects the interview you actually had.
 
@@ -25,7 +25,7 @@ conversation, and scoring feeds the report rather than a live number._
 - A report after every interview, scored from evidence in your answers, with weak areas and
   a learning path.
 - Daily challenges, streaks and achievements so practice becomes a habit, not a panic.
-- Mentara for teams: company interviews, candidate assignments and a privacy-first team report.
+- Mentarika for teams: company interviews, candidate assignments and a privacy-first team report.
 - The web, iOS and Android.
 
 ## What's next

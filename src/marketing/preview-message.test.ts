@@ -10,7 +10,7 @@ describe('draft preview boundary', () => {
     title: 'Guide',
     excerpt: 'Interview preparation',
     cover: null,
-    author: 'Mentara',
+    author: 'Mentarika',
     tags: [],
     blocks: [{ type: 'paragraph', text: '<script>alert(1)</script>' }],
     seo: page.seo,

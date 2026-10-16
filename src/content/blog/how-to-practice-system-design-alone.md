@@ -53,7 +53,7 @@ The practice loop gets much stronger when the system can:
 
 ## What we are trying to build
 
-Mentara is not meant to publish your internal architecture diagrams back to you or act like
+Mentarika is not meant to publish your internal architecture diagrams back to you or act like
 an over-eager tutor. The goal is narrower: simulate the pressure of defending a design in
 front of someone who keeps asking the next uncomfortable question.
 

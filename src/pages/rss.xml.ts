@@ -9,7 +9,7 @@ export async function GET(context: APIContext) {
   const posts = await getCollection('blog', (p) => !p.data.draft);
   return rss({
     title: `${SITE.name} – Blog`,
-    description: 'Launch milestones and product updates from Mentara.',
+    description: 'Launch milestones and product updates from Mentarika.',
     site: context.site ?? SITE.domain,
     items: [
       ...marketingSnapshot.articles.map((article) => ({

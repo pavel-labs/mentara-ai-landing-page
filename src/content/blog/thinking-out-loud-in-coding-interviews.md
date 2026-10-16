@@ -71,7 +71,7 @@ You cannot rehearse narration by reading solutions. You have to say it while som
 listening and interrupting, because the hard part is holding the structure while you are being
 questioned.
 
-That is the loop we are building Mentara around: an interviewer that keeps asking the next
+That is the loop we are building Mentarika around: an interviewer that keeps asking the next
 question, notices when you skipped step one, and tells you afterward where your explanation
 stopped being convincing.
 
