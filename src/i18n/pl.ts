@@ -8,7 +8,7 @@ export const pl: Dict = {
 
   meta: {
     title:
-      'Mentara – ćwiczenie rozmów technicznych z AI i zadania programistyczne dla programistów',
+      'Mentarika – ćwiczenie rozmów technicznych z AI i zadania programistyczne dla programistów',
     description:
       'Ćwicz ustrukturyzowane rozmowy techniczne z rekruterem AI, który dopytuje o twoje odpowiedzi, rozwiązuj zadania programistyczne oceniane ukrytymi testami i dostawaj raport, który pokazuje twoje słabe strony wraz z dowodami. Plany Free i Pro oraz Enterprise dla zespołów.',
     tagline: 'Ćwicz rozmowę, nie tylko pytania.',
@@ -27,7 +27,7 @@ export const pl: Dict = {
     eyebrow: 'Trening rozmów dla programistów i zespołów',
     titleLead: 'Ćwicz rozmowę techniczną,',
     titleAccent: 'nie tylko pytania.',
-    lede: 'Mentara prowadzi ustrukturyzowaną rozmowę dla twojej roli i stacku, dopytuje o to, co naprawdę powiedziałeś, ocenia twój kod ukrytymi testami i daje raport, który wskazuje słabe strony – żeby kolejna sesja celowała właśnie w nie.',
+    lede: 'Mentarika prowadzi ustrukturyzowaną rozmowę dla twojej roli i stacku, dopytuje o to, co naprawdę powiedziałeś, ocenia twój kod ukrytymi testami i daje raport, który wskazuje słabe strony – żeby kolejna sesja celowała właśnie w nie.',
     availability: 'Start w 2026 · przeglądarka, iOS i Android',
     teamsLink: 'Dla zespołów inżynierskich',
   },
@@ -44,7 +44,7 @@ export const pl: Dict = {
   why: {
     eyebrow: 'Dlaczego ćwiczyć tutaj',
     heading: 'Czytanie odpowiedzi to nie to samo, co ich udzielanie.',
-    lede: 'Większość przygotowań kończy się listą przeczytanych pytań. Na rozmowie musisz wyjaśniać, ktoś drąży słaby punkt i idzie dalej, czy jesteś gotowy, czy nie. Właśnie to pozwala ćwiczyć Mentara.',
+    lede: 'Większość przygotowań kończy się listą przeczytanych pytań. Na rozmowie musisz wyjaśniać, ktoś drąży słaby punkt i idzie dalej, czy jesteś gotowy, czy nie. Właśnie to pozwala ćwiczyć Mentarika.',
     them: {
       label: 'Listy pytań i zwykły chatbot',
       points: [
@@ -55,7 +55,7 @@ export const pl: Dict = {
       ],
     },
     us: {
-      label: 'Sesja w Mentara',
+      label: 'Sesja w Mentarika',
       points: [
         'Rozmowa na czas dla twojej roli, poziomu i stacku, o stałej strukturze',
         'Pytania uzupełniające zbudowane na twojej własnej odpowiedzi',
@@ -110,7 +110,7 @@ export const pl: Dict = {
   assessment: {
     eyebrow: 'Zadania programistyczne',
     heading: 'Napisz kod. Ocenią go ukryte testy.',
-    lede: 'Kod ma w Mentara swoje miejsce: osobne zadanie na czas z edytorem, uruchamialnymi przykładami i prawdziwym zgłoszeniem rozwiązania. Rozmowa pozostaje rozmową; zadanie sprawdza kod.',
+    lede: 'Kod ma w Mentarika swoje miejsce: osobne zadanie na czas z edytorem, uruchamialnymi przykładami i prawdziwym zgłoszeniem rozwiązania. Rozmowa pozostaje rozmową; zadanie sprawdza kod.',
     steps: [
       {
         title: 'Przeczytaj treść',
@@ -284,7 +284,7 @@ export const pl: Dict = {
   },
 
   teamsBand: {
-    eyebrow: 'Mentara dla zespołów',
+    eyebrow: 'Mentarika dla zespołów',
     heading: 'Spójny trening rozmów i selekcja kandydatów dla zespołów inżynierskich.',
     lede: 'Daj inżynierom ustrukturyzowane ćwiczenia na waszym stacku, a kandydatom za każdym razem tę samą rozmowę – bez zamieniania ćwiczeń w nadzór.',
     points: [
@@ -301,7 +301,7 @@ export const pl: Dict = {
         body: 'Aktywność na osobę, średnie umiejętności tylko dla grup od pięciu osób. Nikt nie czyta transkrypcji pracownika.',
       },
     ],
-    cta: 'Zobacz Mentara dla zespołów',
+    cta: 'Zobacz Mentarika dla zespołów',
   },
 
   faq: {
@@ -310,7 +310,7 @@ export const pl: Dict = {
     items: [
       {
         q: 'Czym to się różni od pytania ChatGPT o pytania rekrutacyjne?',
-        a: 'Chatbot odpowiada na to, o co pytasz. Mentara prowadzi rozmowę: ma stałą strukturę i limit czasu, dopytuje przy słabych odpowiedziach, ocenia na podstawie dowodów według rubryki, uruchamia twój kod na ukrytych testach i pamięta twoje ostatnie sesje.',
+        a: 'Chatbot odpowiada na to, o co pytasz. Mentarika prowadzi rozmowę: ma stałą strukturę i limit czasu, dopytuje przy słabych odpowiedziach, ocenia na podstawie dowodów według rubryki, uruchamia twój kod na ukrytych testach i pamięta twoje ostatnie sesje.',
       },
       {
         q: 'Czy rekruter AI jest jak prawdziwy człowiek?',
@@ -325,12 +325,12 @@ export const pl: Dict = {
         a: 'Tak. Dotknij mikrofonu, mów, a odpowiedź zostanie przepisana. Plan Free obejmuje 3 rozmowy głosowe co 30 dni; Pro nie ma limitu.',
       },
       {
-        q: 'Co widzi mój pracodawca, jeśli firma korzysta z Mentara?',
+        q: 'Co widzi mój pracodawca, jeśli firma korzysta z Mentarika?',
         a: 'Tylko datę dołączenia, liczbę rozmów z ostatnich 30 dni i czas ostatniej aktywności. Średnie umiejętności zespołu pojawiają się dopiero, gdy wkład wniosło co najmniej pięć osób. Żadna rola w organizacji nie może czytać twoich transkrypcji ani indywidualnych raportów.',
       },
       {
         q: 'Kiedy będę mógł z tego korzystać?',
-        a: 'Mentara startuje w 2026 roku w przeglądarce, na iOS i Androidzie. Zapisz się na listę, a napiszemy, gdy ruszymy.',
+        a: 'Mentarika startuje w 2026 roku w przeglądarce, na iOS i Androidzie. Zapisz się na listę, a napiszemy, gdy ruszymy.',
       },
     ],
   },
@@ -355,17 +355,17 @@ export const pl: Dict = {
     eyebrow: 'Start w 2026',
     titleLead: 'Twoja kolejna rozmowa nadchodzi.',
     titleAccent: 'Poćwicz, zanim nadejdzie.',
-    lede: 'Mentara startuje w przeglądarce, na iOS i Androidzie w 2026 roku. Zapisz się na listę, a napiszemy tego samego dnia.',
+    lede: 'Mentarika startuje w przeglądarce, na iOS i Androidzie w 2026 roku. Zapisz się na listę, a napiszemy tego samego dnia.',
   },
 
   enterprise: {
-    metaTitle: 'Mentara dla zespołów – trening rozmów technicznych i selekcja kandydatów',
+    metaTitle: 'Mentarika dla zespołów – trening rozmów technicznych i selekcja kandydatów',
     metaDescription:
       'Ustrukturyzowany trening rozmów z AI i zadania programistyczne dla zespołów inżynierskich: rozmowy firmowe na waszym stacku, zaproszenia kandydatów za zgodą i raport zespołu, który nigdy nie ujawnia indywidualnych transkrypcji.',
     hero: {
-      eyebrow: 'Mentara dla zespołów',
+      eyebrow: 'Mentarika dla zespołów',
       title: 'Ustrukturyzowane rozmowy techniczne dla całego zespołu.',
-      lede: 'Pomóż inżynierom trzymać formę i oceniaj kandydatów za każdym razem tak samo. Mentara daje twojej organizacji rozmowy firmowe, zadania programistyczne i raporty – z jasnymi granicami tego, co widzą menedżerowie.',
+      lede: 'Pomóż inżynierom trzymać formę i oceniaj kandydatów za każdym razem tak samo. Mentarika daje twojej organizacji rozmowy firmowe, zadania programistyczne i raporty – z jasnymi granicami tego, co widzą menedżerowie.',
       primary: 'Porozmawiajmy',
       secondary: 'Przeczytaj: jak zespoły korzystają z treningu rozmów z AI',
     },

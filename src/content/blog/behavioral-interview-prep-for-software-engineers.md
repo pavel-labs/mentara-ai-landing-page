@@ -57,5 +57,5 @@ interrupt the vague parts and force the sharper version out of you.
 
 That is the piece candidates miss when they only rehearse alone in their head.
 
-Mentara is built mainly around technical mocks, but the larger principle is the same:
+Mentarika is built mainly around technical mocks, but the larger principle is the same:
 practice becomes useful when something pushes back on the answer you wanted to get away with.

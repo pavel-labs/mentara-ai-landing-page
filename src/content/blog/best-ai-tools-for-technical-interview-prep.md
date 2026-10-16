@@ -42,9 +42,9 @@ Good for study support after practice. Weak if they turn the prep loop into pass
 Good when they actually simulate an interviewer: coherent persona, adaptive pressure, live
 follow-ups, and a report that reflects what happened in the session.
 
-## Where Mentara fits
+## Where Mentarika fits
 
-Mentara is being built for the fourth category.
+Mentarika is being built for the fourth category.
 
 The point is not to be a broad "career assistant." The point is to recreate the part of the
 loop most candidates under-train: staying sharp while another mind keeps pressing on your

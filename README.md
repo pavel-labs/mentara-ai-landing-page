@@ -1,7 +1,7 @@
-# Mentara – Landing Page
+# Mentarika – Landing Page
 
-Marketing site for **Mentara**: AI technical interview practice, coding assessments and
-feedback for developers, plus Mentara for teams (Enterprise). Static, SEO/performance-first,
+Marketing site for **Mentarika**: AI technical interview practice, coding assessments and
+feedback for developers, plus Mentarika for teams (Enterprise). Static, SEO/performance-first,
 five languages.
 
 **Copy rule:** the site only claims what the product does today. Before adding a feature to
@@ -78,7 +78,7 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
 
 ## Pages beyond the landing
 
-- **Enterprise**: `/{locale}/enterprise` – Mentara for teams: the two use cases (upskilling,
+- **Enterprise**: `/{locale}/enterprise` – Mentarika for teams: the two use cases (upskilling,
   hiring), how a trial starts, what the organization can and cannot see, roles, a "not
   available yet" list, and the contact form. The product illustrations on the home page are
   designed HTML/CSS mocks built from the app's real labels, not screenshots; replace them
@@ -134,10 +134,11 @@ dir). Everything is written to switch domains with **no code change** –
 canonical/OG/hreflang/sitemap and `robots.txt` all derive from `site`/`base`
 (`astro.config.mjs`).
 
-**The custom domain is not decided yet.** The site is served from the auto-assigned
-Firebase domain `https://mentara-ai-landing.web.app`, which is also the `SITE_URL`
-default. Do not hardcode a candidate domain anywhere: point `SITE_URL` at an origin only
-once it actually serves this site.
+**The product is Mentarika and its canonical marketing origin is `https://mentarika.app`.**
+The web app lives at `https://app.mentarika.app`. `astro.config.mjs` and `SITE.domain` use the
+marketing origin for canonical, OG, hreflang and sitemap URLs. Connect DNS and HTTPS before
+production rollout; while setting up, override `SITE_URL` with the existing
+`https://mentara-ai-landing.web.app` Firebase origin if needed.
 
 **One-time setup:**
 
@@ -153,16 +154,20 @@ once it actually serves this site.
    committed. Until it is set the workflow **skips** the deploy step with a warning
    (the build and Lighthouse jobs still run), so a missing secret shows up as a warning
    rather than a failed run.
-3. **Custom domain** – _pending, no domain picked_. Once there is one: Firebase console
-   → Hosting → Add custom domain → `<the-domain>` (and its `www.` variant). Firebase walks
-   you through a TXT record for verification, then gives you the `A`/`CNAME` records to add
-   at your DNS provider, and auto-provisions the TLS certificate.
-4. **Repo variables** – **the day that domain actually resolves to this site**: set
-   `SITE_URL=https://<the-domain>` (Settings → Secrets and variables → Actions →
-   Variables). Not a day earlier: canonical, `og:image`, `hreflang` and sitemap URLs are
-   built from it, so pointing them at a domain that is parked, unregistered, or serving
-   something else tells Google the canonical page lives there and leaves every shared link
-   without a preview. It is one variable – no code edit.
+3. **Custom domain**: Firebase console → Hosting → Add custom domain → `mentarika.app`.
+   Follow Firebase's verification and DNS records and wait for its TLS certificate. The Firebase
+   project ID remains `mentara-ai-landing`; a rebrand does not require a new project.
+4. **Repo variables**: set `SITE_URL=https://mentarika.app` and
+   `PUBLIC_WEB_APP_URL=https://app.mentarika.app`. Add both origins to the backend's
+   `ALLOWED_ORIGINS` and set the admin's `ADMIN_MARKETING_SITE_URL` and `MARKETING_ORIGIN` to
+   `https://mentarika.app`. Configure Clerk / billing origins before moving the app host.
+5. **Published content**: review existing CMS pages, SEO and links in the admin console and
+   republish them with Mentarika branding. Localized source copy changes automatically; database
+   content is not rewritten during builds. Provision `privacy@mentarika.app` before using it as
+   the public privacy contact.
+
+The repository name, Firebase project ID, locale storage key, analytics callback and CMS preview
+message identifier keep their existing values so deployments and previews remain compatible.
 
 Note: this project only uses Firebase **Hosting** – no client-side Firebase SDK
 (`firebase-app.js`, Analytics, Auth, etc.) is wired up, and none is needed for Hosting to
@@ -212,7 +217,7 @@ just pins a commit.
 
 ## Admin-managed marketing content
 
-The Mentara admin console owns content; this site owns layout, responsive styles and animation.
+The Mentarika admin console owns content; this site owns layout, responsive styles and animation.
 Normal edits need no source change. It receives only published content from `/marketing/export`
 during prebuild, validates the generated shared contract and emits static HTML. If a configured
 managed API is unavailable or invalid, the build fails before deployment and the live site remains.

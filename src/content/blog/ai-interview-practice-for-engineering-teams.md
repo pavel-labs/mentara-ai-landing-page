@@ -10,7 +10,7 @@ it is unevenly distributed across a team. This article looks at where technical 
 preparation breaks down inside organizations, what AI interview practice is genuinely good
 for, where it is not, and how to run a small pilot that tells you whether it helps.
 
-It is written by the team behind [Mentara](/), so we describe our own product in places. We
+It is written by the team behind [Mentarika](/), so we describe our own product in places. We
 have tried to keep those parts factual and to be clear about the limits.
 
 ## The problem: interview skill decays, and good mocks are expensive
@@ -55,7 +55,7 @@ or expensive for humans:
 
 - **Availability and repetition.** Practice at 7 a.m. or between meetings, and repeat the same
   topic until it is solid, without asking anyone for their time.
-- **Structure.** The interview moves through stages on a clock. In Mentara that is warm-up,
+- **Structure.** The interview moves through stages on a clock. In Mentarika that is warm-up,
   technical questions, a deep dive and a wrap-up, for a chosen role (frontend, backend or
   algorithms), level (junior, middle or senior) and up to six technologies.
 - **Follow-ups on the actual answer.** The useful pressure in an interview is the second
@@ -79,7 +79,7 @@ Explaining a design and writing working code under time pressure are related but
 When both happen in one chat, it is hard to tell which one needs work, and a model that "reads"
 code is guessing at whether it runs.
 
-That is why Mentara keeps them apart. The **interview** is a spoken or typed technical
+That is why Mentarika keeps them apart. The **interview** is a spoken or typed technical
 conversation. The **coding assessment** is a separate, timed exercise: one to five problems, an
 editor, runnable examples, a choice of JavaScript, TypeScript, Python, Java, Go or C++, and
 grading against hidden tests that never leave the server. Only after grading does an AI review
@@ -91,7 +91,7 @@ assessment were graded by the same tests.
 
 ## Consistency: company interviews and evidence-based scoring
 
-The main reason organizations adopt structured interview tooling is consistency. In Mentara
+The main reason organizations adopt structured interview tooling is consistency. In Mentarika
 this takes the form of **company interviews**: a template that fixes the role, level, stack,
 length and language, plus up to 30 seed questions, each with the concepts your team expects a
 good answer to cover.
@@ -111,7 +111,7 @@ The fastest way to kill a practice program is to make people feel watched. Engin
 honestly when their mistakes stay private; they stop practicing, or start gaming it, when a
 manager can read every stumble.
 
-So the limits have to be in the product, not in a policy document. In a Mentara organization:
+So the limits have to be in the product, not in a policy document. In a Mentarika organization:
 
 - For each member, the organization sees only the join date, the number of interviews in the
   last 30 days, and the last activity.
@@ -152,7 +152,7 @@ Whatever tool you evaluate, these questions separate a careful product from a de
 6. **What happens when the AI fails?** Is a failed analysis flagged, or silently replaced with a
    plausible-looking score?
 
-Mentara's answers: role permissions and privacy thresholds are enforced by the server on every
+Mentarika's answers: role permissions and privacy thresholds are enforced by the server on every
 request; the organization is derived from the signed-in user's membership, never from an ID in
 the URL; model keys stay server-side; session data powers reports and progress and is not sold;
 and a report whose AI analysis failed is marked as such, with the evidence-based scores kept.
@@ -166,7 +166,7 @@ A pilot should answer one question: does structured practice change anything for
 A simple plan:
 
 1. **Pick one use case.** Upskilling or hiring, not both at once.
-2. **Start small.** A trial organization in Mentara is 14 days with 5 seats and 10 candidate
+2. **Start small.** A trial organization in Mentarika is 14 days with 5 seats and 10 candidate
    assignments – enough for one team or one open role.
 3. **Build one company interview** for the role and stack that matters most, with a handful of
    seed questions your senior engineers actually ask.
