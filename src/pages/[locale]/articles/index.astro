@@ -8,7 +8,7 @@ import { marketingLabels } from '../../../marketing/content';
 export function getStaticPaths() { return LOCALES.filter((locale) => locale !== 'en').map((locale) => ({ params: { locale }, props: { locale } })); }
 const { locale } = Astro.props;
 ---
-<BaseLayout locale={locale} title={`${marketingLabels(locale).articles} · Mentara`}>
+<BaseLayout locale={locale} title={`${marketingLabels(locale).articles} · Mentarika`}>
   <Nav locale={locale} homeHref={localeHome(locale)} />
   <main id="main"><Articles locale={locale} /></main>
   <Footer locale={locale} />

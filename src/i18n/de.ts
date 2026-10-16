@@ -7,7 +7,7 @@ export const de: Dict = {
   a11yMenu: 'Menü',
 
   meta: {
-    title: 'Mentara – technische Interviews mit KI üben und Coding-Assessments für Entwickler',
+    title: 'Mentarika – technische Interviews mit KI üben und Coding-Assessments für Entwickler',
     description:
       'Übe strukturierte technische Interviews mit einem KI-Interviewer, der bei deinen Antworten nachhakt, löse Coding-Assessments, die mit versteckten Tests bewertet werden, und erhalte einen Bericht, der deine Schwächen mit Belegen zeigt. Free- und Pro-Plan, dazu Enterprise für Teams.',
     tagline: 'Übe das Interview, nicht nur die Fragen.',
@@ -26,7 +26,7 @@ export const de: Dict = {
     eyebrow: 'Interview-Training für Entwickler und Teams',
     titleLead: 'Übe das technische Interview,',
     titleAccent: 'nicht nur die Fragen.',
-    lede: 'Mentara führt ein strukturiertes Interview für deine Rolle und deinen Stack, hakt bei dem nach, was du wirklich gesagt hast, prüft deinen Code mit versteckten Tests und gibt dir einen Bericht, der auf deine Schwächen zeigt – damit die nächste Session genau dort ansetzt.',
+    lede: 'Mentarika führt ein strukturiertes Interview für deine Rolle und deinen Stack, hakt bei dem nach, was du wirklich gesagt hast, prüft deinen Code mit versteckten Tests und gibt dir einen Bericht, der auf deine Schwächen zeigt – damit die nächste Session genau dort ansetzt.',
     availability: 'Start 2026 · Web, iOS & Android',
     teamsLink: 'Für Engineering-Teams',
   },
@@ -43,7 +43,7 @@ export const de: Dict = {
   why: {
     eyebrow: 'Warum hier üben',
     heading: 'Antworten lesen ist nicht dasselbe wie Antworten geben.',
-    lede: 'Die meiste Vorbereitung endet mit einer Liste gelesener Fragen. Ein Interview verlangt, dass du erklärst, bohrt beim schwachen Punkt nach und geht weiter, ob du bereit bist oder nicht. Genau das kannst du mit Mentara üben.',
+    lede: 'Die meiste Vorbereitung endet mit einer Liste gelesener Fragen. Ein Interview verlangt, dass du erklärst, bohrt beim schwachen Punkt nach und geht weiter, ob du bereit bist oder nicht. Genau das kannst du mit Mentarika üben.',
     them: {
       label: 'Fragenlisten und ein allgemeiner Chatbot',
       points: [
@@ -54,7 +54,7 @@ export const de: Dict = {
       ],
     },
     us: {
-      label: 'Eine Mentara-Session',
+      label: 'Eine Mentarika-Session',
       points: [
         'Ein getimtes Interview für Rolle, Level und Stack, mit fester Struktur',
         'Nachfragen, die auf deiner eigenen Antwort aufbauen',
@@ -109,7 +109,7 @@ export const de: Dict = {
   assessment: {
     eyebrow: 'Coding-Assessments',
     heading: 'Schreib den Code. Versteckte Tests bewerten ihn.',
-    lede: 'Coding hat bei Mentara seinen eigenen Platz: ein separates, getimtes Assessment mit Editor, ausführbaren Beispielen und echter Abgabe. Das Interview bleibt ein Gespräch; das Assessment prüft den Code.',
+    lede: 'Coding hat bei Mentarika seinen eigenen Platz: ein separates, getimtes Assessment mit Editor, ausführbaren Beispielen und echter Abgabe. Das Interview bleibt ein Gespräch; das Assessment prüft den Code.',
     steps: [
       {
         title: 'Lies die Aufgabe',
@@ -283,7 +283,7 @@ export const de: Dict = {
   },
 
   teamsBand: {
-    eyebrow: 'Mentara für Teams',
+    eyebrow: 'Mentarika für Teams',
     heading: 'Einheitliches Interview-Training und Screening für Engineering-Teams.',
     lede: 'Gib Entwicklern strukturierte Übung auf eurem Stack und Kandidaten jedes Mal dasselbe Interview – ohne Übung in Überwachung zu verwandeln.',
     points: [
@@ -300,7 +300,7 @@ export const de: Dict = {
         body: 'Aktivität pro Person, Skill-Durchschnitte nur für Gruppen ab fünf Personen. Niemand liest das Transkript eines Mitarbeiters.',
       },
     ],
-    cta: 'Mentara für Teams ansehen',
+    cta: 'Mentarika für Teams ansehen',
   },
 
   faq: {
@@ -309,7 +309,7 @@ export const de: Dict = {
     items: [
       {
         q: 'Was ist anders, als ChatGPT nach Interviewfragen zu fragen?',
-        a: 'Ein Chatbot beantwortet, was du fragst. Mentara führt das Interview: mit fester Struktur und Zeitlimit, Nachfragen bei schwachen Antworten, Bewertung aus Belegen nach einem Raster, Code-Prüfung mit versteckten Tests – und es erinnert sich an deine letzten Sessions.',
+        a: 'Ein Chatbot beantwortet, was du fragst. Mentarika führt das Interview: mit fester Struktur und Zeitlimit, Nachfragen bei schwachen Antworten, Bewertung aus Belegen nach einem Raster, Code-Prüfung mit versteckten Tests – und es erinnert sich an deine letzten Sessions.',
       },
       {
         q: 'Ist der KI-Interviewer wie ein echter Mensch?',
@@ -324,12 +324,12 @@ export const de: Dict = {
         a: 'Ja. Tippe aufs Mikrofon, sprich, und deine Antwort wird transkribiert. Der Free-Plan enthält 3 Voice-Interviews alle 30 Tage; Pro hat kein Limit.',
       },
       {
-        q: 'Was sieht mein Arbeitgeber, wenn meine Firma Mentara nutzt?',
+        q: 'Was sieht mein Arbeitgeber, wenn meine Firma Mentarika nutzt?',
         a: 'Nur dein Beitrittsdatum, wie viele Interviews du in den letzten 30 Tagen gemacht hast und wann du zuletzt aktiv warst. Team-Skill-Durchschnitte erscheinen erst, wenn mindestens fünf Personen beigetragen haben. Keine Rolle in einer Organisation kann deine Transkripte oder deine persönlichen Berichte lesen.',
       },
       {
         q: 'Wann kann ich es nutzen?',
-        a: 'Mentara startet 2026 im Web, auf iOS und Android. Trag dich in die Warteliste ein, und wir schreiben dir, sobald es losgeht.',
+        a: 'Mentarika startet 2026 im Web, auf iOS und Android. Trag dich in die Warteliste ein, und wir schreiben dir, sobald es losgeht.',
       },
     ],
   },
@@ -354,17 +354,17 @@ export const de: Dict = {
     eyebrow: 'Start 2026',
     titleLead: 'Dein nächstes Interview kommt.',
     titleAccent: 'Übe, bevor es so weit ist.',
-    lede: 'Mentara startet 2026 im Web, auf iOS und Android. Trag dich in die Warteliste ein, und wir schreiben dir am ersten Tag.',
+    lede: 'Mentarika startet 2026 im Web, auf iOS und Android. Trag dich in die Warteliste ein, und wir schreiben dir am ersten Tag.',
   },
 
   enterprise: {
-    metaTitle: 'Mentara für Teams – technisches Interview-Training und Kandidaten-Screening',
+    metaTitle: 'Mentarika für Teams – technisches Interview-Training und Kandidaten-Screening',
     metaDescription:
       'Strukturiertes KI-Interview-Training und Coding-Assessments für Engineering-Teams: Firmen-Interviews auf eurem Stack, Kandidaten-Einladungen mit Einwilligung und ein Team-Bericht, der nie einzelne Transkripte offenlegt.',
     hero: {
-      eyebrow: 'Mentara für Teams',
+      eyebrow: 'Mentarika für Teams',
       title: 'Strukturierte technische Interviews für dein ganzes Team.',
-      lede: 'Halte Entwickler in Form und prüfe Kandidaten jedes Mal auf dieselbe Weise. Mentara gibt deiner Organisation firmenspezifische Interviews, Coding-Assessments und Reporting – mit klaren Grenzen dafür, was Manager sehen können.',
+      lede: 'Halte Entwickler in Form und prüfe Kandidaten jedes Mal auf dieselbe Weise. Mentarika gibt deiner Organisation firmenspezifische Interviews, Coding-Assessments und Reporting – mit klaren Grenzen dafür, was Manager sehen können.',
       primary: 'Kontakt aufnehmen',
       secondary: 'Lesen: wie Teams KI-Interview-Training nutzen',
     },
