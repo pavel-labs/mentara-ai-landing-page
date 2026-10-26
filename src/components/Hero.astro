@@ -1,15 +1,12 @@
 ---
 import StoreBadges from './StoreBadges.astro';
 import Waitlist from './Waitlist.astro';
-import { marketingLabels, marketingLinks } from '../marketing/content';
 import { getDict, localePath, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
-const links = marketingLinks(locale);
-const labels = marketingLabels(locale);
 const t = getDict(locale);
 const m = t.interview.mock;
 // The illustration shows the interview in its deep-dive phase: the moment a follow-up
@@ -30,12 +27,12 @@ const activePhase = 2;
       <p class="lede" data-reveal style="--d:2">{t.hero.lede}</p>
 
       <div class="hero__cta" data-reveal style="--d:3">
-        <>{links.webAppUrl ? <a class="btn" href={links.webAppUrl} data-marketing-event="web_app_cta">{labels.open} →</a> : <Waitlist locale={locale} />}</>
+        <Waitlist locale={locale} />
         <a class="link-arrow" href={localePath(locale, 'enterprise')} data-marketing-event="enterprise_cta">{t.hero.teamsLink} →</a>
         <StoreBadges locale={locale} />
         <p class="mono hero__launch">
           <span class="dot" aria-hidden="true"></span>
-          {links.webAppUrl ? labels.available : t.hero.availability}
+          {t.hero.availability}
         </p>
       </div>
     </div>

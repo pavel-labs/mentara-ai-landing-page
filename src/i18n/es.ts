@@ -12,7 +12,7 @@ export const es: Dict = {
     description:
       'Practica entrevistas técnicas estructuradas con un entrevistador de IA que repregunta sobre tus respuestas, resuelve evaluaciones de código calificadas con tests ocultos y recibe un informe que muestra tus puntos débiles con evidencia. Planes Free y Pro, y Enterprise para equipos.',
     tagline: 'Practica la entrevista, no solo las preguntas.',
-    launchLabel: 'Disponible en 2026',
+    launchLabel: 'En pruebas · Lanzamiento en enero de 2027',
   },
 
   nav: [
@@ -28,7 +28,7 @@ export const es: Dict = {
     titleLead: 'Practica la entrevista técnica,',
     titleAccent: 'no solo las preguntas.',
     lede: 'Mentarika hace una entrevista estructurada para tu rol y tu stack, repregunta sobre lo que realmente dijiste, califica tu código con tests ocultos y te da un informe que señala tus puntos débiles – para que la siguiente sesión vaya a por ellos.',
-    availability: 'Disponible en 2026 · Web, iOS y Android',
+    availability: 'En pruebas · Lanzamiento en enero de 2027 en Web, iOS y Android',
     teamsLink: 'Para equipos de ingeniería',
   },
 
@@ -330,7 +330,7 @@ export const es: Dict = {
       },
       {
         q: '¿Cuándo puedo usarlo?',
-        a: 'Mentarika se lanza en 2026 en la web, iOS y Android. Apúntate a la lista de espera y te escribiremos cuando abra.',
+        a: 'Mentarika está ahora en pruebas limitadas y se lanza en la web, iOS y Android en enero de 2027. Apúntate a la lista de espera y te escribiremos cuando abra.',
       },
     ],
   },
@@ -352,10 +352,10 @@ export const es: Dict = {
   },
 
   cta: {
-    eyebrow: 'Disponible en 2026',
+    eyebrow: 'Lanzamiento en enero de 2027',
     titleLead: 'Tu próxima entrevista se acerca.',
     titleAccent: 'Practica antes de que llegue.',
-    lede: 'Mentarika abre en la web, iOS y Android en 2026. Apúntate a la lista de espera y te escribiremos ese mismo día.',
+    lede: 'Mentarika abre en la web, iOS y Android en enero de 2027. Apúntate a la lista de espera y te escribiremos ese mismo día.',
   },
 
   enterprise: {
