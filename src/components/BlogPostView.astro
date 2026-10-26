@@ -4,6 +4,7 @@ import type { Locale } from '../i18n';
 import { DEFAULT_LOCALE, localePath, localeHome, resolveNavHref } from '../i18n';
 import { SITE } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/reading.css';
 import Nav from './Nav.astro';
 import Footer from './Footer.astro';
 import { findClusterBySlug } from '../content/blog-clusters';
@@ -77,19 +78,22 @@ const jsonLd = [
 >
   <Nav locale={locale} homeHref={localeHome(locale)} />
   <main id="main" class="post">
-    <article class="container post__inner">
-      <a class="post__back" href={localePath(locale, 'blog')}>
-        ← Blog
-      </a>
-      <time class="post__date mono" datetime={post.data.date.toISOString()}>
-        {fmt}
-      </time>
-      <h1 class="h2">{post.data.title}</h1>
-      <div class="prose">
+    <article class="reading-shell post__inner">
+      <header class="reading-header">
+        <a class="post__back" href={localePath(locale, 'blog')}>
+          ← Blog
+        </a>
+        <time class="post__date mono" datetime={post.data.date.toISOString()}>
+          {fmt}
+        </time>
+        <h1 class="reading-title">{post.data.title}</h1>
+        <p class="reading-summary">{post.data.summary}</p>
+      </header>
+      <div class="prose reading-body">
         <Content />
       </div>
       {relatedPosts.length > 0 && (
-        <aside class="related">
+        <aside class="related reading-body">
           <p class="related__eyebrow mono">Related reading</p>
           <h2 class="related__title">{cluster?.title}</h2>
           <ul class="related__list">
@@ -102,7 +106,7 @@ const jsonLd = [
         </aside>
       )}
       {clusterCta != null && (
-        <section class="article-cta">
+        <section class="article-cta reading-body">
           <p class="article-cta__eyebrow">{clusterCta.eyebrow}</p>
           <h2 class="article-cta__title">{clusterCta.title}</h2>
           <p class="article-cta__body">{clusterCta.body}</p>
@@ -128,10 +132,9 @@ const jsonLd = [
     padding-block: clamp(3rem, 7vw, 6rem);
   }
   .post__inner {
-    max-width: 46rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
   }
   .post__back {
     font-family: var(--font-mono);
@@ -148,14 +151,13 @@ const jsonLd = [
   .prose {
     margin-top: 1rem;
     color: var(--text-muted);
-    line-height: 1.7;
     display: flex;
     flex-direction: column;
     gap: 1.1rem;
   }
   .prose :global(h2) {
     font-family: var(--font-heading);
-    font-size: 1.45rem;
+    font-size: clamp(1.5rem, 2.5vw, 1.875rem);
     font-weight: 600;
     color: var(--text);
     letter-spacing: -0.02em;
