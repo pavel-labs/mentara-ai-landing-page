@@ -16,7 +16,7 @@ const endpoint = `${API.baseUrl}/enterprise/inquiries`;
 const teamSizes = ['1-10', '11-50', '51-200', '201+'] as const;
 const useCases = ['upskilling', 'hiring', 'both'] as const;
 const id = (name: string) => `ent-${name}`;
-// Virtual path counted as a conversion, same approach as the waitlist.
+// Virtual path counted as an inquiry conversion.
 const trackPath = withBase('enterprise/success');
 ---
 

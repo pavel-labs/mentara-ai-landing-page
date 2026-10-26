@@ -30,7 +30,7 @@ export interface Tier {
   featured: boolean;
   /** Button label. */
   cta: string;
-  /** '#waitlist' for pre-launch plans, '/enterprise#contact' for the sales path. */
+  /** '#waitlist' for launch information (legacy anchor), '/enterprise#contact' for the sales path. */
   href: string;
 }
 
@@ -165,22 +165,6 @@ export interface Dict {
   };
 
   faq: { eyebrow: string; heading: string; items: Faq[] };
-
-  waitlist: {
-    eyebrow: string;
-    heading: string;
-    sub: string;
-    label: string;
-    placeholder: string;
-    cta: string;
-    sending: string;
-    success: string;
-    error: string;
-    offNote: string;
-    /** Opt-in for the unstable early/dev build, and the warning under it. */
-    devBuild: string;
-    devBuildNote: string;
-  };
 
   cta: {
     eyebrow: string;

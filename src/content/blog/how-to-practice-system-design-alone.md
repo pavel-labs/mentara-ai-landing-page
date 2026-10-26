@@ -57,4 +57,4 @@ Mentarika is not meant to publish your internal architecture diagrams back to yo
 an over-eager tutor. The goal is narrower: simulate the pressure of defending a design in
 front of someone who keeps asking the next uncomfortable question.
 
-If that sounds closer to the practice loop you actually need, the [waitlist is open](/).
+If that sounds closer to the practice loop you actually need, see the [launch details](/#waitlist).

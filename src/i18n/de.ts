@@ -245,7 +245,7 @@ export const de: Dict = {
           'Tägliche Challenges und Achievements',
         ],
         featured: false,
-        cta: 'Auf die Warteliste',
+        cta: 'Zum Start',
         href: '#waitlist',
       },
       {
@@ -260,7 +260,7 @@ export const de: Dict = {
           'Realistischer Modus: zeigt, wo du hängen geblieben bist und was die Session ohne fremde Hilfe wert gewesen wäre',
         ],
         featured: true,
-        cta: 'Auf die Warteliste',
+        cta: 'Zum Start',
         href: '#waitlist',
       },
       {
@@ -329,32 +329,16 @@ export const de: Dict = {
       },
       {
         q: 'Wann kann ich es nutzen?',
-        a: 'Mentarika befindet sich derzeit in einem begrenzten Testbetrieb und startet im Januar 2027 im Web, auf iOS und Android. Trag dich in die Warteliste ein, und wir schreiben dir, sobald es losgeht.',
+        a: 'Mentarika befindet sich derzeit in einem begrenzten Testbetrieb und startet im Januar 2027 im Web, auf iOS und Android.',
       },
     ],
-  },
-
-  waitlist: {
-    eyebrow: 'Früher Zugang',
-    heading: 'Warteliste beitreten.',
-    sub: 'Trag dich in die Warteliste ein – erfahr als Erste:r vom Start, kein Spam.',
-    label: 'E-Mail-Adresse',
-    placeholder: 'du@firma.dev',
-    cta: 'Eintragen',
-    sending: 'Wird gesendet…',
-    success: 'Passt, du bist auf der Liste. Wir melden uns zum Start.',
-    error: 'Bei uns ist was schiefgelaufen. Versuch’s gleich nochmal.',
-    offNote: 'Öffnet bald – setze PUBLIC_FORMSPREE_ENDPOINT, um das Formular zu aktivieren.',
-    devBuild: 'Schick mir auch den frühen Dev-Build',
-    devBuildNote:
-      'Instabil, unfertig und ohne Ankündigung aktualisiert - rechne mit Fehlern und zurückgesetzten Daten.',
   },
 
   cta: {
     eyebrow: 'Start Januar 2027',
     titleLead: 'Dein nächstes Interview kommt.',
     titleAccent: 'Übe, bevor es so weit ist.',
-    lede: 'Mentarika startet im Januar 2027 im Web, auf iOS und Android. Trag dich in die Warteliste ein, und wir schreiben dir am ersten Tag.',
+    lede: 'Mentarika startet im Januar 2027 im Web, auf iOS und Android.',
   },
 
   enterprise: {

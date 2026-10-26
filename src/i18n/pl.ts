@@ -246,7 +246,7 @@ export const pl: Dict = {
           'Codzienne wyzwania i osiągnięcia',
         ],
         featured: false,
-        cta: 'Zapisz się na listę',
+        cta: 'Informacje o premierze',
         href: '#waitlist',
       },
       {
@@ -261,7 +261,7 @@ export const pl: Dict = {
           'Tryb realistyczny: pokazuje, gdzie utknąłeś i ile sesja byłaby warta bez pomocy z zewnątrz',
         ],
         featured: true,
-        cta: 'Zapisz się na listę',
+        cta: 'Informacje o premierze',
         href: '#waitlist',
       },
       {
@@ -330,32 +330,16 @@ export const pl: Dict = {
       },
       {
         q: 'Kiedy będę mógł z tego korzystać?',
-        a: 'Mentarika jest teraz w ograniczonych testach i startuje w przeglądarce, na iOS i Androidzie w styczniu 2027 roku. Zapisz się na listę, a napiszemy, gdy ruszymy.',
+        a: 'Mentarika jest teraz w ograniczonych testach i startuje w przeglądarce, na iOS i Androidzie w styczniu 2027 roku.',
       },
     ],
-  },
-
-  waitlist: {
-    eyebrow: 'Wczesny dostęp',
-    heading: 'Zapisz się na listę.',
-    sub: 'Zapisz się na listę – dowiesz się pierwszy w dniu premiery, bez spamu.',
-    label: 'Adres e-mail',
-    placeholder: 'ty@praca.dev',
-    cta: 'Zapisz mnie',
-    sending: 'Wysyłanie…',
-    success: 'Jesteś na liście. Napiszemy do ciebie na premierę.',
-    error: 'Coś poszło nie tak po naszej stronie. Spróbuj za chwilę.',
-    offNote: 'Wkrótce ruszamy – ustaw PUBLIC_FORMSPREE_ENDPOINT, aby włączyć formularz.',
-    devBuild: 'Wyślijcie mi też wczesną wersję deweloperską',
-    devBuildNote:
-      'Niestabilna, niekompletna i aktualizowana bez uprzedzenia - licz się z błędami i kasowaniem danych.',
   },
 
   cta: {
     eyebrow: 'Start w styczniu 2027',
     titleLead: 'Twoja kolejna rozmowa nadchodzi.',
     titleAccent: 'Poćwicz, zanim nadejdzie.',
-    lede: 'Mentarika startuje w przeglądarce, na iOS i Androidzie w styczniu 2027 roku. Zapisz się na listę, a napiszemy tego samego dnia.',
+    lede: 'Mentarika startuje w przeglądarce, na iOS i Androidzie w styczniu 2027 roku.',
   },
 
   enterprise: {

@@ -75,4 +75,4 @@ That is the loop we are building Mentarika around: an interviewer that keeps ask
 question, notices when you skipped step one, and tells you afterward where your explanation
 stopped being convincing.
 
-If you want that when it ships, the [waitlist is open](/).
+See the [launch details](/#waitlist) for availability.

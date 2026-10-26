@@ -246,7 +246,7 @@ export const es: Dict = {
           'Retos diarios y logros',
         ],
         featured: false,
-        cta: 'Apuntarme a la lista',
+        cta: 'Sobre el lanzamiento',
         href: '#waitlist',
       },
       {
@@ -261,7 +261,7 @@ export const es: Dict = {
           'Modo realista: muestra dónde te atascaste y cuánto valdría la sesión sin ayuda externa',
         ],
         featured: true,
-        cta: 'Apuntarme a la lista',
+        cta: 'Sobre el lanzamiento',
         href: '#waitlist',
       },
       {
@@ -330,32 +330,16 @@ export const es: Dict = {
       },
       {
         q: '¿Cuándo puedo usarlo?',
-        a: 'Mentarika está ahora en pruebas limitadas y se lanza en la web, iOS y Android en enero de 2027. Apúntate a la lista de espera y te escribiremos cuando abra.',
+        a: 'Mentarika está ahora en pruebas limitadas y se lanza en la web, iOS y Android en enero de 2027.',
       },
     ],
-  },
-
-  waitlist: {
-    eyebrow: 'Acceso anticipado',
-    heading: 'Apúntate a la lista de espera.',
-    sub: 'Apúntate a la lista – entérate del lanzamiento el primero, sin spam.',
-    label: 'Correo electrónico',
-    placeholder: 'tu@empresa.dev',
-    cta: 'Apuntarme',
-    sending: 'Enviando…',
-    success: 'Listo, estás en la lista. Te escribimos en el lanzamiento.',
-    error: 'Algo se rompió por nuestro lado. Vuelve a intentarlo en un momento.',
-    offNote: 'Abre pronto – define PUBLIC_FORMSPREE_ENDPOINT para activar el formulario.',
-    devBuild: 'Enviadme también la compilación de desarrollo',
-    devBuildNote:
-      'Inestable, incompleta y actualizada sin aviso: espera fallos y datos que se borran.',
   },
 
   cta: {
     eyebrow: 'Lanzamiento en enero de 2027',
     titleLead: 'Tu próxima entrevista se acerca.',
     titleAccent: 'Practica antes de que llegue.',
-    lede: 'Mentarika abre en la web, iOS y Android en enero de 2027. Apúntate a la lista de espera y te escribiremos ese mismo día.',
+    lede: 'Mentarika abre en la web, iOS y Android en enero de 2027.',
   },
 
   enterprise: {
