@@ -123,60 +123,44 @@ See `.env.example`. All `PUBLIC_*` (inlined into the static build – no secrets
   `https://api.example.com`, no trailing slash). Empty → the form renders a disabled note.
   The backend must list this site's origin in `ALLOWED_ORIGINS`, or the browser blocks the
   request (CORS). See the monorepo's `docs/en/environment.md`.
-- `SITE_URL` / `BASE_PATH` – hosting overrides (default = the Firebase `*.web.app` domain).
+- `SITE_URL` / `BASE_PATH` – hosting overrides (production default = `https://mentarika.app`,
+  set as a Railway build variable on the `landing` service — see below).
 
 Set these as env in the GitHub Action (or repo variables) for the deployed build.
 
-## Firebase Hosting & custom domain
+## Railway Hosting & custom domain (current)
 
-Deployed on **Firebase Hosting** (`firebase.json`, `.firebaserc`, `dist/` as the public
-dir). Everything is written to switch domains with **no code change** –
-canonical/OG/hreflang/sitemap and `robots.txt` all derive from `site`/`base`
-(`astro.config.mjs`).
+Deployed on **Railway** (`Dockerfile.landing`, multi-stage: `npm run build` produces the
+static `dist/`, then nginx serves it — `nginx.landing.conf`). This replaced Firebase Hosting
+(below) so the whole product lives on one platform instead of two.
 
-**The custom domain is not decided yet.** The site is served from the auto-assigned
-Firebase domain `https://mentara-ai-landing.web.app`, which is also the `SITE_URL`
-default. Do not hardcode a candidate domain anywhere: point `SITE_URL` at an origin only
-once it actually serves this site.
+- **Service**: `landing`, in the same Railway project as `frontend`/`backend`/`admin-console`,
+  source repo `pavel-labs/mentara-ai-landing-page` (this repo, not the monorepo — Railway
+  builds it as its own deploy source, the monorepo only carries it as a read-only git
+  submodule). Build settings: `build.builder = DOCKERFILE`,
+  `build.dockerfilePath = Dockerfile.landing`.
+- **Custom domain**: `mentarika.app` (root) is a Railway custom domain on the `landing`
+  service; `www.mentarika.app` redirects to it. Both need a CNAME (and Railway's ownership
+  TXT record) at the DNS provider — `railway domain list --service landing --json` shows the
+  exact records once added. Keep the DNS record **unproxied** ("DNS only") at the provider
+  while Railway issues the certificate; a proxying provider terminates TLS itself and Railway
+  can never validate the domain.
+- **Build variables** (Railway → `landing` service → Variables, build-time — same
+  `PUBLIC_*`/`SITE_URL` set as [above](#environment-variables)): `SITE_URL`, in production
+  `https://mentarika.app`; `PUBLIC_WEB_APP_URL=https://app.mentarika.app` (the mobile web app,
+  on its own subdomain — see the monorepo's `docs/en/devops-playbook.md` → "Mentarika domain
+  rollout"); the rest default safely to off/empty until configured.
+- Every `SITE_URL`-derived URL (canonical, OG, hreflang, sitemap, `robots.txt`) still needs no
+  code change to move domains — only the Railway build variable.
 
-**One-time setup:**
+### Legacy: Firebase Hosting
 
-1. ~~**Firebase project**~~ – done: `.firebaserc` points at the `mentara-ai-landing`
-   project, Hosting enabled.
-2. **CI deploy secret**: Firebase console → Project settings → Service accounts →
-   Generate new private key, then add its JSON as the GitHub Actions secret
-   `FIREBASE_SERVICE_ACCOUNT`. It is stored as an **environment** secret on the
-   `firebase` environment (Settings → Environments → firebase), which is why the deploy
-   job declares `environment: firebase` – environment secrets are invisible to jobs that
-   do not.
-   ⚠️ This repo is **public** – that key must live only as a GitHub secret, never
-   committed. Until it is set the workflow **skips** the deploy step with a warning
-   (the build and Lighthouse jobs still run), so a missing secret shows up as a warning
-   rather than a failed run.
-3. **Custom domain** – _pending, no domain picked_. Once there is one: Firebase console
-   → Hosting → Add custom domain → `<the-domain>` (and its `www.` variant). Firebase walks
-   you through a TXT record for verification, then gives you the `A`/`CNAME` records to add
-   at your DNS provider, and auto-provisions the TLS certificate.
-4. **Repo variables** – **the day that domain actually resolves to this site**: set
-   `SITE_URL=https://<the-domain>` (Settings → Secrets and variables → Actions →
-   Variables). Not a day earlier: canonical, `og:image`, `hreflang` and sitemap URLs are
-   built from it, so pointing them at a domain that is parked, unregistered, or serving
-   something else tells Google the canonical page lives there and leaves every shared link
-   without a preview. It is one variable – no code edit.
-
-Note: this project only uses Firebase **Hosting** – no client-side Firebase SDK
-(`firebase-app.js`, Analytics, Auth, etc.) is wired up, and none is needed for Hosting to
-work. Registering the "web app" in the Firebase console (which produces an
-`initializeApp(firebaseConfig)` snippet) is optional and unrelated to deploying this site;
-skip it unless a future feature actually needs a client-side Firebase product.
-
-After a domain is live and `SITE_URL` is set, `robots.txt`, the sitemap, all
-hreflang/canonical/OG URLs, and `localeHome` resolve under it with no further change. Then
-point the mobile app's `EXPO_PUBLIC_TERMS_URL` / `EXPO_PUBLIC_PRIVACY_URL` at that domain's
-`/terms` and `/privacy`.
-
-For an ad-hoc push outside CI: `npm run deploy` (builds, then `firebase deploy` via
-`npx firebase-tools` – requires `firebase login` locally first).
+The site previously deployed to Firebase Hosting (`firebase.json`, `.firebaserc`, the
+`FirebaseExtended/action-hosting-deploy` step in `.github/workflows/deploy.yml`, `npm run
+deploy`). That path is no longer the live one and is kept only until the Railway cutover is
+fully verified; once it is, delete `firebase.json`, `.firebaserc`, the deploy step in
+`deploy.yml`, and the `mentara-ai-landing` Firebase project itself (Firebase console → Project
+settings → General → Delete project) in one follow-up change.
 
 ## Notes
 
