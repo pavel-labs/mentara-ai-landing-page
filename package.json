@@ -8,7 +8,6 @@
     "astro": "astro",
     "prebuild": "node scripts/gen-icons.mjs && node scripts/fetch-marketing.mjs",
     "build": "astro build",
-    "deploy": "npm run build && npx firebase-tools deploy --only hosting",
     "predev": "node scripts/fetch-marketing.mjs",
     "dev": "astro dev",
     "icons": "node scripts/gen-icons.mjs",

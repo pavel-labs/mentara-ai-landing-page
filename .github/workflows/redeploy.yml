@@ -1,0 +1,44 @@
+name: Redeploy on CMS publish
+
+# Publishing/unpublishing/archiving managed content in the admin console does not change any
+# file in this repo, so a git push never happens and Railway's own push-triggered deploy never
+# fires. The backend's optional MARKETING_GITHUB_TOKEN sends this repository_dispatch instead,
+# so the live site picks up the fresh `GET /marketing/export` snapshot without a new commit.
+# See docs/en/cicd.md -> "Marketing website publication".
+on:
+  repository_dispatch:
+    types: [marketing-content-published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  redeploy:
+    name: Trigger Railway redeploy
+    runs-on: ubuntu-latest
+    steps:
+      # Requires a repo secret RAILWAY_TOKEN (a Railway *project* token, scoped to this
+      # project — Railway dashboard -> Project settings -> Tokens -> Create Token). With no
+      # token, the redeploy is skipped (not failed): the `landing` service still picks up the
+      # fresh content on its next ordinary push-triggered deploy, or trigger one by hand with
+      # `railway redeploy --service landing` (needs `railway login` locally).
+      - name: Check redeploy credentials
+        id: creds
+        env:
+          TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          if [ -n "$TOKEN" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::RAILWAY_TOKEN is not set - skipping the redeploy. The landing service will pick up the new content on its next push-triggered deploy, or trigger one by hand with 'railway redeploy --service landing'."
+          fi
+
+      - name: Redeploy the landing service
+        if: steps.creds.outputs.present == 'true'
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          npm install -g @railway/cli
+          railway redeploy --service landing --yes
