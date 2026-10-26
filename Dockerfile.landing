@@ -1,0 +1,67 @@
+# Multi-stage build for the Mentarika marketing site (Astro, static output) for Railway.
+# This repo is its own GitHub repo (pavel-labs/mentara-ai-landing-page), included in the
+# main monorepo only as a git submodule — so this Dockerfile's build context is THIS
+# repo's root, not the monorepo root:
+#   docker build -f Dockerfile.landing -t mentarika-landing .
+#
+# SITE_URL and every PUBLIC_* var are inlined into the static build at build time
+# (Vite/Astro) — set these as Railway Build Variables, not runtime Variables. See
+# .env.example for the full list and what each one defaults to when unset:
+#   SITE_URL                   e.g. https://mentarika.app
+#   PUBLIC_WEB_APP_URL         e.g. https://app.mentarika.app
+#   PUBLIC_API_URL, MARKETING_CONTENT_ENABLED, PUBLIC_FORMSPREE_ENDPOINT,
+#   PUBLIC_CF_BEACON_TOKEN, PUBLIC_APP_STORE_URL, PUBLIC_GOOGLE_PLAY_URL,
+#   PUBLIC_ADMIN_ORIGINS, BASE_PATH
+#   PORT                        injected by Railway at runtime (nginx listens on it)
+
+# ── Builder ───────────────────────────────────────────────────────────────────
+# bookworm-slim (glibc), not alpine: @resvg/resvg-js (favicon rasterization in
+# scripts/gen-icons.mjs) ships prebuilt native bindings that assume glibc, not musl.
+FROM node:24-bookworm-slim AS builder
+WORKDIR /app
+
+# Manifest first so Docker's layer cache skips npm ci when only source changes.
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+
+ARG SITE_URL
+ARG BASE_PATH=/
+ARG PUBLIC_WEB_APP_URL=
+ARG PUBLIC_APP_STORE_URL=
+ARG PUBLIC_GOOGLE_PLAY_URL=
+ARG PUBLIC_API_URL=
+ARG PUBLIC_FORMSPREE_ENDPOINT=
+ARG PUBLIC_CF_BEACON_TOKEN=
+ARG PUBLIC_ADMIN_ORIGINS=
+ARG MARKETING_CONTENT_ENABLED=false
+
+ENV SITE_URL=$SITE_URL \
+    BASE_PATH=$BASE_PATH \
+    PUBLIC_WEB_APP_URL=$PUBLIC_WEB_APP_URL \
+    PUBLIC_APP_STORE_URL=$PUBLIC_APP_STORE_URL \
+    PUBLIC_GOOGLE_PLAY_URL=$PUBLIC_GOOGLE_PLAY_URL \
+    PUBLIC_API_URL=$PUBLIC_API_URL \
+    PUBLIC_FORMSPREE_ENDPOINT=$PUBLIC_FORMSPREE_ENDPOINT \
+    PUBLIC_CF_BEACON_TOKEN=$PUBLIC_CF_BEACON_TOKEN \
+    PUBLIC_ADMIN_ORIGINS=$PUBLIC_ADMIN_ORIGINS \
+    MARKETING_CONTENT_ENABLED=$MARKETING_CONTENT_ENABLED \
+    CI=1 \
+    NODE_ENV=production
+
+# npm runs `prebuild` (icons + the marketing content snapshot) automatically before `build`.
+RUN npm run build
+
+# ── Runner ────────────────────────────────────────────────────────────────────
+FROM nginx:alpine AS runner
+
+# Local-run default; Railway overrides PORT at runtime.
+ENV PORT=8080
+
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.landing.conf /etc/nginx/templates/default.conf.template
+
+EXPOSE 8080
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD wget --spider -q "http://127.0.0.1:${PORT}/" || exit 1
