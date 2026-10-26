@@ -3,8 +3,7 @@ import { SITE } from '../consts';
 import { withBase } from '../i18n';
 
 // Generated, not static – the Sitemap URL tracks whatever domain/base the build targets
-// (the Firebase *.web.app domain today, a custom domain once one is chosen) with zero
-// manual edits.
+// (https://mentarika.app in production) with zero manual edits.
 export function GET(context: APIContext) {
   const origin = context.site ?? new URL(SITE.domain);
   const sitemap = new URL(withBase('sitemap-index.xml'), origin).href;
