@@ -21,7 +21,7 @@ describe('marketing migration defaults', () => {
     expect(safeUrl('https://user:pass@example.com')).toBeNull();
     expect(storeUrl('https://apps.apple.com/', 'apple')).toBeNull();
     expect(
-      storeUrl('https://play.google.com/store/apps/details?id=ai.mentara', 'google'),
-    ).toContain('id=ai.mentara');
+      storeUrl('https://play.google.com/store/apps/details?id=ai.mentarika', 'google'),
+    ).toContain('id=ai.mentarika');
   });
 });

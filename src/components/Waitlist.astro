@@ -106,7 +106,7 @@ const trackPath = withBase('waitlist/success');
           // the beacon in SPA mode this pushState is the measurable funnel step. The URL
           // is restored immediately so the user never sees the virtual path.
           try {
-            window.__mentaraTrack?.('waitlist_signup');
+            window.__mentarikaTrack?.('waitlist_signup');
             const real = location.pathname + location.search;
             history.pushState(null, '', form.dataset.trackPath);
             history.replaceState(null, '', real);

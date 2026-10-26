@@ -25,7 +25,7 @@ export function getDict(locale: Locale): Dict {
 // localStorage key holding an explicit language choice (written by the language
 // switcher). Its presence is what stops the browser-language auto-redirect from
 // overriding a decision the visitor already made.
-export const LOCALE_STORAGE_KEY = 'mentara.locale';
+export const LOCALE_STORAGE_KEY = 'mentarika.locale';
 
 // Picks the best supported locale for a browser's language list ("ru-RU", "de-AT", …).
 // Region subtags are ignored, order is honoured, and an unsupported list yields null so

@@ -29,7 +29,7 @@ export const parsePreviewMessage = (message: unknown): PreviewMessage | null => 
     !message ||
     typeof message !== 'object' ||
     !('type' in message) ||
-    message.type !== 'mentara-marketing-preview' ||
+    message.type !== 'mentarika-marketing-preview' ||
     !('kind' in message) ||
     !('content' in message)
   )
