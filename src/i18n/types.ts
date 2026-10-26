@@ -271,6 +271,7 @@ export interface Dict {
     ios: string;
     android: string;
     web: string;
+    earlyAccessNote: string;
   };
 
   footer: {
