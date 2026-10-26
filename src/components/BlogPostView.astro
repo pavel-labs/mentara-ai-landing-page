@@ -78,49 +78,46 @@ const jsonLd = [
   <Nav locale={locale} homeHref={localeHome(locale)} />
   <main id="main" class="post">
     <article class="container post__inner">
-      <a class="post__back" href={localePath(locale, 'blog')}>← Blog</a>
-      <time class="post__date mono" datetime={post.data.date.toISOString()}>{fmt}</time>
+      <a class="post__back" href={localePath(locale, 'blog')}>
+        ← Blog
+      </a>
+      <time class="post__date mono" datetime={post.data.date.toISOString()}>
+        {fmt}
+      </time>
       <h1 class="h2">{post.data.title}</h1>
       <div class="prose">
         <Content />
       </div>
-      {
-        relatedPosts.length > 0 && (
-          <aside class="related">
-            <p class="related__eyebrow mono">Related reading</p>
-            <h2 class="related__title">{cluster?.title}</h2>
-            <ul class="related__list">
-              {relatedPosts.map((relatedPost) => (
-                <li>
-                  <a href={localePath(locale, `blog/${relatedPost.id}`)}>{relatedPost.data.title}</a>
-                </li>
-              ))}
-            </ul>
-          </aside>
-        )
-      }
-      {
-        clusterCta != null && (
-          <section class="article-cta">
-            <p class="article-cta__eyebrow">{clusterCta.eyebrow}</p>
-            <h2 class="article-cta__title">{clusterCta.title}</h2>
-            <p class="article-cta__body">{clusterCta.body}</p>
-            <div class="article-cta__actions">
-              <a class="article-cta__primary" href={ctaHref(clusterCta.primaryHref)}>
-                {clusterCta.primaryLabel}
+      {relatedPosts.length > 0 && (
+        <aside class="related">
+          <p class="related__eyebrow mono">Related reading</p>
+          <h2 class="related__title">{cluster?.title}</h2>
+          <ul class="related__list">
+            {relatedPosts.map((relatedPost) => (
+              <li>
+                <a href={localePath(locale, `blog/${relatedPost.id}`)}>{relatedPost.data.title}</a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
+      {clusterCta != null && (
+        <section class="article-cta">
+          <p class="article-cta__eyebrow">{clusterCta.eyebrow}</p>
+          <h2 class="article-cta__title">{clusterCta.title}</h2>
+          <p class="article-cta__body">{clusterCta.body}</p>
+          <div class="article-cta__actions">
+            <a class="article-cta__primary" href={ctaHref(clusterCta.primaryHref)}>
+              {clusterCta.primaryLabel}
+            </a>
+            {clusterCta.secondaryLabel && clusterCta.secondaryHref && (
+              <a class="article-cta__secondary" href={ctaHref(clusterCta.secondaryHref)}>
+                {clusterCta.secondaryLabel}
               </a>
-              {
-                clusterCta.secondaryLabel &&
-                  clusterCta.secondaryHref && (
-                    <a class="article-cta__secondary" href={ctaHref(clusterCta.secondaryHref)}>
-                      {clusterCta.secondaryLabel}
-                    </a>
-                  )
-              }
-            </div>
-          </section>
-        )
-      }
+            )}
+          </div>
+        </section>
+      )}
     </article>
   </main>
   <Footer locale={locale} />
@@ -139,28 +136,28 @@ const jsonLd = [
   .post__back {
     font-family: var(--font-mono);
     font-size: 0.82rem;
-    color: var(--bone-dim);
+    color: var(--text-muted);
     align-self: flex-start;
   }
   .post__back:hover {
-    color: var(--amber);
+    color: var(--accent-ink);
   }
   .post__date {
-    color: var(--amber);
+    color: var(--accent-ink);
   }
   .prose {
     margin-top: 1rem;
-    color: var(--bone-dim);
+    color: var(--text-muted);
     line-height: 1.7;
     display: flex;
     flex-direction: column;
     gap: 1.1rem;
   }
   .prose :global(h2) {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.45rem;
     font-weight: 600;
-    color: var(--bone);
+    color: var(--text);
     letter-spacing: -0.02em;
     margin-top: 1rem;
   }
@@ -172,11 +169,11 @@ const jsonLd = [
     gap: 0.5rem;
   }
   .prose :global(a) {
-    color: var(--amber);
+    color: var(--accent-ink);
     text-decoration: underline;
   }
   .prose :global(strong) {
-    color: var(--bone);
+    color: var(--text);
   }
   /* Comparison tables: block + overflow so a wide table scrolls inside itself on a phone
      instead of widening the whole page. */
@@ -195,9 +192,9 @@ const jsonLd = [
     min-width: 10rem;
   }
   .prose :global(th) {
-    color: var(--bone);
+    color: var(--text);
     font-weight: 600;
-    background: var(--ink-1);
+    background: var(--surface-raised);
   }
   .prose :global(hr) {
     border: 0;
@@ -209,12 +206,12 @@ const jsonLd = [
     border-top: 1px solid var(--line);
   }
   .related__eyebrow {
-    color: var(--amber);
+    color: var(--accent-ink);
     font-size: 0.78rem;
   }
   .related__title {
     margin-top: 0.35rem;
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.2rem;
     letter-spacing: -0.02em;
   }
@@ -224,34 +221,34 @@ const jsonLd = [
     display: flex;
     flex-direction: column;
     gap: 0.45rem;
-    color: var(--bone-dim);
+    color: var(--text-muted);
   }
   .related__list a:hover {
-    color: var(--amber);
+    color: var(--accent-ink);
   }
   .article-cta {
     margin-top: 1.6rem;
     padding: 1.4rem;
     border: 1px solid var(--line-strong);
-    border-left: 2px solid var(--amber);
-    background: color-mix(in oklab, var(--ink-2) 58%, transparent);
+    border-left: 2px solid var(--accent-ink);
+    background: color-mix(in oklab, var(--surface-subtle) 58%, transparent);
   }
   .article-cta__eyebrow {
     font-family: var(--font-mono);
     font-size: 0.78rem;
-    color: var(--amber);
+    color: var(--accent-ink);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
   .article-cta__title {
     margin-top: 0.4rem;
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.35rem;
     letter-spacing: -0.02em;
   }
   .article-cta__body {
     margin-top: 0.55rem;
-    color: var(--bone-dim);
+    color: var(--text-muted);
     line-height: 1.65;
   }
   .article-cta__actions {
@@ -268,11 +265,11 @@ const jsonLd = [
     border: 1px solid var(--line-strong);
   }
   .article-cta__primary {
-    background: var(--amber);
-    color: var(--ink);
-    border-color: color-mix(in oklab, var(--amber) 70%, transparent);
+    background: var(--accent-ink);
+    color: var(--surface);
+    border-color: color-mix(in oklab, var(--accent-ink) 70%, transparent);
   }
   .article-cta__secondary {
-    color: var(--bone);
+    color: var(--text);
   }
 </style>

@@ -1,0 +1,282 @@
+---
+import { getDict, type Locale } from '../i18n';
+import BrandMark from './BrandMark.astro';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const m = getDict(locale).interview.mock;
+const activePhase = 2;
+---
+
+<figure class="session theme-light" aria-label={m.label}>
+  <div class="session__bar">
+    <span class="session__brand">
+      <BrandMark /> Mentarika
+    </span>
+    <span>{m.label}</span>
+    <span class="session__lights" aria-hidden="true">
+      <i></i>
+      <i></i>
+      <i></i>
+    </span>
+  </div>
+  <div class="session__layout">
+    <div class="session__rail">
+      <ol class="session__phases" aria-label={m.phases.join(' → ')}>
+        {m.phases.map((phase, index) => (
+          <li
+            class:list={{ 'is-active': index === activePhase, 'is-done': index < activePhase }}
+            aria-current={index === activePhase ? 'step' : undefined}
+          >
+            <span aria-hidden="true">
+              {index < activePhase ? '✓' : String(index + 1).padStart(2, '0')}
+            </span>
+            {phase}
+          </li>
+        ))}
+      </ol>
+      <div class="session__voice">
+        <div class="wave" aria-hidden="true">
+          {[2, 4, 7, 5, 9, 6, 3, 5, 2].map((height) => (
+            <i style={`--height:${height}`} />
+          ))}
+        </div>
+        <span>{m.voice}</span>
+      </div>
+    </div>
+    <div class="session__conversation">
+      <div class="session__line">
+        <span class="who">{m.interviewer}</span>
+        <p class="bubble">{m.q}</p>
+      </div>
+      <div class="session__line session__line--you">
+        <span class="who">{m.you}</span>
+        <p class="bubble bubble--you">{m.a}</p>
+      </div>
+      <div class="session__line">
+        <span class="who">{m.interviewer}</span>
+        <p class="bubble session__follow">{m.followUp}</p>
+      </div>
+      <div class="session__foot">
+        <span class="session__hints" aria-hidden="true">
+          <i></i>
+          <i></i>
+          <i></i>
+        </span>
+        {m.hints}
+      </div>
+    </div>
+  </div>
+</figure>
+<style>
+  .session {
+    width: 100%;
+    max-width: 58rem;
+    margin-inline: auto;
+    border: 1px solid #fff6;
+    border-radius: 24px;
+    background: var(--surface-raised);
+    color: var(--text);
+    box-shadow: 0 32px 80px -20px #07140b70;
+    overflow: hidden;
+    text-align: left;
+  }
+  .session__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+  }
+  .session__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    letter-spacing: -0.04em;
+  }
+  .session__brand :global(svg) {
+    width: 1.2rem;
+  }
+  .session__lights {
+    display: flex;
+    gap: 0.25rem;
+  }
+  .session__lights i {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: var(--line-strong);
+  }
+  .session__layout {
+    display: grid;
+    grid-template-columns: minmax(9rem, 0.65fr) minmax(0, 2fr);
+  }
+  .session__rail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.8rem 1.25rem;
+    background: var(--surface);
+    border-right: 1px solid var(--line);
+  }
+  .session__phases {
+    display: grid;
+    gap: 1.4rem;
+    padding: 0;
+    list-style: none;
+  }
+  .session__phases li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--text-soft);
+    font-size: 0.75rem;
+  }
+  .session__phases li > span {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    font-size: 0.5625rem;
+  }
+  .session__phases .is-active {
+    color: var(--text);
+    font-weight: 650;
+  }
+  .session__phases .is-active > span {
+    background: var(--text);
+    color: var(--surface);
+    border-color: var(--text);
+  }
+  .session__phases .is-done > span {
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+    border-color: var(--accent-soft);
+  }
+  .session__voice {
+    display: grid;
+    justify-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 0.25rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.6875rem;
+  }
+  .wave {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .wave i {
+    width: 0.2rem;
+    height: calc(var(--height) * 0.21rem);
+    border-radius: 1rem;
+    background: #233b24;
+  }
+  .session__conversation {
+    display: grid;
+    gap: 1.1rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+  .session__line {
+    display: grid;
+    gap: 0.4rem;
+    padding-right: 1.25rem;
+  }
+  .session__line--you {
+    padding-right: 0;
+    padding-left: 1.25rem;
+  }
+  .session__line--you .who {
+    text-align: right;
+  }
+  .session__follow {
+    border: 1px solid #b7cc9d;
+  }
+  .session__foot {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-top: 0.6rem;
+    font-size: 0.625rem;
+    color: var(--text-soft);
+  }
+  .session__hints {
+    display: inline-flex;
+    gap: 0.2rem;
+  }
+  .session__hints i {
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 50%;
+    background: var(--accent-ink);
+  }
+  .session__hints i:last-child {
+    background: var(--line-strong);
+  }
+  @media (max-width: 600px) {
+    .session {
+      border-radius: 18px;
+    }
+    .session__bar {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0.9rem 1rem;
+    }
+    .session__bar > span:nth-child(2) {
+      flex-basis: 100%;
+      order: 1;
+    }
+    .session__layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .session__rail {
+      padding: 1rem;
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .session__phases {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.4rem;
+    }
+    .session__phases li {
+      flex-direction: column;
+      gap: 0.4rem;
+      text-align: center;
+      font-size: 0.625rem;
+      overflow-wrap: anywhere;
+    }
+    .session__voice {
+      display: none;
+    }
+    .session__conversation {
+      gap: 0.9rem;
+    }
+    .session__conversation .bubble {
+      font-size: 0.8125rem;
+      padding: 0.85rem;
+    }
+    .session__line {
+      padding-right: 0;
+    }
+    .session__line--you {
+      padding-left: 0.75rem;
+    }
+  }
+</style>
