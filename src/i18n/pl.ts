@@ -12,7 +12,7 @@ export const pl: Dict = {
     description:
       'Ćwicz ustrukturyzowane rozmowy techniczne z rekruterem AI, który dopytuje o twoje odpowiedzi, rozwiązuj zadania programistyczne oceniane ukrytymi testami i dostawaj raport, który pokazuje twoje słabe strony wraz z dowodami. Plany Free i Pro oraz Enterprise dla zespołów.',
     tagline: 'Ćwicz rozmowę, nie tylko pytania.',
-    launchLabel: 'Start w 2026',
+    launchLabel: 'W testach · start w styczniu 2027',
   },
 
   nav: [
@@ -28,7 +28,7 @@ export const pl: Dict = {
     titleLead: 'Ćwicz rozmowę techniczną,',
     titleAccent: 'nie tylko pytania.',
     lede: 'Mentarika prowadzi ustrukturyzowaną rozmowę dla twojej roli i stacku, dopytuje o to, co naprawdę powiedziałeś, ocenia twój kod ukrytymi testami i daje raport, który wskazuje słabe strony – żeby kolejna sesja celowała właśnie w nie.',
-    availability: 'Start w 2026 · przeglądarka, iOS i Android',
+    availability: 'W testach · start w styczniu 2027 na przeglądarce, iOS i Android',
     teamsLink: 'Dla zespołów inżynierskich',
   },
 
@@ -330,7 +330,7 @@ export const pl: Dict = {
       },
       {
         q: 'Kiedy będę mógł z tego korzystać?',
-        a: 'Mentarika startuje w 2026 roku w przeglądarce, na iOS i Androidzie. Zapisz się na listę, a napiszemy, gdy ruszymy.',
+        a: 'Mentarika jest teraz w ograniczonych testach i startuje w przeglądarce, na iOS i Androidzie w styczniu 2027 roku. Zapisz się na listę, a napiszemy, gdy ruszymy.',
       },
     ],
   },
@@ -352,10 +352,10 @@ export const pl: Dict = {
   },
 
   cta: {
-    eyebrow: 'Start w 2026',
+    eyebrow: 'Start w styczniu 2027',
     titleLead: 'Twoja kolejna rozmowa nadchodzi.',
     titleAccent: 'Poćwicz, zanim nadejdzie.',
-    lede: 'Mentarika startuje w przeglądarce, na iOS i Androidzie w 2026 roku. Zapisz się na listę, a napiszemy tego samego dnia.',
+    lede: 'Mentarika startuje w przeglądarce, na iOS i Androidzie w styczniu 2027 roku. Zapisz się na listę, a napiszemy tego samego dnia.',
   },
 
   enterprise: {
