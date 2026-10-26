@@ -1,7 +1,7 @@
 ---
 // Sales inquiry → the backend's public POST /enterprise/inquiries, so the lead lands in the
 // admin console's inquiry list rather than someone's inbox. Field names and option values
-// mirror EnterpriseInquiryBodySchema in @mentara/shared; `website` is the server-side
+// mirror EnterpriseInquiryBodySchema in @mentarika/shared; `website` is the server-side
 // honeypot (a filled one is accepted with 202 and silently dropped).
 import { API } from '../consts';
 import { getDict, withBase, type Locale } from '../i18n';
@@ -161,7 +161,7 @@ const trackPath = withBase('enterprise/success');
           status.textContent = form.dataset.success;
           status.dataset.state = 'ok';
           try {
-            window.__mentaraTrack?.('enterprise_inquiry');
+            window.__mentarikaTrack?.('enterprise_inquiry');
             const real = location.pathname + location.search + location.hash;
             history.pushState(null, '', form.dataset.trackPath);
             history.replaceState(null, '', real);

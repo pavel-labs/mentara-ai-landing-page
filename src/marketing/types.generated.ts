@@ -1,4 +1,4 @@
-// Generated from @mentara/shared by scripts/export-marketing-contract.mjs.
+// Generated from @mentarika/shared by scripts/export-marketing-contract.mjs.
 interface IBillingCatalog {
   displayPrices: { currency: 'USD'; proMonthly: string; proAnnual: string; interviewPack: string };
 }

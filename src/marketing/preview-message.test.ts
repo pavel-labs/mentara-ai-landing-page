@@ -17,11 +17,11 @@ describe('draft preview boundary', () => {
   };
   it('accepts complete drafts while retaining text as text', () => {
     expect(
-      parsePreviewMessage({ type: 'mentara-marketing-preview', kind: 'landing', content: page })
+      parsePreviewMessage({ type: 'mentarika-marketing-preview', kind: 'landing', content: page })
         ?.kind,
     ).toBe('landing');
     expect(
-      parsePreviewMessage({ type: 'mentara-marketing-preview', kind: 'article', content: article }),
+      parsePreviewMessage({ type: 'mentarika-marketing-preview', kind: 'article', content: article }),
     ).toMatchObject({ content: { blocks: article.blocks } });
   });
   it('rejects incomplete, mismatched, executable and unknown payloads', () => {
@@ -32,14 +32,14 @@ describe('draft preview boundary', () => {
       { ...article, cover: { url: 'javascript:alert(1)', alt: 'Image' } },
     ]) {
       expect(
-        parsePreviewMessage({ type: 'mentara-marketing-preview', kind: 'article', content }),
+        parsePreviewMessage({ type: 'mentarika-marketing-preview', kind: 'article', content }),
       ).toBeNull();
     }
     expect(
       parsePreviewMessage({ type: 'another-message', kind: 'article', content: article }),
     ).toBeNull();
     expect(
-      parsePreviewMessage({ type: 'mentara-marketing-preview', kind: 'landing', content: article }),
+      parsePreviewMessage({ type: 'mentarika-marketing-preview', kind: 'landing', content: article }),
     ).toBeNull();
   });
   it('restricts preview origins to HTTPS or local development and excludes credentials', () => {
