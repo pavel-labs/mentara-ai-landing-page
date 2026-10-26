@@ -2,7 +2,7 @@
   "name": "mentarika-landing-page",
   "version": "0.1.0",
   "private": true,
-  "description": "Marketing landing page for Mentarika – AI mock technical interviews for software engineers.",
+  "description": "Marketing landing page for Mentarika \u2013 AI mock technical interviews for software engineers.",
   "type": "module",
   "scripts": {
     "astro": "astro",
@@ -16,7 +16,8 @@
     "start": "astro dev",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "astro check"
+    "check": "astro check",
+    "precheck": "node scripts/fetch-marketing.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",
