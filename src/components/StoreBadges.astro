@@ -24,6 +24,7 @@ const badges = [
     </span>
   )}
 </div>
+{links.webAppUrl && <p class="badges__note">{b.earlyAccessNote}</p>}
 
 <style>
   .badges {
@@ -77,5 +78,10 @@ const badges = [
     font-size: 0.98rem;
     letter-spacing: -0.01em;
     white-space: nowrap;
+  }
+  .badges__note {
+    margin: 0.5rem 0 0;
+    font-size: 0.78rem;
+    color: var(--bone-faint);
   }
 </style>

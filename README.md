@@ -85,8 +85,8 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
   with real captures once those exist.
 - **Contact form** (`EnterpriseForm.astro`): POSTs JSON to the backend's public
   `POST {PUBLIC_API_URL}/enterprise/inquiries` (fields mirror `EnterpriseInquiryBodySchema`
-  in `@mentara/shared`; `website` is the server-side honeypot), so leads show up in the admin
-  console. Success fires `__mentaraTrack?.('enterprise_inquiry')` and a virtual
+  in `@mentarika/shared`; `website` is the server-side honeypot), so leads show up in the admin
+  console. Success fires `__mentarikaTrack?.('enterprise_inquiry')` and a virtual
   `…/enterprise/success` pageview, like the waitlist.
 
 - **Legal**: `/{locale}/privacy` + `/{locale}/terms` (all 4 locales). The page shell,
@@ -106,7 +106,7 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
 - **hreflang**: every localized page lists the same page in each locale (not the locale
   homes); `FAQPage` JSON-LD is emitted only on the home page, where the FAQ is rendered.
 - **Per-locale OG**: `/og/<locale>.png` generated at build; each page references its own.
-- **Waitlist conversion**: on success the form fires `window.__mentaraTrack?.('waitlist_signup')`
+- **Waitlist conversion**: on success the form fires `window.__mentarikaTrack?.('waitlist_signup')`
   (provider-agnostic hook) and a virtual `…/waitlist/success` pushState. Cloudflare Web
   Analytics has **no custom-event API**, so the beacon runs in `spa:true` mode and that
   virtual pageview is the measurable funnel step (URL is restored instantly).
@@ -252,6 +252,6 @@ parent window and admin origin, and validates drafts before rendering DOM text n
 never enter URLs or the public export. Preview is noindex, excluded from sitemap/analytics.
 
 Contracts are generated from the main repo with `npm run marketing:contract`, which builds
-`@mentara/shared` first. Keep generated JSON/types with both coordinated PRs. Run
+`@mentarika/shared` first. Keep generated JSON/types with both coordinated PRs. Run
 `npm test` and `npm run build` before review. The CSS 3D hero needs no WebGL dependency and
 honors reduced-motion preferences.

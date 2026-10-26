@@ -531,6 +531,8 @@ export const es: Dict = {
     ios: 'App Store',
     android: 'Google Play',
     web: 'la Web',
+    earlyAccessNote:
+      'Acceso anticipado: la app está en pruebas limitadas y, por ahora, solo accesible desde IPs autorizadas.',
   },
 
   footer: {
