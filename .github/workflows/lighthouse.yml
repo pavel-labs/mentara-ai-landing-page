@@ -1,0 +1,46 @@
+name: Lighthouse
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # Quality gate – independent of deploy on purpose: a Lighthouse dip must never block a
+  # publish. Assertions are warnings (see lighthouserc.json). Deployment itself is Railway's
+  # job (the `landing` service auto-deploys on push to `main` — see README → Railway Hosting);
+  # this workflow only audits the build.
+  audit:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # Build base-less so Lighthouse CI's static server (serves dist at "/") gets a
+      # self-consistent site; the base path doesn't affect the audited scores.
+      - name: Build (no base)
+        run: npm run build
+        env:
+          BASE_PATH: /
+          PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
+          MARKETING_CONTENT_ENABLED: ${{ vars.MARKETING_CONTENT_ENABLED }}
+
+      - name: Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true

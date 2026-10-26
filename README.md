@@ -120,11 +120,12 @@ See `.env.example`. All `PUBLIC_*` (inlined into the static build – no secrets
 
 Set these as env in the GitHub Action (or repo variables) for the deployed build.
 
-## Railway Hosting & custom domain (current)
+## Railway Hosting & custom domain
 
 Deployed on **Railway** (`Dockerfile.landing`, multi-stage: `npm run build` produces the
 static `dist/`, then nginx serves it — `nginx.landing.conf`). This replaced Firebase Hosting
-(below) so the whole product lives on one platform instead of two.
+so the whole product lives on one platform instead of two — there is no Firebase project or
+config left in this repo.
 
 - **Service**: `landing`, in the same Railway project as `frontend`/`backend`/`admin-console`,
   source repo `pavel-labs/mentara-ai-landing-page` (this repo, not the monorepo — Railway
@@ -145,14 +146,15 @@ static `dist/`, then nginx serves it — `nginx.landing.conf`). This replaced Fi
 - Every `SITE_URL`-derived URL (canonical, OG, hreflang, sitemap, `robots.txt`) still needs no
   code change to move domains — only the Railway build variable.
 
-### Legacy: Firebase Hosting
+### Redeploying after a CMS publish
 
-The site previously deployed to Firebase Hosting (`firebase.json`, `.firebaserc`, the
-`FirebaseExtended/action-hosting-deploy` step in `.github/workflows/deploy.yml`, `npm run
-deploy`). That path is no longer the live one and is kept only until the Railway cutover is
-fully verified; once it is, delete `firebase.json`, `.firebaserc`, the deploy step in
-`deploy.yml`, and the `mentara-ai-landing` Firebase project itself (Firebase console → Project
-settings → General → Delete project) in one follow-up change.
+Publishing/unpublishing/archiving managed content in the admin console doesn't push a commit,
+so Railway's own push-triggered deploy never fires for it. The backend's optional
+`MARKETING_GITHUB_TOKEN` sends a `repository_dispatch` (`marketing-content-published`) instead,
+picked up by `.github/workflows/redeploy.yml`, which triggers a Railway redeploy via a
+`RAILWAY_TOKEN` repo secret (a Railway *project* token — dashboard → Project settings →
+Tokens). With no token, that workflow skips with a warning and the content ships on the next
+ordinary push, or trigger one by hand: `railway redeploy --service landing`.
 
 ## Notes
 
@@ -174,9 +176,9 @@ settings → General → Delete project) in one follow-up change.
   robots, manifest. The FAQ is rich-result eligible.
 - Store badges link to configured app detail URLs; unconfigured stores show **Coming soon**.
 - **Security**: content is validated before static generation; article text and SEO JSON-LD are escaped. Preview accepts drafts only from configured admin origins and never parses text as HTML.
-- Deploy: Firebase Hosting via `.github/workflows/deploy.yml` (build →
-  `FirebaseExtended/action-hosting-deploy`), plus a **non-blocking** Lighthouse CI `audit`
-  job (`lighthouserc.json`, ≥0.9 budgets as warnings). Any static host also works:
+- Deploy: Railway (`Dockerfile.landing`, see "Railway Hosting" above), plus a
+  **non-blocking** Lighthouse CI `audit` job in `.github/workflows/lighthouse.yml`
+  (`lighthouserc.json`, ≥0.9 budgets as warnings). Any static host also works:
   `npm run build` → `dist/`.
 
 ## Relationship to the main repo
@@ -218,11 +220,13 @@ Published page links override those fallback product/store destinations. Users c
 available platform; there is no forced platform redirect. Content-independent pages use these
 central links too. CTA events store anonymous locale/event counts; no tracking runs in preview.
 
-The backend can trigger the existing Firebase workflow with repository-dispatch event
-`marketing-content-published`, or an operator can run it manually. Content save and publish are
-separate; a failed dispatch/build is retriable. Automated publication requires explicit activation;
-disabled content cannot trigger a deployment of local defaults. Both deployment and Lighthouse
-builds receive the activation flag. `/marketing/defaults/<locale>.json` lets the
+The backend can trigger `.github/workflows/redeploy.yml` with repository-dispatch event
+`marketing-content-published` (see "Redeploying after a CMS publish" above), or an operator can
+run it manually. Content save and publish are separate; a failed dispatch/build is retriable.
+Automated publication requires explicit activation; disabled content cannot trigger a
+deployment of local defaults. The Railway build itself reads the activation flag from the
+`landing` service's own Build Variables (set once, not per-dispatch); the Lighthouse build in
+CI sets it from the repo variable of the same name. `/marketing/defaults/<locale>.json` lets the
 admin copy current local content into a draft. `/preview/` reuses real website CSS, checks the
 parent window and admin origin, and validates drafts before rendering DOM text nodes. Drafts
 never enter URLs or the public export. Preview is noindex, excluded from sitemap/analytics.
