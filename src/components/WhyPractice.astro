@@ -18,27 +18,27 @@ const w = getDict(locale).why;
       <div class="vs__col">
         <h3 class="vs__name">{w.them.label}</h3>
         <ul>
-          {
-            w.them.points.map((p) => (
-              <li>
-                <span class="vs__mark" aria-hidden="true">–</span>
-                {p}
-              </li>
-            ))
-          }
+          {w.them.points.map((p) => (
+            <li>
+              <span class="vs__mark" aria-hidden="true">
+                –
+              </span>
+              {p}
+            </li>
+          ))}
         </ul>
       </div>
       <div class="vs__col vs__col--us">
         <h3 class="vs__name">{w.us.label}</h3>
         <ul>
-          {
-            w.us.points.map((p) => (
-              <li>
-                <span class="vs__mark" aria-hidden="true">✓</span>
-                {p}
-              </li>
-            ))
-          }
+          {w.us.points.map((p) => (
+            <li>
+              <span class="vs__mark" aria-hidden="true">
+                ✓
+              </span>
+              {p}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -47,67 +47,57 @@ const w = getDict(locale).why;
 
 <style>
   .why__lede {
-    max-width: 60ch;
-    margin-top: calc(-1 * clamp(1rem, 2.5vw, 2rem));
-    margin-bottom: clamp(2rem, 4vw, 3rem);
+    max-width: 65ch;
+    margin-top: -1rem;
+    margin-bottom: 3rem;
   }
   .vs {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
+    gap: 1.25rem;
   }
   .vs__col {
-    padding: clamp(1.4rem, 3vw, 2.2rem);
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
+    display: grid;
+    align-content: start;
+    gap: 1.75rem;
     min-width: 0;
+    padding: clamp(1.75rem, 4vw, 3.5rem);
+    border-radius: var(--radius-lg);
+    background: var(--surface-subtle);
   }
   .vs__col--us {
-    background: var(--ink-1);
-    border-left: 1px solid var(--line-strong);
-    box-shadow: inset 0 2px 0 var(--amber);
+    background: #e2edcf;
   }
   .vs__name {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--bone-dim);
-  }
-  .vs__col--us .vs__name {
-    color: var(--amber);
+    max-width: 23ch;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
   }
   .vs ul {
-    list-style: none;
     display: grid;
-    gap: 0.9rem;
+    gap: 1.1rem;
+    padding: 0;
+    list-style: none;
   }
   .vs li {
     display: grid;
-    grid-template-columns: 1.2rem minmax(0, 1fr);
-    gap: 0.4rem;
-    color: var(--bone-dim);
+    grid-template-columns: 1.1rem minmax(0, 1fr);
+    gap: 0.75rem;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
   }
   .vs__col--us li {
-    color: var(--bone);
+    color: var(--text);
   }
   .vs__mark {
-    color: var(--bone-faint);
+    color: var(--text-soft);
   }
   .vs__col--us .vs__mark {
-    color: var(--amber);
+    color: var(--accent-ink);
+    font-weight: 700;
   }
   @media (max-width: 760px) {
     .vs {
       grid-template-columns: minmax(0, 1fr);
-    }
-    .vs__col--us {
-      border-left: 0;
-      border-top: 1px solid var(--line-strong);
     }
   }
 </style>

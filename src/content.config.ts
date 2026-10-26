@@ -1,5 +1,6 @@
 import { glob } from 'astro/loaders';
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 
 // Changelog / launch-updates collection. English-only by design (a pre-launch
 // single-language changelog; localizing posts is deliberate non-scope for now).

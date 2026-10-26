@@ -33,14 +33,17 @@ const code = [
       <p class="note">{a.separate}</p>
     </div>
 
-    <figure class="mock" aria-label={m.label}>
+    <figure class="mock theme-dark" aria-label={m.label}>
       <div class="mock__bar">
         <span>{m.label}</span>
         <span class="assess__timer">{m.timer}</span>
       </div>
       <div class="mock__body">
         <p class="assess__problem">{m.problem}</p>
-        <pre class="code" aria-hidden="true"><code>{code.map((l, i) => <span class="code__line"><span class="code__n">{i + 1}</span>{l}</span>)}</code></pre>
+        <pre
+          class="code"
+          aria-hidden="true"
+        ><code>{code.map((l, i) => <span class="code__line"><span class="code__n">{i + 1}</span>{l}</span>)}</code></pre>
         <div class="assess__actions" aria-hidden="true">
           <span class="fake-btn fake-btn--ghost">{m.run}</span>
           <span class="fake-btn">{m.submit}</span>
@@ -52,7 +55,9 @@ const code = [
         <div class="assess__review">
           <span class="who">{m.review}</span>
           <ul>
-            {m.reviewLines.map((l) => <li>{l}</li>)}
+            {m.reviewLines.map((l) => (
+              <li>{l}</li>
+            ))}
           </ul>
         </div>
       </div>
@@ -62,7 +67,7 @@ const code = [
 
 <style>
   .assess {
-    background: rgba(0, 0, 0, 0.18);
+    background: #e7edef;
     border-block: 1px solid var(--line);
   }
   @media (min-width: 901px) {
@@ -75,24 +80,24 @@ const code = [
     }
   }
   .assess__timer {
-    color: var(--amber);
+    color: var(--accent-ink);
     flex: none;
   }
   .assess__problem {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.05rem;
     font-weight: 600;
   }
   .code {
     margin: 0;
     padding: 0.8rem 0;
-    background: var(--ink);
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     font-family: var(--font-mono);
     font-size: 0.74rem;
     line-height: 1.7;
-    color: var(--bone-dim);
+    color: var(--text-muted);
     overflow-x: auto;
   }
   .code__line {
@@ -105,8 +110,7 @@ const code = [
     width: 2.2rem;
     padding-right: 0.8rem;
     text-align: right;
-    color: var(--bone-faint);
-    opacity: 0.5;
+    color: var(--text-soft);
     user-select: none;
   }
   .assess__actions {
@@ -119,14 +123,14 @@ const code = [
     font-size: 0.74rem;
     font-weight: 600;
     padding: 0.5rem 0.9rem;
-    border-radius: 2px;
-    background: var(--amber);
-    color: var(--ink);
-    border: 1px solid var(--amber);
+    border-radius: 999px;
+    background: var(--accent);
+    color: #182019;
+    border: 1px solid var(--accent);
   }
   .fake-btn--ghost {
     background: transparent;
-    color: var(--bone);
+    color: var(--text);
     border-color: var(--line-strong);
   }
   .assess__result {
@@ -135,14 +139,14 @@ const code = [
     align-items: center;
     gap: 1rem;
     padding: 0.6rem 0.8rem;
-    border: 1px solid color-mix(in oklab, var(--sage) 40%, transparent);
+    border: 1px solid color-mix(in oklab, var(--positive) 40%, transparent);
     border-radius: var(--radius);
-    background: color-mix(in oklab, var(--sage) 8%, transparent);
+    background: color-mix(in oklab, var(--positive) 8%, transparent);
   }
   .assess__pass {
     font-family: var(--font-mono);
     font-size: 0.8rem;
-    color: var(--sage);
+    color: var(--positive);
   }
   .assess__review {
     display: grid;
@@ -153,10 +157,10 @@ const code = [
     display: grid;
     gap: 0.35rem;
     font-size: 0.88rem;
-    color: var(--bone-dim);
+    color: var(--text-muted);
   }
   .assess__review li::before {
     content: '› ';
-    color: var(--amber);
+    color: var(--accent-ink);
   }
 </style>

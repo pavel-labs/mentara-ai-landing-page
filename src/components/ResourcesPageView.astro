@@ -30,24 +30,22 @@ const clusters = clustersWithPosts(posts);
       <p class="hub__intro">{t.contentHub.resources.lede}</p>
 
       <div class="hub__grid">
-        {
-          clusters.map((cluster) => (
-            <section class="cluster">
-              <h2 class="cluster__title">{cluster.title}</h2>
-              <p class="cluster__lede">{cluster.lede}</p>
-              <ul class="cluster__list">
-                {cluster.posts.map((post) => (
-                  <li class="cluster__item">
-                    <a href={localePath(locale, `blog/${post.id}`)}>
-                      <strong>{post.data.title}</strong>
-                      <span>{post.data.summary}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))
-        }
+        {clusters.map((cluster) => (
+          <section class="cluster">
+            <h2 class="cluster__title">{cluster.title}</h2>
+            <p class="cluster__lede">{cluster.lede}</p>
+            <ul class="cluster__list">
+              {cluster.posts.map((post) => (
+                <li class="cluster__item">
+                  <a href={localePath(locale, `blog/${post.id}`)}>
+                    <strong>{post.data.title}</strong>
+                    <span>{post.data.summary}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
       </div>
     </div>
   </main>
@@ -64,7 +62,7 @@ const clusters = clustersWithPosts(posts);
     gap: 1rem;
   }
   .hub__intro {
-    color: var(--bone-dim);
+    color: var(--text-muted);
     line-height: 1.7;
     max-width: 46rem;
   }
@@ -76,17 +74,18 @@ const clusters = clustersWithPosts(posts);
   }
   .cluster {
     border: 1px solid var(--line);
+    border-radius: var(--radius);
     padding: 1.2rem;
-    background: color-mix(in oklab, var(--ink-2) 52%, transparent);
+    background: color-mix(in oklab, var(--surface-subtle) 52%, transparent);
   }
   .cluster__title {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.3rem;
     letter-spacing: -0.02em;
   }
   .cluster__lede {
     margin-top: 0.5rem;
-    color: var(--bone-dim);
+    color: var(--text-muted);
     line-height: 1.65;
   }
   .cluster__list {
@@ -102,14 +101,14 @@ const clusters = clustersWithPosts(posts);
     gap: 0.35rem;
   }
   .cluster__item strong {
-    color: var(--bone);
+    color: var(--text);
   }
   .cluster__item span {
-    color: var(--bone-dim);
+    color: var(--text-muted);
     line-height: 1.55;
   }
   .cluster__item a:hover strong {
-    color: var(--amber);
+    color: var(--accent-ink);
   }
   @media (max-width: 860px) {
     .hub__grid {

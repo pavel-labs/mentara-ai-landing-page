@@ -27,98 +27,101 @@ const trackPath = withBase('enterprise/success');
     <p class="ent-form__sub">{f.sub}</p>
   </div>
 
-  {
-    enabled ? (
-      <form
-        class="ef"
-        action={endpoint}
-        method="POST"
-        novalidate
-        data-track-path={trackPath}
-        data-sending={f.sending}
-        data-success={f.success}
-        data-invalid={f.invalid}
-        data-rate-limited={f.rateLimited}
-        data-error={f.error}
-      >
-        <div class="ef__grid">
-          <label class="ef__field" for={id('name')}>
-            <span class="ef__label">{f.name}</span>
-            <input id={id('name')} name="name" required maxlength="120" autocomplete="name" />
-          </label>
-          <label class="ef__field" for={id('email')}>
-            <span class="ef__label">{f.email}</span>
-            <input
-              id={id('email')}
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-              inputmode="email"
-            />
-          </label>
-          <label class="ef__field" for={id('company')}>
-            <span class="ef__label">{f.company}</span>
-            <input
-              id={id('company')}
-              name="company"
-              required
-              maxlength="160"
-              autocomplete="organization"
-            />
-          </label>
-          <label class="ef__field" for={id('teamSize')}>
-            <span class="ef__label">{f.teamSize}</span>
-            <select id={id('teamSize')} name="teamSize" required>
-              {teamSizes.map((size) => <option value={size}>{size}</option>)}
-            </select>
-          </label>
-        </div>
-
-        <fieldset class="ef__field ef__radios">
-          <legend class="ef__label">{f.useCase}</legend>
-          {
-            useCases.map((value, i) => (
-              <label class="ef__radio">
-                <input type="radio" name="useCase" value={value} checked={i === 2} />
-                <span>{f.useCases[value]}</span>
-              </label>
-            ))
-          }
-        </fieldset>
-
-        <label class="ef__field" for={id('message')}>
-          <span class="ef__label">{f.message}</span>
-          <textarea
-            id={id('message')}
-            name="message"
-            rows="4"
-            maxlength="2000"
-            aria-describedby={id('message-hint')}></textarea>
-          <small id={id('message-hint')} class="ef__hint">{f.messageHint}</small>
+  {enabled ? (
+    <form
+      class="ef"
+      action={endpoint}
+      method="POST"
+      novalidate
+      data-track-path={trackPath}
+      data-sending={f.sending}
+      data-success={f.success}
+      data-invalid={f.invalid}
+      data-rate-limited={f.rateLimited}
+      data-error={f.error}
+    >
+      <div class="ef__grid">
+        <label class="ef__field" for={id('name')}>
+          <span class="ef__label">{f.name}</span>
+          <input id={id('name')} name="name" required maxlength="120" autocomplete="name" />
         </label>
+        <label class="ef__field" for={id('email')}>
+          <span class="ef__label">{f.email}</span>
+          <input
+            id={id('email')}
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            inputmode="email"
+          />
+        </label>
+        <label class="ef__field" for={id('company')}>
+          <span class="ef__label">{f.company}</span>
+          <input
+            id={id('company')}
+            name="company"
+            required
+            maxlength="160"
+            autocomplete="organization"
+          />
+        </label>
+        <label class="ef__field" for={id('teamSize')}>
+          <span class="ef__label">{f.teamSize}</span>
+          <select id={id('teamSize')} name="teamSize" required>
+            {teamSizes.map((size) => (
+              <option value={size}>{size}</option>
+            ))}
+          </select>
+        </label>
+      </div>
 
-        <input
-          class="ef__hp"
-          type="text"
-          name="website"
-          tabindex="-1"
-          autocomplete="off"
-          aria-hidden="true"
-        />
+      <fieldset class="ef__field ef__radios">
+        <legend class="ef__label">{f.useCase}</legend>
+        {useCases.map((value, i) => (
+          <label class="ef__radio">
+            <input type="radio" name="useCase" value={value} checked={i === 2} />
+            <span>{f.useCases[value]}</span>
+          </label>
+        ))}
+      </fieldset>
 
-        <div class="ef__submit">
-          <button class="btn" type="submit">{f.submit}</button>
-          <small class="ef__hint">{f.privacyNote}</small>
-        </div>
-        <p class="ef__status" role="status" aria-live="polite" />
-      </form>
-    ) : (
-      <p class="ef ef--off" role="note">
-        {f.offNote}
-      </p>
-    )
-  }
+      <label class="ef__field" for={id('message')}>
+        <span class="ef__label">{f.message}</span>
+        <textarea
+          id={id('message')}
+          name="message"
+          rows="4"
+          maxlength="2000"
+          aria-describedby={id('message-hint')}
+        ></textarea>
+        <small id={id('message-hint')} class="ef__hint">
+          {f.messageHint}
+        </small>
+      </label>
+
+      <input
+        class="ef__hp"
+        type="text"
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+        aria-hidden="true"
+      />
+
+      <div class="ef__submit">
+        <button class="btn" type="submit">
+          {f.submit}
+        </button>
+        <small class="ef__hint">{f.privacyNote}</small>
+      </div>
+      <p class="ef__status" role="status" aria-live="polite" />
+    </form>
+  ) : (
+    <p class="ef ef--off" role="note">
+      {f.offNote}
+    </p>
+  )}
 </div>
 
 <script is:inline>
@@ -194,9 +197,9 @@ const trackPath = withBase('enterprise/success');
     gap: clamp(2rem, 5vw, 4rem);
     padding: clamp(1.6rem, 4vw, 3rem);
     border: 1px solid var(--line-strong);
-    border-top: 2px solid var(--amber);
+
     border-radius: var(--radius-lg);
-    background: var(--ink-1);
+    background: var(--surface-raised);
     scroll-margin-top: 6rem;
   }
   .ent-form__head {
@@ -208,7 +211,7 @@ const trackPath = withBase('enterprise/success');
     font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.5rem);
   }
   .ent-form__sub {
-    color: var(--bone-dim);
+    color: var(--text-muted);
   }
   .ef {
     display: flex;
@@ -233,17 +236,17 @@ const trackPath = withBase('enterprise/success');
     font-size: 0.7rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--bone-faint);
+    color: var(--text-soft);
     padding: 0;
   }
   .ef input:not([type='radio']),
   .ef select,
   .ef textarea {
     width: 100%;
-    background: var(--ink-2);
+    background: var(--surface-subtle);
     border: 1px solid var(--line-strong);
-    border-radius: 2px;
-    color: var(--bone);
+    border-radius: 12px;
+    color: var(--text);
     font-family: var(--font-body);
     font-size: 0.95rem;
     padding: 0.75rem 0.9rem;
@@ -254,8 +257,9 @@ const trackPath = withBase('enterprise/success');
   .ef input:focus-visible,
   .ef select:focus-visible,
   .ef textarea:focus-visible {
-    outline: none;
-    border-color: var(--amber);
+    outline: 2px solid var(--accent-ink);
+    outline-offset: 2px;
+    border-color: var(--accent-ink);
   }
   .ef__radios {
     flex-direction: row;
@@ -270,22 +274,22 @@ const trackPath = withBase('enterprise/success');
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.55rem 0.8rem;
+    padding: 0.75rem 0.9rem;
     border: 1px solid var(--line-strong);
-    border-radius: 2px;
+    border-radius: 12px;
     font-size: 0.9rem;
     cursor: pointer;
   }
   .ef__radio:has(input:checked) {
-    border-color: var(--amber);
-    background: color-mix(in oklab, var(--amber) 10%, transparent);
+    border-color: var(--accent-ink);
+    background: color-mix(in oklab, var(--accent-ink) 10%, transparent);
   }
   .ef__radio input {
-    accent-color: var(--amber);
+    accent-color: var(--accent-ink);
   }
   .ef__hint {
     font-size: 0.8rem;
-    color: var(--bone-faint);
+    color: var(--text-soft);
   }
   .ef__submit {
     display: flex;
@@ -308,19 +312,19 @@ const trackPath = withBase('enterprise/success');
     min-height: 1.2rem;
     font-family: var(--font-mono);
     font-size: 0.8rem;
-    color: var(--bone-dim);
+    color: var(--text-muted);
   }
   .ef__status[data-state='ok'] {
-    color: var(--sage);
+    color: var(--positive);
   }
   .ef__status[data-state='err'] {
-    color: var(--amber);
+    color: var(--accent-ink);
   }
   .ef--off {
     border: 1px dashed var(--line-strong);
-    border-radius: 2px;
+    border-radius: 12px;
     padding: 1.2rem;
-    color: var(--bone-dim);
+    color: var(--text-muted);
     align-self: start;
   }
   @media (max-width: 900px) {

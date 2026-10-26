@@ -18,7 +18,9 @@ const bandTone = ['strong', 'solid', 'developing'] as const;
     <SectionHead eyebrow={r.eyebrow} heading={r.heading} />
     <div class="split report__split">
       <figure class="mock" aria-label={m.label}>
-        <div class="mock__bar"><span>{m.label}</span></div>
+        <div class="mock__bar">
+          <span>{m.label}</span>
+        </div>
         <div class="mock__body">
           <div class="report__top">
             <div class="report__overall">
@@ -26,28 +28,24 @@ const bandTone = ['strong', 'solid', 'developing'] as const;
               <span class="who">{m.overall}</span>
             </div>
             <ul class="report__cats">
-              {
-                m.categories.map((c, i) => (
-                  <li style={`--v:${String((catScores[i] ?? 0) * 10)}%`}>
-                    <span>{c}</span>
-                    <span class="report__val">{(catScores[i] ?? 0).toFixed(1)}</span>
-                    <i aria-hidden="true" />
-                  </li>
-                ))
-              }
+              {m.categories.map((c, i) => (
+                <li style={`--v:${String((catScores[i] ?? 0) * 10)}%`}>
+                  <span>{c}</span>
+                  <span class="report__val">{(catScores[i] ?? 0).toFixed(1)}</span>
+                  <i aria-hidden="true" />
+                </li>
+              ))}
             </ul>
           </div>
           <div class="report__block">
             <span class="who">{m.competencyTitle}</span>
             <ul class="report__comp">
-              {
-                m.competencies.map((c, i) => (
-                  <li>
-                    <span>{c.name}</span>
-                    <span class:list={['band', `band--${bandTone[i] ?? 'solid'}`]}>{c.band}</span>
-                  </li>
-                ))
-              }
+              {m.competencies.map((c, i) => (
+                <li>
+                  <span>{c.name}</span>
+                  <span class:list={['band', `band--${bandTone[i] ?? 'solid'}`]}>{c.band}</span>
+                </li>
+              ))}
             </ul>
           </div>
           <div class="report__block">
@@ -64,14 +62,12 @@ const bandTone = ['strong', 'solid', 'developing'] as const;
       <div class="split__copy">
         <p class="lede">{r.lede}</p>
         <ul class="report__points">
-          {
-            r.points.map((p) => (
-              <li>
-                <h3>{p.title}</h3>
-                <p>{p.body}</p>
-              </li>
-            ))
-          }
+          {r.points.map((p) => (
+            <li>
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -97,10 +93,10 @@ const bandTone = ['strong', 'solid', 'developing'] as const;
     width: 5.6rem;
     height: 5.6rem;
     border-radius: 50%;
-    border: 3px solid var(--amber);
+    border: 3px solid var(--accent-ink);
   }
   .report__num {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 620;
     line-height: 1;
@@ -121,7 +117,7 @@ const bandTone = ['strong', 'solid', 'developing'] as const;
     gap: 0.25rem 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.68rem;
-    color: var(--bone-dim);
+    color: var(--text-muted);
   }
   .report__cats li > span:first-child {
     overflow: hidden;
@@ -129,13 +125,13 @@ const bandTone = ['strong', 'solid', 'developing'] as const;
     white-space: nowrap;
   }
   .report__val {
-    color: var(--bone);
+    color: var(--text);
   }
   .report__cats i {
     grid-column: 1 / -1;
     height: 4px;
     border-radius: 2px;
-    background: linear-gradient(90deg, var(--amber) var(--v), var(--ink-3) var(--v));
+    background: linear-gradient(90deg, var(--accent-ink) var(--v), var(--surface-muted) var(--v));
   }
   .report__block {
     display: grid;
@@ -162,20 +158,20 @@ const bandTone = ['strong', 'solid', 'developing'] as const;
     flex: none;
   }
   .band--strong {
-    color: var(--sage);
-    background: color-mix(in oklab, var(--sage) 14%, transparent);
+    color: var(--positive);
+    background: color-mix(in oklab, var(--positive) 14%, transparent);
   }
   .band--solid {
-    color: var(--bone);
-    background: var(--ink-3);
+    color: var(--text);
+    background: var(--surface-muted);
   }
   .band--developing {
-    color: var(--amber-soft);
-    background: color-mix(in oklab, var(--amber) 14%, transparent);
+    color: var(--accent-ink);
+    background: color-mix(in oklab, var(--accent-ink) 14%, transparent);
   }
   .report__quote {
     font-size: 0.86rem;
-    color: var(--bone-dim);
+    color: var(--text-muted);
   }
   .report__next {
     display: flex;
@@ -188,7 +184,7 @@ const bandTone = ['strong', 'solid', 'developing'] as const;
   .report__nextval {
     font-family: var(--font-mono);
     font-size: 0.78rem;
-    color: var(--amber);
+    color: var(--accent-ink);
   }
   .report__points {
     list-style: none;
@@ -206,7 +202,7 @@ const bandTone = ['strong', 'solid', 'developing'] as const;
     font-size: 1.1rem;
   }
   .report__points p {
-    color: var(--bone-dim);
+    color: var(--text-muted);
     font-size: 0.95rem;
   }
 </style>

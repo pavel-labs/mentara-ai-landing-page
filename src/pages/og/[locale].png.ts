@@ -16,14 +16,14 @@ export const GET: APIRoute = async ({ params }) => {
     title: `${SITE.name} · ${t.tagline}`,
     description: t.description,
     bgGradient: [
-      [16, 15, 18],
-      [11, 11, 13],
+      [247, 248, 244],
+      [238, 241, 233],
     ],
-    border: { color: [210, 96, 58], width: 10, side: 'inline-start' },
+    border: { color: [43, 97, 59], width: 10, side: 'inline-start' },
     padding: 80,
     font: {
-      title: { color: [236, 231, 221], size: 80, weight: 'Bold', lineHeight: 1.1 },
-      description: { color: [165, 160, 151], size: 32, lineHeight: 1.35 },
+      title: { color: [24, 32, 25], size: 80, weight: 'Bold', lineHeight: 1.1 },
+      description: { color: [83, 95, 83], size: 32, lineHeight: 1.35 },
     },
     format: 'PNG',
   });
