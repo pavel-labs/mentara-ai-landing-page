@@ -1,6 +1,6 @@
 ---
 import { getDict, resolveNavHref, type Locale } from '../i18n';
-import { marketingSnapshot, marketingLinks, marketingLabels } from '../marketing/content';
+import { marketingSnapshot, marketingLabels } from '../marketing/content';
 import SectionHead from './SectionHead.astro';
 
 interface Props {
@@ -8,9 +8,8 @@ interface Props {
 }
 const { locale } = Astro.props;
 const pr = getDict(locale).pricing;
-const links = marketingLinks(locale);
 const labels = marketingLabels(locale);
-const tiers = pr.tiers.map((tier, index) => ({ ...tier, ...(index === 1 ? { price: marketingSnapshot.pricing?.displayPrices.proMonthly ?? labels.prices, cadence: marketingSnapshot.pricing ? labels.month : '' } : {}), ...(index < 2 && links.webAppUrl ? { href: links.webAppUrl, cta: labels.open } : {}) }));
+const tiers = pr.tiers.map((tier, index) => ({ ...tier, ...(index === 1 ? { price: marketingSnapshot.pricing?.displayPrices.proMonthly ?? labels.prices, cadence: marketingSnapshot.pricing ? labels.month : '' } : {}) }));
 // Pricing lives on the home page, so '#waitlist' is an in-page anchor and
 // '/enterprise#contact' resolves to the localized Enterprise page.
 const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);

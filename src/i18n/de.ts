@@ -11,7 +11,7 @@ export const de: Dict = {
     description:
       'Übe strukturierte technische Interviews mit einem KI-Interviewer, der bei deinen Antworten nachhakt, löse Coding-Assessments, die mit versteckten Tests bewertet werden, und erhalte einen Bericht, der deine Schwächen mit Belegen zeigt. Free- und Pro-Plan, dazu Enterprise für Teams.',
     tagline: 'Übe das Interview, nicht nur die Fragen.',
-    launchLabel: 'Start 2026',
+    launchLabel: 'Im Test · Start Januar 2027',
   },
 
   nav: [
@@ -27,7 +27,7 @@ export const de: Dict = {
     titleLead: 'Übe das technische Interview,',
     titleAccent: 'nicht nur die Fragen.',
     lede: 'Mentarika führt ein strukturiertes Interview für deine Rolle und deinen Stack, hakt bei dem nach, was du wirklich gesagt hast, prüft deinen Code mit versteckten Tests und gibt dir einen Bericht, der auf deine Schwächen zeigt – damit die nächste Session genau dort ansetzt.',
-    availability: 'Start 2026 · Web, iOS & Android',
+    availability: 'Im Test · Start Januar 2027 auf Web, iOS & Android',
     teamsLink: 'Für Engineering-Teams',
   },
 
@@ -329,7 +329,7 @@ export const de: Dict = {
       },
       {
         q: 'Wann kann ich es nutzen?',
-        a: 'Mentarika startet 2026 im Web, auf iOS und Android. Trag dich in die Warteliste ein, und wir schreiben dir, sobald es losgeht.',
+        a: 'Mentarika befindet sich derzeit in einem begrenzten Testbetrieb und startet im Januar 2027 im Web, auf iOS und Android. Trag dich in die Warteliste ein, und wir schreiben dir, sobald es losgeht.',
       },
     ],
   },
@@ -351,10 +351,10 @@ export const de: Dict = {
   },
 
   cta: {
-    eyebrow: 'Start 2026',
+    eyebrow: 'Start Januar 2027',
     titleLead: 'Dein nächstes Interview kommt.',
     titleAccent: 'Übe, bevor es so weit ist.',
-    lede: 'Mentarika startet 2026 im Web, auf iOS und Android. Trag dich in die Warteliste ein, und wir schreiben dir am ersten Tag.',
+    lede: 'Mentarika startet im Januar 2027 im Web, auf iOS und Android. Trag dich in die Warteliste ein, und wir schreiben dir am ersten Tag.',
   },
 
   enterprise: {
