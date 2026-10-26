@@ -11,7 +11,7 @@ export const en: Dict = {
     description:
       'Practice structured technical interviews with an AI interviewer that follows up on your answers, take coding assessments graded by hidden tests, and get a report that shows your weak areas with evidence. Free and Pro plans, plus Enterprise for teams.',
     tagline: 'Practice the interview, not just the questions.',
-    launchLabel: 'Launching 2026',
+    launchLabel: 'In testing · Launching January 2027',
   },
 
   nav: [
@@ -27,7 +27,7 @@ export const en: Dict = {
     titleLead: 'Practice the technical interview,',
     titleAccent: 'not just the questions.',
     lede: 'Mentarika runs a structured interview for your role and stack, follows up on what you actually said, grades your code against hidden tests, and gives you a report that points to your weak areas – so the next session targets them.',
-    availability: 'Launching 2026 · Web, iOS & Android',
+    availability: 'In testing · Launching January 2027 on Web, iOS & Android',
     teamsLink: 'For engineering teams',
   },
 
@@ -329,7 +329,7 @@ export const en: Dict = {
       },
       {
         q: 'When can I use it?',
-        a: 'Mentarika launches in 2026 on the web, iOS and Android. Join the waitlist and we will email you when it opens.',
+        a: 'Mentarika is in limited testing now and launches on the web, iOS and Android in January 2027. Join the waitlist and we will email you when it opens.',
       },
     ],
   },
@@ -351,10 +351,10 @@ export const en: Dict = {
   },
 
   cta: {
-    eyebrow: 'Launching 2026',
+    eyebrow: 'Launching January 2027',
     titleLead: 'Your next interview is coming.',
     titleAccent: 'Practice before it does.',
-    lede: 'Mentarika opens on the web, iOS and Android in 2026. Join the waitlist and we will email you the day it does.',
+    lede: 'Mentarika opens on the web, iOS and Android in January 2027. Join the waitlist and we will email you the day it does.',
   },
 
   enterprise: {
