@@ -17,63 +17,66 @@ const posts = (await getPublishedPosts()).slice(0, 4);
     <div class="journal__head">
       <p class="eyebrow">{t.contentHub.blog.eyebrow}</p>
       <div class="journal__copy">
-        <h2 id="journal-title" class="h2">{t.contentHub.blog.title}</h2>
+        <h2 id="journal-title" class="h2">
+          {t.contentHub.blog.title}
+        </h2>
         <p class="journal__lede">{t.contentHub.blog.lede}</p>
       </div>
-      <a class="journal__all" href={localePath(locale, 'blog')}>{t.contentHub.blog.primary} →</a>
+      <a class="journal__all" href={localePath(locale, 'blog')}>
+        {t.contentHub.blog.primary} →
+      </a>
     </div>
 
     <div class="journal__grid">
-      {
-        posts.map((post) => (
-          <article class="journal__card">
-            <a href={localePath(locale, `blog/${post.id}`)} class="journal__link">
-              <time class="journal__date mono" datetime={post.data.date.toISOString()}>
-                {formatPostDate(post.data.date)}
-              </time>
-              <h3 class="journal__title">{post.data.title}</h3>
-              <p class="journal__summary">{post.data.summary}</p>
-            </a>
-          </article>
-        ))
-      }
+      {posts.map((post) => (
+        <article class="journal__card">
+          <a href={localePath(locale, `blog/${post.id}`)} class="journal__link">
+            <time class="journal__date mono" datetime={post.data.date.toISOString()}>
+              {formatPostDate(post.data.date)}
+            </time>
+            <h3 class="journal__title">{post.data.title}</h3>
+            <p class="journal__summary">{post.data.summary}</p>
+          </a>
+        </article>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
   .journal {
-    padding-block: clamp(4rem, 8vw, 7rem);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    background: color-mix(in oklab, var(--ink-2) 40%, transparent);
+    background: var(--surface-subtle);
   }
   .journal__inner {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    display: grid;
+    gap: 3rem;
   }
   .journal__head {
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 1.5rem 3rem;
     align-items: end;
   }
+  .journal__head > .eyebrow {
+    grid-column: 1 / -1;
+  }
   .journal__copy {
-    max-width: 44rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
+    display: grid;
+    gap: 1.25rem;
+    max-width: 50rem;
   }
   .journal__lede {
-    color: var(--bone-dim);
-    line-height: 1.7;
+    max-width: 56ch;
+    color: var(--text-muted);
   }
   .journal__all {
-    justify-self: end;
-    align-self: end;
-    font-family: var(--font-mono);
-    color: var(--amber);
+    justify-self: start;
+    color: var(--accent-ink);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  .journal__all:hover {
+    text-decoration: underline;
   }
   .journal__grid {
     display: grid;
@@ -81,45 +84,57 @@ const posts = (await getPublishedPosts()).slice(0, 4);
     gap: 1.25rem;
   }
   .journal__card {
-    border: 1px solid var(--line);
-    background: color-mix(in oklab, var(--ink-2) 72%, transparent);
+    min-width: 0;
+    border-radius: 24px;
+    background: var(--surface-raised);
+    overflow: hidden;
   }
   .journal__link {
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
-    padding: 1.35rem;
+    gap: 1rem;
     min-height: 100%;
-    transition:
-      transform 0.2s var(--ease),
-      border-color 0.2s var(--ease),
-      background 0.2s var(--ease);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
   }
-  .journal__link:hover {
-    transform: translateY(-2px);
+  .journal__link::before {
+    content: '↗';
+    display: grid;
+    place-items: center;
+    align-self: flex-end;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 0.75rem;
+    border-radius: 50%;
+    background: var(--surface-subtle);
+    color: var(--accent-ink);
+    font-size: 1.5rem;
+    transition: background 180ms ease;
+  }
+  .journal__card:nth-child(2) .journal__link::before {
+    background: var(--accent);
+  }
+  .journal__card:nth-child(3) .journal__link::before {
+    background: #dce9f0;
+  }
+  .journal__link:hover::before {
+    background: var(--accent);
   }
   .journal__date {
-    color: var(--amber);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
   }
   .journal__title {
-    font-family: var(--font-display);
-    font-size: clamp(1.2rem, 2vw, 1.45rem);
-    letter-spacing: -0.02em;
+    max-width: 28ch;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    letter-spacing: -0.035em;
   }
   .journal__summary {
-    color: var(--bone-dim);
-    line-height: 1.65;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
   }
-  @media (max-width: 860px) {
-    .journal__head {
-      grid-template-columns: 1fr;
-    }
-    .journal__all {
-      justify-self: start;
-    }
+  @media (max-width: 760px) {
+    .journal__head,
     .journal__grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>

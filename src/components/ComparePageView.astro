@@ -31,16 +31,14 @@ const comparePosts = compareCluster == null ? [] : postsForSlugs(posts, compareC
       <p class="compare__intro">{t.contentHub.compare.lede}</p>
 
       <div class="compare__cards">
-        {
-          comparePosts.map((post) => (
-            <article class="compare__card">
-              <a href={localePath(locale, `blog/${post.id}`)}>
-                <h2 class="compare__title">{post.data.title}</h2>
-                <p class="compare__summary">{post.data.summary}</p>
-              </a>
-            </article>
-          ))
-        }
+        {comparePosts.map((post) => (
+          <article class="compare__card">
+            <a href={localePath(locale, `blog/${post.id}`)}>
+              <h2 class="compare__title">{post.data.title}</h2>
+              <p class="compare__summary">{post.data.summary}</p>
+            </a>
+          </article>
+        ))}
       </div>
     </div>
   </main>
@@ -58,7 +56,7 @@ const comparePosts = compareCluster == null ? [] : postsForSlugs(posts, compareC
     max-width: 58rem;
   }
   .compare__intro {
-    color: var(--bone-dim);
+    color: var(--text-muted);
     line-height: 1.7;
     max-width: 46rem;
   }
@@ -70,7 +68,8 @@ const comparePosts = compareCluster == null ? [] : postsForSlugs(posts, compareC
   }
   .compare__card {
     border: 1px solid var(--line);
-    background: color-mix(in oklab, var(--ink-2) 56%, transparent);
+    border-radius: var(--radius);
+    background: color-mix(in oklab, var(--surface-subtle) 56%, transparent);
   }
   .compare__card a {
     display: flex;
@@ -80,16 +79,16 @@ const comparePosts = compareCluster == null ? [] : postsForSlugs(posts, compareC
     padding: 1.25rem;
   }
   .compare__title {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.3rem;
     letter-spacing: -0.02em;
   }
   .compare__summary {
-    color: var(--bone-dim);
+    color: var(--text-muted);
     line-height: 1.6;
   }
   .compare__card a:hover .compare__title {
-    color: var(--amber);
+    color: var(--accent-ink);
   }
   @media (max-width: 860px) {
     .compare__cards {

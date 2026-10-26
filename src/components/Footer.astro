@@ -16,22 +16,34 @@ const year = new Date().getFullYear();
 // Footer is shared by the landing AND the legal pages, so section links must point at the
 // localized home + anchor (not a bare #anchor that 404s the scroll off-page).
 const home = localeHome(locale);
-
 ---
 
-<footer class="foot">
+<footer class="foot theme-dark">
   <div class="container foot__grid">
     <div class="foot__brand">
-      <a href={home} class="foot__word">{SITE.name}</a>
+      <a href={home} class="foot__word">
+        {SITE.name}
+      </a>
       <p class="mono">{content?.footerDescription ?? t.footer.blurb}</p>
       <StoreBadges locale={locale} />
     </div>
 
     <nav class="foot__nav" aria-label="Footer">
       <span class="foot__label">{t.footer.explore}</span>
-      {content ? <><a href={`${home}#product`}>{labels.products}</a><a href={`${home}#pricing`}>{content.pricing.heading}</a></> : t.nav.map((l) => <a href={resolveNavHref(locale, home, l.href)}>{l.label}</a>)}
+      {content ? (
+        <>
+          <a href={`${home}#product`}>{labels.products}</a>
+          <a href={`${home}#pricing`}>{content.pricing.heading}</a>
+        </>
+      ) : (
+        t.nav.map((l) => <a href={resolveNavHref(locale, home, l.href)}>{l.label}</a>)
+      )}
       <a href={localePath(locale, 'articles')}>{labels.articles}</a>
-      {links.social.map((link) => <a href={link.url} rel="noopener noreferrer">{link.label}</a>)}
+      {links.social.map((link) => (
+        <a href={link.url} rel="noopener noreferrer">
+          {link.label}
+        </a>
+      ))}
     </nav>
 
     <nav class="foot__nav" aria-label="Legal">
@@ -42,70 +54,72 @@ const home = localeHome(locale);
   </div>
 
   <div class="container foot__base">
-    <span class="mono">© {year} {SITE.name}</span>
+    <span class="mono">
+      © {year} {SITE.name}
+    </span>
     <span class="mono">{t.meta.launchLabel}</span>
   </div>
 </footer>
 
 <style>
   .foot {
-    border-top: 1px solid var(--line);
-    background: rgba(0, 0, 0, 0.3);
     padding-block: clamp(3rem, 6vw, 5rem) 2rem;
+    background: #14251a;
   }
   .foot__grid {
     display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
-    gap: 2.5rem;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 0.7fr);
+    gap: 3rem;
     padding-bottom: 3rem;
   }
   .foot__word {
-    font-family: var(--font-display);
-    font-weight: 620;
-    font-size: 1.6rem;
-    letter-spacing: -0.02em;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 1;
   }
-  .foot__brand :global(.badges) { margin-top: 1.4rem; }
   .foot__brand .mono {
-    margin-top: 0.7rem;
+    max-width: 36ch;
+    margin-top: 1.25rem;
+  }
+  .foot__brand :global(.badges) {
+    margin-top: 1.5rem;
   }
   .foot__nav {
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
-    font-size: 0.95rem;
-    color: var(--bone-dim);
-  }
-  .foot__nav a {
-    transition: color 0.2s;
+    align-items: flex-start;
+    gap: 0.75rem;
+    min-width: 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
   }
   .foot__nav a:hover {
-    color: var(--amber);
+    color: var(--accent-ink);
   }
   .foot__label {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--bone-faint);
-    margin-bottom: 0.3rem;
-  }
-  .foot__muted {
-    color: var(--bone-faint);
-    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    color: var(--text);
+    font-weight: 600;
   }
   .foot__base {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 0.6rem;
-    padding-top: 1.6rem;
+    gap: 0.75rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--line);
   }
-  @media (max-width: 720px) {
+  @media (max-width: 800px) {
     .foot__grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.5rem 1.5rem;
+    }
+    .foot__brand {
+      grid-column: 1 / -1;
+    }
+    .foot__brand :global(.badges) {
+      max-width: 30rem;
     }
   }
 </style>

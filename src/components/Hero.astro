@@ -1,219 +1,221 @@
 ---
 import StoreBadges from './StoreBadges.astro';
+import InterviewPreview from './InterviewPreview.astro';
 import { getDict, localePath, type Locale } from '../i18n';
-
+import { marketingLabels } from '../marketing/content';
+import type { IMarketingLanding } from '../marketing/types.generated';
 interface Props {
   locale: Locale;
+  content?: IMarketingLanding;
 }
-const { locale } = Astro.props;
+const { locale, content } = Astro.props;
 const t = getDict(locale);
-const m = t.interview.mock;
-// The illustration shows the interview in its deep-dive phase: the moment a follow-up
-// lands on the candidate's own answer, which is the product's core difference.
-const activePhase = 2;
+const labels = marketingLabels(locale);
 ---
 
 <section class="hero">
-  <div class="container hero__grid">
-    <div class="hero__copy">
-      <p class="eyebrow" data-reveal style="--d:0">{t.hero.eyebrow}</p>
-
-      <h1 class="display" data-reveal style="--d:1">
-        {t.hero.titleLead}
-        <span class="accent">{t.hero.titleAccent}</span>
-      </h1>
-
-      <p class="lede" data-reveal style="--d:2">{t.hero.lede}</p>
-
-      <div class="hero__cta" data-reveal style="--d:3">
-        <a class="link-arrow" href={localePath(locale, 'enterprise')} data-marketing-event="enterprise_cta">{t.hero.teamsLink} →</a>
-        <StoreBadges locale={locale} />
-        <p class="mono hero__launch">
-          <span class="dot" aria-hidden="true"></span>
-          {t.hero.availability}
-        </p>
+  <div class="container hero__copy">
+    <p class="eyebrow hero__eyebrow" data-preview="hero.eyebrow" data-reveal>
+      <span class="dot" aria-hidden="true"></span>
+      {content?.hero.eyebrow ?? t.hero.eyebrow}
+    </p>
+    <h1 class="display" data-preview="hero.heading" data-reveal style="--d:1">
+      {content ? (
+        content.hero.heading
+      ) : (
+        <>
+          {t.hero.titleLead}
+          <span class="hero__accent">{t.hero.titleAccent}</span>
+        </>
+      )}
+    </h1>
+    <p class="lede" data-preview="hero.description" data-reveal style="--d:2">
+      {content?.hero.description ?? t.hero.lede}
+    </p>
+    <div class="hero__actions" data-preview="cta" data-reveal style="--d:3">
+      {content?.links.webAppUrl && (
+        <a
+          class="btn"
+          href={content.links.webAppUrl}
+          data-marketing-event="web_app_cta"
+          data-preview="hero.cta"
+        >
+          {content.hero.ctaLabel}
+          <span aria-hidden="true">↗</span>
+        </a>
+      )}
+      {!content?.links.webAppUrl && (
+        <a class="btn" href={content ? '#product' : '#waitlist'}>
+          {content ? labels.products : t.pricing.tiers[0]?.cta}
+          <span aria-hidden="true">↓</span>
+        </a>
+      )}
+      <a
+        class="btn btn--ghost"
+        href={localePath(locale, 'enterprise')}
+        data-marketing-event="enterprise_cta"
+      >
+        {t.hero.teamsLink}
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <p class="hero__availability mono">{t.hero.availability}</p>
+  </div>
+  <div class="container hero__visual" data-preview="hero.image">
+    <div class="hero__stage theme-dark">
+      <div class="hero__orbits" aria-hidden="true">
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      {content?.hero.image ? (
+        <img
+          class="hero__image"
+          src={content.hero.image.url}
+          alt={content.hero.image.alt}
+          width="1200"
+          height="700"
+          fetchpriority="high"
+        />
+      ) : (
+        <InterviewPreview locale={locale} />
+      )}
+      <div class="hero__platforms">
+        <StoreBadges locale={locale} links={content?.links} />
       </div>
     </div>
-
-    <figure class="mock hero__mock" data-reveal style="--d:3" aria-label={m.label}>
-      <div class="mock__bar">
-        <span>{m.label}</span>
-      </div>
-      <ol class="phases" aria-label={m.phases.join(' → ')}>
-        {
-          m.phases.map((p, i) => (
-            <li
-              class:list={['phase', { 'phase--done': i < activePhase, 'phase--on': i === activePhase }]}
-              aria-current={i === activePhase ? 'step' : undefined}
-            >
-              {p}
-            </li>
-          ))
-        }
-      </ol>
-      <div class="mock__body">
-        <div class="line">
-          <span class="who">{m.interviewer}</span>
-          <p class="bubble">{m.q}</p>
-        </div>
-        <div class="line">
-          <span class="who">{m.you}</span>
-          <p class="bubble bubble--you">{m.a}</p>
-        </div>
-        <div class="line line--follow">
-          <span class="who">{m.interviewer}</span>
-          <p class="bubble">{m.followUp}</p>
-        </div>
-        <div class="hero__foot">
-          <span class="hints" aria-label={m.hints}>
-            <i></i><i></i><i class="spent"></i>
-            <span class="mono">{m.hints}</span>
-          </span>
-          <span class="mic mono">
-            <span class="mic__dot" aria-hidden="true"></span>
-            {m.voice}
-          </span>
-        </div>
-      </div>
-    </figure>
   </div>
 </section>
-
 <style>
   .hero {
-    padding-top: clamp(3rem, 7vw, 6rem);
-    padding-bottom: clamp(3rem, 6vw, 5rem);
-  }
-  .hero__grid {
-    display: grid;
-    /* minmax(0,…): without it, fr tracks keep min-width:auto and the longer copy in
-       some locales (e.g. Russian) inflates the left track, starving the panel. */
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    gap: clamp(2rem, 5vw, 4.5rem);
-    align-items: center;
+    padding-block: clamp(3.5rem, 6vw, 6rem) 0;
   }
   .hero__copy {
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-    min-width: 0;
-  }
-  .hero .display {
-    /* The positioning line is longer than the old headline; a smaller ceiling keeps the
-       launch information above the fold on a laptop screen. */
-    font-size: clamp(2.3rem, 1.3rem + 3.6vw, 3.9rem);
-  }
-  .display .accent {
-    display: block;
-    color: var(--amber);
-    font-style: italic;
-  }
-  .hero__cta {
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-    margin-top: 0.6rem;
-  }
-  .hero__launch {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .phases {
-    list-style: none;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    border-bottom: 1px solid var(--line);
-  }
-  .phase {
-    font-family: var(--font-mono);
-    font-size: 0.64rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--bone-faint);
-    padding: 0.6rem 0.5rem;
+    justify-items: center;
+    gap: 1.5rem;
     text-align: center;
-    border-bottom: 2px solid transparent;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
-  .phase--done {
-    color: var(--bone-dim);
-    border-bottom-color: var(--line-strong);
+  .hero__eyebrow {
+    letter-spacing: 0.06em;
   }
-  .phase--on {
-    color: var(--bone);
-    border-bottom-color: var(--amber);
+  .hero h1 {
+    max-width: 19ch;
   }
-  .line {
-    display: grid;
-    gap: 0.35rem;
+  .hero__accent {
+    display: block;
+    color: var(--accent-ink);
   }
-  .line--follow .bubble {
-    border-left: 2px solid var(--amber);
+  .hero .lede {
+    max-width: 66ch;
+    margin-top: 0.25rem;
   }
-  .hero__foot {
+  .hero__actions {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.8rem;
-    padding-top: 1rem;
-    border-top: 1px dashed var(--line-strong);
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
   }
-  .hints {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
+  .hero__availability {
+    max-width: 50ch;
   }
-  .hints i {
-    width: 0.5rem;
-    height: 0.5rem;
+  .hero__visual {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+  }
+  .hero__stage {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(1.25rem, 5vw, 4.5rem) clamp(1rem, 5vw, 5rem) 2rem;
+    border-radius: var(--radius-lg);
+    background: #1c3b2c;
+    overflow: hidden;
+  }
+  .hero__stage > :global(.session),
+  .hero__image,
+  .hero__platforms {
+    position: relative;
+    z-index: 1;
+  }
+  .hero__orbits {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+  .hero__orbits i {
+    position: absolute;
+    width: 65%;
+    aspect-ratio: 1;
+    border: 1px solid #ccedaa30;
     border-radius: 50%;
-    background: var(--amber);
+    transform: scaleX(1.5) rotate(-25deg);
   }
-  .hints i.spent {
-    background: var(--ink-3);
+  .hero__orbits i:nth-child(2) {
+    width: 90%;
   }
-  .hints .mono {
-    margin-left: 0.3rem;
+  .hero__orbits i:nth-child(3) {
+    width: 115%;
   }
-  .mic {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid var(--line-strong);
-    border-radius: 999px;
-    color: var(--bone-dim);
+  .hero__orbits i:nth-child(4) {
+    width: 140%;
   }
-  .mic__dot {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: var(--sage);
+  .hero__image {
+    width: 100%;
+    max-height: 44rem;
+    object-fit: contain;
+    border-radius: 20px;
   }
-
-  /* Four phase names in one row do not fit a phone in the longer languages
-     ("Podsumowanie", "Calentamiento") in spaced uppercase; drop the tracking there so
-     they fit whole instead of being cut off with an ellipsis. */
-  @media (prefers-reduced-motion: no-preference) and (min-width: 921px) {
-    .hero__mock { transform: perspective(1200px) rotateY(-8deg) rotateX(3deg); box-shadow: 24px 28px 70px #0006; }
+  .hero__platforms {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
   }
-  @media (max-width: 520px) {
-    .phase {
-      padding-inline: 0.15rem;
-      font-size: 0.6rem;
-      letter-spacing: 0;
-      text-transform: none;
-      text-overflow: clip;
+  .hero__platforms :global(.badges) {
+    justify-content: center;
+  }
+  .hero__platforms :global(.badge) {
+    flex: 0 1 auto;
+    min-width: 9rem;
+    background: #193125;
+  }
+  .hero__platforms :global(.badges__note) {
+    max-width: 65ch;
+    text-align: center;
+  }
+  @media (min-width: 900px) {
+    .hero__stage > :global(.session) {
+      transform: rotate(-1deg);
     }
   }
-  @media (max-width: 920px) {
-    .hero__grid {
-      grid-template-columns: minmax(0, 1fr);
+  @media (max-width: 600px) {
+    .hero {
+      padding-top: 2.75rem;
+    }
+    .hero__copy {
+      gap: 1.25rem;
+    }
+    .hero .lede {
+      font-size: 1rem;
+    }
+    .hero__eyebrow {
+      max-width: 30ch;
+      font-size: 0.625rem;
+      text-align: left;
+    }
+    .hero__stage {
+      border-radius: 24px;
+      padding-bottom: 1.5rem;
+    }
+    .hero__platforms {
+      margin-top: 1.5rem;
+    }
+    .hero__platforms :global(.badge) {
+      flex: 1 1 7rem;
+      min-width: 0;
     }
   }
 </style>
