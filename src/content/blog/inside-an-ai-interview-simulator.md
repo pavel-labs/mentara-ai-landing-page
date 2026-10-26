@@ -66,5 +66,5 @@ What you should notice is:
 That is the level where architecture becomes product.
 
 We will keep sharing more from the build, but we are more interested in making the system
-feel sharp than in publishing a vanity diagram. If that direction resonates, join the
-[Mentarika waitlist](/).
+feel sharp than in publishing a vanity diagram. If that direction resonates, see the
+[Mentarika launch details](/#waitlist).

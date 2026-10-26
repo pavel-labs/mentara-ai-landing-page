@@ -57,4 +57,4 @@ enough to become a real practice habit.
 
 Mentarika is built around that habit loop: realistic technical pressure, immediate scoring,
 and a report that turns each session into the next one’s plan. If that is the missing layer
-in your prep, join the [waitlist](/).
+in your prep, see the [launch details](/#waitlist).

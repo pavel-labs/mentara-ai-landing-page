@@ -1,6 +1,5 @@
 ---
 import StoreBadges from './StoreBadges.astro';
-import Waitlist from './Waitlist.astro';
 import { getDict, localePath, type Locale } from '../i18n';
 
 interface Props {
@@ -27,7 +26,6 @@ const activePhase = 2;
       <p class="lede" data-reveal style="--d:2">{t.hero.lede}</p>
 
       <div class="hero__cta" data-reveal style="--d:3">
-        <Waitlist locale={locale} />
         <a class="link-arrow" href={localePath(locale, 'enterprise')} data-marketing-event="enterprise_cta">{t.hero.teamsLink} →</a>
         <StoreBadges locale={locale} />
         <p class="mono hero__launch">
@@ -102,7 +100,7 @@ const activePhase = 2;
   }
   .hero .display {
     /* The positioning line is longer than the old headline; a smaller ceiling keeps the
-       waitlist above the fold on a laptop screen. */
+       launch information above the fold on a laptop screen. */
     font-size: clamp(2.3rem, 1.3rem + 3.6vw, 3.9rem);
   }
   .display .accent {

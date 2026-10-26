@@ -151,7 +151,7 @@ session would have been worth without outside help.
 
 For teams, [Mentarika for teams](/enterprise/) adds company interviews, candidate assignments
 with consent, and a team report built from aggregates rather than transcripts. Mentarika
-launches in 2026 – the [waitlist is open](/#waitlist).
+launch details are available on the [home page](/#waitlist).
 
 ---
 

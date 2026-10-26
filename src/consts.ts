@@ -8,12 +8,6 @@ export const SITE = {
   domain: 'https://mentara-ai-landing.web.app',
 } as const;
 
-export const WAITLIST = {
-  // Live Formspree form endpoint (a public form ID – safe in client HTML, not a secret).
-  // Overridable per build via PUBLIC_FORMSPREE_ENDPOINT (e.g. a staging form).
-  endpoint: import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://formspree.io/f/meedqggp',
-} as const;
-
 export const API = {
   // Backend origin for the public Enterprise inquiry endpoint (POST /enterprise/inquiries).
   // Empty → the contact form renders disabled instead of posting to nowhere. The backend

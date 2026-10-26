@@ -53,8 +53,7 @@ untranslated string. To **add a locale**: add `xx.ts`, register it in
 the sitemap `i18n.locales`), and add `src/pages/xx/index.astro`
 (`<Landing locale="xx" />`). The parity test auto-covers it (it derives from `LOCALES`).
 
-`src/consts.ts` now holds only non-translatable constants (brand name, domain, Formspree
-endpoint).
+`src/consts.ts` now holds only non-translatable constants (brand name, domain, backend origin).
 
 ## Structure
 
@@ -87,7 +86,7 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
   `POST {PUBLIC_API_URL}/enterprise/inquiries` (fields mirror `EnterpriseInquiryBodySchema`
   in `@mentarika/shared`; `website` is the server-side honeypot), so leads show up in the admin
   console. Success fires `__mentarikaTrack?.('enterprise_inquiry')` and a virtual
-  `…/enterprise/success` pageview, like the waitlist.
+  `…/enterprise/success` pageview.
 
 - **Legal**: `/{locale}/privacy` + `/{locale}/terms` (all 4 locales). The page shell,
   headings and a prominent **draft notice** are localized; the clauses themselves stay in
@@ -106,17 +105,10 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
 - **hreflang**: every localized page lists the same page in each locale (not the locale
   homes); `FAQPage` JSON-LD is emitted only on the home page, where the FAQ is rendered.
 - **Per-locale OG**: `/og/<locale>.png` generated at build; each page references its own.
-- **Waitlist conversion**: on success the form fires `window.__mentarikaTrack?.('waitlist_signup')`
-  (provider-agnostic hook) and a virtual `…/waitlist/success` pushState. Cloudflare Web
-  Analytics has **no custom-event API**, so the beacon runs in `spa:true` mode and that
-  virtual pageview is the measurable funnel step (URL is restored instantly).
-
 ## Configuration (env)
 
 See `.env.example`. All `PUBLIC_*` (inlined into the static build – no secrets):
 
-- `PUBLIC_FORMSPREE_ENDPOINT` – waitlist form target. Empty → the waitlist renders a
-  disabled placeholder (never ships a broken POST).
 - `PUBLIC_CF_BEACON_TOKEN` – Cloudflare Web Analytics. Empty → no beacon injected, no
   cookie banner needed.
 - `PUBLIC_API_URL` – backend origin for the Enterprise contact form (e.g.
@@ -239,3 +231,5 @@ Contracts are generated from the main repo with `npm run marketing:contract`, wh
 `@mentarika/shared` first. Keep generated JSON/types with both coordinated PRs. Run
 `npm test` and `npm run build` before review. The CSS 3D hero needs no WebGL dependency and
 honors reduced-motion preferences.
+
+The legacy third-party waitlist form has been removed. The landing page does not collect early-access emails. Launch copy and product links are managed through Marketing → Landing in the admin console when CMS publication is enabled. Enterprise inquiries continue to use the existing backend and admin inquiry list. The `#waitlist` anchor remains for existing inbound links and shows launch information.
