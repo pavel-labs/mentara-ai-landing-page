@@ -1,0 +1,56 @@
+.reading-shell {
+  --reading-width: 76ch;
+  width: 100%;
+  max-width: calc(58rem + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.reading-header {
+  display: grid;
+  gap: 1.5rem;
+}
+.reading-title {
+  max-width: 24ch;
+  font-size: clamp(2.25rem, 4.75vw, 4.75rem);
+  line-height: 1.08;
+}
+.reading-summary {
+  max-width: 65ch;
+  color: var(--text-muted);
+  font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  line-height: 1.65;
+}
+.reading-body,
+.reading-shell > .cms-prose {
+  width: 100%;
+  max-width: var(--reading-width);
+  min-width: 0;
+  margin-inline: auto;
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+.reading-body :is(p, li, a),
+.reading-shell > .cms-prose :is(p, li, a) {
+  overflow-wrap: anywhere;
+}
+.reading-body pre,
+.reading-shell > .cms-prose pre {
+  max-width: 100%;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+.reading-body code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+@media (max-width: 600px) {
+  .reading-header {
+    gap: 1.1rem;
+  }
+  .reading-body,
+  .reading-shell > .cms-prose {
+    font-size: 1.0625rem;
+  }
+}

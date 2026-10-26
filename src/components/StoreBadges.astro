@@ -2,117 +2,146 @@
 import { getDict, type Locale } from '../i18n';
 import { marketingLabels, marketingLinks } from '../marketing/content';
 import type { IMarketingLinks } from '../marketing/types.generated';
+import PlatformIcon from './PlatformIcon.astro';
+
 interface Props {
   locale: Locale;
   links?: IMarketingLinks;
 }
 const { locale, links = marketingLinks(locale) } = Astro.props;
-const b = getDict(locale).badges;
+const copy = getDict(locale).badges;
 const labels = marketingLabels(locale);
-const badges = [
-  { label: b.ios, glyph: 'apple', url: links.appStoreUrl, event: 'app_store_cta' },
-  { label: b.android, glyph: 'play', url: links.googlePlayUrl, event: 'google_play_cta' },
-  { label: b.web, glyph: 'web', url: links.webAppUrl, event: 'web_app_cta' },
-];
+const platforms = [
+  { label: copy.ios, platform: 'ios', url: links.appStoreUrl, event: 'app_store_cta' },
+  { label: copy.android, platform: 'android', url: links.googlePlayUrl, event: 'google_play_cta' },
+  { label: copy.web, platform: 'web', url: links.webAppUrl, event: 'web_app_cta' },
+] as const;
 ---
 
-<div class="badges" role="group" aria-label={b.ariaGroup}>
-  {badges.map((badge) => {
-    const Tag = badge.url ? 'a' : 'span';
+<div class="badges" role="group" aria-label={platforms.map((item) => item.label).join(', ')}>
+  {platforms.map((item) => {
+    const Tag = item.url ? 'a' : 'span';
     return (
       <Tag
-        class="badge"
-        href={badge.url ?? undefined}
-        aria-disabled={!badge.url ? 'true' : undefined}
-        data-marketing-event={badge.url ? badge.event : undefined}
-        rel={badge.url ? 'noopener noreferrer' : undefined}
+        class:list={['badge', { 'badge--ready': item.url }]}
+        href={item.url ?? undefined}
+        aria-disabled={!item.url ? 'true' : undefined}
+        data-marketing-event={item.url ? item.event : undefined}
+        rel={item.url ? 'noopener noreferrer' : undefined}
       >
-        <svg
-          class="badge__glyph"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          {badge.glyph === 'apple' ? (
-            <>
-              <path d="M16 5c-1 0-2 1-4 1S9 5 8 5C4 5 3 8 3.5 12s3 9 5 9c1.5 0 2-1 3.5-1s2 1 3.5 1c2 0 4-4 4.5-6-3-1-4-5-.5-7C18.5 6 17.5 5 16 5Z" />
-              <path d="M12 6c0-3 1.5-4 4-4 0 2-1.5 4-4 4Z" />
-            </>
-          ) : badge.glyph === 'play' ? (
-            <>
-              <path d="m5 3 16 9-16 9V3Z" />
-              <path d="m5 3 10 14M5 21 15 7" />
-            </>
-          ) : (
-            <>
-              <circle cx="12" cy="12" r="9" />
-              <ellipse cx="12" cy="12" rx="4" ry="9" />
-              <path d="M3 12h18" />
-            </>
-          )}
-        </svg>
-        <span class="badge__text">
-          <small>{badge.url ? labels.available : b.comingSoon}</small>
-          <strong>{badge.label}</strong>
+        <span class="badge__icon">
+          <PlatformIcon platform={item.platform} />
         </span>
+        <span class="badge__text">
+          <small>{item.url ? labels.available : copy.comingSoon}</small>
+          <strong>{item.label}</strong>
+        </span>
+        {item.url && (
+          <span class="badge__arrow" aria-hidden="true">
+            ↗
+          </span>
+        )}
       </Tag>
     );
   })}
 </div>
-{links.webAppUrl && <p class="badges__note">{b.earlyAccessNote}</p>}
+{links.webAppUrl && <p class="badges__note">{copy.earlyAccessNote}</p>}
 <style>
   .badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    width: min(100%, 38rem);
   }
   .badge {
-    display: inline-flex;
-    flex: 1 1 8rem;
+    display: flex;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.85rem;
     min-width: 0;
-    padding: 0.75rem 1rem;
+    min-height: 4.5rem;
+    padding: 1rem 1.1rem;
     border: 1px solid var(--line-strong);
-    border-radius: 12px;
+    border-radius: 18px;
+    background: var(--surface-raised);
     color: var(--text);
     line-height: 1.2;
+    box-shadow: 0 2px 4px #14251a08;
   }
-  a.badge:hover {
-    background: var(--surface-subtle);
-  }
-  .badge__glyph {
+  .badge__icon {
+    display: block;
     flex: none;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  .badge__icon :global(svg) {
+    width: 100%;
+    height: 100%;
   }
   .badge__text {
     display: grid;
-    gap: 0.2rem;
+    gap: 0.3rem;
+    min-width: 0;
   }
   .badge__text small {
     color: var(--text-soft);
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
+    line-height: 1.35;
   }
   .badge__text strong {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    white-space: nowrap;
-    letter-spacing: -0.02em;
+    font-size: 1rem;
+    font-weight: 650;
+    letter-spacing: -0.025em;
+  }
+  .badge__arrow {
+    flex: none;
+    align-self: flex-start;
+    margin-left: auto;
+    font-size: 0.875rem;
+  }
+  .badge--ready {
+    background: var(--text);
+    color: var(--surface);
+    border-color: var(--text);
+  }
+  .badge--ready small {
+    color: inherit;
+  }
+  a.badge {
+    transition:
+      background 180ms ease,
+      border-color 180ms ease;
+  }
+  a.badge:hover {
+    background: var(--accent-ink);
+    color: var(--surface);
+    border-color: var(--accent-ink);
   }
   .badges__note {
     max-width: 65ch;
-    font-size: 0.75rem;
     color: var(--text-soft);
+    font-size: 0.75rem;
   }
-  @media (max-width: 400px) {
+  @media (max-width: 600px) {
     .badge {
-      padding: 0.65rem 0.75rem;
-      gap: 0.5rem;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 6.25rem;
+      padding: 0.9rem 0.45rem;
+      border-radius: 16px;
+      text-align: center;
+    }
+    .badge__text {
+      gap: 0.2rem;
+    }
+    .badge__text small {
+      font-size: 0.625rem;
+    }
+    .badge__text strong {
+      font-size: 0.875rem;
+    }
+    .badge__arrow {
+      display: none;
     }
   }
 </style>

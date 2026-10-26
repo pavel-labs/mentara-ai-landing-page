@@ -98,7 +98,7 @@
   margin-top: auto;
 }
 .cms-article {
-  max-width: calc(50rem + var(--gutter) * 2);
+  max-width: calc(58rem + var(--gutter) * 2);
   padding-inline: var(--gutter);
   margin-inline: auto;
   padding-block: var(--section-space);
@@ -109,7 +109,7 @@
   display: grid;
   gap: 1.25rem;
 }
-.cms-article h1 {
+.cms-article h1:not(.reading-title) {
   font-size: clamp(2.5rem, 5vw, 4rem);
 }
 .cms-prose {
@@ -237,7 +237,7 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   gap: 1.25rem;
 }
-.cms-article > header {
+.cms-article > header:not(.reading-header) {
   display: grid;
   gap: 1.25rem;
 }
