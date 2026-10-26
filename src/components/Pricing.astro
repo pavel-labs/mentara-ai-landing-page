@@ -1,163 +1,210 @@
 ---
 import { getDict, resolveNavHref, type Locale } from '../i18n';
 import { marketingSnapshot, marketingLabels } from '../marketing/content';
+import type { IMarketingLanding } from '../marketing/types.generated';
 import SectionHead from './SectionHead.astro';
-
 interface Props {
   locale: Locale;
+  content?: IMarketingLanding;
 }
-const { locale } = Astro.props;
-const pr = getDict(locale).pricing;
+const { locale, content } = Astro.props;
+const pricing = getDict(locale).pricing;
 const labels = marketingLabels(locale);
-const tiers = pr.tiers.map((tier, index) => ({ ...tier, ...(index === 1 ? { price: marketingSnapshot.pricing?.displayPrices.proMonthly ?? labels.prices, cadence: marketingSnapshot.pricing ? labels.month : '' } : {}) }));
-// Pricing lives on the home page, so '#waitlist' is an in-page anchor and
-// '/enterprise#contact' resolves to the localized Enterprise page.
-const hrefFor = (href: string) => resolveNavHref(locale, '#main', href);
+const prices = marketingSnapshot.pricing?.displayPrices;
+const descriptions = content
+  ? [
+      content.pricing.freeDescription,
+      content.pricing.proDescription,
+      content.pricing.enterpriseDescription,
+    ]
+  : [];
+const tiers = pricing.tiers.map((tier, index) => {
+  const isPro = index === 1;
+  const proPrice = prices?.proMonthly ?? labels.prices;
+  if (!content) {
+    return {
+      ...tier,
+      ...(isPro ? { price: proPrice, cadence: prices ? labels.month : '' } : {}),
+    };
+  }
+  return {
+    ...tier,
+    price: ['$0', proPrice, labels.contact][index] ?? '',
+    cadence: isPro && prices ? labels.month : '',
+    blurb: descriptions[index] ?? '',
+    features: [],
+    cta: index === 2 ? labels.contact : content.hero.ctaLabel,
+    href: index === 2 ? '/enterprise#contact' : content.links.webAppUrl,
+  };
+});
+const hrefFor = (href: string) =>
+  href.startsWith('https://') ? href : resolveNavHref(locale, '#main', href);
 ---
 
-<section id="pricing">
+<section id="pricing" class="pricing">
   <div class="container">
-    <SectionHead eyebrow={pr.eyebrow} heading={pr.heading} />
-
+    <SectionHead
+      preview={content ? 'pricing.heading' : undefined}
+      eyebrow={pricing.eyebrow}
+      heading={content?.pricing.heading ?? pricing.heading}
+    />
     <div class="tiers">
-      {
-        tiers.map((p) => (
-          <article class:list={['tier', { 'tier--hot': p.featured }]}>
-            {p.featured && <span class="tier__flag">{pr.flag}</span>}
-            <header class="tier__head">
-              <span class="tier__name">{p.tier}</span>
-              <div class="tier__price">
-                <span class="tier__amt">{p.price}</span>
-                <span class="tier__cad">{p.cadence}</span>
-              </div>
-              <p class="tier__blurb">{p.blurb}</p>
-            </header>
+      {tiers.map((plan, index) => (
+        <article class:list={['tier', { 'tier--hot': plan.featured }]}>
+          <header class="tier__head">
+            <div class="tier__top">
+              <h3 class="tier__name">{plan.tier}</h3>
+              {plan.featured && <span class="tier__flag">{pricing.flag}</span>}
+            </div>
+            <div class="tier__price">
+              <span class="tier__amt">{plan.price}</span>
+              {plan.cadence && <span class="tier__cad">{plan.cadence}</span>}
+            </div>
+            <p
+              class="tier__blurb"
+              data-preview={
+                content
+                  ? `pricing.${['freeDescription', 'proDescription', 'enterpriseDescription'][index]}`
+                  : undefined
+              }
+            >
+              {plan.blurb}
+            </p>
+          </header>
+          {plan.features.length > 0 && (
             <ul class="tier__list">
-              {p.features.map((f) => (
+              {plan.features.map((feature) => (
                 <li>
                   <span class="chk" aria-hidden="true">
                     ✓
                   </span>
-                  {f}
+                  {feature}
                 </li>
               ))}
             </ul>
-            <a class:list={['btn', 'tier__cta', { 'btn--ghost': !p.featured }]} href={p.href.startsWith('https://') ? p.href : hrefFor(p.href)} data-marketing-event={p.tier === 'Enterprise' ? 'enterprise_cta' : 'pricing_cta'}>
-              {p.cta}
+          )}
+          {plan.href && (
+            <a
+              class:list={['btn', 'tier__cta', { 'btn--ghost': !plan.featured }]}
+              href={hrefFor(plan.href)}
+              data-marketing-event={index === 2 ? 'enterprise_cta' : 'pricing_cta'}
+            >
+              {plan.cta}
+              <span aria-hidden="true">↗</span>
             </a>
-          </article>
-        ))
-      }
+          )}
+        </article>
+      ))}
     </div>
-    <p class="mono tiers__foot">{pr.foot}</p>
+    <p class="mono tiers__foot" data-preview="pricing.description">
+      {content?.pricing.description ?? pricing.foot}
+    </p>
   </div>
 </section>
-
 <style>
+  .pricing {
+    background: var(--surface-subtle);
+  }
+  .pricing :global(.section-head) {
+    margin-inline: auto;
+    text-align: center;
+    justify-items: center;
+  }
   .tiers {
     display: grid;
-    /* minmax(0,…): a long localized price ("Индивидуально") must not widen its track
-       past the viewport. */
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
+    gap: 1rem;
     align-items: stretch;
   }
   .tier {
-    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: clamp(1.6rem, 3vw, 2.4rem);
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius-lg);
-    background: var(--ink-1);
+    gap: 2rem;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid transparent;
+    border-radius: 24px;
+    background: var(--surface-raised);
   }
   .tier--hot {
-    border-color: var(--amber);
-    background: var(--ink-1);
-    border-top-width: 2px;
+    background: #e1efc9;
+    border-color: #c3d6a7;
   }
-  .tier__flag {
-    position: absolute;
-    top: -0.7rem;
-    left: clamp(1.6rem, 3vw, 2.4rem);
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink);
-    background: var(--amber);
-    padding: 0.3rem 0.6rem;
-    border-radius: 2px;
-  }
-  .tier__name {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.09em;
-    color: var(--bone-dim);
-  }
-  .tier__price {
+  .tier__top {
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2rem;
+  }
+  .tier__name {
+    font-size: 1.5rem;
+    letter-spacing: -0.04em;
+  }
+  .tier__flag {
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    background: #cee2af;
+    color: #344c2c;
+    font-size: 0.625rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .tier__price {
+    display: grid;
+    align-content: start;
     gap: 0.5rem;
-    margin-top: 0.7rem;
+    margin-top: 1.5rem;
+    min-height: 6.5rem;
   }
   .tier__amt {
-    font-family: var(--font-display);
-    font-weight: 620;
-    /* Capped so the longest localized price ("По запросу", "Individuell") stays on one
-       line in a three-column row. */
-    font-size: clamp(2rem, 1.4rem + 1.6vw, 2.6rem);
-    letter-spacing: -0.03em;
-    /* Last-resort guard only: keep price words short enough to fit ("По запросу", not
-       "Индивидуально"), so this never splits a word in practice. */
-    overflow-wrap: break-word;
+    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    font-weight: 650;
+    letter-spacing: -0.06em;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
   }
   .tier__cad {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--bone-faint);
+    font-size: 0.75rem;
+    color: var(--text-soft);
   }
   .tier__blurb {
-    margin-top: 0.6rem;
-    color: var(--bone-dim);
-    font-size: 0.95rem;
+    margin-top: 1rem;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
   }
   .tier__list {
-    list-style: none;
     display: grid;
-    gap: 0.7rem;
-    /* flex:1 lets the list absorb the spare height so every CTA sits on the same line;
-       align-content keeps the items packed at the top instead of spreading them out. */
     align-content: start;
-    flex: 1;
+    gap: 0.9rem;
+    padding: 1.5rem 0 0;
     border-top: 1px solid var(--line);
-    padding-top: 1.4rem;
+    list-style: none;
   }
   .tier__list li {
-    display: flex;
-    gap: 0.65rem;
-    font-size: 0.95rem;
-    color: var(--bone);
+    display: grid;
+    grid-template-columns: 1rem minmax(0, 1fr);
+    gap: 0.5rem;
+    font-size: 0.875rem;
   }
   .chk {
-    color: var(--amber);
-    font-size: 0.85rem;
-    padding-top: 0.1rem;
+    color: var(--accent-ink);
   }
   .tier__cta {
-    justify-content: center;
+    margin-top: auto;
   }
   .tiers__foot {
-    margin-top: 1.5rem;
+    max-width: 70ch;
+    margin: 1.5rem auto 0;
     text-align: center;
   }
   @media (max-width: 860px) {
     .tiers {
       grid-template-columns: minmax(0, 1fr);
-      max-width: 26rem;
+      max-width: 36rem;
       margin-inline: auto;
+    }
+    .tier__price {
+      min-height: auto;
     }
   }
 </style>

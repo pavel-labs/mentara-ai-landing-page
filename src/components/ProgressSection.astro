@@ -24,42 +24,37 @@ const m = p.mock;
           <span class="progress__streak">{m.streak}</span>
         </div>
         <ul class="mock__body challenges">
-          {
-            m.challenges.map((c) => (
-              <li class:list={['challenge', { 'challenge--done': c.done }]}>
-                <span class="challenge__box" aria-hidden="true">
-                  {c.done ? '✓' : ''}
-                </span>
-                <span class="challenge__title">{c.title}</span>
-                <span class="challenge__xp">{c.xp}</span>
-              </li>
-            ))
-          }
+          {m.challenges.map((c) => (
+            <li class:list={['challenge', { 'challenge--done': c.done }]}>
+              <span class="challenge__box" aria-hidden="true">
+                {c.done ? '✓' : ''}
+              </span>
+              <span class="challenge__title">{c.title}</span>
+              <span class="challenge__xp">{c.xp}</span>
+            </li>
+          ))}
           <li class="challenge__level mono">{m.level}</li>
         </ul>
       </figure>
     </div>
 
     <ul class="points progress__points">
-      {
-        p.points.map((pt) => (
-          <li>
-            <h3>{pt.title}</h3>
-            <p>{pt.body}</p>
-          </li>
-        ))
-      }
+      {p.points.map((pt) => (
+        <li>
+          <h3>{pt.title}</h3>
+          <p>{pt.body}</p>
+        </li>
+      ))}
     </ul>
   </div>
 </section>
 
 <style>
   .progress {
-    background: rgba(0, 0, 0, 0.18);
-    border-block: 1px solid var(--line);
+    background: #edf1e5;
   }
   .progress__streak {
-    color: var(--amber);
+    color: var(--accent-ink);
     flex: none;
   }
   .challenges {
@@ -73,7 +68,7 @@ const m = p.mock;
     padding: 0.8rem 0.9rem;
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    background: var(--ink);
+    background: var(--surface);
   }
   .challenge__box {
     display: grid;
@@ -85,14 +80,14 @@ const m = p.mock;
     font-size: 0.7rem;
   }
   .challenge--done .challenge__box {
-    background: var(--sage);
-    border-color: var(--sage);
-    color: var(--ink);
+    background: var(--positive);
+    border-color: var(--positive);
+    color: var(--surface);
   }
   .challenge--done .challenge__title {
-    color: var(--bone-dim);
+    color: var(--text-muted);
     text-decoration: line-through;
-    text-decoration-color: var(--bone-faint);
+    text-decoration-color: var(--text-soft);
   }
   .challenge__title {
     font-size: 0.92rem;
@@ -100,7 +95,7 @@ const m = p.mock;
   .challenge__xp {
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    color: var(--amber);
+    color: var(--accent-ink);
   }
   .challenge__level {
     text-align: right;

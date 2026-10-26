@@ -1,9 +1,6 @@
 ---
-import '@fontsource-variable/bricolage-grotesque';
 import '@fontsource-variable/hanken-grotesk';
 import '@fontsource/jetbrains-mono/400.css';
-import '@fontsource/jetbrains-mono/500.css';
-import '@fontsource/jetbrains-mono/600.css';
 import '../styles/global.css';
 import { SITE } from '../consts';
 import LocaleAuto from '../components/LocaleAuto.astro';
@@ -50,7 +47,10 @@ const {
   jsonLd: pageJsonLd = [],
   ogType = 'website',
   singleLanguage = false,
-  ogImageUrl, suppressAlternates = false, faqItems, analytics = true,
+  ogImageUrl,
+  suppressAlternates = false,
+  faqItems,
+  analytics = true,
 } = Astro.props;
 const t = getDict(locale);
 const pageTitle = title ?? t.meta.title;
@@ -74,9 +74,10 @@ const appleIcon = withBase('apple-touch-icon.png');
 // Every localized route exists in all locales (the parity test and the per-locale page
 // wrappers guarantee it), so the swap of the locale prefix is always a real page.
 const alternateHref = (l: Locale) => new URL(localePath(l, pagePath), origin).href;
-const alternates = singleLanguage || suppressAlternates
-  ? []
-  : LOCALES.map((l) => ({ hreflang: l, href: alternateHref(l) }));
+const alternates =
+  singleLanguage || suppressAlternates
+    ? []
+    : LOCALES.map((l) => ({ hreflang: l, href: alternateHref(l) }));
 
 // Cloudflare Web Analytics – privacy-friendly, cookieless. Only injected when a token is
 // provided, so dev/forks ship no beacon and no consent banner is needed.
@@ -141,17 +142,17 @@ const jsonLd = {
     <title>{pageTitle}</title>
     <meta name="description" content={pageDesc} />
     <link rel="canonical" href={canonical} />
-    {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
-    {
-      !singleLanguage && !suppressAlternates && (
-        <link rel="alternate" hreflang="x-default" href={alternateHref(DEFAULT_LOCALE)} />
-      )
-    }
-    <meta name="theme-color" content="#0b0b0d" />
-    <meta name="color-scheme" content="dark" />
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+    ))}
+    {!singleLanguage && !suppressAlternates && (
+      <link rel="alternate" hreflang="x-default" href={alternateHref(DEFAULT_LOCALE)} />
+    )}
+    <meta name="theme-color" content="#f7f8f4" />
+    <meta name="color-scheme" content="light" />
 
     <link rel="icon" href={favicon} type="image/svg+xml" />
-    <link rel="mask-icon" href={favicon} color="#d2603a" />
+    <link rel="mask-icon" href={favicon} color="#193629" />
     <link rel="apple-touch-icon" href={appleIcon} />
     <link rel="manifest" href={manifestHref} />
     <link rel="sitemap" href={sitemapHref} />
@@ -169,21 +170,24 @@ const jsonLd = {
     <meta name="twitter:description" content={pageDesc} />
     <meta name="twitter:image" content={ogImage} />
 
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />
-
-    {
-      analytics && cfToken && (
-        <script
-          is:inline
-          defer
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon={`{"token":"${cfToken}","spa":true}`}
-        />
-      )
-    }
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')}
+    />
+    {analytics && cfToken && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={`{"token":"${cfToken}","spa":true}`}
+      />
+    )}
   </head>
   <body>
-    <a href="#main" class="skip">{t.a11ySkip}</a>
+    <a href="#main" class="skip">
+      {t.a11ySkip}
+    </a>
     <slot />
     {analytics && <script src="../marketing/analytics.ts"></script>}
     <style>
@@ -192,8 +196,8 @@ const jsonLd = {
         left: -999px;
         top: 0.75rem;
         z-index: 100;
-        background: var(--amber);
-        color: var(--ink);
+        background: var(--accent-ink);
+        color: var(--surface);
         padding: 0.6rem 1rem;
         border-radius: 0 0 10px 0;
         font-family: var(--font-mono);

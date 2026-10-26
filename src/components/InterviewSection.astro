@@ -10,7 +10,7 @@ const { locale } = Astro.props;
 const iv = getDict(locale).interview;
 ---
 
-<section id="interview">
+<section id="interview" class="interview theme-dark">
   <div class="container">
     <SectionHead eyebrow={iv.eyebrow} heading={iv.heading} />
     <p class="lede iv__lede">{iv.lede}</p>
@@ -20,12 +20,15 @@ const iv = getDict(locale).interview;
 </section>
 
 <style>
+  .interview {
+    background: #193629;
+  }
   .iv__lede {
-    max-width: 62ch;
-    margin-top: calc(-1 * clamp(1rem, 2.5vw, 2rem));
-    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    max-width: 66ch;
+    margin-top: -1rem;
+    margin-bottom: 3.5rem;
   }
   .iv__note {
-    margin-top: clamp(2rem, 4vw, 3rem);
+    margin-top: 3rem;
   }
 </style>

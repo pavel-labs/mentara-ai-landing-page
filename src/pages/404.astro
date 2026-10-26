@@ -16,9 +16,13 @@ const nfMap = Object.fromEntries(
 <BaseLayout locale={DEFAULT_LOCALE} title="404 – Mentarika" description="That page doesn't exist.">
   <main id="main" class="nf">
     <div class="container nf__inner">
-      <p class="eyebrow" id="nf-eyebrow">{t.eyebrow}</p>
+      <p class="eyebrow" id="nf-eyebrow">
+        {t.eyebrow}
+      </p>
       <h1 class="nf__code">404</h1>
-      <p class="nf__msg" id="nf-msg">{t.message}</p>
+      <p class="nf__msg" id="nf-msg">
+        {t.message}
+      </p>
       <a class="btn" id="nf-back" href={home}>
         <span aria-hidden="true">←</span> <span id="nf-back-label">{t.back}</span>
       </a>
@@ -27,8 +31,7 @@ const nfMap = Object.fromEntries(
   hint: try the nav above</pre>
     </div>
   </main>
-  <script type="application/json" id="nf-i18n" is:inline set:html={JSON.stringify(nfMap)}
-  ></script>
+  <script type="application/json" id="nf-i18n" is:inline set:html={JSON.stringify(nfMap)}></script>
   <script is:inline>
     // Pick the locale from the first /de|/es|/ru path segment (base-prefix agnostic).
     (function () {
@@ -60,15 +63,15 @@ const nfMap = Object.fromEntries(
     gap: 1.3rem;
   }
   .nf__code {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-weight: 680;
     font-size: clamp(5rem, 3rem + 14vw, 12rem);
     line-height: 0.9;
     letter-spacing: -0.05em;
-    color: var(--amber);
+    color: var(--accent-ink);
   }
   .nf__msg {
-    color: var(--bone-dim);
+    color: var(--text-muted);
     max-width: 42ch;
     line-height: 1.6;
   }
@@ -76,7 +79,7 @@ const nfMap = Object.fromEntries(
     margin-top: 1.5rem;
     font-family: var(--font-mono);
     font-size: 0.78rem;
-    color: var(--bone-faint);
+    color: var(--text-soft);
     text-align: left;
     border: 1px solid var(--line);
     border-radius: 12px;

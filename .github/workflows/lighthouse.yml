@@ -3,6 +3,8 @@ name: Lighthouse
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -28,6 +30,12 @@ jobs:
 
       - name: Install
         run: npm ci
+
+      - name: Check templates and types
+        run: npm run check
+
+      - name: Test
+        run: npm test
 
       # Build base-less so Lighthouse CI's static server (serves dist at "/") gets a
       # self-consistent site; the base path doesn't affect the audited scores.

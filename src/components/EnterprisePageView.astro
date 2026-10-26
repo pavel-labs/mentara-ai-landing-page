@@ -43,12 +43,22 @@ const breadcrumb = {
   <main id="main">
     <section class="ent-hero">
       <div class="container ent-hero__inner">
-        <p class="eyebrow" data-reveal style="--d:0">{e.hero.eyebrow}</p>
-        <h1 class="display" data-reveal style="--d:1">{e.hero.title}</h1>
-        <p class="lede" data-reveal style="--d:2">{e.hero.lede}</p>
+        <p class="eyebrow" data-reveal style="--d:0">
+          {e.hero.eyebrow}
+        </p>
+        <h1 class="display" data-reveal style="--d:1">
+          {e.hero.title}
+        </h1>
+        <p class="lede" data-reveal style="--d:2">
+          {e.hero.lede}
+        </p>
         <div class="ent-hero__cta" data-reveal style="--d:3">
-          <a class="btn" href="#contact">{e.hero.primary}</a>
-          <a class="link-arrow" href={articleHref}>{e.hero.secondary} →</a>
+          <a class="btn" href="#contact">
+            {e.hero.primary}
+          </a>
+          <a class="link-arrow" href={articleHref}>
+            {e.hero.secondary} →
+          </a>
         </div>
       </div>
     </section>
@@ -57,23 +67,21 @@ const breadcrumb = {
       <div class="container">
         <SectionHead eyebrow={e.useCases.eyebrow} heading={e.useCases.heading} />
         <div class="cases">
-          {
-            e.useCases.items.map((c) => (
-              <article class="case">
-                <span class="case__tag">{c.tag}</span>
-                <h3 class="case__title">{c.title}</h3>
-                <p class="case__body">{c.body}</p>
-                <ul class="case__list">
-                  {c.points.map((p) => (
-                    <li>
-                      <span aria-hidden="true">✓</span>
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))
-          }
+          {e.useCases.items.map((c) => (
+            <article class="case">
+              <span class="case__tag">{c.tag}</span>
+              <h3 class="case__title">{c.title}</h3>
+              <p class="case__body">{c.body}</p>
+              <ul class="case__list">
+                {c.points.map((p) => (
+                  <li>
+                    <span aria-hidden="true">✓</span>
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -93,13 +101,17 @@ const breadcrumb = {
           <div class="sees__col">
             <h3 class="sees__name">{e.privacy.sees.label}</h3>
             <ul>
-              {e.privacy.sees.points.map((p) => <li>{p}</li>)}
+              {e.privacy.sees.points.map((p) => (
+                <li>{p}</li>
+              ))}
             </ul>
           </div>
           <div class="sees__col sees__col--never">
             <h3 class="sees__name">{e.privacy.never.label}</h3>
             <ul>
-              {e.privacy.never.points.map((p) => <li>{p}</li>)}
+              {e.privacy.never.points.map((p) => (
+                <li>{p}</li>
+              ))}
             </ul>
           </div>
         </div>
@@ -111,21 +123,23 @@ const breadcrumb = {
         <div class="split__copy">
           <SectionHead eyebrow={e.roles.eyebrow} heading={e.roles.heading} />
           <dl class="roles">
-            {
-              e.roles.items.map((r) => (
-                <div class="roles__row">
-                  <dt>{r.role}</dt>
-                  <dd>{r.body}</dd>
-                </div>
-              ))
-            }
+            {e.roles.items.map((r) => (
+              <div class="roles__row">
+                <dt>{r.role}</dt>
+                <dd>{r.body}</dd>
+              </div>
+            ))}
           </dl>
         </div>
         <aside class="notyet" aria-labelledby="notyet-title">
-          <h3 id="notyet-title" class="notyet__title">{e.notYet.heading}</h3>
+          <h3 id="notyet-title" class="notyet__title">
+            {e.notYet.heading}
+          </h3>
           <p class="notyet__lede">{e.notYet.lede}</p>
           <ul>
-            {e.notYet.items.map((i) => <li>{i}</li>)}
+            {e.notYet.items.map((i) => (
+              <li>{i}</li>
+            ))}
           </ul>
         </aside>
       </div>
@@ -179,7 +193,7 @@ const breadcrumb = {
     padding: clamp(1.4rem, 3vw, 2.2rem);
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-lg);
-    background: var(--ink-1);
+    background: var(--surface-raised);
     min-width: 0;
   }
   .case__tag {
@@ -188,8 +202,8 @@ const breadcrumb = {
     font-size: 0.7rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--amber);
-    border: 1px solid color-mix(in oklab, var(--amber) 40%, transparent);
+    color: var(--accent-ink);
+    border: 1px solid color-mix(in oklab, var(--accent-ink) 40%, transparent);
     padding: 0.25rem 0.55rem;
     border-radius: 2px;
   }
@@ -197,7 +211,7 @@ const breadcrumb = {
     font-size: clamp(1.3rem, 1.1rem + 0.6vw, 1.6rem);
   }
   .case__body {
-    color: var(--bone-dim);
+    color: var(--text-muted);
   }
   .case__list {
     list-style: none;
@@ -213,12 +227,12 @@ const breadcrumb = {
     font-size: 0.95rem;
   }
   .case__list span {
-    color: var(--amber);
+    color: var(--accent-ink);
   }
 
   .ent-steps,
   .ent-roles {
-    background: rgba(0, 0, 0, 0.18);
+    background: var(--surface-subtle);
     border-block: 1px solid var(--line);
   }
 
@@ -242,7 +256,7 @@ const breadcrumb = {
     min-width: 0;
   }
   .sees__col--never {
-    background: var(--ink-1);
+    background: var(--surface-raised);
     border-left: 1px solid var(--line-strong);
   }
   .sees__name {
@@ -251,10 +265,10 @@ const breadcrumb = {
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--sage);
+    color: var(--positive);
   }
   .sees__col--never .sees__name {
-    color: var(--amber);
+    color: var(--accent-ink);
   }
   .sees ul {
     list-style: none;
@@ -269,11 +283,11 @@ const breadcrumb = {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--sage);
+    color: var(--positive);
   }
   .sees__col--never li::before {
     content: '✕';
-    color: var(--amber);
+    color: var(--accent-ink);
   }
 
   .ent-roles__split {
@@ -293,10 +307,10 @@ const breadcrumb = {
   .roles dt {
     font-family: var(--font-mono);
     font-size: 0.82rem;
-    color: var(--bone);
+    color: var(--text);
   }
   .roles dd {
-    color: var(--bone-dim);
+    color: var(--text-muted);
     font-size: 0.95rem;
   }
   .notyet {
@@ -311,7 +325,7 @@ const breadcrumb = {
     font-size: 1.2rem;
   }
   .notyet__lede {
-    color: var(--bone-dim);
+    color: var(--text-muted);
     font-size: 0.95rem;
   }
   .notyet ul {
@@ -320,11 +334,11 @@ const breadcrumb = {
     gap: 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.82rem;
-    color: var(--bone-dim);
+    color: var(--text-muted);
   }
   .notyet li::before {
     content: '○ ';
-    color: var(--bone-faint);
+    color: var(--text-soft);
   }
 
   .article {
@@ -341,12 +355,12 @@ const breadcrumb = {
     border-color: var(--line-strong);
   }
   .article__title {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: clamp(1.2rem, 1rem + 0.8vw, 1.5rem);
     font-weight: 600;
   }
   .article__cta {
-    color: var(--amber);
+    color: var(--accent-ink);
   }
 
   @media (max-width: 820px) {

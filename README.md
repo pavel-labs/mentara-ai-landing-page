@@ -11,7 +11,8 @@ invented users, customers, statistics, testimonials or logos. Pro's price comes 
 store at runtime, so the site says "set at launch" rather than hardcoding one.
 
 Built with **[Astro](https://astro.build)** (ships ~zero JS), self-hosted variable fonts,
-and a hand-rolled dark "editorial-terminal" design system – no UI kit, no tracking.
+and a shared design system: oversized typography, warm light surfaces, forest-green panels
+and lime accents. Product previews are HTML/CSS, with no image or animation runtime.
 
 ## Develop
 
@@ -20,7 +21,8 @@ npm install
 npm run dev     # http://localhost:4321
 npm run build   # static output → dist/
 npm run preview # serve the production build
-npm test        # vitest – i18n helpers + translation parity
+npm test        # i18n, translation parity, marketing contracts and preview messages
+npm run check   # Astro templates and TypeScript
 ```
 
 Node 22.12+ (required by Astro 6; CI runs Node 22).
@@ -35,18 +37,20 @@ Node 22.12+ (required by Astro 6; CI runs Node 22).
   dictionary's shape exactly (missing/renamed/extra keys and mismatched array lengths
   fail the build), so a missing translation can't ship silently.
 
-Astro components are templates with no branching logic, so they're verified by the build
-
-- visual review rather than unit tests; all testable logic lives in `src/i18n`.
+Pull requests run template/type checks, tests and a static build before Lighthouse.
+For layout changes, also review the fallback and published-content homepages at 320px,
+390px, 768px, 1024px and 1440px. Check the mobile menu, language picker, FAQ, reduced
+motion and keyboard focus. Validate published images, disabled sections and CMS preview
+markers as well as the default content.
 
 ## Languages
 
-Four languages: **English `/`**, **German `/de/`**, **Spanish `/es/`**, **Russian
-`/ru/`** (Astro i18n, `prefixDefaultLocale: false`). Each route emits `hreflang`
+Five languages: **English `/`**, **German `/de/`**, **Spanish `/es/`**, **Russian
+`/ru/`**, **Polish `/pl/`** (Astro i18n, `prefixDefaultLocale: false`). Each route emits `hreflang`
 alternates + `x-default`, a localized `<html lang>` / OG locale / JSON-LD, and the
-sitemap carries `xhtml:link` alternates. A compact EN/DE/ES/RU switcher lives in the nav.
+sitemap carries `xhtml:link` alternates. A compact native language dropdown lives in the nav.
 
-To **edit copy**: every translatable string is in `src/i18n/{en,de,es,ru}.ts`, all typed
+To **edit copy**: every translatable string is in `src/i18n/{en,de,es,ru,pl}.ts`, all typed
 against `src/i18n/types.ts` – a missing/renamed key is a TypeScript error, not a silent
 untranslated string. To **add a locale**: add `xx.ts`, register it in
 `src/i18n/index.ts` (`LOCALES` + `dictionaries`) + `astro.config.mjs` (`i18n.locales` and
@@ -59,7 +63,7 @@ the sitemap `i18n.locales`), and add `src/pages/xx/index.astro`
 
 ```
 src/
-  i18n/{types,en,de,es,ru,index}.ts  # typed translation dictionaries (the copy)
+  i18n/{types,en,de,es,ru,pl,index}.ts  # typed translation dictionaries (the copy)
   consts.ts             # non-translatable constants only
   legal.ts              # DRAFT privacy/terms clauses (English authoritative)
   content.config.ts · content/blog/*.md   # changelog collection (English)
@@ -88,7 +92,7 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
   console. Success fires `__mentarikaTrack?.('enterprise_inquiry')` and a virtual
   `…/enterprise/success` pageview.
 
-- **Legal**: `/{locale}/privacy` + `/{locale}/terms` (all 4 locales). The page shell,
+- **Legal**: `/{locale}/privacy` + `/{locale}/terms` (all 5 locales). The page shell,
   headings and a prominent **draft notice** are localized; the clauses themselves stay in
   **English** (`src/legal.ts`) with "English is authoritative" stated – auto-translated
   binding legal text is a liability. Bump `LEGAL_EFFECTIVE_DATE` / `LEGAL_CONTACT` there.
@@ -167,9 +171,11 @@ ordinary push, or trigger one by hand: `railway redeploy --service landing`.
   tracks `site`/`base`, so the custom-domain switch needs no manual edit.
 - **404**: one static `404.html` (GitHub Pages serves it for every unknown path),
   localized client-side from the `/de|/es|/ru` URL prefix; default render is English.
-- **Accessibility**: watch the first Lighthouse CI report for small-text contrast on
-  `--bone-faint` (used for mono captions; ~3.5:1 on ink, under WCAG AA 4.5 for small
-  text). Left as a brand trade-off pending a real score rather than blind-retuned.
+- **Design tokens**: `src/styles/global.css` defines surface, text, accent, spacing and
+  radius tokens. `.theme-dark` and `.theme-light` set local color contexts; components
+  inherit them. Keep small text at WCAG AA contrast and retain visible keyboard focus.
+  Self-hosted Hanken Grotesk handles headings/body; JetBrains Mono is limited to code
+  and compact numeric labels. Motion respects `prefers-reduced-motion`.
 - **Icons** (`apple-touch-icon.png`, `icon-192/512.png`) are generated from
   `public/favicon.svg` by `npm run prebuild` and are gitignored (regenerated in CI).
 - **SEO**: JSON-LD `@graph` (Organization + SoftwareApplication + `FAQPage`), sitemap,
@@ -237,3 +243,12 @@ Contracts are generated from the main repo with `npm run marketing:contract`, wh
 honors reduced-motion preferences.
 
 The legacy third-party waitlist form has been removed. The landing page does not collect early-access emails. Launch copy and product links are managed through Marketing → Landing in the admin console when CMS publication is enabled. Enterprise inquiries continue to use the existing backend and admin inquiry list. The `#waitlist` anchor remains for existing inbound links and shows launch information.
+
+## Layout and content
+
+`Hero`, `Pricing` and `FAQ` serve both default and published content. `InterviewPreview`
+contains the localized sample conversation; `FeatureArt` supplies decorative SVG/CSS
+art when an enabled CMS section has no image. Published images take precedence.
+`BrandMark` and `public/favicon.svg` share the same mark, with raster icons generated
+at build time. Content dictionaries, blog posts, contracts and publication rules remain
+the source of truth; visual changes should not rewrite them.
