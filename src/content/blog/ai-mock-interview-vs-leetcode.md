@@ -52,4 +52,4 @@ That loop is slower than endless problem volume, but it is much closer to how ca
 actually improve.
 
 If you want the follow-up pressure, the scoring, and the post-session study path in one
-place, join the [Mentarika waitlist](/).
+place, see the [Mentarika launch details](/#waitlist).

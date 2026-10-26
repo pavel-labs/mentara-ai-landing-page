@@ -30,5 +30,4 @@ conversation, and scoring feeds the report rather than a live number._
 
 ## What's next
 
-We'll post launch milestones and changes here. Want the email the day it ships? Join the
-waitlist on the [home page](/).
+We'll post launch milestones and changes here and on the [home page](/).

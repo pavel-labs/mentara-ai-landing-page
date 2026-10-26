@@ -245,7 +245,7 @@ export const en: Dict = {
           'Daily challenges and achievements',
         ],
         featured: false,
-        cta: 'Join the waitlist',
+        cta: 'Launch details',
         href: '#waitlist',
       },
       {
@@ -260,7 +260,7 @@ export const en: Dict = {
           'Realistic mode: shows where you got stuck and what the session was worth without outside help',
         ],
         featured: true,
-        cta: 'Join the waitlist',
+        cta: 'Launch details',
         href: '#waitlist',
       },
       {
@@ -329,32 +329,16 @@ export const en: Dict = {
       },
       {
         q: 'When can I use it?',
-        a: 'Mentarika is in limited testing now and launches on the web, iOS and Android in January 2027. Join the waitlist and we will email you when it opens.',
+        a: 'Mentarika is in limited testing now and launches on the web, iOS and Android in January 2027.',
       },
     ],
-  },
-
-  waitlist: {
-    eyebrow: 'Early access',
-    heading: 'Join the waitlist.',
-    sub: 'Join the waitlist – be first to know the day Mentarika ships, no spam.',
-    label: 'Email address',
-    placeholder: 'you@work.dev',
-    cta: 'Join waitlist',
-    sending: 'Sending…',
-    success: "You're on the list. We'll email you at launch.",
-    error: 'Something broke on our end. Try again in a moment.',
-    offNote: 'Opens shortly – set PUBLIC_FORMSPREE_ENDPOINT to enable the form.',
-    devBuild: 'Also send me the early dev build',
-    devBuildNote:
-      'Unstable, incomplete, and updated without notice - expect rough edges and reset data.',
   },
 
   cta: {
     eyebrow: 'Launching January 2027',
     titleLead: 'Your next interview is coming.',
     titleAccent: 'Practice before it does.',
-    lede: 'Mentarika opens on the web, iOS and Android in January 2027. Join the waitlist and we will email you the day it does.',
+    lede: 'Mentarika opens on the web, iOS and Android in January 2027.',
   },
 
   enterprise: {
