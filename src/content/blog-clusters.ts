@@ -104,6 +104,7 @@ export const BLOG_CLUSTERS: BlogClusterDefinition[] = [
       secondaryHref: '/enterprise',
     },
     slugs: [
+      'qa-interview-practice-plan',
       'ai-interview-practice-for-engineering-teams',
       'peer-mock-interviews-vs-ai',
       'inside-an-ai-interview-simulator',

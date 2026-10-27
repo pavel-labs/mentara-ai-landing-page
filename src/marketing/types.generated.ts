@@ -1,9 +1,14 @@
-// Generated from @mentarika/shared by scripts/export-marketing-contract.mjs.
+// Generated from @mentarika/shared by scripts/dev/export-marketing-contract.mjs.
 interface IBillingCatalog {
   displayPrices: { currency: 'USD'; proMonthly: string; proAnnual: string; interviewPack: string };
 }
 
 export const MARKETING_EVENTS = [
+  'landing_view',
+  'setup_open',
+  'interview_started',
+  'interview_completed',
+  'report_open',
   'web_app_cta',
   'app_store_cta',
   'google_play_cta',
@@ -15,6 +20,9 @@ export type MarketingEvent = (typeof MARKETING_EVENTS)[number];
 export interface IMarketingEventInput {
   event: MarketingEvent;
   locale: MarketingLocale;
+}
+export interface IMarketingTrackingConfig {
+  enabled: boolean;
 }
 export interface IMarketingMetrics {
   days: 7;
