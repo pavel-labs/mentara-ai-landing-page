@@ -252,3 +252,16 @@ art when an enabled CMS section has no image. Published images take precedence.
 `BrandMark` and `public/favicon.svg` share the same mark, with raster icons generated
 at build time. Content dictionaries, blog posts, contracts and publication rules remain
 the source of truth; visual changes should not rewrite them.
+
+
+### Anonymous funnel counters
+
+The landing first reads `GET /marketing/tracking` from `PUBLIC_API_URL`. Only an explicit
+`{ enabled: true }` permits a landing-view or CTA event. A missing endpoint, network failure,
+DNT or GPC prevents collection; preview pages load no tracking script. The API enforces the
+admin switch again before storing a counter. Deploy the companion backend before this landing.
+
+Payloads contain only the allowlisted event and document locale, with credentials omitted.
+There are no tracking cookies or persistent visitor IDs. Totals are events, not unique users
+or linked conversion rates. Optional Cloudflare analytics is configured independently.
+The QA practice article describes a controlled pilot, with availability checked in the app.
