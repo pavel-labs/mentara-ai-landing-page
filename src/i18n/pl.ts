@@ -7,10 +7,8 @@ export const pl: Dict = {
   a11yMenu: 'Menu',
 
   meta: {
-    title:
-      'Mentarika – ćwiczenie rozmów technicznych z AI i zadania programistyczne dla programistów',
-    description:
-      'Ćwicz ustrukturyzowane rozmowy techniczne z rekruterem AI, który dopytuje o twoje odpowiedzi, rozwiązuj zadania programistyczne oceniane ukrytymi testami i dostawaj raport, który pokazuje twoje słabe strony wraz z dowodami. Plany Free i Pro oraz Enterprise dla zespołów.',
+    title: "Mentarika – praktyka AI dla programistów, QA i konsultantów",
+    description: "Ćwicz rozmowy techniczne, scenariusze QA oraz doradztwo finansowe i biznesowe z AI. Otrzymuj raporty. Tryby specjalistyczne zależą od dostępności pilotażu.",
     tagline: 'Ćwicz rozmowę, nie tylko pytania.',
     launchLabel: 'W testach · start w styczniu 2027',
   },

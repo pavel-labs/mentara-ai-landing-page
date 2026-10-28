@@ -113,8 +113,8 @@ public/                  # favicon.svg, site.webmanifest, robots.txt
 
 See `.env.example`. All `PUBLIC_*` (inlined into the static build – no secrets):
 
-- `PUBLIC_CF_BEACON_TOKEN` – Cloudflare Web Analytics. Empty → no beacon injected, no
-  cookie banner needed.
+- External analytics is configured in the app admin (Configuration → Availability), not at
+  build time. `PUBLIC_CF_BEACON_TOKEN` is no longer read. See [SEO and analytics](docs/seo-and-analytics.md).
 - `PUBLIC_API_URL` – backend origin for the Enterprise contact form (e.g.
   `https://api.example.com`, no trailing slash). Empty → the form renders a disabled note.
   The backend must list this site's origin in `ALLOWED_ORIGINS`, or the browser blocks the
