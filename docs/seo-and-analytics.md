@@ -34,11 +34,20 @@ provider terms to choose an appropriate plan; no pricing or quota assumptions ar
 GA4, Plausible and Yandex are not loaded by this implementation. Arbitrary script injection is
 intentionally unsupported: a new provider requires an explicitly reviewed adapter.
 
-`web-analytics.ts` requests `GET /marketing/web-analytics` from `PUBLIC_API_URL` without cookies
-and with a three-second timeout. It accepts only Cloudflare's token or Umami's UUID and uses fixed
-script URLs. DNT/GPC prevents the request and script load. Umami excludes query strings and hash
-fragments; neither adapter adds user IDs or custom event payloads. Third-party requests still
-reach the selected provider and are different from the internal aggregate counters.
+The JavaScript build targets Chrome 86+, Edge 86+, Firefox 78+ and Safari 13.1+ (including iOS
+Safari). These browsers provide the required `fetch`, `Promise` and timer APIs natively, so global
+polyfills are intentionally omitted. Astro/Vite bundles are transpiled to these targets; inline
+scripts must stay within the same syntax baseline. Request timeouts still settle if
+`AbortController` is unavailable; only cancellation of the underlying request is then unavailable.
+
+`web-analytics.ts` requests `GET /marketing/web-analytics` from `PUBLIC_API_URL` without cookies,
+without caching, and with a three-second timeout. The timeout aborts requests where
+`AbortController` is available and still settles if it is not. It accepts only Cloudflare's token
+or Umami's UUID and uses fixed script URLs. DNT/GPC prevents the request and script load. Provider
+scripts receive no referrer; Umami also excludes query strings and hash fragments and honors DNT.
+Internal event requests use Fetch `keepalive` only in browsers that expose it. Neither adapter adds
+user IDs or custom event payloads. Third-party requests still reach the selected provider and are
+different from the internal aggregate counters.
 
 The admin saves `features.webAnalytics` through the existing audited configuration API:
 
@@ -54,7 +63,10 @@ The admin saves `features.webAnalytics` through the existing audited configurati
 {"provider":"none"}
 ```
 
-These are placeholder public IDs. Missing/invalid/unavailable configuration loads no script.
+These are placeholder public IDs, not secrets; all landing-page code and browser-visible
+configuration are public. Keep API credentials and private keys on the backend, never in
+`PUBLIC_*` variables or client-side bundles. Missing/invalid/unavailable configuration loads no
+script.
 API/admin must deploy before this landing; migrate any former `PUBLIC_CF_BEACON_TOKEN` into the
 admin explicitly. Old landing bundles cannot honor the new switch. Changes apply to subsequent
 page loads after normal backend runtime-cache refresh. Removing a script element cannot undo

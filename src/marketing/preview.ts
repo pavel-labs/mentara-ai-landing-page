@@ -136,5 +136,6 @@ export const renderPreview = (target: HTMLElement | null, input: unknown): void 
     }
     fragment.append(node('footer', page.footerDescription, 'cms-section mono'));
   } else return;
-  target.replaceChildren(fragment);
+  target.textContent = '';
+  target.appendChild(fragment);
 };

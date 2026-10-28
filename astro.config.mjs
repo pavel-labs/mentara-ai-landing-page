@@ -47,5 +47,10 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
+  vite: {
+    build: {
+      target: ['chrome86', 'edge86', 'firefox78', 'safari13.1'],
+    },
+  },
   compressHTML: true,
 });

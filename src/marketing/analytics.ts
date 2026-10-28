@@ -1,18 +1,16 @@
 import { API } from '../consts';
 import { MARKETING_EVENTS, type MarketingEvent } from './types.generated';
-
-const respectsPrivacy = () =>
-  navigator.doNotTrack === '1' ||
-  ('globalPrivacyControl' in navigator && navigator.globalPrivacyControl === true);
+import { respectsPrivacy } from './privacy';
+import { fetchWithTimeout } from './request';
 
 const enabled = async (): Promise<boolean> => {
   if (!API.baseUrl || respectsPrivacy()) return false;
   try {
-    const response = await fetch(`${API.baseUrl}/marketing/tracking`, {
-      credentials: 'omit',
-      signal: AbortSignal.timeout(3000),
-    });
-    if (!response.ok) return false;
+    const response = await fetchWithTimeout(
+      `${API.baseUrl}/marketing/tracking`,
+      { credentials: 'omit', cache: 'no-store' },
+    );
+    if (!response.ok || respectsPrivacy()) return false;
     const config: unknown = await response.json();
     return (
       typeof config === 'object' &&
@@ -28,16 +26,20 @@ const trackingEnabled = enabled();
 const record = async (event: MarketingEvent): Promise<void> => {
   if (!(await trackingEnabled) || respectsPrivacy()) return;
   try {
-    await fetch(`${API.baseUrl}/marketing/events`, {
+    const request: RequestInit = {
       method: 'POST',
       credentials: 'omit',
-      keepalive: true,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ event, locale: document.documentElement.lang }),
-      signal: AbortSignal.timeout(3000),
-    });
+    };
+    if (typeof Request !== 'undefined' && 'keepalive' in Request.prototype)
+      request.keepalive = true;
+    await fetchWithTimeout(
+      `${API.baseUrl}/marketing/events`,
+      request,
+    );
   } catch {
-    // Counters must never delay navigation or retry a user action.
+    // Best-effort analytics must never delay navigation or retry a user action.
   }
 };
 

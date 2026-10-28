@@ -35,6 +35,10 @@ describe('landing funnel privacy and availability', () => {
     const { request } = await boot(true);
     expect(request).toHaveBeenCalledTimes(2);
     expect(request.mock.calls[0]?.[0]).toBe('https://api.example.test/marketing/tracking');
+    expect(request.mock.calls[0]?.[1]).toMatchObject({
+      credentials: 'omit',
+      cache: 'no-store',
+    });
     expect(request.mock.calls[1]?.[1]).toMatchObject({
       credentials: 'omit',
       keepalive: true,
@@ -44,6 +48,11 @@ describe('landing funnel privacy and availability', () => {
   it('does not post when collection is disabled', async () => {
     const { request } = await boot(false);
     expect(request).toHaveBeenCalledOnce();
+  });
+  it('sends events without keepalive on browsers that do not support it', async () => {
+    vi.stubGlobal('Request', undefined);
+    const { request } = await boot(true);
+    expect(request.mock.calls[1]?.[1]).not.toHaveProperty('keepalive');
   });
   it.each([{ doNotTrack: '1' }, { globalPrivacyControl: true }])(
     'does not request tracking with privacy preference %j',

@@ -184,5 +184,5 @@ export const marketingLabels = (locale: Locale) => labels[locale];
 export const publishedArticles = (locale: Locale) =>
   marketingSnapshot.articles
     .filter((article) => article.locale === locale)
-    .toSorted((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 export { API };

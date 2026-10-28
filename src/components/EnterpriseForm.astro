@@ -164,7 +164,8 @@ const trackPath = withBase('enterprise/success');
           status.textContent = form.dataset.success;
           status.dataset.state = 'ok';
           try {
-            window.__mentarikaTrack?.('enterprise_inquiry');
+            if (window.__mentarikaTrack)
+              window.__mentarikaTrack('enterprise_inquiry');
             const real = location.pathname + location.search + location.hash;
             history.pushState(null, '', form.dataset.trackPath);
             history.replaceState(null, '', real);
