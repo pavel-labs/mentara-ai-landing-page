@@ -8,7 +8,7 @@ export const de: Dict = {
   analyticsConsent: {
     heading: 'Deine Datenschutzeinstellungen',
     description:
-      'Optionale Analysen helfen uns, die Nutzung der Website zu verstehen. Sie bleiben deaktiviert, bis du zustimmst. Du kannst deine Auswahl später ändern.',
+      'Diese Auswahl betrifft nur optionale Analysen. Sie bleiben deaktiviert, bis du zustimmst. Deine Auswahl wird im lokalen Speicher dieses Browsers (nicht als Cookie) gespeichert und kann später in den Datenschutzeinstellungen geändert werden.',
     accept: 'Analysen erlauben',
     reject: 'Analysen ablehnen',
     settings: 'Datenschutzeinstellungen',

@@ -8,7 +8,7 @@ export const en: Dict = {
   analyticsConsent: {
     heading: 'Your privacy choices',
     description:
-      'Optional analytics help us understand site usage. They stay off unless you allow them. You can change this choice later.',
+      'This choice controls optional analytics only. Analytics stays off unless you allow it. Your choice is saved in this browser’s local storage (not a cookie) and can be changed in Privacy settings.',
     accept: 'Allow analytics',
     reject: 'Reject analytics',
     settings: 'Privacy settings',

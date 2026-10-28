@@ -4,9 +4,8 @@
 //
 // `effectiveDate` is the single place to bump the "last updated" stamp.
 
-export const LEGAL_EFFECTIVE_DATE = '2026-10-28';
-// TODO: provision this mailbox before launch. Shown verbatim in the privacy policy and
-// terms, so it must be a mailbox that actually exists.
+export const LEGAL_EFFECTIVE_DATE = '2026-10-29';
+// TODO: verify that this mailbox is live and monitored before launch.
 export const LEGAL_CONTACT = 'privacy@mentarika.app';
 
 export interface LegalSection {
@@ -19,7 +18,7 @@ export const PRIVACY: LegalSection[] = [
     heading: '1. Scope',
     body: [
       'This policy explains what Mentarika ("we") collects when you use the Mentarika app (iOS, Android, web) and this site, and how it is used. Mentarika is an AI mock-interview practice product for software engineers.',
-      'This is a pre-launch draft. The final policy shipped with the apps is authoritative.',
+      'This is a pre-launch draft. The legal identity, country and contact address of the data controller must be added before launch. App-specific processing must also be verified against the shipped apps and their providers.',
     ],
   },
   {
@@ -30,7 +29,8 @@ export const PRIVACY: LegalSection[] = [
       'Voice: if you answer out loud, the audio of your answer is sent to a speech-to-text provider to transcribe it into your session. If the interviewer speaks its replies, the text of those replies is sent to a text-to-speech provider.',
       'Subscriptions and purchases: purchase and entitlement status via the Apple App Store, Google Play, RevenueCat and, for purchases on the web, Stripe. We never receive or store your card details.',
       'Device: a push notification token (if you enable notifications) so we can tell you when a report is ready.',
-      'Landing-site preferences and analytics: the site stores a language choice when you select one and stores your analytics choice in local storage. Only if you opt in, we send limited page-view and link-interaction events to our backend. Depending on the active configuration, Cloudflare Web Analytics or Umami Cloud may also be loaded. You can change or withdraw analytics consent using Privacy settings. These providers may receive technical request data such as your IP address under their own privacy terms.',
+      'Landing-site preferences and analytics: the site stores your selected language (`mentarika.locale`) and analytics choice (`mentarika.analytics-consent.v1`) in this browser’s local storage; these entries are not cookies. Analytics is off unless you opt in. After opt-in, the site sends an event name and page language to our marketing API. Events cover page views, selected link clicks, product setup/interview/report activity and article opens; the event request does not include an account ID. The current third-party analytics provider is Umami Cloud. The site also supports Cloudflare Web Analytics, so this notice must be updated if that configuration changes. The selected provider may receive technical request data, such as your IP address and page/request metadata, under its own terms. You can reject or withdraw analytics consent in Privacy settings.',
+      'The landing page sends its analytics API requests without browser credentials/cookies. This describes the landing-page code only; it is not a statement that hosting, infrastructure, the apps, or a third-party provider never use cookies or other storage. Their behavior must be checked against the actual deployment and provider configuration before launch.',
       'Diagnostics: error reports and limited diagnostic session data to find and fix bugs – via Sentry on the web app and our servers, and LogRocket in the mobile apps.',
       'Email: if an organization invites you by email, your address and the invitation are sent through our email delivery provider (Resend).',
     ],
@@ -50,7 +50,7 @@ export const PRIVACY: LegalSection[] = [
   {
     heading: '5. Sharing',
     body: [
-      'We share data only with processors that run the service: authentication (Clerk), subscriptions and payments (Apple, Google, RevenueCat, Stripe), AI model, speech-to-text and text-to-speech providers, optional website analytics (Cloudflare or Umami, only after consent), error monitoring (Sentry, LogRocket), email delivery (Resend), and infrastructure/hosting. We do not sell your data.',
+      'We share data only with processors that run the service: authentication (Clerk), subscriptions and payments (Apple, Google, RevenueCat, Stripe), AI model, speech-to-text and text-to-speech providers, optional website analytics (Umami Cloud is currently configured; Cloudflare Web Analytics is supported as an alternative, only after consent), error monitoring (Sentry, LogRocket), email delivery (Resend), and infrastructure/hosting. We do not sell your data.',
       'Organizations: if you join an organization on Mentarika (for example through your employer), it sees only your join date, how many interviews you did in the last 30 days, and your last activity. Team skill averages are shown only when at least five people contributed. No one in the organization can read your transcripts or individual reports.',
       'Candidate assignments: if you accept an interview or assessment sent by a company, you are shown what will be shared before you start. The company sees the resulting report or test results and scores – not your transcript or submitted code.',
     ],
@@ -59,12 +59,13 @@ export const PRIVACY: LegalSection[] = [
     heading: '6. Retention & deletion',
     body: [
       'We keep your account and interview data while your account exists. You can delete your account in-app at any time (Profile → Delete account); this permanently removes your data and identity from our systems.',
+      'The retention periods for landing-page analytics events, server logs and Umami Cloud data have not yet been confirmed and must be added before launch.',
     ],
   },
   {
     heading: '7. Your rights',
     body: [
-      'Depending on where you live you may have rights to access, correct, export, or delete your data. Contact us to exercise them.',
+      'Depending on where you live, you may have rights to access, correct, export, or delete your data, object to or restrict some processing, and complain to a data-protection authority. The applicable rights and request process must be reviewed for the regions where the service is offered. Contact us to exercise your rights.',
     ],
   },
   {
@@ -74,7 +75,7 @@ export const PRIVACY: LegalSection[] = [
   {
     heading: '9. Changes & contact',
     body: [
-      `We will update this policy as the product evolves and note the date below. Questions: ${LEGAL_CONTACT}.`,
+      `We will update this policy as the product evolves and note the date below. Questions or privacy requests: ${LEGAL_CONTACT}. Before launch, confirm that this mailbox is active and monitored, identify the data controller and its country/address, and document the legal bases and any international-transfer safeguards that apply to each processing activity.`,
     ],
   },
 ];

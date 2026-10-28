@@ -8,7 +8,7 @@ export const es: Dict = {
   analyticsConsent: {
     heading: 'Tus opciones de privacidad',
     description:
-      'Las analíticas opcionales nos ayudan a entender el uso del sitio. Permanecen desactivadas salvo que las aceptes. Puedes cambiar tu elección más adelante.',
+      'Esta opción solo controla las analíticas opcionales. Permanecen desactivadas hasta que las aceptes. Tu elección se guarda en el almacenamiento local de este navegador (no en una cookie) y puedes cambiarla en la configuración de privacidad.',
     accept: 'Aceptar analíticas',
     reject: 'Rechazar analíticas',
     settings: 'Configuración de privacidad',

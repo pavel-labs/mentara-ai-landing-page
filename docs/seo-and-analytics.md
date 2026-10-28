@@ -62,6 +62,15 @@ third-party code does not continue on that document. DNT/GPC still disables anal
 consent. This is a technical consent control, not a substitute for jurisdiction-specific legal
 review.
 
+The language switcher stores an explicit selection as `mentarika.locale` in local storage.
+Neither value is a cookie. Internal event requests contain only the event name and locale in
+their JSON body and use `credentials: omit`; available names are defined in
+`src/marketing/types.generated.ts`. This does not establish what cookies or server-side logs
+may be used by hosting, the API, or a third-party analytics provider. The privacy notice should
+name the provider currently enabled in admin (Umami Cloud per the current product configuration)
+and be reviewed if that changes. Confirm controller details, legal bases, retention periods,
+provider/hosting storage behavior, and international-transfer safeguards before launch.
+
 The admin saves `features.webAnalytics` through the existing audited configuration API:
 
 ```json

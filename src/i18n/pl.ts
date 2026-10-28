@@ -8,7 +8,7 @@ export const pl: Dict = {
   analyticsConsent: {
     heading: 'Twoje ustawienia prywatności',
     description:
-      'Opcjonalna analityka pomaga nam zrozumieć korzystanie z witryny. Pozostaje wyłączona, dopóki jej nie zaakceptujesz. Później możesz zmienić swój wybór.',
+      'Ta opcja dotyczy wyłącznie opcjonalnej analityki. Pozostaje ona wyłączona, dopóki jej nie zaakceptujesz. Twój wybór jest zapisywany w pamięci lokalnej tej przeglądarki (nie w pliku cookie) i możesz go zmienić w ustawieniach prywatności.',
     accept: 'Zezwól na analitykę',
     reject: 'Odrzuć analitykę',
     settings: 'Ustawienia prywatności',
