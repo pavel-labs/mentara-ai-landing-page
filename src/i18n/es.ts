@@ -7,10 +7,8 @@ export const es: Dict = {
   a11yMenu: 'Menú',
 
   meta: {
-    title:
-      'Mentarika – práctica de entrevistas técnicas con IA y evaluaciones de código para desarrolladores',
-    description:
-      'Practica entrevistas técnicas estructuradas con un entrevistador de IA que repregunta sobre tus respuestas, resuelve evaluaciones de código calificadas con tests ocultos y recibe un informe que muestra tus puntos débiles con evidencia. Planes Free y Pro, y Enterprise para equipos.',
+    title: "Mentarika – práctica con IA para desarrollo, QA y consultoría",
+    description: "Practica entrevistas técnicas, escenarios de QA y consultoría financiera y empresarial con feedback de IA. Los modos especializados dependen del piloto.",
     tagline: 'Practica la entrevista, no solo las preguntas.',
     launchLabel: 'En pruebas · Lanzamiento en enero de 2027',
   },

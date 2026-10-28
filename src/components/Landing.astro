@@ -1,4 +1,5 @@
 ---
+import PracticeModes from './PracticeModes.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import type { Locale } from '../i18n';
 import Nav from './Nav.astro';
@@ -51,6 +52,7 @@ const enabledFaq = content?.faq.filter((item) => item.enabled);
     <FAQ locale={locale} />
     <CTA locale={locale} />
     </>}
+    <PracticeModes locale={locale} />
     {publishedArticles(locale).length > 0 && <Articles locale={locale} compact />}
     <BlogTeaser locale={locale} />
   </main>

@@ -7,9 +7,8 @@ export const en: Dict = {
   a11yMenu: 'Menu',
 
   meta: {
-    title: 'Mentarika – AI technical interview practice and coding assessments for developers',
-    description:
-      'Practice structured technical interviews with an AI interviewer that follows up on your answers, take coding assessments graded by hidden tests, and get a report that shows your weak areas with evidence. Free and Pro plans, plus Enterprise for teams.',
+    title: "Mentarika – AI practice for developers, QA and business consultants",
+    description: "Practice technical interviews, QA scenarios and financial or business consulting with an AI tutor. Get feedback and reports. Specialized modes depend on pilot availability.",
     tagline: 'Practice the interview, not just the questions.',
     launchLabel: 'In testing · Launching January 2027',
   },

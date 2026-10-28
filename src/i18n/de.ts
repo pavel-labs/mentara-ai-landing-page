@@ -7,9 +7,8 @@ export const de: Dict = {
   a11yMenu: 'Menü',
 
   meta: {
-    title: 'Mentarika – technische Interviews mit KI üben und Coding-Assessments für Entwickler',
-    description:
-      'Übe strukturierte technische Interviews mit einem KI-Interviewer, der bei deinen Antworten nachhakt, löse Coding-Assessments, die mit versteckten Tests bewertet werden, und erhalte einen Bericht, der deine Schwächen mit Belegen zeigt. Free- und Pro-Plan, dazu Enterprise für Teams.',
+    title: "Mentarika – KI-Praxis für Entwicklung, QA und Unternehmensberatung",
+    description: "Üben Sie technische Interviews, QA-Szenarien und Finanz- und Unternehmensberatung mit KI-Feedback. Spezialisierte Modi sind je nach Pilottest verfügbar.",
     tagline: 'Übe das Interview, nicht nur die Fragen.',
     launchLabel: 'Im Test · Start Januar 2027',
   },
