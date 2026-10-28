@@ -1,0 +1,117 @@
+---
+import { LOCALES, LOCALE_STORAGE_KEY, getDict, localeHome, type Locale } from '../../i18n';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+---
+
+<details class="lang" data-lang-store={LOCALE_STORAGE_KEY}>
+  <summary aria-label={`Language: ${getDict(locale).langName}`}>
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="8" />
+      <ellipse cx="12" cy="12" rx="3.5" ry="8" />
+      <path d="M4 12h16" />
+    </svg>
+    {locale.toUpperCase()}
+    <span class="lang__chevron" aria-hidden="true"></span>
+  </summary>
+  <nav class="lang__panel" aria-label="Language">
+    {LOCALES.map((code) => (
+      <a
+        href={localeHome(code)}
+        hreflang={code}
+        lang={code}
+        aria-current={code === locale ? 'page' : undefined}
+      >
+        {getDict(code).langName}
+        <span aria-hidden="true">{code === locale ? '✓' : code.toUpperCase()}</span>
+      </a>
+    ))}
+  </nav>
+</details>
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('details.lang').forEach((menu) => {
+    menu.addEventListener('click', (event) => {
+      const link = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[hreflang]');
+      if (!link) return;
+      try {
+        localStorage.setItem(menu.dataset.langStore!, link.hreflang);
+      } catch {
+        /* Storage can be disabled. */
+      }
+      menu.open = false;
+    });
+    document.addEventListener('click', (event) => {
+      if (!menu.contains(event.target as Node)) menu.open = false;
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !menu.open) return;
+      menu.open = false;
+      menu.querySelector<HTMLElement>('summary')?.focus();
+    });
+  });
+</script>
+<style>
+  .lang {
+    position: relative;
+  }
+  .lang summary {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2.75rem;
+    padding-inline: 0.5rem;
+    list-style: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .lang summary::-webkit-details-marker {
+    display: none;
+  }
+  .lang svg {
+    width: 1.15rem;
+    stroke: currentColor;
+    stroke-width: 1.4;
+  }
+  .lang__chevron {
+    width: 0.35rem;
+    height: 0.35rem;
+    margin-left: 0.25rem;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    transform: rotate(45deg) translateY(-2px);
+  }
+  .lang__panel {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    z-index: 2;
+    display: grid;
+    min-width: 12rem;
+    padding: 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+    box-shadow: 0 16px 40px #18201918;
+  }
+  .lang a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.75rem;
+    padding: 0.65rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+  }
+  .lang a span {
+    color: var(--text-soft);
+    font-size: 0.6875rem;
+  }
+  .lang a:hover,
+  .lang a[aria-current] {
+    background: var(--surface-subtle);
+  }
+</style>

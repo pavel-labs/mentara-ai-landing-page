@@ -1,0 +1,20 @@
+---
+import { localePath, type Locale } from '../../i18n/index';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const copy = {
+  en: ['Practice for your profession', 'Developer, QA and financial/business consultant practice', 'Rehearse technical decisions, test strategy, business processes, financial analysis and business translation. Specialized modes are available when enabled for your pilot. QA and consulting currently cover interviews and reports.', 'Read the practice guide'],
+  ru: ['Практика для вашей профессии', 'Разработка, QA и финансово-бизнесовый консалтинг', 'Тренируйте технические решения, стратегию тестирования, бизнес-процессы, финансовый анализ и деловой перевод. Специализированные режимы доступны при включении для пилота. QA и консалтинг пока включают интервью и отчёты.', 'Читать руководство по практике'],
+  de: ['Üben für Ihren Beruf', 'Praxis für Entwicklung, QA und Finanz- und Unternehmensberatung', 'Üben Sie technische Entscheidungen, Teststrategien, Geschäftsprozesse, Finanzanalysen und Fachübersetzungen. Spezialisierte Modi sind verfügbar, wenn sie für Ihren Pilottest aktiviert sind. QA und Beratung umfassen derzeit Interviews und Berichte.', 'Praxisleitfaden lesen'],
+  es: ['Práctica para tu profesión', 'Desarrollo, QA y consultoría financiera y empresarial', 'Practica decisiones técnicas, estrategias de pruebas, procesos de negocio, análisis financiero y traducción empresarial. Los modos especializados están disponibles cuando se habilitan para tu piloto. QA y consultoría incluyen por ahora entrevistas e informes.', 'Leer la guía de práctica'],
+  pl: ['Ćwicz umiejętności zawodowe', 'Programowanie, QA oraz doradztwo finansowe i biznesowe', 'Ćwicz decyzje techniczne, strategię testów, procesy biznesowe, analizę finansową i tłumaczenia biznesowe. Tryby specjalistyczne są dostępne po włączeniu w pilotażu. QA i doradztwo obejmują obecnie rozmowy i raporty.', 'Przeczytaj poradnik'],
+}[locale];
+---
+<section id="practice-modes" class="section">
+  <div class="container">
+    <p class="eyebrow">{copy[0]}</p>
+    <h2>{copy[1]}</h2>
+    <p class="lede">{copy[2]}</p>
+    <a href={localePath(locale, '/blog/ai-skills-practice-for-developers-qa-and-consultants')}>{copy[3]}</a>
+  </div>
+</section>

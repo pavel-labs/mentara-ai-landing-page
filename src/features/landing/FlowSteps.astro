@@ -1,0 +1,71 @@
+---
+import type { FlowStep } from '../../i18n/types';
+
+interface Props {
+  steps: FlowStep[];
+  layout?: 'row' | 'column';
+}
+const { steps, layout = 'row' } = Astro.props;
+---
+
+<ol class:list={['flow', `flow--${layout}`]}>
+  {steps.map((s, i) => (
+    <li class="flow__step">
+      <span class="flow__n" aria-hidden="true">
+        {String(i + 1).padStart(2, '0')}
+      </span>
+      <h3 class="flow__title">{s.title}</h3>
+      <p class="flow__body">{s.body}</p>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .flow {
+    display: grid;
+    gap: 1.5rem;
+    padding: 0;
+    list-style: none;
+  }
+  .flow--row {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+    gap: 2rem;
+  }
+  .flow__step {
+    display: grid;
+    align-content: start;
+    gap: 0.7rem;
+    min-width: 0;
+  }
+  .flow__n {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    color: var(--accent-ink);
+    font: 0.6875rem var(--font-mono);
+  }
+  .flow__title {
+    font-size: 1.125rem;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+  }
+  .flow__body {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+  .flow--column .flow__step {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.3rem 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+  .flow--column .flow__n {
+    grid-row: span 2;
+    margin: 0;
+  }
+</style>

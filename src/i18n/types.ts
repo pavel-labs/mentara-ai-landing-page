@@ -48,6 +48,14 @@ export interface Dict {
   a11ySkip: string;
   /** Accessible name of the mobile navigation toggle. */
   a11yMenu: string;
+  analyticsConsent: {
+    heading: string;
+    description: string;
+    accept: string;
+    reject: string;
+    settings: string;
+    privacy: string;
+  };
 
   meta: {
     title: string;

@@ -4,7 +4,7 @@
 //
 // `effectiveDate` is the single place to bump the "last updated" stamp.
 
-export const LEGAL_EFFECTIVE_DATE = '2026-10-21';
+export const LEGAL_EFFECTIVE_DATE = '2026-10-28';
 // TODO: provision this mailbox before launch. Shown verbatim in the privacy policy and
 // terms, so it must be a mailbox that actually exists.
 export const LEGAL_CONTACT = 'privacy@mentarika.app';
@@ -30,7 +30,7 @@ export const PRIVACY: LegalSection[] = [
       'Voice: if you answer out loud, the audio of your answer is sent to a speech-to-text provider to transcribe it into your session. If the interviewer speaks its replies, the text of those replies is sent to a text-to-speech provider.',
       'Subscriptions and purchases: purchase and entitlement status via the Apple App Store, Google Play, RevenueCat and, for purchases on the web, Stripe. We never receive or store your card details.',
       'Device: a push notification token (if you enable notifications) so we can tell you when a report is ready.',
-      'Analytics: privacy-friendly, cookieless aggregate usage via Cloudflare Web Analytics – no cross-site tracking, no advertising identifiers.',
+      'Landing-site preferences and analytics: the site stores a language choice when you select one and stores your analytics choice in local storage. Only if you opt in, we send limited page-view and link-interaction events to our backend. Depending on the active configuration, Cloudflare Web Analytics or Umami Cloud may also be loaded. You can change or withdraw analytics consent using Privacy settings. These providers may receive technical request data such as your IP address under their own privacy terms.',
       'Diagnostics: error reports and limited diagnostic session data to find and fix bugs – via Sentry on the web app and our servers, and LogRocket in the mobile apps.',
       'Email: if an organization invites you by email, your address and the invitation are sent through our email delivery provider (Resend).',
     ],
@@ -50,7 +50,7 @@ export const PRIVACY: LegalSection[] = [
   {
     heading: '5. Sharing',
     body: [
-      'We share data only with processors that run the service: authentication (Clerk), subscriptions and payments (Apple, Google, RevenueCat, Stripe), AI model, speech-to-text and text-to-speech providers, analytics (Cloudflare), error monitoring (Sentry, LogRocket), email delivery (Resend), and infrastructure/hosting. We do not sell your data.',
+      'We share data only with processors that run the service: authentication (Clerk), subscriptions and payments (Apple, Google, RevenueCat, Stripe), AI model, speech-to-text and text-to-speech providers, optional website analytics (Cloudflare or Umami, only after consent), error monitoring (Sentry, LogRocket), email delivery (Resend), and infrastructure/hosting. We do not sell your data.',
       'Organizations: if you join an organization on Mentarika (for example through your employer), it sees only your join date, how many interviews you did in the last 30 days, and your last activity. Team skill averages are shown only when at least five people contributed. No one in the organization can read your transcripts or individual reports.',
       'Candidate assignments: if you accept an interview or assessment sent by a company, you are shown what will be shared before you start. The company sees the resulting report or test results and scores – not your transcript or submitted code.',
     ],

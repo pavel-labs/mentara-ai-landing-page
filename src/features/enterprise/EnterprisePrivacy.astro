@@ -1,0 +1,102 @@
+---
+import { getDict, type Locale } from '../../i18n';
+import SectionHead from '../../components/shared/SectionHead.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const privacy = getDict(locale).enterprise.privacy;
+---
+
+<section class="ent-privacy">
+  <div class="container">
+    <SectionHead eyebrow={privacy.eyebrow} heading={privacy.heading} />
+    <p class="lede ent-privacy__lede">{privacy.lede}</p>
+    <div class="ent-privacy__comparison">
+      <div class="ent-privacy__column">
+        <h3 class="ent-privacy__name">{privacy.sees.label}</h3>
+        <ul class="ent-privacy__list">
+          {privacy.sees.points.map((point) => (
+            <li class="ent-privacy__item">{point}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="ent-privacy__column ent-privacy__column--never">
+        <h3 class="ent-privacy__name">{privacy.never.label}</h3>
+        <ul class="ent-privacy__list">
+          {privacy.never.points.map((point) => (
+            <li class="ent-privacy__item">{point}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ent-privacy__lede {
+    max-width: 58ch;
+    margin-top: calc(-1 * clamp(1rem, 2.5vw, 2rem));
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .ent-privacy__comparison {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+  }
+  .ent-privacy__column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+    padding: clamp(1.4rem, 3vw, 2.2rem);
+  }
+  .ent-privacy__column--never {
+    border-left: 1px solid var(--line-strong);
+    background: var(--surface-raised);
+  }
+  .ent-privacy__name {
+    color: var(--positive);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .ent-privacy__column--never .ent-privacy__name {
+    color: var(--accent-ink);
+  }
+  .ent-privacy__list {
+    display: grid;
+    gap: 0.8rem;
+    list-style: none;
+  }
+  .ent-privacy__item {
+    position: relative;
+    padding-left: 1.2rem;
+  }
+  .ent-privacy__item::before {
+    position: absolute;
+    left: 0;
+    color: var(--positive);
+    content: '✓';
+  }
+  .ent-privacy__column--never .ent-privacy__item::before {
+    color: var(--accent-ink);
+    content: '✕';
+  }
+
+  @media (max-width: 820px) {
+    .ent-privacy__comparison {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .ent-privacy__column--never {
+      border-top: 1px solid var(--line-strong);
+      border-left: 0;
+    }
+  }
+</style>

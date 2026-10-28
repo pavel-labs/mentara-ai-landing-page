@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import Nav from '../../../components/Nav.astro';
-import Footer from '../../../components/Footer.astro';
-import Articles from '../../../components/Articles.astro';
+import Nav from '../../../components/shared/Nav.astro';
+import Footer from '../../../components/shared/Footer.astro';
+import Articles from '../../../features/blog/Articles.astro';
 import { LOCALES, localeHome } from '../../../i18n';
 import { marketingLabels } from '../../../marketing/content';
 export function getStaticPaths() { return LOCALES.filter((locale) => locale !== 'en').map((locale) => ({ params: { locale }, props: { locale } })); }

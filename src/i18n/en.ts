@@ -5,6 +5,15 @@ export const en: Dict = {
   ogLocale: 'en_US',
   a11ySkip: 'Skip to content',
   a11yMenu: 'Menu',
+  analyticsConsent: {
+    heading: 'Your privacy choices',
+    description:
+      'Optional analytics help us understand site usage. They stay off unless you allow them. You can change this choice later.',
+    accept: 'Allow analytics',
+    reject: 'Reject analytics',
+    settings: 'Privacy settings',
+    privacy: 'Privacy policy',
+  },
 
   meta: {
     title: "Mentarika – AI practice for developers, QA and business consultants",

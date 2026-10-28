@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/shared/Nav.astro';
+import Footer from '../../components/shared/Footer.astro';
+import type { Locale } from '../../i18n/index';
+import { getDict } from '../../i18n/index';
+import { getPublishedPosts, postsForSlugs, getCluster } from '../../content/blog';
+import { localePath, localeHome } from '../../i18n/index';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+
+const posts = await getPublishedPosts();
+const compareCluster = getCluster('compare');
+const comparePosts = compareCluster == null ? [] : postsForSlugs(posts, compareCluster.slugs);
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${t.contentHub.compare.eyebrow} – Mentarika`}
+  description={t.contentHub.compare.lede}
+>
+  <Nav locale={locale} homeHref={localeHome(locale)} />
+  <main id="main" class="compare">
+    <div class="container compare__inner">
+      <p class="eyebrow">{t.contentHub.compare.eyebrow}</p>
+      <h1 class="h2">{t.contentHub.compare.title}</h1>
+      <p class="compare__intro">{t.contentHub.compare.lede}</p>
+
+      <div class="compare__cards">
+        {comparePosts.map((post) => (
+          <article class="compare__card">
+            <a href={localePath(locale, `blog/${post.id}`)}>
+              <h2 class="compare__title">{post.data.title}</h2>
+              <p class="compare__summary">{post.data.summary}</p>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>
+
+<style>
+  .compare {
+    padding-block: clamp(3rem, 7vw, 6rem);
+  }
+  .compare__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 58rem;
+  }
+  .compare__intro {
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 46rem;
+  }
+  .compare__cards {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .compare__card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: color-mix(in oklab, var(--surface-subtle) 56%, transparent);
+  }
+  .compare__card a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-height: 100%;
+    padding: 1.25rem;
+  }
+  .compare__title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+  }
+  .compare__summary {
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .compare__card a:hover .compare__title {
+    color: var(--accent-ink);
+  }
+  @media (max-width: 860px) {
+    .compare__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -5,6 +5,15 @@ export const de: Dict = {
   ogLocale: 'de_DE',
   a11ySkip: 'Zum Inhalt springen',
   a11yMenu: 'Menü',
+  analyticsConsent: {
+    heading: 'Deine Datenschutzeinstellungen',
+    description:
+      'Optionale Analysen helfen uns, die Nutzung der Website zu verstehen. Sie bleiben deaktiviert, bis du zustimmst. Du kannst deine Auswahl später ändern.',
+    accept: 'Analysen erlauben',
+    reject: 'Analysen ablehnen',
+    settings: 'Datenschutzeinstellungen',
+    privacy: 'Datenschutzerklärung',
+  },
 
   meta: {
     title: "Mentarika – KI-Praxis für Entwicklung, QA und Unternehmensberatung",

@@ -1,0 +1,147 @@
+---
+import { getDict, type Locale } from '../../i18n';
+import { marketingLabels, marketingLinks } from '../../marketing/content';
+import type { IMarketingLinks } from '../../marketing/types.generated';
+import PlatformIcon from './PlatformIcon.astro';
+
+interface Props {
+  locale: Locale;
+  links?: IMarketingLinks;
+}
+const { locale, links = marketingLinks(locale) } = Astro.props;
+const copy = getDict(locale).badges;
+const labels = marketingLabels(locale);
+const platforms = [
+  { label: copy.ios, platform: 'ios', url: links.appStoreUrl, event: 'app_store_cta' },
+  { label: copy.android, platform: 'android', url: links.googlePlayUrl, event: 'google_play_cta' },
+  { label: copy.web, platform: 'web', url: links.webAppUrl, event: 'web_app_cta' },
+] as const;
+---
+
+<div class="badges" role="group" aria-label={platforms.map((item) => item.label).join(', ')}>
+  {platforms.map((item) => {
+    const Tag = item.url ? 'a' : 'span';
+    return (
+      <Tag
+        class:list={['badge', { 'badge--ready': item.url }]}
+        href={item.url ?? undefined}
+        aria-disabled={!item.url ? 'true' : undefined}
+        data-marketing-event={item.url ? item.event : undefined}
+        rel={item.url ? 'noopener noreferrer' : undefined}
+      >
+        <span class="badge__icon">
+          <PlatformIcon platform={item.platform} />
+        </span>
+        <span class="badge__text">
+          <small>{item.url ? labels.available : copy.comingSoon}</small>
+          <strong>{item.label}</strong>
+        </span>
+        {item.url && (
+          <span class="badge__arrow" aria-hidden="true">
+            ↗
+          </span>
+        )}
+      </Tag>
+    );
+  })}
+</div>
+{links.webAppUrl && <p class="badges__note">{copy.earlyAccessNote}</p>}
+<style>
+  .badges {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    width: min(100%, 38rem);
+  }
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-width: 0;
+    min-height: 4.5rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 18px;
+    background: var(--surface-raised);
+    color: var(--text);
+    line-height: 1.2;
+    box-shadow: 0 2px 4px #14251a08;
+  }
+  .badge__icon {
+    display: block;
+    flex: none;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  .badge__icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .badge__text {
+    display: grid;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+  .badge__text small {
+    color: var(--text-soft);
+    font-size: 0.6875rem;
+    line-height: 1.35;
+  }
+  .badge__text strong {
+    font-size: 1rem;
+    font-weight: 650;
+    letter-spacing: -0.025em;
+  }
+  .badge__arrow {
+    flex: none;
+    align-self: flex-start;
+    margin-left: auto;
+    font-size: 0.875rem;
+  }
+  .badge--ready {
+    background: var(--text);
+    color: var(--surface);
+    border-color: var(--text);
+  }
+  .badge--ready small {
+    color: inherit;
+  }
+  a.badge {
+    transition:
+      background 180ms ease,
+      border-color 180ms ease;
+  }
+  a.badge:hover {
+    background: var(--accent-ink);
+    color: var(--surface);
+    border-color: var(--accent-ink);
+  }
+  .badges__note {
+    max-width: 65ch;
+    color: var(--text-soft);
+    font-size: 0.75rem;
+  }
+  @media (max-width: 600px) {
+    .badge {
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 6.25rem;
+      padding: 0.9rem 0.45rem;
+      border-radius: 16px;
+      text-align: center;
+    }
+    .badge__text {
+      gap: 0.2rem;
+    }
+    .badge__text small {
+      font-size: 0.625rem;
+    }
+    .badge__text strong {
+      font-size: 0.875rem;
+    }
+    .badge__arrow {
+      display: none;
+    }
+  }
+</style>

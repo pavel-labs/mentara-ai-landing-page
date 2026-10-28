@@ -1,5 +1,5 @@
 ---
-import MarketingArticle from '../../components/MarketingArticle.astro';
+import MarketingArticle from '../../features/blog/MarketingArticle.astro';
 import { publishedArticles } from '../../marketing/content';
 export function getStaticPaths() { return publishedArticles('en').map((article) => ({ params: { slug: article.slug }, props: { article } })); }
 const { article } = Astro.props;

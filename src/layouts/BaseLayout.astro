@@ -3,7 +3,8 @@ import '@fontsource-variable/hanken-grotesk';
 import '@fontsource/jetbrains-mono/400.css';
 import '../styles/global.css';
 import { SITE } from '../consts';
-import LocaleAuto from '../components/LocaleAuto.astro';
+import AnalyticsConsent from '../features/analytics/AnalyticsConsent.astro';
+import LocaleAuto from '../components/shared/LocaleAuto.astro';
 import {
   DEFAULT_LOCALE,
   LOCALES,
@@ -177,8 +178,7 @@ const jsonLd = {
       {t.a11ySkip}
     </a>
     <slot />
-    {analytics && <script src="../marketing/analytics.ts"></script>}
-    {analytics && <script src="../marketing/web-analytics.ts"></script>}
+    {analytics && <AnalyticsConsent locale={locale} />}
     <style>
       .skip {
         position: absolute;

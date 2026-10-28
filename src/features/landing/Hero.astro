@@ -1,0 +1,212 @@
+---
+import StoreBadges from '../../components/shared/StoreBadges.astro';
+import InterviewPreview from './InterviewPreview.astro';
+import { getDict, localePath, type Locale } from '../../i18n/index';
+import { marketingLabels } from '../../marketing/content';
+import type { IMarketingLanding } from '../../marketing/types.generated';
+interface Props {
+  locale: Locale;
+  content?: IMarketingLanding;
+}
+const { locale, content } = Astro.props;
+const t = getDict(locale);
+const labels = marketingLabels(locale);
+---
+
+<section class="hero">
+  <div class="container hero__copy">
+    <p class="eyebrow hero__eyebrow" data-preview="hero.eyebrow" data-reveal>
+      <span class="dot" aria-hidden="true"></span>
+      {content?.hero.eyebrow ?? t.hero.eyebrow}
+    </p>
+    <h1 class="display" data-preview="hero.heading" data-reveal style="--d:1">
+      {content ? (
+        content.hero.heading
+      ) : (
+        <>
+          {t.hero.titleLead}
+          <span class="hero__accent">{t.hero.titleAccent}</span>
+        </>
+      )}
+    </h1>
+    <p class="lede" data-preview="hero.description" data-reveal style="--d:2">
+      {content?.hero.description ?? t.hero.lede}
+    </p>
+    <div class="hero__actions" data-preview="cta" data-reveal style="--d:3">
+      {content?.links.webAppUrl && (
+        <a
+          class="btn"
+          href={content.links.webAppUrl}
+          data-marketing-event="web_app_cta"
+          data-preview="hero.cta"
+        >
+          {content.hero.ctaLabel}
+          <span aria-hidden="true">↗</span>
+        </a>
+      )}
+      {!content?.links.webAppUrl && (
+        <a class="btn" href={content ? '#product' : '#waitlist'}>
+          {content ? labels.products : t.pricing.tiers[0]?.cta}
+          <span aria-hidden="true">↓</span>
+        </a>
+      )}
+      <a
+        class="btn btn--ghost"
+        href={localePath(locale, 'enterprise')}
+        data-marketing-event="enterprise_cta"
+      >
+        {t.hero.teamsLink}
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <p class="hero__availability mono">{t.hero.availability}</p>
+  </div>
+  <div class="container hero__visual" data-preview="hero.image">
+    <div class="hero__stage theme theme--dark">
+      <div class="hero__orbits" aria-hidden="true">
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      {content?.hero.image ? (
+        <img
+          class="hero__image"
+          src={content.hero.image.url}
+          alt={content.hero.image.alt}
+          width="1200"
+          height="700"
+          fetchpriority="high"
+        />
+      ) : (
+        <InterviewPreview locale={locale} />
+      )}
+      <div class="hero__platforms">
+        <StoreBadges locale={locale} links={content?.links} />
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .hero {
+    padding-block: clamp(3.5rem, 6vw, 6rem) 0;
+  }
+  .hero__copy {
+    display: grid;
+    justify-items: center;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .hero__eyebrow {
+    letter-spacing: 0.06em;
+  }
+  .hero h1 {
+    max-width: 19ch;
+  }
+  .hero__accent {
+    display: block;
+    color: var(--accent-ink);
+  }
+  .hero .lede {
+    max-width: 66ch;
+    margin-top: 0.25rem;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+  .hero__availability {
+    max-width: 50ch;
+  }
+  .hero__visual {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+  }
+  .hero__stage {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(1.25rem, 5vw, 4.5rem) clamp(1rem, 5vw, 5rem) 2rem;
+    border-radius: var(--radius-lg);
+    background: #1c3b2c;
+    overflow: hidden;
+  }
+  .hero__stage > :global(.session),
+  .hero__image,
+  .hero__platforms {
+    position: relative;
+    z-index: 1;
+  }
+  .hero__orbits {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+  .hero__orbits i {
+    position: absolute;
+    width: 65%;
+    aspect-ratio: 1;
+    border: 1px solid #ccedaa30;
+    border-radius: 50%;
+    transform: scaleX(1.5) rotate(-25deg);
+  }
+  .hero__orbits i:nth-child(2) {
+    width: 90%;
+  }
+  .hero__orbits i:nth-child(3) {
+    width: 115%;
+  }
+  .hero__orbits i:nth-child(4) {
+    width: 140%;
+  }
+  .hero__image {
+    width: 100%;
+    max-height: 44rem;
+    object-fit: contain;
+    border-radius: 20px;
+  }
+  .hero__platforms {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .hero__platforms :global(.badges) {
+    justify-content: center;
+  }
+  .hero__platforms :global(.badges__note) {
+    max-width: 65ch;
+    text-align: center;
+  }
+  @media (min-width: 900px) {
+    .hero__stage > :global(.session) {
+      transform: rotate(-1deg);
+    }
+  }
+  @media (max-width: 600px) {
+    .hero {
+      padding-top: 2.75rem;
+    }
+    .hero__copy {
+      gap: 1.25rem;
+    }
+    .hero .lede {
+      font-size: 1rem;
+    }
+    .hero__eyebrow {
+      max-width: 30ch;
+      font-size: 0.625rem;
+      text-align: left;
+    }
+    .hero__stage {
+      border-radius: 24px;
+      padding-bottom: 1.5rem;
+    }
+    .hero__platforms {
+      margin-top: 1.5rem;
+    }
+  }
+</style>

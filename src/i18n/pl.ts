@@ -5,6 +5,15 @@ export const pl: Dict = {
   ogLocale: 'pl_PL',
   a11ySkip: 'Przejdź do treści',
   a11yMenu: 'Menu',
+  analyticsConsent: {
+    heading: 'Twoje ustawienia prywatności',
+    description:
+      'Opcjonalna analityka pomaga nam zrozumieć korzystanie z witryny. Pozostaje wyłączona, dopóki jej nie zaakceptujesz. Później możesz zmienić swój wybór.',
+    accept: 'Zezwól na analitykę',
+    reject: 'Odrzuć analitykę',
+    settings: 'Ustawienia prywatności',
+    privacy: 'Polityka prywatności',
+  },
 
   meta: {
     title: "Mentarika – praktyka AI dla programistów, QA i konsultantów",

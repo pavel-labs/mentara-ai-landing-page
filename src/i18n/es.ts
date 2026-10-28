@@ -5,6 +5,15 @@ export const es: Dict = {
   ogLocale: 'es_ES',
   a11ySkip: 'Saltar al contenido',
   a11yMenu: 'Menú',
+  analyticsConsent: {
+    heading: 'Tus opciones de privacidad',
+    description:
+      'Las analíticas opcionales nos ayudan a entender el uso del sitio. Permanecen desactivadas salvo que las aceptes. Puedes cambiar tu elección más adelante.',
+    accept: 'Aceptar analíticas',
+    reject: 'Rechazar analíticas',
+    settings: 'Configuración de privacidad',
+    privacy: 'Política de privacidad',
+  },
 
   meta: {
     title: "Mentarika – práctica con IA para desarrollo, QA y consultoría",

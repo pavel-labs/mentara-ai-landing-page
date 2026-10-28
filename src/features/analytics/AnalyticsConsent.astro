@@ -1,0 +1,195 @@
+---
+import { getDict, localePath, type Locale } from '../../i18n/index';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDict(locale).analyticsConsent;
+---
+
+<aside
+  class="analytics-consent"
+  data-consent-panel
+  hidden
+  role="region"
+  aria-live="polite"
+  aria-labelledby="consent-title"
+>
+  <div class="analytics-consent__copy">
+    <h2 id="consent-title">{t.heading}</h2>
+    <p>{t.description}</p>
+    <a href={localePath(locale, 'privacy')}>{t.privacy}</a>
+  </div>
+  <div class="analytics-consent__actions">
+    <button type="button" class="analytics-consent__button" data-consent-reject>
+      {t.reject}
+    </button>
+    <button type="button" class="analytics-consent__button" data-consent-accept>
+      {t.accept}
+    </button>
+  </div>
+</aside>
+<button type="button" class="analytics-consent__settings" data-consent-settings hidden>
+  {t.settings}
+</button>
+
+<script>
+  import { respectsPrivacy } from './privacy';
+  import {
+    ANALYTICS_CONSENT_KEY,
+    getAnalyticsConsent,
+    setAnalyticsConsent,
+  } from './consent';
+  import { createAnalyticsConsentController } from './consent-controller';
+
+  const panel = document.querySelector<HTMLElement>('[data-consent-panel]');
+  const settings = document.querySelector<HTMLButtonElement>(
+    '[data-consent-settings]',
+  );
+  const accept = panel?.querySelector<HTMLButtonElement>('[data-consent-accept]');
+  const reject = panel?.querySelector<HTMLButtonElement>('[data-consent-reject]');
+  const consent = createAnalyticsConsentController({
+    getConsent: getAnalyticsConsent,
+    setConsent: setAnalyticsConsent,
+    respectsPrivacy,
+    reload: () => window.location.reload(),
+    loadAnalytics: async () => {
+      await Promise.all([
+        import('./analytics'),
+        import('./web-analytics'),
+      ]);
+    },
+    onLoadError: (error) =>
+      console.error('Could not load optional analytics.', error),
+  });
+
+  const openSettings = () => {
+    if (!panel || !settings) return;
+    panel.hidden = false;
+    settings.hidden = true;
+    reject?.focus();
+  };
+
+  const closeSettings = () => {
+    if (!panel || !settings) return;
+    panel.hidden = true;
+    settings.hidden = false;
+    settings.focus();
+  };
+
+  if (panel && settings && accept && reject) {
+    if (consent.initialize() === null) openSettings();
+    else settings.hidden = false;
+
+    settings.addEventListener('click', openSettings);
+    accept.addEventListener('click', () => {
+      void consent.grant();
+      closeSettings();
+    });
+    reject.addEventListener('click', () => {
+      consent.reject();
+      closeSettings();
+    });
+    window.addEventListener('storage', (event) => {
+      if (event.key === ANALYTICS_CONSENT_KEY || event.key === null)
+        consent.handleStorageChange(event.key, event.newValue);
+    });
+  }
+</script>
+
+<style>
+  .analytics-consent[hidden],
+  .analytics-consent__settings[hidden] {
+    display: none;
+  }
+  .analytics-consent {
+    position: fixed;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    left: max(1rem, env(safe-area-inset-left));
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: 64rem;
+    margin-inline: auto;
+    padding: 1.25rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: var(--surface-raised);
+    box-shadow: 0 16px 48px #18201926;
+  }
+  .analytics-consent__copy {
+    display: grid;
+    gap: 0.4rem;
+    max-width: 42rem;
+  }
+  .analytics-consent h2 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 650;
+  }
+  .analytics-consent p,
+  .analytics-consent a {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  .analytics-consent a {
+    color: var(--accent-ink);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    justify-self: start;
+  }
+  .analytics-consent__actions {
+    display: flex;
+    flex: none;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.6rem;
+  }
+  .analytics-consent__button,
+  .analytics-consent__settings {
+    min-height: 2.75rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .analytics-consent__button:focus-visible,
+  .analytics-consent__settings:focus-visible,
+  .analytics-consent a:focus-visible {
+    outline: 3px solid var(--accent-ink);
+    outline-offset: 3px;
+  }
+  .analytics-consent__settings {
+    position: fixed;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    z-index: 99;
+    box-shadow: 0 8px 24px #18201920;
+  }
+  @media (max-width: 640px) {
+    .analytics-consent {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .analytics-consent__actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .analytics-consent__button {
+      padding-inline: 0.5rem;
+    }
+  }
+</style>

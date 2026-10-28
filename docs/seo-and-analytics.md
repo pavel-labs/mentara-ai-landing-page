@@ -44,10 +44,23 @@ scripts must stay within the same syntax baseline. Request timeouts still settle
 without caching, and with a three-second timeout. The timeout aborts requests where
 `AbortController` is available and still settles if it is not. It accepts only Cloudflare's token
 or Umami's UUID and uses fixed script URLs. DNT/GPC prevents the request and script load. Provider
-scripts receive no referrer; Umami also excludes query strings and hash fragments and honors DNT.
+scripts do not receive full page paths as referrers; Cloudflare receives the site origin for
+beacon validation, while Umami receives no referrer. Umami also excludes query strings and hash
+fragments and honors DNT.
 Internal event requests use Fetch `keepalive` only in browsers that expose it. Neither adapter adds
 user IDs or custom event payloads. Third-party requests still reach the selected provider and are
 different from the internal aggregate counters.
+
+Both internal funnel events and the optional third-party provider are gated by an explicit,
+site-wide analytics opt-in. Before consent, the page does not request the tracking config or
+send events. The consent UI is a small entry point; internal and provider analytics are separate
+dynamic imports and are not downloaded until consent is granted. The choice is stored as
+`mentarika.analytics-consent.v1` in local storage so it can be remembered on later visits; a
+persistent privacy-settings button lets visitors change it.
+Rejecting after previously allowing analytics records the choice and reloads the page so loaded
+third-party code does not continue on that document. DNT/GPC still disables analytics even after
+consent. This is a technical consent control, not a substitute for jurisdiction-specific legal
+review.
 
 The admin saves `features.webAnalytics` through the existing audited configuration API:
 
