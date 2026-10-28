@@ -79,10 +79,6 @@ const alternates =
     ? []
     : LOCALES.map((l) => ({ hreflang: l, href: alternateHref(l) }));
 
-// Cloudflare Web Analytics – privacy-friendly, cookieless. Only injected when a token is
-// provided, so dev/forks ship no beacon and no consent banner is needed.
-const cfToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
-
 // One JSON-LD @graph: the org, the app, the FAQ where it is shown, and any page nodes.
 // FAQPage is emitted only next to a rendered FAQ – markup for content that is not on the
 // page is what Google treats as spam.
@@ -175,14 +171,6 @@ const jsonLd = {
       is:inline
       set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')}
     />
-    {analytics && cfToken && (
-      <script
-        is:inline
-        defer
-        src="https://static.cloudflareinsights.com/beacon.min.js"
-        data-cf-beacon={`{"token":"${cfToken}","spa":true}`}
-      />
-    )}
   </head>
   <body>
     <a href="#main" class="skip">
@@ -190,6 +178,7 @@ const jsonLd = {
     </a>
     <slot />
     {analytics && <script src="../marketing/analytics.ts"></script>}
+    {analytics && <script src="../marketing/web-analytics.ts"></script>}
     <style>
       .skip {
         position: absolute;
