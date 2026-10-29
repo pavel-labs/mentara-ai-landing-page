@@ -31,6 +31,7 @@ interface Props {
   suppressAlternates?: boolean;
   faqItems?: { q: string; a: string }[];
   analytics?: boolean;
+  robots?: string;
   /**
    * Content that exists in one language only (the English blog) and is merely served
    * under every locale prefix. The canonical then points at the English URL and no
@@ -52,6 +53,7 @@ const {
   suppressAlternates = false,
   faqItems,
   analytics = true,
+  robots = 'index,follow,max-image-preview:large',
 } = Astro.props;
 const t = getDict(locale);
 const pageTitle = title ?? t.meta.title;
@@ -65,6 +67,7 @@ const canonical = new URL(
   origin,
 ).href;
 const favicon = withBase('favicon.svg');
+const brandIcon = withBase('icon-512.png');
 const ogImage = ogImageUrl ?? new URL(withBase(`og/${locale}.png`), origin).href;
 const sitemapHref = withBase('sitemap-index.xml');
 const rssHref = withBase('rss.xml');
@@ -100,7 +103,14 @@ const jsonLd = {
       '@id': `${origin.origin}/#org`,
       name: SITE.name,
       url: SITE.domain,
-      logo: new URL(favicon, origin).href,
+      logo: new URL(brandIcon, origin).href,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${origin.origin}/#website`,
+      name: SITE.name,
+      url: origin.origin,
+      inLanguage: LOCALES,
     },
     {
       '@type': 'SoftwareApplication',
@@ -138,6 +148,8 @@ const jsonLd = {
     <slot name="head" />
     <title>{pageTitle}</title>
     <meta name="description" content={pageDesc} />
+    <meta name="author" content={SITE.name} />
+    <meta name="robots" content={robots} />
     <link rel="canonical" href={canonical} />
     {alternates.map((a) => (
       <link rel="alternate" hreflang={a.hreflang} href={a.href} />
@@ -149,7 +161,7 @@ const jsonLd = {
     <meta name="color-scheme" content="light" />
 
     <link rel="icon" href={favicon} type="image/svg+xml" />
-    <link rel="mask-icon" href={favicon} color="#193629" />
+    <link rel="icon" href={withBase('favicon-32.png')} type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href={appleIcon} />
     <link rel="manifest" href={manifestHref} />
     <link rel="sitemap" href={sitemapHref} />
@@ -158,14 +170,19 @@ const jsonLd = {
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:locale" content={t.ogLocale} />
+    {alternates
+      .filter((a) => a.hreflang !== locale)
+      .map((a) => <meta property="og:locale:alternate" content={getDict(a.hreflang).ogLocale} />)}
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDesc} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={pageTitle} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDesc} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={pageTitle} />
 
     <script
       type="application/ld+json"

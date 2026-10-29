@@ -76,7 +76,7 @@ src/
                 #   {locale}/terms, 404, blog/index, blog/[slug], rss.xml,
                 #   og/[locale].png
 scripts/gen-icons.mjs   # rasterizes favicon.svg → png icons (npm prebuild)
-public/                  # favicon.svg, site.webmanifest, robots.txt
+public/                  # favicon.svg, PNG icon set, site.webmanifest, robots.txt
 ```
 
 ## Pages beyond the landing

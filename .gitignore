@@ -4,8 +4,10 @@ dist/
 
 # generated from public/favicon.svg by `npm run prebuild` (scripts/gen-icons.mjs)
 public/apple-touch-icon.png
+public/favicon-32.png
 public/icon-192.png
 public/icon-512.png
+public/icon-1024.png
 
 # dependencies
 node_modules/

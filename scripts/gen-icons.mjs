@@ -11,9 +11,11 @@ const publicDir = join(root, 'public');
 const svg = readFileSync(join(publicDir, 'favicon.svg'), 'utf8');
 
 const targets = [
+  { file: 'favicon-32.png', size: 32 },
   { file: 'apple-touch-icon.png', size: 180 },
   { file: 'icon-192.png', size: 192 },
   { file: 'icon-512.png', size: 512 },
+  { file: 'icon-1024.png', size: 1024 },
 ];
 
 mkdirSync(publicDir, { recursive: true });

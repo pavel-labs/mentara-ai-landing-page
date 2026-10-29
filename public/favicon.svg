@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mentarika">
-  <rect width="64" height="64" rx="16" fill="#193629" />
-  <path d="M14 48V16l18 19 18-19v32M14 16l18 32 18-32" fill="none" stroke="#d5f879" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#0D1220" />
+  <path d="M160 336V185L256 289 352 185" fill="none" stroke="#2DC9C4" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="351" cy="327" r="24" fill="#2DC9C4" />
 </svg>
