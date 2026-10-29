@@ -66,13 +66,14 @@ const canonical = new URL(
   singleLanguage ? localePath(DEFAULT_LOCALE, pagePath) : Astro.url.pathname,
   origin,
 ).href;
-const favicon = withBase('favicon.svg');
-const brandIcon = withBase('icon-512.png');
+const iconVersion = '2';
+const favicon = `${withBase('favicon.svg')}?v=${iconVersion}`;
+const brandIcon = `${withBase('icon-512.png')}?v=${iconVersion}`;
 const ogImage = ogImageUrl ?? new URL(withBase(`og/${locale}.png`), origin).href;
 const sitemapHref = withBase('sitemap-index.xml');
 const rssHref = withBase('rss.xml');
-const manifestHref = withBase('site.webmanifest');
-const appleIcon = withBase('apple-touch-icon.png');
+const manifestHref = `${withBase('site.webmanifest')}?v=${iconVersion}`;
+const appleIcon = `${withBase('apple-touch-icon.png')}?v=${iconVersion}`;
 
 // hreflang alternates: the same page in every locale, x-default → its English version.
 // Every localized route exists in all locales (the parity test and the per-locale page
@@ -161,7 +162,7 @@ const jsonLd = {
     <meta name="color-scheme" content="light" />
 
     <link rel="icon" href={favicon} type="image/svg+xml" />
-    <link rel="icon" href={withBase('favicon-32.png')} type="image/png" sizes="32x32" />
+    <link rel="icon" href={`${withBase('favicon-32.png')}?v=${iconVersion}`} type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href={appleIcon} />
     <link rel="manifest" href={manifestHref} />
     <link rel="sitemap" href={sitemapHref} />
