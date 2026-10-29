@@ -65,6 +65,7 @@ the sitemap `i18n.locales`), and add `src/pages/xx/index.astro`
 src/
   i18n/{types,en,de,es,ru,pl,index}.ts  # typed translation dictionaries (the copy)
   consts.ts             # non-translatable constants only
+  icon-version.ts       # content hash used to cache-bust generated app icons
   legal.ts              # DRAFT privacy/terms clauses (English authoritative)
   content.config.ts · content/blog/*.md   # changelog collection (English)
   layouts/BaseLayout    # <head>, SEO/OG/JSON-LD/hreflang/RSS, fonts, global.css
@@ -73,11 +74,16 @@ src/
                 #   TeamsBand, FAQ, CTA, BlogTeaser; EnterprisePageView +
                 #   EnterpriseForm; shared FlowSteps, SectionHead, Nav, Footer, …
   pages/        # {locale}/index, {locale}/enterprise, {locale}/privacy,
-                #   {locale}/terms, 404, blog/index, blog/[slug], rss.xml,
+                #   {locale}/terms, 404, blog/index, blog/[slug], site.webmanifest,
+                #   rss.xml,
                 #   og/[locale].png
 scripts/gen-icons.mjs   # rasterizes favicon.svg → png icons (npm prebuild)
-public/                  # favicon.svg, PNG icon set, site.webmanifest, robots.txt
+public/                  # favicon.svg, generated PNG icon set, robots.txt
 ```
+
+The icon version is derived from the source SVG content during the build and applied to
+favicon links and the generated web manifest, so changing the icon automatically invalidates
+cached browser and app icons without manually bumping a version.
 
 ## Pages beyond the landing
 

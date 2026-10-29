@@ -1,0 +1,30 @@
+import type { APIRoute } from 'astro';
+import { ICON_VERSION } from '../icon-version';
+
+const icons = [
+  { src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
+  { src: 'favicon-32.png', sizes: '32x32', type: 'image/png' },
+  { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
+  { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
+  { src: 'icon-1024.png', sizes: '1024x1024', type: 'image/png' },
+].map((icon) => ({ ...icon, src: `${icon.src}?v=${ICON_VERSION}` }));
+
+export const GET: APIRoute = () =>
+  new Response(
+    JSON.stringify(
+      {
+        name: 'Mentarika',
+        short_name: 'Mentarika',
+        description: 'AI mock technical interviews for software engineers.',
+        start_url: '.',
+        scope: '.',
+        display: 'standalone',
+        background_color: '#f7f8f4',
+        theme_color: '#f7f8f4',
+        icons,
+      },
+      null,
+      2,
+    ),
+    { headers: { 'Content-Type': 'application/manifest+json; charset=utf-8' } },
+  );

@@ -3,6 +3,7 @@ import '@fontsource-variable/hanken-grotesk';
 import '@fontsource/jetbrains-mono/400.css';
 import '../styles/global.css';
 import { SITE } from '../consts';
+import { ICON_VERSION } from '../icon-version';
 import AnalyticsConsent from '../features/analytics/AnalyticsConsent.astro';
 import LocaleAuto from '../components/shared/LocaleAuto.astro';
 import {
@@ -66,7 +67,7 @@ const canonical = new URL(
   singleLanguage ? localePath(DEFAULT_LOCALE, pagePath) : Astro.url.pathname,
   origin,
 ).href;
-const iconVersion = '2';
+const iconVersion = ICON_VERSION;
 const favicon = `${withBase('favicon.svg')}?v=${iconVersion}`;
 const brandIcon = `${withBase('icon-512.png')}?v=${iconVersion}`;
 const ogImage = ogImageUrl ?? new URL(withBase(`og/${locale}.png`), origin).href;

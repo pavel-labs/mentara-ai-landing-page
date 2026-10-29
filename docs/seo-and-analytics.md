@@ -6,8 +6,10 @@ Astro renders `BaseLayout.astro` metadata into HTML: title, description, author,
 self-canonical, Open Graph/Twitter image alt text, language alternates and JSON-LD. CMS
 `landing.seo` values override localized fallback metadata through `Landing.astro`. Titles and
 descriptions are editorial inputs, not keyword-stuffing templates. The favicon and generated PNG
-icon set use the same Mentarika mark and colors as the main app. The new visible practice-modes
-section supports the broader topic.
+icon set use the same Mentarika mark and colors as the main app. Icon URLs use a content hash
+from the source SVG, including icons in the generated web manifest, so a changed icon
+automatically gets fresh cache keys at build time. The new visible practice-modes section
+supports the broader topic.
 
 Keyword framework (intent hypotheses, not measured search-volume claims):
 
