@@ -81,9 +81,11 @@ scripts/gen-icons.mjs   # rasterizes favicon.svg → png icons (npm prebuild)
 public/                  # favicon.svg, generated PNG icon set, robots.txt
 ```
 
-The icon version is derived from the source SVG content during the build and applied to
-favicon links and the generated web manifest, so changing the icon automatically invalidates
-cached browser and app icons without manually bumping a version.
+Asset cache-busting is automatic; no release-time version bump is needed. Astro/Vite emits
+content-hashed filenames for built scripts, stylesheets and imported fonts, so changing one
+changes its URL. The public icon PNGs are generated from `favicon.svg`; its content hash is
+appended to favicon and web-manifest URLs, so changing the icon also invalidates cached
+browser and app icons.
 
 ## Pages beyond the landing
 
@@ -155,6 +157,9 @@ config left in this repo.
   rollout"); the rest default safely to off/empty until configured.
 - Every `SITE_URL`-derived URL (canonical, OG, hreflang, sitemap, `robots.txt`) still needs no
   code change to move domains — only the Railway build variable.
+- nginx serves Astro's content-hashed `/_astro/` assets as immutable for a year, revalidates
+  stable-URL public images/styles/scripts after an hour, and marks prerendered pages `no-cache`
+  so browsers check for updated HTML after deploys.
 
 ### Redeploying after a CMS publish
 
