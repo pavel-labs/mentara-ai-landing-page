@@ -42,6 +42,44 @@ describe('draft preview boundary', () => {
       parsePreviewMessage({ type: 'mentarika-marketing-preview', kind: 'landing', content: article }),
     ).toBeNull();
   });
+  it('rejects unsafe URL schemes in every preview URL field', () => {
+    const unsafeUrls = [
+      'javascript:alert(1)',
+      'JaVaScRiPt:alert(1)',
+      'data:text/html,<script>alert(1)</script>',
+      'vbscript:msgbox(1)',
+      '//attacker.example/image.svg',
+      'https://trusted.example@attacker.example/path',
+    ];
+    const media = (url: string) => ({ url, alt: 'Preview image' });
+    const invalidArticles = unsafeUrls.flatMap((url) => [
+      { ...article, cover: media(url) },
+      { ...article, blocks: [{ type: 'link', label: 'Open', url }] },
+      { ...article, blocks: [{ type: 'image', url, alt: 'Preview image' }] },
+      { ...article, seo: { ...article.seo, image: media(url) } },
+    ]);
+    const invalidLandings = unsafeUrls.flatMap((url) => [
+      { ...page, hero: { ...page.hero, image: media(url) } },
+      {
+        ...page,
+        features: [{ ...page.features[0], image: media(url) }, ...page.features.slice(1)],
+      },
+      { ...page, links: { ...page.links, webAppUrl: url } },
+      { ...page, links: { ...page.links, social: [{ label: 'Social', url }] } },
+      { ...page, seo: { ...page.seo, image: media(url) } },
+    ]);
+
+    for (const content of invalidArticles) {
+      expect(
+        parsePreviewMessage({ type: 'mentarika-marketing-preview', kind: 'article', content }),
+      ).toBeNull();
+    }
+    for (const content of invalidLandings) {
+      expect(
+        parsePreviewMessage({ type: 'mentarika-marketing-preview', kind: 'landing', content }),
+      ).toBeNull();
+    }
+  });
   it('restricts preview origins to HTTPS or local development and excludes credentials', () => {
     expect(previewOrigin('https://admin.example.test/path')).toBe('https://admin.example.test');
     expect(previewOrigin('http://localhost:4200')).toBe('http://localhost:4200');

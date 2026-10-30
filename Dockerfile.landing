@@ -57,6 +57,7 @@ ENV PORT=8080
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.landing.conf /etc/nginx/templates/default.conf.template
+COPY nginx.security-headers.conf /etc/nginx/security-headers.conf
 
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \

@@ -29,13 +29,18 @@ Node 22.12+ (required by Astro 6; CI runs Node 22).
 
 ## Tests
 
-`npm test` (Vitest, pure-logic only – no Astro runtime):
+`npm test` (Vitest, unit, server-rendered Astro, and security-policy tests – no browser runtime):
 
+- `src/astro-components.test.ts` – server-renders every `.astro` file under `src/` with Astro's
+  container API, using representative props and published blog content.
 - `src/i18n/i18n.test.ts` – `isLocale` / `getDict` / `withBase` / `localeHome` /
   `localeUrl`.
 - `src/i18n/parity.test.ts` – recursively asserts `de` and `ru` match the English
   dictionary's shape exactly (missing/renamed/extra keys and mismatched array lengths
   fail the build), so a missing translation can't ship silently.
+- `src/marketing/preview-message.test.ts` – validates draft-preview payloads, origins and
+  untrusted URL fields; `scripts/security.test.mjs` – checks nginx security headers, CORS
+  boundaries, and preview caching/indexing rules.
 
 Pull requests run template/type checks, tests and a static build before Lighthouse.
 For layout changes, also review the fallback and published-content homepages at 320px,
@@ -159,7 +164,9 @@ config left in this repo.
   code change to move domains — only the Railway build variable.
 - nginx serves Astro's content-hashed `/_astro/` assets as immutable for a year, revalidates
   stable-URL public images/styles/scripts after an hour, and marks prerendered pages `no-cache`
-  so browsers check for updated HTML after deploys.
+  so browsers check for updated HTML after deploys. Security headers are kept in a shared nginx
+  include and re-applied in locations with their own response headers (nginx does not inherit
+  parent `add_header` directives into such locations).
 
 ### Redeploying after a CMS publish
 
